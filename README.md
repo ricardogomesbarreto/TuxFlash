@@ -9,6 +9,8 @@
 
 Versão / Version **0.3.3** · **GPL-3.0-or-later** · **Linux x86-64**
 
+[![Build and tests](https://github.com/ricardogomesbarreto/TuxFlash/actions/workflows/ci.yml/badge.svg)](https://github.com/ricardogomesbarreto/TuxFlash/actions/workflows/ci.yml)
+
 [GitHub](https://github.com/ricardogomesbarreto/TuxFlash) · [Downloads](https://github.com/ricardogomesbarreto/TuxFlash/releases) · [Contribuir / Contributing](docs/development/CONTRIBUTING.md)
 
 [Português (Brasil)](#portugues-brasil) · [English](#english) · [Estrutura / Layout](#layout)
