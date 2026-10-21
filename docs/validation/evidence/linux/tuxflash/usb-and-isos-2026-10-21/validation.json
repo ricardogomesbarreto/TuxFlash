@@ -45,7 +45,34 @@
       "object_count": 9
     }
   ],
-  "physical_administrative_checks": null,
+  "physical_administrative_checks": {
+    "date": "2026-10-21",
+    "application_version": "0.3.5",
+    "operation": "existing Windows installer read-only verification",
+    "files_expected": 906,
+    "files_compared": 906,
+    "bytes_compared": 4387198448,
+    "missing_count": 0,
+    "mismatch_count": 0,
+    "extra_file_count": 1,
+    "gpt": {
+      "gpt_primary_crc_valid": true,
+      "gpt_backup_crc_valid": true,
+      "partition_arrays_match": true,
+      "partition_count": 1,
+      "partition_name": "WINDOWS 10",
+      "filesystem": "FAT32",
+      "volume_label": "WINDOWS 10"
+    },
+    "fsck_fat_exit": 0,
+    "cache_invalidated": true,
+    "mounted_readonly": true,
+    "metadata_unchanged": true,
+    "usb_rewritten": false,
+    "existing_media_created_with_older_version": true,
+    "source_iso_sha256": "1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768",
+    "passed": true
+  },
   "physical_usb_uefi_vm": null,
   "new_image_vm_tests": {
     "debian": {

@@ -44,7 +44,12 @@ O rótulo continua **WINDOWS 10**. Há um arquivo adicional de metadados de
 indexação do Windows; seu identificador não foi publicado. A verificação
 interna de `boot.wim` e a leitura dos dois BCD também passaram.
 
-Esta comparação usou montagem somente leitura e descarte de cache por arquivo;
-não implica `BLKFLSBUF` ou nova gravação física com o helper 0.3.5. Os detalhes
-da rotina administrativa adicional e das novas imagens Debian/Ubuntu estão no
-[relatório de 21/10](USB-E-NOVAS-ISOS-2026-10-21.md).
+A comparação inicial usou montagem somente leitura e descarte de cache por
+arquivo. A rotina administrativa posterior também passou: CRCs dos dois GPTs,
+igualdade das tabelas de partições, `fsck.vfat -n` com saída zero e nova
+comparação dos 906 arquivos depois de invalidar o cache de blocos com
+`BLKFLSBUF`. Metadados de particionamento e boot permaneceram iguais.
+Isso não constitui nova gravação física com o helper 0.3.5. O teste de boot
+direto desse USB em VM é registrado separadamente no
+[relatório de 21/10](USB-E-NOVAS-ISOS-2026-10-21.md), junto às novas imagens
+Debian/Ubuntu.

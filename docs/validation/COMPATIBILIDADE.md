@@ -84,5 +84,7 @@ Veja [evidências e critérios de estabilidade](REVISAO-0.3.5.md).
 ## Pendrive Windows e novas ISOs em 21/10/2026
 
 906 arquivos do instalador existente, `boot.wim` e BCD conferidos somente para
-leitura. Debian e Ubuntu validados em discos virtuais. Veja o
+leitura. A rotina administrativa posterior validou os dois GPTs e o FAT32 e
+repetiu a comparação integral após invalidar o cache de blocos, sem alterar
+os metadados. Debian e Ubuntu validados em discos virtuais. Veja o
 [relatório atualizado e seus limites](USB-E-NOVAS-ISOS-2026-10-21.md).

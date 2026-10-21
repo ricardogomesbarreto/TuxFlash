@@ -26,7 +26,7 @@ blocos com `BLKFLSBUF`. A ISO de referência coincidiu novamente com o SHA-256
 histórico `1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768`.
 O manifesto vem da extração independente de 7-Zip registrada na validação anterior.
 
-A rotina administrativa adicional ainda não foi concluída. A primeira tentativa leu o GPT e executou `fsck.vfat -n`, mas encerrou ao remontar porque o serviço havia removido o ponto de montagem. A rotina foi corrigida; sua repetição completa e o boot UEFI lendo o USB diretamente aguardam autenticação. Resultados parciais dessa tentativa não foram considerados aprovação da rotina inteira. A comparação de arquivos acima foi concluída separadamente, em montagem somente leitura.
+A conferência administrativa também passou: GPT primário e de backup com CRC válido, tabelas de partições iguais, `fsck.vfat -n` com saída zero, cache de blocos invalidado e nova comparação dos 906 arquivos. Os metadados GPT/boot permaneceram iguais. A tentativa inicial de boot em VM encerrou ao selecionar o driver de disco do QEMU; a configuração foi corrigida e a retomada somente leitura está separada das verificações já aprovadas.
 
 A mídia física foi criada em uma versão anterior e seu boot físico já havia
 sido confirmado pelo usuário. Esta conferência valida o conteúdo existente;
@@ -78,7 +78,7 @@ stores passed. The volume label remains **WINDOWS 10**.
 
 The initial file comparison used a read-only desktop mount and per-file cache
 discard advisories; it does not by itself prove block-cache invalidation.
-The additional administrative routine remains incomplete. Its first attempt read GPT and ran a read-only FAT check, then stopped when remounting because the desktop service had removed the mount directory. That harness issue was corrected; the full rerun and direct read-only USB VM boot await authentication. Partial results are not counted as a passing complete routine. The separate file and image checks are complete.
+Administrative checks also passed: primary/backup GPT CRCs and matching arrays, zero-exit read-only FAT check, block-cache invalidation and another complete 906-file comparison. GPT/boot metadata remained unchanged. The first VM boot attempt stopped at QEMU disk-driver selection; the configuration was corrected, and the read-only retry is tracked separately from completed checks.
 
 Debian 13.7 netinst and Ubuntu 26.04.1 Desktop match their official HTTPS
 checksum lists. Both passed full RAW writing, helper read-back and independent
