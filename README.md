@@ -21,7 +21,7 @@
   <a href="docs/development/CONTRIBUTING.md">Contribuir / Contribute</a>
 </p>
 
-> **Release status / Estado das versões:** **0.3.3** é o lançamento público disponível para download. A versão **0.3.4** está no código de desenvolvimento e seu lançamento ainda é um rascunho. / **0.3.3** is the published downloadable release. Version **0.3.4** is present in the development source, but its release remains a draft.
+> **Release status / Estado das versões:** **[0.3.4](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.4)** é a versão pública atual, com pacote portátil Linux x86-64 e SHA-256. / **[0.3.4](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.4)** is the current public release, with a Linux x86-64 portable archive and SHA-256.
 
 ---
 
@@ -36,8 +36,8 @@ O **TuxFlash** é um aplicativo nativo em **C, GTK 4 e libadwaita**, com interfa
 
 **1. Baixe os dois arquivos da versão publicada para Linux x86-64:**
 
-- [TuxFlash 0.3.3 — pacote portátil (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.3/TuxFlash-0.3.3-linux-x86_64.tar.xz)
-- [SHA-256 — arquivo de verificação](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.3/TuxFlash-0.3.3-linux-x86_64.tar.xz.sha256)
+- [TuxFlash 0.3.4 — pacote portátil (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.4/TuxFlash-0.3.4-linux-x86_64.tar.xz)
+- [SHA-256 — arquivo de verificação](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.4/TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256)
 
 Também estão disponíveis na página de [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases).
 
@@ -45,13 +45,13 @@ Também estão disponíveis na página de [Releases](https://github.com/ricardog
 
 ```bash
 # Confirme a integridade do pacote (recomendado).
-sha256sum -c TuxFlash-0.3.3-linux-x86_64.tar.xz.sha256
+sha256sum -c TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256
 
 # Extraia o pacote.
-tar -xf TuxFlash-0.3.3-linux-x86_64.tar.xz
+tar -xf TuxFlash-0.3.4-linux-x86_64.tar.xz
 
 # Entre na pasta que foi criada.
-cd TuxFlash-0.3.3-linux-x86_64
+cd TuxFlash-0.3.4-linux-x86_64
 
 # Inicie a interface gráfica.
 ./tuxflash
@@ -155,7 +155,7 @@ Se a interface não abrir, execute o lançador pelo terminal para ler o erro, ro
 ### Desenvolvimento e histórico de versões
 
 - **0.3.3 — disponível publicamente:** endurecimento das verificações de destino e volumes do sistema, melhorias de cancelamento/relato de sucesso e documentação de execução.
-- **0.3.4 — desenvolvimento / release em rascunho:** correções de tratamento de links internos em mídias persistentes, cenários adicionais de regressão e relatórios com imagens reais. **Não considere o pacote 0.3.4 publicado até a página de Releases indicar publicação.**
+- **0.3.4 — versão atual publicada:** corrigida a criação de mídia persistente do Zorin OS 18.1; 17 suítes nativas e 40 cenários de backend em VM aprovados. [Testes com SteamOS, Kali e Zorin](docs/validation/IMAGENS-REAIS-2026-10-21.md) registram resultados, capturas e limites da validação.
 
 Na árvore do repositório, `tuxflash.sh` é o lançador de desenvolvimento; `scripts/` contém execução e instalação do atalho; `linux/` abriga código, runtime e recursos; `docs/` reúne os guias, a compatibilidade, licenças e evidências; `upstream/rufus/` conserva material herdado. `build/` e `dist/` são saídas locais e não fazem parte de um clone limpo.
 
@@ -171,7 +171,7 @@ Documentação: [contribuição](docs/development/CONTRIBUTING.md) · [testes em
 
 ### Créditos e licença
 
-Desenvolvimento TuxFlash: [Ricardo Barreto](https://github.com/ricardogomesbarreto) e colaboradores. Bases: [Rufus — Pete Batard e colaboradores](https://github.com/pbatard/rufus) e [Lufus — Open Research Tools e colaboradores](https://github.com/openresearchtools/lufus). Projeto independente, licenciado sob **GPL-3.0-or-later**, com avisos de terceiros mantidos em [THIRD_PARTY_NOTICES.md](docs/legal/THIRD_PARTY_NOTICES.md) e licença em [LICENSE.txt](LICENSE.txt).
+Desenvolvimento TuxFlash: [Ricardo Barreto](https://github.com/ricardogomesbarreto). Bases: [Rufus — Pete Batard e colaboradores](https://github.com/pbatard/rufus) e [Lufus — Open Research Tools e colaboradores](https://github.com/openresearchtools/lufus). Projeto independente, licenciado sob **GPL-3.0-or-later**, com avisos de terceiros mantidos em [THIRD_PARTY_NOTICES.md](docs/legal/THIRD_PARTY_NOTICES.md) e licença em [LICENSE.txt](LICENSE.txt).
 
 ---
 
@@ -186,8 +186,8 @@ Desenvolvimento TuxFlash: [Ricardo Barreto](https://github.com/ricardogomesbarre
 
 **1. Download both files for the published Linux x86-64 release:**
 
-- [TuxFlash 0.3.3 — portable archive (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.3/TuxFlash-0.3.3-linux-x86_64.tar.xz)
-- [SHA-256 checksum file](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.3/TuxFlash-0.3.3-linux-x86_64.tar.xz.sha256)
+- [TuxFlash 0.3.4 — portable archive (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.4/TuxFlash-0.3.4-linux-x86_64.tar.xz)
+- [SHA-256 checksum file](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.4/TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256)
 
 Or open the [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases) page.
 
@@ -195,11 +195,11 @@ Or open the [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases)
 
 ```bash
 # Verify the archive (recommended).
-sha256sum -c TuxFlash-0.3.3-linux-x86_64.tar.xz.sha256
+sha256sum -c TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256
 
 # Extract and enter its directory.
-tar -xf TuxFlash-0.3.3-linux-x86_64.tar.xz
-cd TuxFlash-0.3.3-linux-x86_64
+tar -xf TuxFlash-0.3.4-linux-x86_64.tar.xz
+cd TuxFlash-0.3.4-linux-x86_64
 
 # Launch the graphical application.
 ./tuxflash
@@ -303,7 +303,7 @@ If the GUI does not open, launch it from a terminal to inspect the error, run `d
 ### Development and versions
 
 - **0.3.3 — public release:** improved system-volume and target verification, cancellation/success reporting and runtime guidance.
-- **0.3.4 — development / draft release:** fixes for internal links in persistent-media images, additional regression cases and image-based validation reports. **Do not treat 0.3.4 as publicly released until it is published on the Releases page.**
+- **0.3.4 — current public release:** fixed Zorin OS 18.1 persistent-media creation; 17 native suites and 40 backend VM cases passed. [SteamOS, Kali and Zorin validation](docs/validation/IMAGENS-REAIS-2026-10-21.md) includes results, screenshots and test limits.
 
 Repository layout: `tuxflash.sh` launches a built development checkout; `scripts/` provides runtime selection and menu integration; `linux/` contains source, runtime and resources; `docs/` holds manuals, compatibility, licensing and validation evidence; `upstream/rufus/` preserves inherited material. `build/` and `dist/` are generated locally and absent from a clean clone.
 
@@ -319,4 +319,4 @@ More: [contributing](docs/development/CONTRIBUTING.md) · [VM tests](docs/develo
 
 ### Credits and license
 
-TuxFlash development: [Ricardo Barreto](https://github.com/ricardogomesbarreto) and contributors. Foundations: [Rufus — Pete Batard and contributors](https://github.com/pbatard/rufus) and [Lufus — Open Research Tools and contributors](https://github.com/openresearchtools/lufus). Independent project licensed under **GPL-3.0-or-later**; original copyrights and component terms remain preserved in [THIRD_PARTY_NOTICES.md](docs/legal/THIRD_PARTY_NOTICES.md) and [LICENSE.txt](LICENSE.txt).
+TuxFlash development: [Ricardo Barreto](https://github.com/ricardogomesbarreto). Foundations: [Rufus — Pete Batard and contributors](https://github.com/pbatard/rufus) and [Lufus — Open Research Tools and contributors](https://github.com/openresearchtools/lufus). Independent project licensed under **GPL-3.0-or-later**; original copyrights and component terms remain preserved in [THIRD_PARTY_NOTICES.md](docs/legal/THIRD_PARTY_NOTICES.md) and [LICENSE.txt](LICENSE.txt).
