@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-21",
+  "version": "0.3.3",
+  "single_project_readme": "README.md",
+  "readme_languages": [
+    "pt_BR",
+    "en"
+  ],
+  "native_meson_suites_passed": 16,
+  "native_meson_suites_failed": 0,
+  "independent_hash_and_platform_checks_passed": true,
+  "hash_memory_address_undefined_sanitizers_passed": true,
+  "gui_languages_passed": [
+    "pt_BR",
+    "en",
+    "es",
+    "zh_CN"
+  ],
+  "gui_operation_completion_cases_per_language": 4,
+  "menu_installers_checked": [
+    "project",
+    "standalone portable"
+  ],
+  "helper_sha256": "db42ced7c6c40c4668e787ece7b6e4fdfb78a4b716d0d945448a5640f0937314",
+  "helper_elf_unchanged": true,
+  "frontend_sha256": "c53f2d1b5a1a277f0a54aded1aaa85d4a619239ca53dfed7dfc2bf0b417c3eb4",
+  "inherited_windows_files_preserved": 772,
+  "physical_device_modified": false,
+  "previous_backend_evidence": "docs/validation/evidence/linux/tuxflash/releases-0.3.3/validation.json",
+  "previous_backend_evidence_has_same_helper_hash": true,
+  "private_identifiers_included": false
+}

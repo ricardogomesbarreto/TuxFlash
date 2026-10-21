@@ -1,0 +1,181 @@
+c[?7l[2J[0mSeaBIOS (version 1.17.0-debian-1.17.0-1ubuntu1)
+Booting from ROM...
+c[?7l[2Jmodprobe: module nls_cp437 not found in modules.dep
+modprobe: module fuse not found in modules.dep
+NAME SIZE TYPE RM MAJ:MIN
+sda   64M disk  1   8:0  
+sdb    1G disk  1   8:16 
+QA START device-identity-guard
+QA PASS device-identity-guard
+QA START device-capacity-guard
+QA PASS device-capacity-guard
+QA START protected-mount-guard
+QA PASS protected-mount-guard
+QA START partition-guard
+QA FAIL partition-guard
+Checking that no-one is using this disk right now ... OK
+
+The device contains 'ext4' signature and it may remain on the device. It is recommended to wipe the device with wipefs(8) or sfdisk --wipe, in order to avoid possible collisions.
+
+Disk /dev/sda: 64 MiB, 67108864 bytes, 131072 sectors
+Disk model: QEMU HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+>>> Script header accepted.
+>>> Created a new DOS (MBR) disklabel with disk identifier 0x16011179.
+The device contains 'ext4' signature and it may remain on the device. It is recommended to wipe the device with wipefs(8) or sfdisk --wipe, in order to avoid possible collisions.
+
+/dev/sda1: Created a new partition 1 of type 'Linux' and of size 4 MiB.
+/dev/sda2: Done.
+
+New situation:
+Disklabel type: dos
+Disk identifier: 0x16011179
+
+Device     Boot Start   End Sectors Size Id Type
+/dev/sda1        2048 10239    8192   4M 83 Linux
+
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+cat: can't open '/sys/class/block/partition-guard1/dev': No such file or directory
+QA START raw-write-verify
+QA PASS raw-write-verify
+QA START compressed-gz
+QA PASS compressed-gz
+QA START compressed-xz
+QA PASS compressed-xz
+QA START compressed-bz2
+QA PASS compressed-bz2
+QA START compressed-zst
+QA PASS compressed-zst
+QA START reject-corrupt-gzip
+QA PASS reject-corrupt-gzip
+QA START reject-truncated-gzip
+QA PASS reject-truncated-gzip
+QA START reject-oversize
+QA PASS reject-oversize
+QA START reject-ffu
+QA PASS reject-ffu
+QA START capture-existing-guard
+QA PASS capture-existing-guard
+QA START restore-source
+QA PASS restore-source
+QA START capture-raw-roundtrip
+QA PASS capture-raw-roundtrip
+QA START capture-vhd-roundtrip
+QA FAIL capture-vhd-roundtrip
+STARTED Capturing device image
+STAGE 0 40 Creating virtual disk container
+PROGRESS 0 0
+Formatting '/tmp/capture.vhd', fmt=vpc size=67108864 subformat=fixed
+STAGE 40 1000 Capturing device into virtual disk
+PROGRESS 0 0
+PROGRESS_PERCENT 0
+PROGRESS_PERCENT 31
+PROGRESS_PERCENT 63
+PROGRESS_PERCENT 94
+PROGRESS_PERCENT 125
+PROGRESS_PERCENT 156
+PROGRESS_PERCENT 188
+PROGRESS_PERCENT 219
+PROGRESS_PERCENT 250
+PROGRESS_PERCENT 281
+PROGRESS_PERCENT 313
+PROGRESS_PERCENT 344
+PROGRESS_PERCENT 375
+PROGRESS_PERCENT 406
+PROGRESS_PERCENT 438
+PROGRESS_PERCENT 469
+PROGRESS_PERCENT 500
+PROGRESS_PERCENT 531
+PROGRESS_PERCENT 563
+PROGRESS_PERCENT 594
+PROGRESS_PERCENT 625
+PROGRESS_PERCENT 656
+PROGRESS_PERCENT 688
+PROGRESS_PERCENT 719
+PROGRESS_PERCENT 750
+PROGRESS_PERCENT 781
+PROGRESS_PERCENT 813
+PROGRESS_PERCENT 844
+PROGRESS_PERCENT 875
+PROGRESS_PERCENT 906
+PROGRESS_PERCENT 938
+PROGRESS_PERCENT 969
+PROGRESS_PERCENT 1000
+PROGRESS_PERCENT 1000
+COMPLETE Device image captured
+Warning: Image size mismatch!
+Images are identical.
+image: /tmp/capture.vhd
+file format: raw
+virtual size: 64 MiB (67125760 bytes)
+disk size: 64 MiB
+Child node '/file':
+    filename: /tmp/capture.vhd
+    protocol type: file
+    file length: 64 MiB (67125760 bytes)
+    disk size: 64 MiB
+ERROR The virtual disk is larger than the selected device
+QA START capture-vhdx-roundtrip
+QA FAIL capture-vhdx-roundtrip
+STARTED Capturing device image
+STAGE 0 40 Creating virtual disk container
+PROGRESS 0 0
+Formatting '/tmp/capture.vhdx', fmt=vhdx size=67108864 log_size=1048576 block_size=0 subformat=dynamic
+STAGE 40 1000 Capturing device into virtual disk
+PROGRESS 0 0
+PROGRESS_PERCENT 0
+PROGRESS_PERCENT 31
+PROGRESS_PERCENT 63
+PROGRESS_PERCENT 94
+PROGRESS_PERCENT 125
+PROGRESS_PERCENT 156
+PROGRESS_PERCENT 188
+PROGRESS_PERCENT 219
+PROGRESS_PERCENT 250
+PROGRESS_PERCENT 281
+PROGRESS_PERCENT 313
+PROGRESS_PERCENT 344
+PROGRESS_PERCENT 375
+PROGRESS_PERCENT 406
+PROGRESS_PERCENT 438
+PROGRESS_PERCENT 469
+PROGRESS_PERCENT 500
+PROGRESS_PERCENT 531
+PROGRESS_PERCENT 563
+PROGRESS_PERCENT 594
+PROGRESS_PERCENT 625
+PROGRESS_PERCENT 656
+PROGRESS_PERCENT 688
+PROGRESS_PERCENT 719
+PROGRESS_PERCENT 750
+PROGRESS_PERCENT 781
+PROGRESS_PERCENT 813
+PROGRESS_PERCENT 844
+PROGRESS_PERCENT 875
+PROGRESS_PERCENT 906
+PROGRESS_PERCENT 938
+PROGRESS_PERCENT 969
+PROGRESS_PERCENT 1000
+PROGRESS_PERCENT 1000
+COMPLETE Device image captured
+Images are identical.
+image: /tmp/capture.vhdx
+file format: vhdx
+virtual size: 64 MiB (67108864 bytes)
+disk size: 65.3 MiB
+cluster_size: 8388608
+Child node '/file':
+    filename: /tmp/capture.vhdx
+    protocol type: file
+    file length: 72 MiB (75497472 bytes)
+    disk size: 65.3 MiB
+ERROR The virtual disk is larger than the selected device
+QA START final-boot-image
+QA PASS final-boot-image
+QA SUMMARY passed=16 failed=3
+[   38.918949] reboot: Power down

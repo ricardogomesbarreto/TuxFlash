@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "value": {
+    "evidence_id": "ev_39f0643bf1b36265b3eda11aeda4d375532ede2b2d03f9d7d378c49d44461881",
+    "subject": {
+      "name": "tuxflash",
+      "digest": {
+        "sha256": "7f0de0a8cc60cf148028b97a43130e03ac38c366b2d2424dd08f84f76a59c60e"
+      },
+      "local_path": "/caminho/do/projeto/linux/runtime/bin/tuxflash",
+      "format": "unknown",
+      "architecture": null
+    },
+    "provider": {
+      "id": "gnu.objdump",
+      "name": "GNU objdump",
+      "version": null
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.reverse-engineering.command-observation",
+    "operation": "inspect_with_objdump",
+    "parameters": {
+      "path": "/caminho/do/projeto/linux/runtime/bin/tuxflash",
+      "operation": "section_headers",
+      "follow_debug_links": false,
+      "provider_executable": "objdump",
+      "command_arguments": [
+        "-h",
+        "/caminho/do/projeto/linux/runtime/bin/tuxflash"
+      ]
+    },
+    "raw_result": {
+      "stdout": "\n/caminho/do/projeto/linux/runtime/bin/tuxflash:     file format elf64-x86-64\n\nSections:\nIdx Name          Size      VMA               LMA               File off  Algn\n  0 .note.gnu.build-id 00000024  0000000000000350  0000000000000350  00000350  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  1 .interp       0000001c  0000000000000374  0000000000000374  00000374  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  2 .gnu.hash     00000048  0000000000000390  0000000000000390  00000390  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  3 .dynsym       000022c8  00000000000003d8  00000000000003d8  000003d8  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  4 .dynstr       00001f66  00000000000026a0  00000000000026a0  000026a0  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  5 .gnu.version  000002e6  0000000000004606  0000000000004606  00004606  2**1\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  6 .gnu.version_r 000000c0  00000000000048f0  00000000000048f0  000048f0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  7 .rela.dyn     00001308  00000000000049b0  00000000000049b0  000049b0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  8 .rela.plt     000021c0  0000000000005cb8  0000000000005cb8  00005cb8  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  9 .init         0000001b  0000000000008000  0000000000008000  00008000  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 10 .plt          00001690  0000000000008020  0000000000008020  00008020  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 11 .plt.got      00000030  00000000000096b0  00000000000096b0  000096b0  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 12 .plt.sec      00001680  00000000000096e0  00000000000096e0  000096e0  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 13 .text         0001971c  000000000000ad80  000000000000ad80  0000ad80  2**6\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 14 .fini         0000000d  000000000002449c  000000000002449c  0002449c  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 15 .rodata       00007cf4  0000000000025000  0000000000025000  00025000  2**5\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 16 .gresource.tuxflash_brand 001214e8  000000000002ccf8  000000000002ccf8  0002ccf8  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 17 .eh_frame_hdr 000004ac  000000000014e1e0  000000000014e1e0  0014e1e0  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 18 .eh_frame     00001ee8  000000000014e690  000000000014e690  0014e690  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 19 .note.gnu.property 00000030  0000000000150578  0000000000150578  00150578  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 20 .note.ABI-tag 00000020  00000000001505a8  00000000001505a8  001505a8  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 21 .init_array   00000018  0000000000151d18  0000000000151d18  00150d18  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 22 .fini_array   00000010  0000000000151d30  0000000000151d30  00150d30  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 23 .data.rel.ro  000004c8  0000000000151d40  0000000000151d40  00150d40  2**5\n                  CONTENTS, ALLOC, LOAD, DATA\n 24 .dynamic      00000260  0000000000152208  0000000000152208  00151208  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 25 .got          00000b98  0000000000152468  0000000000152468  00151468  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 26 .data         00000320  0000000000153000  0000000000153000  00152000  2**5\n                  CONTENTS, ALLOC, LOAD, DATA\n 27 .bss          00000040  0000000000153320  0000000000153320  00152320  2**4\n                  ALLOC\n 28 .comment      00000026  0000000000000000  0000000000000000  00152320  2**0\n                  CONTENTS, READONLY\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "7f0de0a8cc60cf148028b97a43130e03ac38c366b2d2424dd08f84f76a59c60e",
+      "artifact_changed": false
+    },
+    "normalized_result": {
+      "stdout": "\n/caminho/do/projeto/linux/runtime/bin/tuxflash:     file format elf64-x86-64\n\nSections:\nIdx Name          Size      VMA               LMA               File off  Algn\n  0 .note.gnu.build-id 00000024  0000000000000350  0000000000000350  00000350  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  1 .interp       0000001c  0000000000000374  0000000000000374  00000374  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  2 .gnu.hash     00000048  0000000000000390  0000000000000390  00000390  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  3 .dynsym       000022c8  00000000000003d8  00000000000003d8  000003d8  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  4 .dynstr       00001f66  00000000000026a0  00000000000026a0  000026a0  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  5 .gnu.version  000002e6  0000000000004606  0000000000004606  00004606  2**1\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  6 .gnu.version_r 000000c0  00000000000048f0  00000000000048f0  000048f0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  7 .rela.dyn     00001308  00000000000049b0  00000000000049b0  000049b0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  8 .rela.plt     000021c0  0000000000005cb8  0000000000005cb8  00005cb8  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  9 .init         0000001b  0000000000008000  0000000000008000  00008000  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 10 .plt          00001690  0000000000008020  0000000000008020  00008020  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 11 .plt.got      00000030  00000000000096b0  00000000000096b0  000096b0  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 12 .plt.sec      00001680  00000000000096e0  00000000000096e0  000096e0  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 13 .text         0001971c  000000000000ad80  000000000000ad80  0000ad80  2**6\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 14 .fini         0000000d  000000000002449c  000000000002449c  0002449c  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 15 .rodata       00007cf4  0000000000025000  0000000000025000  00025000  2**5\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 16 .gresource.tuxflash_brand 001214e8  000000000002ccf8  000000000002ccf8  0002ccf8  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 17 .eh_frame_hdr 000004ac  000000000014e1e0  000000000014e1e0  0014e1e0  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 18 .eh_frame     00001ee8  000000000014e690  000000000014e690  0014e690  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 19 .note.gnu.property 00000030  0000000000150578  0000000000150578  00150578  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 20 .note.ABI-tag 00000020  00000000001505a8  00000000001505a8  001505a8  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 21 .init_array   00000018  0000000000151d18  0000000000151d18  00150d18  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 22 .fini_array   00000010  0000000000151d30  0000000000151d30  00150d30  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 23 .data.rel.ro  000004c8  0000000000151d40  0000000000151d40  00150d40  2**5\n                  CONTENTS, ALLOC, LOAD, DATA\n 24 .dynamic      00000260  0000000000152208  0000000000152208  00151208  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 25 .got          00000b98  0000000000152468  0000000000152468  00151468  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 26 .data         00000320  0000000000153000  0000000000153000  00152000  2**5\n                  CONTENTS, ALLOC, LOAD, DATA\n 27 .bss          00000040  0000000000153320  0000000000153320  00152320  2**4\n                  ALLOC\n 28 .comment      00000026  0000000000000000  0000000000000000  00152320  2**0\n                  CONTENTS, READONLY\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "7f0de0a8cc60cf148028b97a43130e03ac38c366b2d2424dd08f84f76a59c60e",
+      "artifact_changed": false
+    },
+    "confidence": "observed",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+      "A non-zero process exit is preserved as an observed command result.",
+      "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "/caminho/do/projeto/linux/runtime/bin/tuxflash"
+      }
+    ],
+    "evidence_links": []
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "command": [
+    "build-linux/rufus-linux-probe",
+    "inspect",
+    "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"size_bytes\": 3134275584, \"mbr_signature\": true, \"gpt_header_512\": true, \"gpt_header_4096\": false, \"iso9660_signature\": true}",
+  "stderr": ""
+}

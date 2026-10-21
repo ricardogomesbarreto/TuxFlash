@@ -1,0 +1,29 @@
+{
+   "blockdevices": [
+      {
+         "path": "/dev/sda",
+         "size": 15525216256,
+         "type": "disk",
+         "fstype": "iso9660",
+         "label": "Linux Mint 22.3 MATE 64-bit",
+         "parttype": null,
+         "mountpoints": []
+      },{
+         "path": "/dev/sda1",
+         "size": 3134242816,
+         "type": "part",
+         "fstype": "iso9660",
+         "label": "Linux Mint 22.3 MATE 64-bit",
+         "parttype": "0x0",
+         "mountpoints": []
+      },{
+         "path": "/dev/sda2",
+         "size": 5242880,
+         "type": "part",
+         "fstype": "vfat",
+         "label": null,
+         "parttype": "0xef",
+         "mountpoints": []
+      }
+   ]
+}

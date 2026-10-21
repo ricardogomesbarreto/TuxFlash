@@ -1,0 +1,321 @@
+Cleaning... 0 files.
+The Meson build system
+Version: 1.10.1
+Source dir: /tmp/lufus-integration/project/linux
+Build dir: /tmp/lufus-integration/project/linux/build-local
+Build type: native build
+Project name: lufus
+Project version: 0.2.2
+C compiler for the host machine: cc (gcc 15.2.0 "cc (Ubuntu 15.2.0-16ubuntu1) 15.2.0")
+C linker for the host machine: cc ld.bfd 2.46
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Dependency gtk4 found: YES 4.22.4 (cached)
+Dependency libadwaita-1 found: YES 1.9.1 (cached)
+Dependency libsoup-3.0 found: YES 3.6.6 (cached)
+Dependency json-glib-1.0 found: YES 1.10.8 (cached)
+Dependency hivex found: YES 1.3.24 (cached)
+Dependency threads found: YES unknown (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency glib-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency glib-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency glib-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency glib-2.0 found: YES 2.88.0 (cached)
+Build targets in project: 15
+
+lufus 0.2.2
+
+  User defined options
+    buildtype : release
+    libexecdir: libexec
+    prefix    : /usr
+
+Found ninja-1.13.2 at /tmp/lufus-integration/sysroot/usr/bin/ninja
+ninja: Entering directory `/tmp/lufus-integration/project/linux/build-local'
+[1/2] Compiling C object lufus.p/src_main.c.o
+In file included from /tmp/lufus-integration/sysroot/usr/include/gtk-4.0/gtk/gtk.h:36,
+                 from /tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adwaita.h:9,
+                 from ../src/main.c:16:
+/tmp/lufus-integration/sysroot/usr/include/gtk-4.0/gtk/gtkaccessiblehypertext.h:22:108: warning: ISO C does not allow extra ‘;’ outside of a function [-Wpedantic]
+   22 | G_DECLARE_FINAL_TYPE (GtkAccessibleHyperlink, gtk_accessible_hyperlink, GTK, ACCESSIBLE_HYPERLINK, GObject);
+      |                                                                                                            ^
+../src/main.c: In function ‘show_microsoft_download_error’:
+../src/main.c:670:5: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+  670 |     AdwMessageDialog *dialog = ADW_MESSAGE_DIALOG(adw_message_dialog_new(
+      |     ^~~~~~~~~~~~~~~~
+In file included from /tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adwaita.h:63:
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:672:5: warning: ‘adw_message_dialog_add_response’ is deprecated: Use 'adw_alert_dialog_add_response' instead [-Wdeprecated-declarations]
+  672 |     adw_message_dialog_add_response(dialog, "close", _("Close"));
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:95:6: note: declared here
+   95 | void adw_message_dialog_add_response (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:674:9: warning: ‘adw_message_dialog_add_response’ is deprecated: Use 'adw_alert_dialog_add_response' instead [-Wdeprecated-declarations]
+  674 |         adw_message_dialog_add_response(dialog, "website",
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:95:6: note: declared here
+   95 | void adw_message_dialog_add_response (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:676:9: warning: ‘adw_message_dialog_set_response_appearance’ is deprecated: Use 'adw_alert_dialog_set_response_appearance' instead [-Wdeprecated-declarations]
+  676 |         adw_message_dialog_set_response_appearance(
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:120:23: note: declared here
+  120 | void                  adw_message_dialog_set_response_appearance (AdwMessageDialog      *self,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:681:5: warning: ‘adw_message_dialog_set_default_response’ is deprecated: Use 'adw_alert_dialog_set_default_response' instead [-Wdeprecated-declarations]
+  681 |     adw_message_dialog_set_default_response(dialog, "close");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:135:13: note: declared here
+  135 | void        adw_message_dialog_set_default_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:682:5: warning: ‘adw_message_dialog_set_close_response’ is deprecated: Use 'adw_alert_dialog_set_close_response' instead [-Wdeprecated-declarations]
+  682 |     adw_message_dialog_set_close_response(dialog, "close");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:141:13: note: declared here
+  141 | void        adw_message_dialog_set_close_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘on_download_clicked’:
+../src/main.c:825:5: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+  825 |     dialog = ADW_MESSAGE_DIALOG(adw_message_dialog_new(GTK_WINDOW(state->window),
+      |     ^~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:837:5: warning: ‘adw_message_dialog_set_extra_child’ is deprecated: Use 'adw_alert_dialog_set_extra_child' instead [-Wdeprecated-declarations]
+  837 |     adw_message_dialog_set_extra_child(dialog, grid);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:91:12: note: declared here
+   91 | void       adw_message_dialog_set_extra_child (AdwMessageDialog *self,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:838:5: warning: ‘adw_message_dialog_add_responses’ is deprecated: Use 'adw_alert_dialog_add_responses' instead [-Wdeprecated-declarations]
+  838 |     adw_message_dialog_add_responses(dialog, "cancel", _("Cancel"),
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:104:6: note: declared here
+  104 | void adw_message_dialog_add_responses (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:841:5: warning: ‘adw_message_dialog_set_default_response’ is deprecated: Use 'adw_alert_dialog_set_default_response' instead [-Wdeprecated-declarations]
+  841 |     adw_message_dialog_set_default_response(dialog, "download");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:135:13: note: declared here
+  135 | void        adw_message_dialog_set_default_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:842:5: warning: ‘adw_message_dialog_set_response_appearance’ is deprecated: Use 'adw_alert_dialog_set_response_appearance' instead [-Wdeprecated-declarations]
+  842 |     adw_message_dialog_set_response_appearance(dialog, "download", ADW_RESPONSE_SUGGESTED);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:120:23: note: declared here
+  120 | void                  adw_message_dialog_set_response_appearance (AdwMessageDialog      *self,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘hashes_finished’:
+../src/main.c:885:13: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+  885 |             adw_message_dialog_new(GTK_WINDOW(state->window), _("Checksums"), body));
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:886:9: warning: ‘adw_message_dialog_add_response’ is deprecated: Use 'adw_alert_dialog_add_response' instead [-Wdeprecated-declarations]
+  886 |         adw_message_dialog_add_response(dialog, "close", _("Close"));
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:95:6: note: declared here
+   95 | void adw_message_dialog_add_response (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘update_silent_confirmation’:
+../src/main.c:1130:5: warning: ‘adw_message_dialog_set_response_enabled’ is deprecated: Use 'adw_alert_dialog_set_response_enabled' instead [-Wdeprecated-declarations]
+ 1130 |     adw_message_dialog_set_response_enabled(dialog, "write", accepted);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:128:10: note: declared here
+  128 | void     adw_message_dialog_set_response_enabled (AdwMessageDialog *self,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘capture_dialog_finished’:
+../src/main.c:1171:5: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+ 1171 |     dialog = ADW_MESSAGE_DIALOG(adw_message_dialog_new(GTK_WINDOW(state->window), heading, body));
+      |     ^~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1172:5: warning: ‘adw_message_dialog_add_responses’ is deprecated: Use 'adw_alert_dialog_add_responses' instead [-Wdeprecated-declarations]
+ 1172 |     adw_message_dialog_add_responses(dialog, "cancel", "Cancel", "write", "SAVE", NULL);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:104:6: note: declared here
+  104 | void adw_message_dialog_add_responses (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1173:5: warning: ‘adw_message_dialog_set_default_response’ is deprecated: Use 'adw_alert_dialog_set_default_response' instead [-Wdeprecated-declarations]
+ 1173 |     adw_message_dialog_set_default_response(dialog, "cancel");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:135:13: note: declared here
+  135 | void        adw_message_dialog_set_default_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1174:5: warning: ‘adw_message_dialog_set_close_response’ is deprecated: Use 'adw_alert_dialog_set_close_response' instead [-Wdeprecated-declarations]
+ 1174 |     adw_message_dialog_set_close_response(dialog, "cancel");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:141:13: note: declared here
+  141 | void        adw_message_dialog_set_close_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘on_start_clicked’:
+../src/main.c:1305:5: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+ 1305 |     dialog = ADW_MESSAGE_DIALOG(adw_message_dialog_new(GTK_WINDOW(state->window), heading, body));
+      |     ^~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1306:5: warning: ‘adw_message_dialog_add_responses’ is deprecated: Use 'adw_alert_dialog_add_responses' instead [-Wdeprecated-declarations]
+ 1306 |     adw_message_dialog_add_responses(
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:104:6: note: declared here
+  104 | void adw_message_dialog_add_responses (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1310:5: warning: ‘adw_message_dialog_set_default_response’ is deprecated: Use 'adw_alert_dialog_set_default_response' instead [-Wdeprecated-declarations]
+ 1310 |     adw_message_dialog_set_default_response(dialog, "cancel");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:135:13: note: declared here
+  135 | void        adw_message_dialog_set_default_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1311:5: warning: ‘adw_message_dialog_set_close_response’ is deprecated: Use 'adw_alert_dialog_set_close_response' instead [-Wdeprecated-declarations]
+ 1311 |     adw_message_dialog_set_close_response(dialog, "cancel");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:141:13: note: declared here
+  141 | void        adw_message_dialog_set_close_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1312:5: warning: ‘adw_message_dialog_set_response_appearance’ is deprecated: Use 'adw_alert_dialog_set_response_appearance' instead [-Wdeprecated-declarations]
+ 1312 |     adw_message_dialog_set_response_appearance(dialog, "write", ADW_RESPONSE_DESTRUCTIVE);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:120:23: note: declared here
+  120 | void                  adw_message_dialog_set_response_appearance (AdwMessageDialog      *self,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1324:9: warning: ‘adw_message_dialog_set_extra_child’ is deprecated: Use 'adw_alert_dialog_set_extra_child' instead [-Wdeprecated-declarations]
+ 1324 |         adw_message_dialog_set_extra_child(dialog, acknowledgements);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:91:12: note: declared here
+   91 | void       adw_message_dialog_set_extra_child (AdwMessageDialog *self,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1331:9: warning: ‘adw_message_dialog_set_response_enabled’ is deprecated: Use 'adw_alert_dialog_set_response_enabled' instead [-Wdeprecated-declarations]
+ 1331 |         adw_message_dialog_set_response_enabled(dialog, "write", FALSE);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:128:10: note: declared here
+  128 | void     adw_message_dialog_set_response_enabled (AdwMessageDialog *self,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘on_show_about’:
+../src/main.c:1427:5: warning: ‘adw_about_window_new’ is deprecated: Use 'adw_about_dialog_new' instead [-Wdeprecated-declarations]
+ 1427 |     AdwAboutWindow *about = ADW_ABOUT_WINDOW(adw_about_window_new());
+      |     ^~~~~~~~~~~~~~
+In file included from /tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adwaita.h:25:
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:26:12: note: declared here
+   26 | GtkWidget *adw_about_window_new (void) G_GNUC_WARN_UNUSED_RESULT;
+      |            ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:1438:5: warning: ‘adw_about_window_set_application_name’ is deprecated: Use 'adw_about_dialog_set_application_name' instead [-Wdeprecated-declarations]
+ 1438 |     adw_about_window_set_application_name(about, "Lufus");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:35:13: note: declared here
+   35 | void        adw_about_window_set_application_name (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1439:5: warning: ‘adw_about_window_set_application_icon’ is deprecated: Use 'adw_about_dialog_set_application_icon' instead [-Wdeprecated-declarations]
+ 1439 |     adw_about_window_set_application_icon(about, APP_ID);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:41:13: note: declared here
+   41 | void        adw_about_window_set_application_icon (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1440:5: warning: ‘adw_about_window_set_version’ is deprecated: Use 'adw_about_dialog_set_version' instead [-Wdeprecated-declarations]
+ 1440 |     adw_about_window_set_version(about, LUFUS_VERSION);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:53:13: note: declared here
+   53 | void        adw_about_window_set_version (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1441:5: warning: ‘adw_about_window_set_developer_name’ is deprecated: Use 'adw_about_dialog_set_developer_name' instead [-Wdeprecated-declarations]
+ 1441 |     adw_about_window_set_developer_name(about,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:47:13: note: declared here
+   47 | void        adw_about_window_set_developer_name (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1443:5: warning: ‘adw_about_window_set_developers’ is deprecated: Use 'adw_about_dialog_set_developers' instead [-Wdeprecated-declarations]
+ 1443 |     adw_about_window_set_developers(about, developers);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:112:21: note: declared here
+  112 | void                adw_about_window_set_developers (AdwAboutWindow  *self,
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1452:5: warning: ‘adw_about_window_set_comments’ is deprecated: Use 'adw_about_dialog_set_comments' instead [-Wdeprecated-declarations]
+ 1452 |     adw_about_window_set_comments(about,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:71:13: note: declared here
+   71 | void        adw_about_window_set_comments (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1454:5: warning: ‘adw_about_window_set_copyright’ is deprecated: Use 'adw_about_dialog_set_copyright' instead [-Wdeprecated-declarations]
+ 1454 |     adw_about_window_set_copyright(about,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:152:13: note: declared here
+  152 | void        adw_about_window_set_copyright (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1457:5: warning: ‘adw_about_window_set_license_type’ is deprecated: Use 'adw_about_dialog_set_license_type' instead [-Wdeprecated-declarations]
+ 1457 |     adw_about_window_set_license_type(about, GTK_LICENSE_CUSTOM);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:158:12: note: declared here
+  158 | void       adw_about_window_set_license_type (AdwAboutWindow *self,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1458:5: warning: ‘adw_about_window_set_license’ is deprecated: Use 'adw_about_dialog_set_license' instead [-Wdeprecated-declarations]
+ 1458 |     adw_about_window_set_license(about,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:164:13: note: declared here
+  164 | void        adw_about_window_set_license (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1465:5: warning: ‘adw_about_window_set_website’ is deprecated: Use 'adw_about_dialog_set_website' instead [-Wdeprecated-declarations]
+ 1465 |     adw_about_window_set_website(about, "https://github.com/openresearchtools/lufus");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:77:13: note: declared here
+   77 | void        adw_about_window_set_website (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1466:5: warning: ‘adw_about_window_set_issue_url’ is deprecated: Use 'adw_about_dialog_set_issue_url' instead [-Wdeprecated-declarations]
+ 1466 |     adw_about_window_set_issue_url(about, "https://github.com/openresearchtools/lufus/issues");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:89:13: note: declared here
+   89 | void        adw_about_window_set_issue_url (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1469:9: warning: ‘adw_about_window_add_legal_section’ is deprecated: Use 'adw_about_dialog_add_legal_section' instead [-Wdeprecated-declarations]
+ 1469 |         adw_about_window_add_legal_section(about,
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:168:6: note: declared here
+  168 | void adw_about_window_add_legal_section (AdwAboutWindow *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2/2] Linking target lufus
+INFO: autodetecting backend as ninja
+INFO: calculating backend command to run: /tmp/lufus-integration/sysroot/usr/bin/ninja -C /tmp/lufus-integration/project/linux/build-local -j 4
+ 1/11 lufus:helper-help          OK              0.05s
+ 2/11 lufus:windows-options      OK              0.05s
+ 3/11 lufus:downloads            OK              0.04s
+ 4/11 lufus:progress             OK              0.04s
+ 5/11 lufus:helper-durability    OK              0.03s
+ 6/11 lufus:licenses             OK              0.02s
+ 7/11 lufus:job-policy           OK              0.04s
+ 8/11 lufus:checksums-rufus-core OK              0.02s
+ 9/11 lufus:volume-label         OK              0.01s
+10/11 lufus:helper-images        OK              0.05s
+11/11 lufus:image-probe          OK              0.13s
+
+Ok:                11  
+Fail:              0   
+
+Full log written to /tmp/lufus-integration/project/linux/build-local/meson-logs/testlog.txt
+Installing subdir /tmp/lufus-integration/project/linux/assets/icons/hicolor to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/128x128/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/128x128/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/16x16/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/16x16/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/22x22/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/22x22/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/24x24/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/24x24/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/256x256/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/256x256/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/32x32/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/32x32/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/48x48/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/48x48/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/512x512/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/512x512/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/64x64/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/64x64/apps
+Installing lufus to /tmp/lufus-integration/project/linux/build-local/stage/usr/bin
+Installing lufus-helper to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec
+Installing set-windows-san-policy to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys
+Installing /tmp/lufus-integration/project/linux/packaging/io.github.openresearchtools.Lufus.desktop to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/applications
+Installing /tmp/lufus-integration/project/linux/packaging/io.github.openresearchtools.Lufus.metainfo.xml to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/metainfo
+Installing /tmp/lufus-integration/project/linux/packaging/io.github.openresearchtools.Lufus.policy to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/polkit-1/actions
+Native programs rebuilt in /tmp/lufus-integration/project/linux/runtime

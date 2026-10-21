@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "value": {
+    "evidence_id": "ev_5747ac301c9ae6be061d1279c5585a305a226b6c9292dcace676ddd11101c163",
+    "subject": {
+      "name": "rufus-4.15.exe",
+      "digest": {
+        "sha256": "84c8a437f8af89257524478489e5c85f1edf25f761d299e2bcde46ac0afbe106"
+      },
+      "local_path": "/caminho/das/imagens/rufus-4.15.exe",
+      "format": "unknown",
+      "architecture": null
+    },
+    "provider": {
+      "id": "gnu.objdump",
+      "name": "GNU objdump",
+      "version": null
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.reverse-engineering.command-observation",
+    "operation": "inspect_with_objdump",
+    "parameters": {
+      "path": "/caminho/das/imagens/rufus-4.15.exe",
+      "operation": "section_headers",
+      "follow_debug_links": false,
+      "provider_executable": "objdump",
+      "command_arguments": [
+        "-h",
+        "/caminho/das/imagens/rufus-4.15.exe"
+      ]
+    },
+    "raw_result": {
+      "stdout": "\n/caminho/das/imagens/rufus-4.15.exe:     file format pei-x86-64\n\nSections:\nIdx Name          Size      VMA               LMA               File off  Algn\n  0 UPX0          003cc000  0000000140001000  0000000140001000  00000400  2**2\n                  CONTENTS, ALLOC, CODE\n  1 UPX1          001d8600  00000001403cd000  00000001403cd000  00000400  2**2\n                  CONTENTS, ALLOC, LOAD, CODE, DATA\n  2 .rsrc         0000a600  00000001405a6000  00000001405a6000  001d8a00  2**2\n                  CONTENTS, ALLOC, LOAD, DATA\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "84c8a437f8af89257524478489e5c85f1edf25f761d299e2bcde46ac0afbe106",
+      "artifact_changed": false
+    },
+    "normalized_result": {
+      "stdout": "\n/caminho/das/imagens/rufus-4.15.exe:     file format pei-x86-64\n\nSections:\nIdx Name          Size      VMA               LMA               File off  Algn\n  0 UPX0          003cc000  0000000140001000  0000000140001000  00000400  2**2\n                  CONTENTS, ALLOC, CODE\n  1 UPX1          001d8600  00000001403cd000  00000001403cd000  00000400  2**2\n                  CONTENTS, ALLOC, LOAD, CODE, DATA\n  2 .rsrc         0000a600  00000001405a6000  00000001405a6000  001d8a00  2**2\n                  CONTENTS, ALLOC, LOAD, DATA\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "84c8a437f8af89257524478489e5c85f1edf25f761d299e2bcde46ac0afbe106",
+      "artifact_changed": false
+    },
+    "confidence": "observed",
+    "authority": "shipped-artifact",
+    "environment": {},
+    "limitations": [
+      "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+      "A non-zero process exit is preserved as an observed command result.",
+      "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "/caminho/das/imagens/rufus-4.15.exe"
+      }
+    ],
+    "evidence_links": []
+  }
+}

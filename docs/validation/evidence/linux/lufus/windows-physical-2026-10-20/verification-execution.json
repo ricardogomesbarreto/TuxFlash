@@ -1,0 +1,9 @@
+{
+  "command": [
+    "/usr/bin/pkexec",
+    "/usr/bin/python3",
+    "/tmp/lufus-windows-physical/verify-root.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 145.199593628
+}

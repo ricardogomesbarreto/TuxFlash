@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Keep the distribution's unmodified reader and its plugins inside this folder.
+set -euo pipefail
+bin_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+runtime_dir=$(dirname -- "$bin_dir")
+arguments=("$@")
+if (( ${#arguments[@]} )); then
+    last=$(( ${#arguments[@]} - 1 ))
+    if [[ -f ${arguments[$last]} ]]; then
+        arguments[$last]=$(realpath -- "${arguments[$last]}")
+    fi
+fi
+cd "$runtime_dir/share/pev"
+exec "$runtime_dir/libexec/peres-real" "${arguments[@]}"

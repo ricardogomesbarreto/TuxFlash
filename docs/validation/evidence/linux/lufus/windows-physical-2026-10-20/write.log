@@ -1,0 +1,1887 @@
+
+STARTED Creating Windows installer media
+
+Analyzing existing boot records...
+Progress:   0.9%
+Clearing MBR/PBR/GPT structures...
+
+Partitioning (GPT)...
+
+Checking that no-one is using this disk right now ... OK
+
+
+
+Disk [DISPOSITIVO_REMOVIDO]: 14.46 GiB, [CAPACIDADE_LOCAL_REMOVIDA] bytes, [BLOCOS_LOCAIS_REMOVIDOS] sectors
+
+Disk model: [DADO_LOCAL_REMOVIDO]    
+
+Units: sectors of 1 * 512 = 512 bytes
+
+Sector size (logical/physical): 512 bytes / 512 bytes
+
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+
+>>> Script header accepted.
+
+>>> Script header accepted.
+
+>>> Script header accepted.
+
+>>> Created a new GPT disklabel (GUID: 3CE3E313-73BE-4234-9705-0964BED5A693).
+
+[DISPOSITIVO_REMOVIDO]: Created a new partition 1 of type 'Microsoft basic data' and of size 14.5 GiB.
+
+[DISPOSITIVO_REMOVIDO]: Done.
+
+
+
+New situation:
+
+Disklabel type: gpt
+
+Disk identifier: 3CE3E313-73BE-4234-9705-0964BED5A693
+
+
+
+Device     Start      End  Sectors  Size Type
+
+[DISPOSITIVO_REMOVIDO]   2048 30320639 30318592 14.5G Microsoft basic data
+
+
+
+The partition table has been altered.
+
+Calling ioctl() to re-read partition table.
+
+Syncing disks.
+
+Formatting (FAT32)...
+
+mkfs.fat 4.2 (2021-01-31)
+
+Writing Master Boot Record...
+Progress:   8.9%
+Writing Partition Boot Record...
+
+Copying ISO files
+
+LOG Copying chs_boot.ttf
+
+LOG Copying cht_boot.ttf
+
+LOG Copying jpn_boot.ttf
+
+LOG Copying kor_boot.ttf
+
+LOG Copying malgunn_boot.ttf
+
+LOG Copying malgun_boot.ttf
+
+LOG Copying malgun_console.ttf
+
+LOG Copying meiryon_boot.ttf
+
+LOG Copying meiryo_boot.ttf
+
+LOG Copying meiryo_console.ttf
+
+LOG Copying msjhn_boot.ttf
+
+LOG Copying msjh_boot.ttf
+
+LOG Copying msjh_console.ttf
+
+LOG Copying msyhn_boot.ttf
+
+LOG Copying msyh_boot.ttf
+
+LOG Copying msyh_console.ttf
+
+LOG Copying segmono_boot.ttf
+
+LOG Copying segoen_slboot.ttf
+
+LOG Copying segoe_slboot.ttf
+
+LOG Copying wgl4_boot.ttf
+
+LOG Copying bootsect.exe.mui
+
+LOG Copying bootres.dll
+
+LOG Copying bcd
+
+LOG Copying boot.sdi
+
+LOG Copying bootfix.bin
+
+LOG Copying bootsect.exe
+
+LOG Copying etfsboot.com
+
+LOG Copying memtest.exe
+
+LOG Copying bootx64.efi
+
+LOG Copying chs_boot.ttf
+
+LOG Copying cht_boot.ttf
+
+LOG Copying jpn_boot.ttf
+
+LOG Copying kor_boot.ttf
+
+LOG Copying malgunn_boot.ttf
+
+LOG Copying malgun_boot.ttf
+
+LOG Copying malgun_console.ttf
+
+LOG Copying meiryon_boot.ttf
+
+LOG Copying meiryo_boot.ttf
+
+LOG Copying meiryo_console.ttf
+
+LOG Copying msjhn_boot.ttf
+
+LOG Copying msjh_boot.ttf
+
+LOG Copying msjh_console.ttf
+
+LOG Copying msyhn_boot.ttf
+
+LOG Copying msyh_boot.ttf
+
+LOG Copying msyh_console.ttf
+Copying ISO files:   0.8% (overall   9.5%)
+LOG Copying segmono_boot.ttf
+
+LOG Copying segoen_slboot.ttf
+
+LOG Copying segoe_slboot.ttf
+
+LOG Copying wgl4_boot.ttf
+
+LOG Copying bootres.dll
+
+LOG Copying bcd
+
+LOG Copying cdboot.efi
+
+LOG Copying cdboot_noprompt.efi
+
+LOG Copying efisys.bin
+
+LOG Copying efisys_noprompt.bin
+
+LOG Copying memtest.efi
+
+LOG Copying winsipolicy.p7b
+
+LOG Copying adwsmigrate.dll
+
+LOG Copying bthmigplugin.dll
+
+LOG Copying commig.dll
+
+LOG Copying msdtcstp.dll
+
+LOG Copying dhcpsrvmigplugin.dll
+
+LOG Copying adammigrate.dll
+
+LOG Copying iasmigplugin.dll
+
+LOG Copying iasmigreader.exe
+
+LOG Copying wininetplugin.dll
+
+LOG Copying winsplgn.dll
+
+LOG Copying mqmigplugin.dll
+
+LOG Copying bridgemigplugin.dll
+
+LOG Copying nlbmigplugin.dll
+
+LOG Copying cmmigr.dll
+
+LOG Copying rasmigplugin.dll
+
+LOG Copying tapimigplugin.dll
+
+LOG Copying tlsmigplugin.dll
+
+LOG Copying chxmig.dll
+
+LOG Copying imjpmig.dll
+
+LOG Copying imkrmig.dll
+
+LOG Copying msctfmig.dll
+
+LOG Copying tabletextservicemig.dll
+
+LOG Copying modemmigplugin.dll
+
+LOG Copying wsupgrade.dll
+
+LOG Copying wmimigrationplugin.dll
+
+LOG Copying icfupgd.dll
+
+LOG Copying accessibilitycpl-dl.man
+
+LOG Copying activedirectory-webservices-dl.man
+
+LOG Copying activedirectory-wmireplicationprovider-dl.man
+
+LOG Copying adsi-ldap-extensions-dl.man
+
+LOG Copying adsi-ldap-provider-dl.man
+
+LOG Copying adsi-router-dl.man
+
+LOG Copying adsi-winnt-provider-dl.man
+
+LOG Copying bluetooth-config-dl.man
+
+LOG Copying browserservice-dl.man
+
+LOG Copying capi2_certs-dl.man
+
+LOG Copying commandprompt-dl.man
+
+LOG Copying coreos-dl.man
+
+LOG Copying credential-manager-dl.man
+
+LOG Copying cryptoconfig-dl.man
+
+LOG Copying crypto_keys-dl.man
+
+LOG Copying dfsclient-dl.man
+
+LOG Copying dfsmgmt-dl.man
+
+LOG Copying dhcpclient-dl.man
+
+LOG Copying directoryservices-adam-dl.man
+
+LOG Copying directoryservices-domain-dl.man
+
+LOG Copying directoryservices-ism-smtp-dl.man
+
+LOG Copying dns-client-dl.man
+
+LOG Copying dns-server-service-dl.man
+
+LOG Copying dpapi_keys-dl.man
+
+LOG Copying etw-core-dl.man
+
+LOG Copying etwtracing.man
+
+LOG Copying eventlog-dl.man
+
+LOG Copying explorer-dl.man
+
+LOG Copying feclient-dl.man
+
+LOG Copying fonts-type1-dl.man
+
+LOG Copying frs-core-dl.man
+
+LOG Copying gpbase-dl.man
+
+LOG Copying gpmc-dl.man
+
+LOG Copying gpmgmt-dl.man
+
+LOG Copying grouppolicy-admin-gpedit-dl.man
+
+LOG Copying grouppolicy-admin-gpedit-snapin-dl.man
+
+LOG Copying grouppolicy-cse-softwareinstallation-dl.man
+
+LOG Copying grouppolicy-serveradmintools-gpmc-dl.man
+
+LOG Copying ieframe-dl.man
+
+LOG Copying ime-traditional-chinese-migration-dl.man
+
+LOG Copying isns_service-dl.man
+
+LOG Copying kerberos-key-distribution-center-dl.man
+
+LOG Copying ldap-client-dl.man
+
+LOG Copying microsoft-windows-bits-client-dl.man
+
+LOG Copying microsoft-windows-certificateservices-ca-dl.man
+
+LOG Copying microsoft-windows-certificateservices-camanagement-dl.man
+
+LOG Copying microsoft-windows-certificateservices-mscep-dl.man
+
+LOG Copying microsoft-windows-errorreportingcore-dl.man
+
+LOG Copying microsoft-windows-errorreportingfaults-dl.man
+
+LOG Copying microsoft-windows-fax-client-applications-dl.man
+
+LOG Copying microsoft-windows-fax-client-proenterprise-dl.man
+
+LOG Copying microsoft-windows-fax-common-dl.man
+
+LOG Copying microsoft-windows-fax-server-dl.man
+
+LOG Copying microsoft-windows-fax-service-dl.man
+
+LOG Copying microsoft-windows-htmlhelp-dl.man
+
+LOG Copying microsoft-windows-ie-esc-dl.man
+
+LOG Copying microsoft-windows-ie-feeds-platform-dl.man
+
+LOG Copying microsoft-windows-ie-internetexplorer-dl.man
+
+LOG Copying microsoft-windows-iis-corewebengine-deployment-dl.man
+
+LOG Copying microsoft-windows-netfx35-dl.man
+
+LOG Copying microsoft-windows-netfx35cdfcomp-dl.man
+
+LOG Copying microsoft-windows-netfxcorecomp-dl.man
+
+LOG Copying microsoft-windows-storagemigration-dl.man
+
+LOG Copying microsoft-windows-tapisetup-dl.man
+
+LOG Copying microsoft-windows-terminalservices-clientactivexcore-dl.man
+
+LOG Copying microsoft-windows-wab-dl.man
+
+LOG Copying microsoft-windows-wcfcorecomp-dl.man
+
+LOG Copying microsoft.windows.com.base-dl.man
+
+LOG Copying microsoft.windows.com.complus.setup.dl.man
+
+LOG Copying msmq-dcom-dl.man
+
+LOG Copying msmq-domain-ic-dl.man
+
+LOG Copying msmq-http-dl.man
+
+LOG Copying msmq-messagingcoreservice-dl.man
+
+LOG Copying msmq-multicast-dl.man
+
+LOG Copying msmq-routing-dl.man
+
+LOG Copying msmq-triggers-dl.man
+
+LOG Copying mup-dl.man
+
+LOG Copying netfx-wcf-http-activation-dl.man
+
+LOG Copying netfx-wcf-msmqactivation-registration-dl.man
+
+LOG Copying netfx-wcf-pipeactivation-registration-dl.man
+
+LOG Copying netfx-wcf-tcpactivation-registration-dl.man
+
+LOG Copying netfx-wcf-tcpportsharing-dl.man
+
+LOG Copying netfx3-dl.man
+
+LOG Copying netfx4-wcf-client-dl.man
+
+LOG Copying netfx4-wcf-extended-dl.man
+
+LOG Copying netfx4clientcorecomp-dl.man
+
+LOG Copying netlogon-dl.man
+
+LOG Copying ntfs-dl.man
+
+LOG Copying ntoskrnl-dl.man
+
+LOG Copying odbc32dll-dl.man
+
+LOG Copying partmgr-dl.man
+
+LOG Copying printing-spooler-core-dl.man
+
+LOG Copying printing-spooler-networkclient-dl.man
+
+LOG Copying rights-management-client-v1-api-dl.man
+
+LOG Copying rights-management-services-server-dl.man
+
+LOG Copying rpc-http-dl.man
+
+LOG Copying rpc-http_proxy-dl.man
+
+LOG Copying rpc-local-dl.man
+
+LOG Copying rpc-remote-dl.man
+
+LOG Copying schannel-dl.man
+
+LOG Copying schedsvc-dl.man
+
+LOG Copying security-digest-dl.man
+
+LOG Copying security-kerberos-dl.man
+
+LOG Copying security-ntlm-dl.man
+
+LOG Copying security-ntlm-lmc.man
+
+LOG Copying shutdown-event-tracker-dl.man
+
+LOG Copying smartcardsubsystem-dl.man
+
+LOG Copying smbserver-dl.man
+
+LOG Copying smss-dl.man
+
+LOG Copying smtpsvc-admin-dl.man
+
+LOG Copying smtpsvc-service-dl.man
+
+LOG Copying speechcommon-dl.man
+
+LOG Copying tabletpc-tabbtn-dl.man
+
+LOG Copying tabletpcinputpanel-dl.man
+
+LOG Copying tabletpcjournal-dl.man
+
+LOG Copying tabletpcplatforminput-core-dl.man
+
+LOG Copying terminalservices-appserver-dl.man
+
+LOG Copying terminalservices-appserver-licensing-dl.man
+
+LOG Copying terminalservices-drivers-dl.man
+
+LOG Copying terminalservices-licenseserver-dl.man
+
+LOG Copying terminalservices-localsessionmanager-dl.man
+
+LOG Copying terminalservices-rdp-winstationextensions-dl.man
+
+LOG Copying terminalservices-remoteconnectionmanager-dl.man
+
+LOG Copying terminalservices-sessiondirectory-client-dl.man
+
+LOG Copying terminalservices-sessiondirectory-server-dl.man
+
+LOG Copying terminalservices-terminalservicesclient-dl.man
+
+LOG Copying textservicesframework-migration-dl.man
+
+LOG Copying video-tvvideocontrol-dl.man
+
+LOG Copying volsnap-dl.man
+
+LOG Copying wcf-http-activation-dl.man
+
+LOG Copying wcf-http-activation-postapply-dl.man
+
+LOG Copying wcf-nonhttp-activation-dl.man
+
+LOG Copying web-services-for-management-core-dl.man
+
+LOG Copying webenroll-dl.man
+
+LOG Copying win32k-settings-dl.man
+
+LOG Copying windowssearchengine-dl.man
+
+LOG Copying winlogon-dl.man
+
+LOG Copying wmi-core-dl.man
+
+LOG Copying workstationservice-dl.man
+
+LOG Copying actionqueueetw.dll.mui
+
+LOG Copying actionqueueetw.dll
+
+LOG Copying auditetw.dll
+
+LOG Copying cmisetupetw.dll
+
+LOG Copying etwproviderinstall.vbs
+
+LOG Copying oobeldretw.dll
+
+LOG Copying setupcletw.dll
+
+LOG Copying setupetw.dll
+
+LOG Copying setupugcetw.dll
+
+LOG Copying sysprepetw.dll
+
+LOG Copying windeployetw.dll
+
+LOG Copying winsetupetw.dll
+
+LOG Copying setup.cfg
+
+LOG Copying adminpack_en-us.inf
+
+LOG Copying adminpack_en-us_noloc.inf
+
+LOG Copying adobe_flash.inf
+
+LOG Copying appmanwtr.inf
+
+LOG Copying browserchoice_win7.inf
+
+LOG Copying browserchoice_win8.inf
+
+LOG Copying compattelemetry.inf
+
+LOG Copying dtumig.inf
+
+LOG Copying ftp_7.0.inf
+
+LOG Copying ftp_7.5_en-us_noloc.inf
+
+LOG Copying ftp_7.5_loc.inf
+
+LOG Copying gwxmig.inf
+
+LOG Copying powershell_en-us_noloc.inf
+
+LOG Copying powershell_loc.inf
+
+LOG Copying standardcollector.inf
+
+LOG Copying unpmig.inf
+
+LOG Copying webdav_7.0.inf
+
+LOG Copying webdav_7.5_en-us_noloc.inf
+
+LOG Copying webdav_7.5_loc.inf
+
+LOG Copying acres.dll.mui
+
+LOG Copying actionqueue.dll.mui
+
+LOG Copying appraiser.dll.mui
+
+LOG Copying appraiserwc.dll.mui
+
+LOG Copying arunres.dll.mui
+
+LOG Copying cmisetup.dll.mui
+
+LOG Copying compatctrl.dll.mui
+
+LOG Copying compatresources.dll.mui
+
+LOG Copying compres.dll.mui
+
+LOG Copying credits.rtf
+
+LOG Copying dism.exe.mui
+
+LOG Copying dismapi.dll.mui
+
+LOG Copying dismcore.dll.mui
+
+LOG Copying dismprov.dll.mui
+
+LOG Copying erofflps.txt
+
+LOG Copying folderprovider.dll.mui
+
+LOG Copying imagingprovider.dll.mui
+
+LOG Copying input.dll.mui
+
+LOG Copying logprovider.dll.mui
+
+LOG Copying mediasetupuimgr.dll.mui
+
+LOG Copying migres.dll.mui
+
+LOG Copying nlsbres.dll.mui
+
+LOG Copying oobe_help_opt_in_details.rtf
+
+LOG Copying pnpibs.dll.mui
+
+LOG Copying privacy.rtf
+
+LOG Copying reagent.adml
+
+LOG Copying reagent.dll.mui
+
+LOG Copying rollback.exe.mui
+
+LOG Copying setup.exe.mui
+
+LOG Copying setupcompat.dll.mui
+
+LOG Copying setupcore.dll.mui
+
+LOG Copying setuperror.exe.mui
+
+LOG Copying setupplatform.exe.mui
+
+LOG Copying setupprep.exe.mui
+
+LOG Copying setup_help_upgrade_or_custom.rtf
+
+LOG Copying setup_help_whattokeep.rtf
+
+LOG Copying smiengine.dll.mui
+
+LOG Copying spwizres.dll.mui
+
+LOG Copying upgloader.dll.mui
+
+LOG Copying uxlibres.dll.mui
+
+LOG Copying vhdprovider.dll.mui
+
+LOG Copying vofflps.rtf
+
+LOG Copying w32uires.dll.mui
+
+LOG Copying wdsclient.dll.mui
+
+LOG Copying wdsimage.dll.mui
+
+LOG Copying wimprovider.dll.mui
+
+LOG Copying windlp.dll.mui
+
+LOG Copying winsetup.dll.mui
+
+LOG Copying hwvidmigplugin.dll
+
+LOG Copying adwsmigrate.dll
+
+LOG Copying clipmigplugin.dll
+
+LOG Copying edge.dat
+
+LOG Copying edgemigrationplugin.dll
+
+LOG Copying edgeupdate.dat
+
+LOG Copying tilestoremigrationplugin.dll
+
+LOG Copying appmanmigrationplugin.dll
+
+LOG Copying appxprovisioning.xml
+
+LOG Copying appxupgrademigrationplugin.dll
+
+LOG Copying microsoft.windows.secondarytileexperience_10.0.0.0_neutral__cw5n1h2txyewy.xml
+
+LOG Copying windows.miracastview_6.3.0.0_neutral_neutral_cw5n1h2txyewy.xml
+
+LOG Copying audmigplugin.dll
+
+LOG Copying bthmigplugin.dll
+
+LOG Copying commig.dll
+
+LOG Copying dafmigplugin.dll
+
+LOG Copying adammigrate.dll
+
+LOG Copying iismig.dll
+
+LOG Copying mapsmigplugin.dll
+
+LOG Copying mupmigplugin.dll
+
+LOG Copying netsetupapi.dll
+
+LOG Copying netsetupengine.dll
+
+LOG Copying networkbindingenginemigplugin.dll
+
+LOG Copying cscmig.dll.mui
+
+LOG Copying cscmig.dll
+
+LOG Copying pnpmig.dll
+
+LOG Copying pnpmig.inf
+
+LOG Copying pbkmigr.dll
+
+LOG Copying rasmigplugin.dll
+
+LOG Copying ngclocalaccountmigplugin.dll
+
+LOG Copying shmig.dll.mui
+
+LOG Copying shmig.dll
+
+LOG Copying sxsmigplugin.dll.mui
+
+LOG Copying sxsmigplugin.dll
+
+LOG Copying netiomig.dll
+
+LOG Copying tsmigplugin.dll
+
+LOG Copying tlsrepplugin.dll
+
+LOG Copying chxmig.dll
+
+LOG Copying imjpmig.dll
+
+LOG Copying imkrmig.dll
+
+LOG Copying msctfmig.dll
+
+LOG Copying tabletextservicemig.dll
+
+LOG Copying vmswitchmigrationplugin.dll
+
+LOG Copying bridgemigplugin.dll
+
+LOG Copying icfupgd.dll
+
+LOG Copying apmonportmig.dll
+
+LOG Copying usbportmig.dll
+
+LOG Copying sppmig.dll
+
+LOG Copying wsearchmigplugin.dll
+
+LOG Copying wpcmigration.downlevel.dll
+
+LOG Copying wpcmigration.uplevel.dll
+
+LOG Copying activedirectory-webservices-replacement.man
+
+LOG Copying adsi-router-replacement.man
+
+LOG Copying application-experience-program-compatibility-assistant-replacement.man
+
+LOG Copying appmanmigration-replacement.man
+
+LOG Copying appxalluserstore-replacement.man
+
+LOG Copying appxdeploymentserver-replacement.man
+
+LOG Copying audiommecore-mm-other-migration-replacement.man
+
+LOG Copying authui-migration-replacement.man
+
+LOG Copying authui-migration-win8-replacement.man
+
+LOG Copying bisrv-replacement.man
+
+LOG Copying bthmig-replacement.man
+
+LOG Copying capi2_certs-repl.man
+
+LOG Copying certificateenrollment-replacement.man
+
+LOG Copying cliplicensemigration-replacement.man
+
+LOG Copying cloudapreplacement.man
+
+LOG Copying cloudexperiencehostonecore-replacement.man
+
+LOG Copying codeintegrity-repl.man
+
+LOG Copying commandprompt-win7-replacement.man
+
+LOG Copying commandprompt-win8-replacement.man
+
+LOG Copying contentdeliverymanager.utilities-replacement.man
+
+LOG Copying coreos-repl.man
+
+LOG Copying credential-manager-replacement.man
+
+LOG Copying crypto_keys-repl.man
+
+LOG Copying dataintegrityscan-replacement.man
+
+LOG Copying dcb-repl.man
+
+LOG Copying desktopux-replacement.man
+
+LOG Copying deviceassociationframework-replacement.man
+
+LOG Copying devicedirectory-devicedirectoryclient-desktop-replacement.man
+
+LOG Copying deviceregistration-replacement.man
+
+LOG Copying dhcpclientdll-repl.man
+
+LOG Copying dhcpserver-tools-replacement.man
+
+LOG Copying dhcpservermigplugin-rep.man
+
+LOG Copying dhcpservermigpluginwin8-replacement.man
+
+LOG Copying directaccessservermanagement-repl.man
+
+LOG Copying directoryservices-adam-client-replacement.man
+
+LOG Copying directoryservices-adam-tools-replacement.man
+
+LOG Copying directoryservices-administrativecenter-replacement.man
+
+LOG Copying directoryservices-domaincontroller-servercoreupg-replacement.man
+
+LOG Copying directoryservices-domaincontroller-tools-replacement.man
+
+LOG Copying directoryservices-sm-plugin.registration-replacement.man
+
+LOG Copying displayconfigsettings_win7update.man
+
+LOG Copying dmrcwin7replacement.man
+
+LOG Copying dns-client-mw-replacement.man
+
+LOG Copying dns-client-replacement.man
+
+LOG Copying dns-server-role-replacement.man
+
+LOG Copying dns-server-tools-replacement.man
+
+LOG Copying dpapi_keys-repl.man
+
+LOG Copying dsreg-replacement.man
+
+LOG Copying edgemigrationplugin.man
+
+LOG Copying edpnotify-replacement.man
+
+LOG Copying elam-replacement.man
+
+LOG Copying etw-core-replacement.man
+
+LOG Copying eudcedit-replacement.man
+
+LOG Copying explorer-repl.man
+
+LOG Copying extensibleauthenticationprotocolhostservice-rep.man
+
+LOG Copying failovercluster-core-wow64-rm.man
+
+LOG Copying feclient-replacement-th.man
+
+LOG Copying fidocredprov_dll_repl.man
+
+LOG Copying fileserver-replacement.man
+
+LOG Copying font-truetype-fontsregistrysettingsmigration-replacement.man
+
+LOG Copying fonts-type1-replacement.man
+
+LOG Copying fundisc-replacement.man
+
+LOG Copying fveapi-replacement.man
+
+LOG Copying gpbase-replacement.man
+
+LOG Copying gpiobuttons-replacement.man
+
+LOG Copying hal-repl.man
+
+LOG Copying helpandsupport-replacement.man
+
+LOG Copying http-replacement.man
+
+LOG Copying hwvid-migration-replacement-2.man
+
+LOG Copying identityserver-migration-replacement.man
+
+LOG Copying identityserver-proxymigration-replacement.man
+
+LOG Copying identitystore-replacement.man
+
+LOG Copying iis-adminservice-rm.man
+
+LOG Copying iis-appwarmup-rm.man
+
+LOG Copying iis-ftpsvc-rm.man
+
+LOG Copying iis-managementconsole-rm.man
+
+LOG Copying iis-sharedlibraries-rm.man
+
+LOG Copying iis-w3logsvc-rm.man
+
+LOG Copying iis-w3svc-rm.man
+
+LOG Copying ime-eashared-migration-replacement.man
+
+LOG Copying international-core-replacement.man
+
+LOG Copying international-timezones-replacement.man
+
+LOG Copying internet-naming-service-runtime-rep.man
+
+LOG Copying internet-naming-tools-replacement.man
+
+LOG Copying ipv4ipv6coexistencemigration-net-replacement.man
+
+LOG Copying kernel-pnp-repl.man
+
+LOG Copying kernel-server-replacement.man
+
+LOG Copying kernel32-replacement.man
+
+LOG Copying kernel32-server-replacement.man
+
+LOG Copying keyboardfilter-replacement.man
+
+LOG Copying legacy-sapi-repl.man
+
+LOG Copying mdm_migration-replacement.man
+
+LOG Copying media-settings-migration-replacement.man
+
+LOG Copying mfmpeg2srcsnk-migration-replacement.man
+
+LOG Copying mfplat-migration-replacement.man
+
+LOG Copying mfsrcsnk-migration-replacement.man
+
+LOG Copying microsoft-activedirectory-powershell-replacement.man
+
+LOG Copying microsoft-certificateauthority-enrollment-serverupgrade-replacement.man
+
+LOG Copying microsoft-certificateservices-ca-serverupgrade-replacement.man
+
+LOG Copying microsoft-certificateservices-mscep-serverupgrade-replacement.man
+
+LOG Copying microsoft-certificateservices-ocsp-serverupgrade-replacement.man
+
+LOG Copying microsoft-certificateservices-policy-serverupgrade-replacement.man
+
+LOG Copying microsoft-certificateservices-webenrollment-serverupgrade-replacement.man
+
+LOG Copying microsoft-hyper-v-client-migration-replacement.man
+
+LOG Copying microsoft-hyper-v-drivers-migration-replacement.man
+
+LOG Copying microsoft-hyper-v-migration-replacement.man
+
+LOG Copying microsoft-onecore-tiledatarepository-replacement.man
+
+LOG Copying microsoft-windows-advertisingid-replacement.man
+
+LOG Copying microsoft-windows-container-manager.man
+
+LOG Copying microsoft-windows-credentialmanagementrole-replacement.man
+
+LOG Copying microsoft-windows-credentialmanagementrole-tools-replacement.man
+
+LOG Copying microsoft-windows-deployment-services-admin-pack-replacement.man
+
+LOG Copying microsoft-windows-deviceaccess-replacement.man
+
+LOG Copying microsoft-windows-enterprisemgmt-replacement.man
+
+LOG Copying microsoft-windows-errorreportingcore-replacement.man
+
+LOG Copying microsoft-windows-errorreportingfaults-replacement.man
+
+LOG Copying microsoft-windows-failovercluster-adminpak-replacement.man
+
+LOG Copying microsoft-windows-fax-service-replacement.man
+
+LOG Copying microsoft-windows-feedback-service-replacement.man
+
+LOG Copying microsoft-windows-flighting-settings.replacement.man
+
+LOG Copying microsoft-windows-geolocation-replacement.man
+
+LOG Copying microsoft-windows-identity-foundation-migration-replacement.man
+
+LOG Copying microsoft-windows-ie-adminkitbranding-repl.man
+
+LOG Copying microsoft-windows-ie-clientnetworkprotocolimplementation-repl.man
+
+LOG Copying microsoft-windows-ie-internetexplorer-repl-2.man
+
+LOG Copying microsoft-windows-ie-internetexplorer-repl.man
+
+LOG Copying microsoft-windows-ie-pdm-replacement.man
+
+LOG Copying microsoft-windows-netfx35cdfcomp-replacement.man
+
+LOG Copying microsoft-windows-netfxcorecomp-repl.man
+
+LOG Copying microsoft-windows-network-setup-replacement.man
+
+LOG Copying microsoft-windows-networkbridge-replacement.man
+
+LOG Copying microsoft-windows-offlinefiles-replacement.man
+
+LOG Copying microsoft-windows-parentalcontrolssettings-replacement.man
+
+LOG Copying microsoft-windows-powershell-replacement.man
+
+LOG Copying microsoft-windows-powershell-ws08-replacement.man
+
+LOG Copying microsoft-windows-powershellwebaccess-commands-powershell-migration-replacement.man
+
+LOG Copying microsoft-windows-rmapi-replacement.man
+
+LOG Copying microsoft-windows-securestartup-filterdriver-replacement.man
+
+LOG Copying microsoft-windows-security-ngc-credprov-replacement.man
+
+LOG Copying microsoft-windows-security-ngc-ctnrsvc-repl.man
+
+LOG Copying microsoft-windows-servermanager-rsat-featuretools-replacement.man
+
+LOG Copying microsoft-windows-servermanager-rsat-replacement.man
+
+LOG Copying microsoft-windows-servermanager-rsat-roletools-replacement.man
+
+LOG Copying microsoft-windows-servermanager-shell-replacement.man
+
+LOG Copying microsoft-windows-services-targetedcontent-replacement.man
+
+LOG Copying microsoft-windows-slb-mux-replacement.man
+
+LOG Copying microsoft-windows-smb1-replacement.man
+
+LOG Copying microsoft-windows-softwareinventorylogging-scheduledtasks-replacement.man
+
+LOG Copying microsoft-windows-storagemigration-od-replacement.man
+
+LOG Copying microsoft-windows-storagemigration-replacement.man
+
+LOG Copying microsoft-windows-sxs-replacement.man
+
+LOG Copying microsoft-windows-virtualization-vmswitch-migration-replacement.man
+
+LOG Copying microsoft-windows-wcfcorecomp-replacement.man
+
+LOG Copying microsoft-windows-workstationservice-replacement.man
+
+LOG Copying microsoft.windows.com.complus.setup-replacement.man
+
+LOG Copying microsoft.windows.com.dtc.setup-replacement.man
+
+LOG Copying microsoftwindowsdefragcore-replacement.man
+
+LOG Copying mmdeviceapi-migration-replacement.man
+
+LOG Copying mmsys-migration-replacement.man
+
+LOG Copying mpr-replacement.man
+
+LOG Copying msmpeg2vdec-migration-replacement.man
+
+LOG Copying muisettings-replacement.man
+
+LOG Copying mup-replacement.man
+
+LOG Copying ndis-repl.man
+
+LOG Copying netfx-wcf-http-activation-replacement.man
+
+LOG Copying netfx-wcf-msmqactivation-registration-replacement.man
+
+LOG Copying netfx-wcf-pipeactivation-registration-replacement.man
+
+LOG Copying netfx-wcf-tcpactivation-registration-replacement.man
+
+LOG Copying netfx3-replacement.man
+
+LOG Copying netfx4-policy-replacement.man
+
+LOG Copying netfx4-replacement.man
+
+LOG Copying netfx4-wcf-client-replacement.man
+
+LOG Copying netfx4-wcf-extended-replacement.man
+
+LOG Copying netfx4clientcorecomp-replacement.man
+
+LOG Copying networking-mpssvc-svc.replacement.man
+
+LOG Copying networkloadbalancingmanagementclient-replacement.man
+
+LOG Copying networkloadbalancingmanagementheadlessserver-replacement.man
+
+LOG Copying networkprofile-replacement.man
+
+LOG Copying networksecurity.replacement.man
+
+LOG Copying nfs-admincore-repl.man
+
+LOG Copying nfs-clientcore-repl.man
+
+LOG Copying nfs-servercore-repl.man
+
+LOG Copying nfs-servercoreupg-clientcore-repl.man
+
+LOG Copying nfs-servercoreupg-servercore-repl.man
+
+LOG Copying ngclocalaccountmigplugin-replacement.man
+
+LOG Copying ngcpopkeysrv_dll-repl.man
+
+LOG Copying nlasvc-replace.man
+
+LOG Copying notepad-repl.man
+
+LOG Copying npas-role-replacement.man
+
+LOG Copying npsui-replacement.man
+
+LOG Copying odbc32dll-repl.man
+
+LOG Copying onecore_speechcommon-rep.man
+
+LOG Copying pcpksp_dll-repl.man
+
+LOG Copying peerdist-client-migration-replacement.man
+
+LOG Copying peerdist-server-migration-replacement.man
+
+LOG Copying peerdist-upgrade-replacement.man
+
+LOG Copying peertopeergrouping-replacement.man
+
+LOG Copying performancecounterinfrastructurenonexecutable-replacement.man
+
+LOG Copying personalizationcsp-repl.man
+
+LOG Copying pnpmigration-replacement.man
+
+LOG Copying posproviders-replacement.man
+
+LOG Copying power-energyestimationengine-replacement.man
+
+LOG Copying powercpl-replacement.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-v1019h1.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-v1119h1.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-v12vb.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-v4rs1.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-v5rs1.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-v6rs2.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-v7rs2.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-v8rs4.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-v9rs5.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-vista.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-win10.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-win7.man
+
+LOG Copying powermanagement-powerpolicy-definitions-replacement-win8.man
+
+LOG Copying powermanagement-powerpolicy-migration-replacement.man
+
+LOG Copying ppipolicies-encryption-replacement.man
+
+LOG Copying ppipolicies-general-replacement.man
+
+LOG Copying ppipolicies-miracast-replacement.man
+
+LOG Copying ppipolicies-power-replacement.man
+
+LOG Copying printing-localprinting-replacement.man
+
+LOG Copying printing-server-foundation-features-upgrade.man
+
+LOG Copying printing-servercore-wow64-rm.man
+
+LOG Copying printing-spooler-core-replacement.man
+
+LOG Copying processmodel-cpt-rm.man
+
+LOG Copying profsvcreplacement.man
+
+LOG Copying propsys-replacement.man
+
+LOG Copying quickactions-windows-replacement.man
+
+LOG Copying rasapi-repl.man
+
+LOG Copying rasbase-rassstp-repl.man
+
+LOG Copying rasbase-repl.man
+
+LOG Copying rasddm-repl.man
+
+LOG Copying rasmanservice-repl.man
+
+LOG Copying rasmanservice-replv2.man
+
+LOG Copying rasmanservice-replv3.man
+
+LOG Copying rasppp-repl.man
+
+LOG Copying rasrqs-repl.man
+
+LOG Copying rasserver-repl.man
+
+LOG Copying rasserveradmintools-replacement.man
+
+LOG Copying refs-replacement.man
+
+LOG Copying refs-v1-replacement.man
+
+LOG Copying retaildemo.deployment.replacement.man
+
+LOG Copying rights-management-client-v1-api-replacement.man
+
+LOG Copying rights-management-services-admin-tools-replacement.man
+
+LOG Copying rights-management-services-management-tools-replacement.man
+
+LOG Copying rights-management-services-role-replacement.man
+
+LOG Copying schedsvc-replacement.man
+
+LOG Copying security-spp-migration-replacement.man
+
+LOG Copying securitycenter-core-replacement.man
+
+LOG Copying servercore-wow64-rm.man
+
+LOG Copying settingsync-repl.man
+
+LOG Copying sharedpccsp-repl.man
+
+LOG Copying sharemgmt-rsatclient-tools-replacement.man
+
+LOG Copying shmig-replacement.man
+
+LOG Copying signalmanager-replacement.man
+
+LOG Copying signature-replacement.man
+
+LOG Copying smartcardsubsystem-repl.man
+
+LOG Copying snmp-gui-tools-replacement.man
+
+LOG Copying sounds-migration-replacement.man
+
+LOG Copying spectrum-replacement.man
+
+LOG Copying srm-cbadriver-repl.man
+
+LOG Copying srm-datascrndriver-repl.man
+
+LOG Copying srm-infrastructure-repl.man
+
+LOG Copying srm-management-repl.man
+
+LOG Copying srm-quotadriver-repl.man
+
+LOG Copying srm-service-repl.man
+
+LOG Copying srm-service-reports-repl.man
+
+LOG Copying srm-ui-repl.man
+
+LOG Copying srumon-replacement.man
+
+LOG Copying starttiledata-replacement.man
+
+LOG Copying sysdm-replacement.man
+
+LOG Copying sysmain-replacement.man
+
+LOG Copying systemsettingsthreshold-replacement.man
+
+LOG Copying tabletpcplatforminput-core-replacement.man
+
+LOG Copying tcblaunch-replacement.man
+
+LOG Copying tcpip-replacement.man
+
+LOG Copying terminalservices-appserver-licensing-replacement.man
+
+LOG Copying terminalservices-gateway-package-r-replacement.man
+
+LOG Copying terminalservices-gateway-package-replacement.man
+
+LOG Copying terminalservices-gateway-ui-package-r-replacement.man
+
+LOG Copying terminalservices-gateway-ui-package-replacement.man
+
+LOG Copying terminalservices-licenseserver-replacement.man
+
+LOG Copying terminalservices-localsessionmanager-replacement.man
+
+LOG Copying terminalservices-publishing-wmiprovider-replacement.man
+
+LOG Copying terminalservices-rapweb-replacement.man
+
+LOG Copying terminalservices-rapwebpart-replacement.man
+
+LOG Copying terminalservices-rdp-winstationextensions-replacement.man
+
+LOG Copying terminalservices-remoteconnectionmanager-replacement.man
+
+LOG Copying terminalservices-role-package-r-replacement.man
+
+LOG Copying terminalservices-role-package-replacement.man
+
+LOG Copying terminalservices-sessiondirectory-client-replacement.man
+
+LOG Copying terminalservices-sessiondirectory-server-replacement.man
+
+LOG Copying terminalservices-tsv-vmhostagent-replacement.man
+
+LOG Copying tetheringservice-repl.man
+
+LOG Copying textservicesframework-migration-replacement.man
+
+LOG Copying time-service-replacement.man
+
+LOG Copying tpmdriverwmi-replacement.man
+
+LOG Copying tpmvsc-repl.man
+
+LOG Copying twinui-replacement.man
+
+LOG Copying udfs-replacement.man
+
+LOG Copying updateservices-common-replacement.man
+
+LOG Copying updateservices-services-replacement.man
+
+LOG Copying upnpdevicehost-replacement.man
+
+LOG Copying upnpdevicehost-server-replacement.man
+
+LOG Copying upnpssdp-replacement.man
+
+LOG Copying upnpssdp-server-replacement.man
+
+LOG Copying usbmigration-replacement.man
+
+LOG Copying video-tvvideocontrol-replacement.man
+
+LOG Copying virtualdiskservice-repl.man
+
+LOG Copying volsnap-repl.man
+
+LOG Copying vssservice-repl.man
+
+LOG Copying wbiosrvc-replacement.man
+
+LOG Copying wcf-http-activation-replacement.man
+
+LOG Copying wcf-nonhttp-activation-replacement.man
+
+LOG Copying web-services-for-management-core-replacement.man
+
+LOG Copying webdavredir-clientonly-replacement.man
+
+LOG Copying webdavredir-serveronly-replacement.man
+
+LOG Copying wia-coreservices-replacement.man
+
+LOG Copying wicamigrationav-rl.man
+
+LOG Copying wid8-migration.man
+
+LOG Copying win32k-settings-repl.man
+
+LOG Copying windows-senseclient-service-rep.man
+
+LOG Copying windows.cortana.desktop-repl.man
+
+LOG Copying windows.holographic.displaythrottling-replacement.man
+
+LOG Copying windows.media-migration-replacement.man
+
+LOG Copying windows.sharedpc.accountmanager-repl.man
+
+LOG Copying windows.ui.shell-repl.man
+
+LOG Copying windowspushnotifications-platform-library-replacement.man
+
+LOG Copying windowssearchengine-replacement.man
+
+LOG Copying windowsstoreapi-replacement.man
+
+LOG Copying windowsupdate-replacement.man
+
+LOG Copying windowswebapphost-replacement.man
+
+LOG Copying winlogon-replacement.man
+
+LOG Copying winmde-migration-replacement.man
+
+LOG Copying winnat-replacement.man
+
+LOG Copying winsat-cmi-replacement.man
+
+LOG Copying wlidsvc.vista-win7.man
+
+LOG Copying wmdmigration-replacement.man
+
+LOG Copying wmi-core-replacement.man
+
+LOG Copying wmiacpi-replacement.man
+
+LOG Copying wmpnsservice-migration-replacement.man
+
+LOG Copying wmpplayer-migration-replacement.man
+
+LOG Copying wsinfra-other-mw-replacement.man
+
+LOG Copying wsinfra-upgrade-replacement.man
+
+LOG Copying wwansvc-servercfg-repl.man
+
+LOG Copying Microsoft-Windows-InternetExplorer-Optional-Package~31bf3856ad364e35~amd64~pt-BR~.cab
+
+LOG Copying microsoft-windows-internetexplorer-optional-package~31bf3856ad364e35~amd64~~.cab
+
+LOG Copying Microsoft-Windows-NetFx3-OnDemand-Package~31bf3856ad364e35~amd64~pt-BR~.cab
+
+LOG Copying microsoft-windows-netfx3-ondemand-package~31bf3856ad364e35~amd64~~.cab
+Copying ISO files:   1.6% (overall  10.2%)Copying ISO files:   2.3% (overall  10.9%)
+LOG Copying desktoptargetcompdb_neutral.xml.cab
+
+LOG Copying webservices.dll
+
+LOG Copying webservices.dll
+
+LOG Copying acmigration.dll
+Copying ISO files:   3.1% (overall  11.6%)
+LOG Copying acres.dll
+
+LOG Copying actionqueue.dll
+
+LOG Copying adfscomp.dll
+
+LOG Copying admtv3check.dll
+
+LOG Copying aeinv.dll
+
+LOG Copying alert.gif
+
+LOG Copying appcompat.xsl
+
+LOG Copying appcompatservicing.dll
+
+LOG Copying appcompat_bidi.xsl
+
+LOG Copying appcompat_detailed.xsl
+
+LOG Copying appcompat_detailed_bidi.xsl
+
+LOG Copying appcompat_detailed_bidi_txt.xsl
+
+LOG Copying appcompat_detailed_txt.xsl
+
+LOG Copying appraiser.dll
+
+LOG Copying appraiser.sdb
+
+LOG Copying appraiserdatasha1.cat
+
+LOG Copying appraiserres.dll
+
+LOG Copying appraiserwc.dll
+
+LOG Copying arunimg.dll
+
+LOG Copying arunres.dll
+
+LOG Copying autorun.dll
+
+LOG Copying background_cli.bmp
+
+LOG Copying boot.wim
+Copying ISO files:   3.9% (overall  12.3%)Copying ISO files:   4.7% (overall  13.0%)Copying ISO files:   5.5% (overall  13.7%)Copying ISO files:   6.2% (overall  14.3%)Copying ISO files:   7.0% (overall  15.0%)Copying ISO files:   7.8% (overall  15.7%)Copying ISO files:   8.5% (overall  16.4%)Copying ISO files:   9.3% (overall  17.0%)Copying ISO files:  10.1% (overall  17.7%)Copying ISO files:  10.8% (overall  18.4%)Copying ISO files:  11.6% (overall  19.1%)Copying ISO files:  12.3% (overall  19.7%)
+LOG Copying cdplib.mof
+
+LOG Copying cdplibuninstall.mof
+
+LOG Copying clustercompliance.dll
+
+LOG Copying cmi2migxml.dll
+
+LOG Copying cmisetup.dll
+
+LOG Copying compatctrl.dll
+
+LOG Copying compatresources.dll
+
+LOG Copying compres.dll
+
+LOG Copying cryptosetup.dll
+
+LOG Copying csiagent.dll
+
+LOG Copying cversion.ini
+
+LOG Copying db_msftproductionwindowssigningca.cer
+
+LOG Copying devinv.dll
+
+LOG Copying diager.dll
+
+LOG Copying diagnostic.dll
+
+LOG Copying diagtrack.dll
+
+LOG Copying diagtrackrunner.exe
+
+LOG Copying dism.exe
+Copying ISO files:  13.1% (overall  20.4%)
+LOG Copying dismapi.dll
+
+LOG Copying dismcore.dll
+
+LOG Copying dismcoreps.dll
+
+LOG Copying dismprov.dll
+
+LOG Copying du.dll
+
+LOG Copying facilitator.dll
+
+LOG Copying folderprovider.dll
+
+LOG Copying gatherosstate.exe
+
+LOG Copying generaltel.dll
+
+LOG Copying hwcompat.dll
+
+LOG Copying hwcompat.txt
+
+LOG Copying hwcompatPE.txt
+
+LOG Copying hwexclude.txt
+
+LOG Copying hwexcludePE.txt
+
+LOG Copying hypervcomplcheck.dll
+
+LOG Copying iasmigplugin.dll
+
+LOG Copying idwbinfo.txt
+
+LOG Copying iiscomp.dll
+
+LOG Copying imagingprovider.dll
+
+LOG Copying input.dll
+
+LOG Copying install.esd
+Copying ISO files:  14.0% (overall  21.2%)Copying ISO files:  14.7% (overall  21.8%)Copying ISO files:  15.5% (overall  22.5%)Copying ISO files:  16.3% (overall  23.2%)Copying ISO files:  17.0% (overall  23.8%)Copying ISO files:  17.8% (overall  24.5%)Copying ISO files:  18.6% (overall  25.2%)Copying ISO files:  19.3% (overall  25.9%)Copying ISO files:  20.1% (overall  26.5%)Copying ISO files:  20.8% (overall  27.2%)Copying ISO files:  21.6% (overall  27.9%)Copying ISO files:  22.4% (overall  28.6%)Copying ISO files:  23.1% (overall  29.2%)Copying ISO files:  23.9% (overall  29.9%)Copying ISO files:  24.7% (overall  30.6%)Copying ISO files:  25.4% (overall  31.3%)Copying ISO files:  26.2% (overall  31.9%)Copying ISO files:  27.0% (overall  32.6%)Copying ISO files:  27.7% (overall  33.3%)Copying ISO files:  28.5% (overall  34.0%)Copying ISO files:  29.3% (overall  34.6%)Copying ISO files:  30.0% (overall  35.3%)Copying ISO files:  30.8% (overall  36.0%)Copying ISO files:  31.6% (overall  36.6%)Copying ISO files:  32.3% (overall  37.3%)Copying ISO files:  33.1% (overall  38.0%)Copying ISO files:  33.8% (overall  38.7%)Copying ISO files:  34.6% (overall  39.3%)Copying ISO files:  35.4% (overall  40.0%)Copying ISO files:  36.1% (overall  40.7%)Copying ISO files:  36.9% (overall  41.4%)Copying ISO files:  37.7% (overall  42.0%)Copying ISO files:  38.4% (overall  42.7%)Copying ISO files:  39.2% (overall  43.4%)Copying ISO files:  40.0% (overall  44.1%)Copying ISO files:  40.7% (overall  44.7%)Copying ISO files:  41.5% (overall  45.4%)Copying ISO files:  42.3% (overall  46.1%)Copying ISO files:  43.0% (overall  46.8%)Copying ISO files:  43.8% (overall  47.4%)Copying ISO files:  44.6% (overall  48.1%)Copying ISO files:  45.3% (overall  48.8%)Copying ISO files:  46.1% (overall  49.5%)Copying ISO files:  46.9% (overall  50.1%)Copying ISO files:  47.6% (overall  50.8%)Copying ISO files:  48.4% (overall  51.5%)Copying ISO files:  49.1% (overall  52.1%)Copying ISO files:  49.9% (overall  52.8%)Copying ISO files:  50.7% (overall  53.5%)Copying ISO files:  51.4% (overall  54.2%)Copying ISO files:  52.2% (overall  54.8%)Copying ISO files:  53.0% (overall  55.5%)Copying ISO files:  53.7% (overall  56.2%)Copying ISO files:  54.5% (overall  56.9%)Copying ISO files:  55.3% (overall  57.5%)Copying ISO files:  56.0% (overall  58.2%)Copying ISO files:  56.8% (overall  58.9%)Copying ISO files:  57.6% (overall  59.6%)Copying ISO files:  58.3% (overall  60.2%)Copying ISO files:  59.1% (overall  60.9%)Copying ISO files:  59.9% (overall  61.6%)Copying ISO files:  60.6% (overall  62.3%)Copying ISO files:  61.4% (overall  62.9%)Copying ISO files:  62.1% (overall  63.6%)Copying ISO files:  62.9% (overall  64.3%)Copying ISO files:  63.7% (overall  64.9%)Copying ISO files:  64.4% (overall  65.6%)Copying ISO files:  65.2% (overall  66.3%)Copying ISO files:  66.0% (overall  67.0%)Copying ISO files:  66.7% (overall  67.6%)Copying ISO files:  67.5% (overall  68.3%)Copying ISO files:  68.3% (overall  69.0%)Copying ISO files:  69.0% (overall  69.7%)Copying ISO files:  69.8% (overall  70.3%)Copying ISO files:  70.6% (overall  71.0%)Copying ISO files:  71.3% (overall  71.7%)Copying ISO files:  72.1% (overall  72.4%)Copying ISO files:  72.9% (overall  73.0%)Copying ISO files:  73.6% (overall  73.7%)Copying ISO files:  74.4% (overall  74.4%)Copying ISO files:  75.1% (overall  75.1%)Copying ISO files:  75.9% (overall  75.7%)Copying ISO files:  76.7% (overall  76.4%)Copying ISO files:  77.4% (overall  77.1%)Copying ISO files:  78.2% (overall  77.8%)Copying ISO files:  79.0% (overall  78.4%)Copying ISO files:  79.7% (overall  79.1%)Copying ISO files:  80.5% (overall  79.8%)Copying ISO files:  81.3% (overall  80.4%)Copying ISO files:  82.0% (overall  81.1%)Copying ISO files:  82.8% (overall  81.8%)Copying ISO files:  83.6% (overall  82.5%)Copying ISO files:  84.3% (overall  83.1%)Copying ISO files:  85.1% (overall  83.8%)Copying ISO files:  85.9% (overall  84.5%)Copying ISO files:  86.6% (overall  85.2%)Copying ISO files:  87.4% (overall  85.8%)Copying ISO files:  88.2% (overall  86.5%)Copying ISO files:  88.9% (overall  87.2%)Copying ISO files:  89.7% (overall  87.9%)Copying ISO files:  90.4% (overall  88.5%)Copying ISO files:  91.2% (overall  89.2%)Copying ISO files:  92.0% (overall  89.9%)Copying ISO files:  92.7% (overall  90.6%)Copying ISO files:  93.5% (overall  91.2%)Copying ISO files:  94.3% (overall  91.9%)Copying ISO files:  95.0% (overall  92.6%)Copying ISO files:  95.8% (overall  93.2%)Copying ISO files:  96.6% (overall  93.9%)Copying ISO files:  97.3% (overall  94.6%)
+LOG Copying itgtupg.dll
+
+LOG Copying lang.ini
+
+LOG Copying locale.nls
+
+LOG Copying logprovider.dll
+
+LOG Copying mediasetupuimgr.dll
+
+LOG Copying migapp.xml
+
+LOG Copying migcore.dll
+
+LOG Copying mighost.exe
+
+LOG Copying migisol.dll
+
+LOG Copying migres.dll
+
+LOG Copying migstore.dll
+
+LOG Copying migsys.dll
+
+LOG Copying migtestplugin.dll
+
+LOG Copying mitigation.dll
+
+LOG Copying mxeagent.dll
+
+LOG Copying nlsbres.dll
+
+LOG Copying ntdsupg.dll
+
+LOG Copying ntfrsupg.dll
+
+LOG Copying nxquery.inf
+
+LOG Copying nxquery.sys
+
+LOG Copying offline.xml
+
+LOG Copying offlineprofileutils.dll
+
+LOG Copying oscomps.woa.xml
+
+LOG Copying oscomps.xml
+
+LOG Copying osfilter.inf
+
+LOG Copying outofbox_windows_db.bin
+
+LOG Copying pnpibs.dll
+
+LOG Copying pnppropmig.dll
+
+LOG Copying product.ini
+
+LOG Copying rdsupgcheck.dll
+
+LOG Copying reagent.admx
+
+LOG Copying reagent.dll
+
+LOG Copying reagent.xml
+
+LOG Copying reportgen.dll
+
+LOG Copying reservemanager.dll
+
+LOG Copying rmsupg.dll
+
+LOG Copying rollback.exe
+Copying ISO files:  98.1% (overall  95.3%)
+LOG Copying schema.dat
+
+LOG Copying sdbapiu.dll
+
+LOG Copying segoeui.ttf
+
+LOG Copying setup.exe
+
+LOG Copying setupcompat.dll
+
+LOG Copying setupcore.dll
+
+LOG Copying setupdiag.exe
+
+LOG Copying setuperror.exe
+
+LOG Copying setuphost.exe
+
+LOG Copying setupmgr.dll
+
+LOG Copying setupplatform.cfg
+
+LOG Copying setupplatform.dll
+
+LOG Copying setupplatform.exe
+
+LOG Copying setupprep.exe
+
+LOG Copying sfcn.dat
+
+LOG Copying sflcid.dat
+
+LOG Copying sflistrs1.dat
+
+LOG Copying sflistw7.dat
+Copying ISO files:  98.9% (overall  96.0%)
+LOG Copying sflistw8.dat
+
+LOG Copying sflistw8.woa.dat
+
+LOG Copying sflistwb.dat
+
+LOG Copying sflistwb.woa.dat
+
+LOG Copying sflistwt.dat
+
+LOG Copying sflistwt.woa.dat
+
+LOG Copying sfpat.inf
+
+LOG Copying sfpatrs1.inf
+
+LOG Copying sfpatw7.inf
+
+LOG Copying sfpatw8.inf
+
+LOG Copying sfpatwb.inf
+
+LOG Copying sfpatwt.inf
+
+LOG Copying smiengine.dll
+
+LOG Copying spflvrnt.dll
+
+LOG Copying spprgrss.dll
+
+LOG Copying spwizeng.dll
+
+LOG Copying spwizimg.dll
+
+LOG Copying spwizres.dll
+
+LOG Copying sqmapi.dll
+
+LOG Copying uddicomp.dll
+
+LOG Copying unattend.dll
+
+LOG Copying unbcl.dll
+
+LOG Copying uninstall.xml
+
+LOG Copying uninstall_data.xml
+
+LOG Copying updateagent.dll
+
+LOG Copying upgloader.dll
+
+LOG Copying upgradeagent.dll
+
+LOG Copying upgradeagent.xml
+
+LOG Copying upgrade_bulk.xml
+
+LOG Copying upgrade_comp.xml
+
+LOG Copying upgrade_data.xml
+
+LOG Copying upgrade_frmwrk.xml
+
+LOG Copying upgwow_bulk.xml
+
+LOG Copying uxlib.dll
+
+LOG Copying uxlibres.dll
+
+LOG Copying vhdprovider.dll
+
+LOG Copying w32uiimg.dll
+Copying ISO files:  99.7% (overall  96.7%)
+LOG Copying w32uires.dll
+
+LOG Copying warning.gif
+
+LOG Copying wdsclient.dll
+
+LOG Copying wdsclientapi.dll
+
+LOG Copying wdscore.dll
+
+LOG Copying wdscsl.dll
+
+LOG Copying wdsimage.dll
+
+LOG Copying wdstptc.dll
+
+LOG Copying wdsupgcompl.dll
+
+LOG Copying wdsutil.dll
+
+LOG Copying wicadevicefilters.xml
+
+LOG Copying wimprovider.dll
+
+LOG Copying win32ui.dll
+
+LOG Copying windlp.dll
+
+LOG Copying winsetup.dll
+
+LOG Copying winsetupboot.hiv
+
+LOG Copying winsetupboot.sys
+
+LOG Copying wpx.dll
+
+LOG Copying ws.dat
+
+LOG Copying actionqueueetw.dll.mui
+
+LOG Copying actionqueueetw.dll
+
+LOG Copying auditetw.dll
+
+LOG Copying cmisetupetw.dll
+
+LOG Copying etwproviderinstall.vbs
+
+LOG Copying microsoft-windows-actionqueue-instrumentation.man
+
+LOG Copying microsoft-windows-audit-instrumentation.man
+
+LOG Copying microsoft-windows-cmisetup-instrumentation.man
+
+LOG Copying microsoft-windows-oobeldr-instrumentation.man
+
+LOG Copying microsoft-windows-setup-events.man
+
+LOG Copying microsoft-windows-setup-instrumentation.man
+
+LOG Copying microsoft-windows-setupcl-instrumentation.man
+
+LOG Copying microsoft-windows-setupugc-instrumentation.man
+
+LOG Copying microsoft-windows-sysprep-instrumentation.man
+
+LOG Copying microsoft-windows-windeploy-instrumentation.man
+
+LOG Copying oobeldretw.dll
+
+LOG Copying setupcletw.dll
+
+LOG Copying setupetw.dll
+
+LOG Copying setupugcetw.dll
+
+LOG Copying sysprepetw.dll
+
+LOG Copying windeployetw.dll
+
+LOG Copying winsetupetw.dll
+
+LOG Copying autorun.inf
+
+LOG Copying bootmgr
+
+LOG Copying bootmgr.efi
+
+LOG Copying setup.exe
+Copying ISO files: 100.0% (overall  97.0%)
+Finalizing, please wait...
+Progress:  99.0%
+Finalizing, please wait...
+Progress:  99.0%Progress: 100.0%
+COMPLETE Windows installer media created
+

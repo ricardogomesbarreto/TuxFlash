@@ -1,0 +1,33 @@
+{
+  "version": {
+    "stdout": "Lufus 0.2.2\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "list": {
+    "stdout": "DEVICE\tSIZE\tTRANSPORT\tMODEL\tSERIAL\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "shell_probe": {
+    "stdout": "{\"is_iso\": true, \"has_efi\": true, \"has_windows\": false, \"supports_windows_installer\": false, \"supports_windows_to_go\": false, \"supports_persistence\": false}",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "shell_checksums": {
+    "stdout": "MD5  10c6945c5f31223c60249a2c265935cf\nSHA-1  1fe427449b4ed2e5e75ea169259afda510f521cd\nSHA-256  2802f4bbd87be88f366d3fe1556a7cfaf41102e3b167224b69a261391ada8ccf\nSHA-512  380a7fc1fcf7d2a1e24efcabd9dc96f331e9eb0951484e0814efaf499c5b897a0b0589cd8c07d9b9dd032fba02c21c4694e42f99bfd8b551b66e64c35f8af7fa\n",
+    "stderr": "",
+    "exit_code": 0
+  },
+  "independent_hashes": {
+    "md5": "10c6945c5f31223c60249a2c265935cf",
+    "sha1": "1fe427449b4ed2e5e75ea169259afda510f521cd",
+    "sha256": "2802f4bbd87be88f366d3fe1556a7cfaf41102e3b167224b69a261391ada8ccf",
+    "sha512": "380a7fc1fcf7d2a1e24efcabd9dc96f331e9eb0951484e0814efaf499c5b897a0b0589cd8c07d9b9dd032fba02c21c4694e42f99bfd8b551b66e64c35f8af7fa"
+  },
+  "uefi_shell_iso": {
+    "bytes": 22493184,
+    "sha256": "2802f4bbd87be88f366d3fe1556a7cfaf41102e3b167224b69a261391ada8ccf",
+    "pinned_sha256_matches": true
+  }
+}

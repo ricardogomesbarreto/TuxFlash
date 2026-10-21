@@ -1,0 +1,20 @@
+El Torito catalog  : 1404  1
+El Torito images   :   N  Pltf  B   Emul  Ld_seg  Hdpt  Ldsiz         LBA
+El Torito boot img :   1  BIOS  y   none  0x0000  0x00      8        1405
+El Torito boot img :   2  UEFI  y   none  0x0000  0x00   2880        1407
+El Torito img blks :   1  2
+El Torito img blks :   2  720
+xorriso 1.5.6 : RockRidge filesystem manipulator, libburnia project.
+
+xorriso : NOTE : Loading ISO image tree from LBA 0
+libisofs: WARNING : Found hidden El-Torito image. Its size could not be figured out, so image modify or boot image patching may lead to bad results.
+libisofs: NOTE : Found hidden El-Torito image for EFI.
+libisofs: NOTE : EFI image start and size: 1407 * 2048 , 2880 * 512
+xorriso : NOTE : Detected El-Torito boot information which currently is set to be discarded
+Drive current: -indev '/caminho/das/imagens/Windows 10 PRO 2021.iso'
+Media current: stdio file, overwriteable
+Media status : is written , is appendable
+Boot record  : El Torito
+Media summary: 1 session, 2144742 data blocks, 4189m data,  344g free
+Volume id    : 'ESD_ISO'
+xorriso : NOTE : No System Area was loaded

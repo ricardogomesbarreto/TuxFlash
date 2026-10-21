@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "value": {
+    "evidence_id": "ev_bd8b012444e033360723db10c124ab77e6c1683bd39d831dfaf5dd2b3fbefe54",
+    "subject": {
+      "name": "lufus-helper",
+      "digest": {
+        "sha256": "afb9b9543bda34330c622e512ee57d741586470a877ffa3649543f19c7d1e157"
+      },
+      "local_path": "/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper",
+      "format": "unknown",
+      "architecture": null
+    },
+    "provider": {
+      "id": "gnu.objdump",
+      "name": "GNU objdump",
+      "version": null
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.reverse-engineering.command-observation",
+    "operation": "inspect_with_objdump",
+    "parameters": {
+      "path": "/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper",
+      "operation": "section_headers",
+      "follow_debug_links": false,
+      "provider_executable": "objdump",
+      "command_arguments": [
+        "-h",
+        "/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper"
+      ]
+    },
+    "raw_result": {
+      "stdout": "\n/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper:     file format elf64-x86-64\n\nSections:\nIdx Name          Size      VMA               LMA               File off  Algn\n  0 .note.gnu.build-id 00000024  0000000000000350  0000000000000350  00000350  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  1 .interp       0000001c  0000000000000374  0000000000000374  00000374  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  2 .gnu.hash     0000003c  0000000000000390  0000000000000390  00000390  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  3 .dynsym       00000c78  00000000000003d0  00000000000003d0  000003d0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  4 .dynstr       000006f6  0000000000001048  0000000000001048  00001048  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  5 .gnu.version  0000010a  000000000000173e  000000000000173e  0000173e  2**1\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  6 .gnu.version_r 000000c0  0000000000001848  0000000000001848  00001848  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  7 .rela.dyn     00000690  0000000000001908  0000000000001908  00001908  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  8 .rela.plt     00000ba0  0000000000001f98  0000000000001f98  00001f98  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  9 .init         0000001b  0000000000003000  0000000000003000  00003000  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 10 .plt          000007d0  0000000000003020  0000000000003020  00003020  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 11 .plt.got      00000010  00000000000037f0  00000000000037f0  000037f0  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 12 .plt.sec      000007c0  0000000000003800  0000000000003800  00003800  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 13 .text         0000bf1b  0000000000003fc0  0000000000003fc0  00003fc0  2**5\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 14 .fini         0000000d  000000000000fedc  000000000000fedc  0000fedc  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 15 .rodata       000055df  0000000000010000  0000000000010000  00010000  2**5\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 16 .eh_frame_hdr 000001dc  00000000000155e0  00000000000155e0  000155e0  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 17 .eh_frame     00000d58  00000000000157c0  00000000000157c0  000157c0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 18 .note.gnu.property 00000030  0000000000016518  0000000000016518  00016518  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 19 .note.ABI-tag 00000020  0000000000016548  0000000000016548  00016548  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 20 .init_array   00000008  0000000000017770  0000000000017770  00016770  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 21 .fini_array   00000008  0000000000017778  0000000000017778  00016778  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 22 .data.rel.ro  00000218  0000000000017780  0000000000017780  00016780  2**5\n                  CONTENTS, ALLOC, LOAD, DATA\n 23 .dynamic      00000230  0000000000017998  0000000000017998  00016998  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 24 .got          00000420  0000000000017bc8  0000000000017bc8  00016bc8  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 25 .data         00000018  0000000000018000  0000000000018000  00017000  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 26 .bss          00000020  0000000000018020  0000000000018020  00017018  2**5\n                  ALLOC\n 27 .comment      00000026  0000000000000000  0000000000000000  00017018  2**0\n                  CONTENTS, READONLY\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "afb9b9543bda34330c622e512ee57d741586470a877ffa3649543f19c7d1e157",
+      "artifact_changed": false
+    },
+    "normalized_result": {
+      "stdout": "\n/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper:     file format elf64-x86-64\n\nSections:\nIdx Name          Size      VMA               LMA               File off  Algn\n  0 .note.gnu.build-id 00000024  0000000000000350  0000000000000350  00000350  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  1 .interp       0000001c  0000000000000374  0000000000000374  00000374  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  2 .gnu.hash     0000003c  0000000000000390  0000000000000390  00000390  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  3 .dynsym       00000c78  00000000000003d0  00000000000003d0  000003d0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  4 .dynstr       000006f6  0000000000001048  0000000000001048  00001048  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  5 .gnu.version  0000010a  000000000000173e  000000000000173e  0000173e  2**1\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  6 .gnu.version_r 000000c0  0000000000001848  0000000000001848  00001848  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  7 .rela.dyn     00000690  0000000000001908  0000000000001908  00001908  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  8 .rela.plt     00000ba0  0000000000001f98  0000000000001f98  00001f98  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  9 .init         0000001b  0000000000003000  0000000000003000  00003000  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 10 .plt          000007d0  0000000000003020  0000000000003020  00003020  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 11 .plt.got      00000010  00000000000037f0  00000000000037f0  000037f0  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 12 .plt.sec      000007c0  0000000000003800  0000000000003800  00003800  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 13 .text         0000bf1b  0000000000003fc0  0000000000003fc0  00003fc0  2**5\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 14 .fini         0000000d  000000000000fedc  000000000000fedc  0000fedc  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 15 .rodata       000055df  0000000000010000  0000000000010000  00010000  2**5\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 16 .eh_frame_hdr 000001dc  00000000000155e0  00000000000155e0  000155e0  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 17 .eh_frame     00000d58  00000000000157c0  00000000000157c0  000157c0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 18 .note.gnu.property 00000030  0000000000016518  0000000000016518  00016518  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 19 .note.ABI-tag 00000020  0000000000016548  0000000000016548  00016548  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 20 .init_array   00000008  0000000000017770  0000000000017770  00016770  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 21 .fini_array   00000008  0000000000017778  0000000000017778  00016778  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 22 .data.rel.ro  00000218  0000000000017780  0000000000017780  00016780  2**5\n                  CONTENTS, ALLOC, LOAD, DATA\n 23 .dynamic      00000230  0000000000017998  0000000000017998  00016998  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 24 .got          00000420  0000000000017bc8  0000000000017bc8  00016bc8  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 25 .data         00000018  0000000000018000  0000000000018000  00017000  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 26 .bss          00000020  0000000000018020  0000000000018020  00017018  2**5\n                  ALLOC\n 27 .comment      00000026  0000000000000000  0000000000000000  00017018  2**0\n                  CONTENTS, READONLY\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "afb9b9543bda34330c622e512ee57d741586470a877ffa3649543f19c7d1e157",
+      "artifact_changed": false
+    },
+    "confidence": "observed",
+    "authority": "shipped-artifact",
+    "environment": {},
+    "limitations": [
+      "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+      "A non-zero process exit is preserved as an observed command result.",
+      "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper"
+      }
+    ],
+    "evidence_links": []
+  }
+}

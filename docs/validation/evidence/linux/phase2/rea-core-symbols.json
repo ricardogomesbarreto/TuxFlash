@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "value": {
+    "evidence_id": "ev_86fdd117fff90c431a706e19904945cf3f72c935f243515149dd8ca6cd56546d",
+    "subject": {
+      "name": "hash-core.o",
+      "digest": {
+        "sha256": "e90b077a525d18dda944ed868588b8af46f840d92c094dc63e09af0614053ebb"
+      },
+      "local_path": "/tmp/rufus-linux-phase2/build-linux/hash-core.o",
+      "format": "unknown",
+      "architecture": null
+    },
+    "provider": {
+      "id": "gnu.objdump",
+      "name": "GNU objdump",
+      "version": null
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.reverse-engineering.command-observation",
+    "operation": "inspect_with_objdump",
+    "parameters": {
+      "path": "/tmp/rufus-linux-phase2/build-linux/hash-core.o",
+      "operation": "symbols",
+      "follow_debug_links": false,
+      "provider_executable": "objdump",
+      "command_arguments": [
+        "-t",
+        "/tmp/rufus-linux-phase2/build-linux/hash-core.o"
+      ]
+    },
+    "raw_result": {
+      "stdout": "\n/tmp/rufus-linux-phase2/build-linux/hash-core.o:     file format elf64-x86-64\n\nSYMBOL TABLE:\n0000000000000000 l    df *ABS*\t0000000000000000 hash.c\n0000000000000000 l    d  .text\t0000000000000000 .text\n0000000000000000 l    d  .bss\t0000000000000000 .bss\n0000000000000000 l     F .text\t0000000000000072 sha512_init\n0000000000000080 l     F .text\t0000000000000072 sha256_init\n0000000000000100 l     F .text\t0000000000000060 sha1_init\n0000000000000160 l     F .text\t0000000000000054 md5_init\n00000000000001c0 l     F .text\t00000000000004fe sha512_transform\n0000000000000000 l     O .rodata\t0000000000000280 K512\n00000000000006c0 l     F .text\t00000000000001cb sha512_write\n0000000000000890 l     F .text\t00000000000003c8 sha256_transform_x86\n0000000000000c60 l     F .text\t0000000000000c31 sha256_transform_cc\n0000000000000280 l     O .rodata\t0000000000000100 K256\n00000000000018a0 l     F .text\t0000000000001382 sha1_transform_cc\n0000000000002c30 l     F .text\t00000000000002d9 sha1_transform_x86\n0000000000002f10 l     F .text\t00000000000006f6 md5_transform\n0000000000003610 l     F .text\t0000000000000136 md5_final\n0000000000003750 l     F .text\t00000000000001f5 md5_write\n0000000000003950 l     F .text\t000000000000021a sha256_write\n0000000000003b70 l     F .text\t000000000000021a sha1_write\n0000000000003d90 l     F .text\t0000000000000169 sha512_final\n0000000000003f00 l     F .text\t0000000000000138 sha1_final\n0000000000004040 l     F .text\t0000000000000168 sha256_final\n0000000000004230 l     F .text\t0000000000000029 initialize_hash_cpu\n0000000000000008 l     O .bss\t0000000000000004 hash_cpu_once\n0000000000000000 l    d  .rodata\t0000000000000000 .rodata\n0000000000000000 l    d  .debug_info\t0000000000000000 .debug_info\n0000000000000000 l    d  .debug_abbrev\t0000000000000000 .debug_abbrev\n0000000000000000 l    d  .debug_loclists\t0000000000000000 .debug_loclists\n0000000000000000 l    d  .debug_rnglists\t0000000000000000 .debug_rnglists\n0000000000000000 l    d  .debug_line\t0000000000000000 .debug_line\n0000000000000000 l    d  .debug_str\t0000000000000000 .debug_str\n0000000000000000 l    d  .debug_line_str\t0000000000000000 .debug_line_str\n0000000000000000 l       .rodata.cst16\t0000000000000000 .LC0\n0000000000000010 l       .rodata.cst16\t0000000000000000 .LC1\n0000000000000020 l       .rodata.cst16\t0000000000000000 .LC2\n0000000000000030 l       .rodata.cst16\t0000000000000000 .LC3\n0000000000000040 l       .rodata.cst16\t0000000000000000 .LC4\n0000000000000050 l       .rodata.cst16\t0000000000000000 .LC5\n0000000000000060 l       .rodata.cst16\t0000000000000000 .LC6\n0000000000000070 l       .rodata.cst16\t0000000000000000 .LC7\n0000000000000080 l       .rodata.cst16\t0000000000000000 .LC8\n0000000000000090 l       .rodata.cst16\t0000000000000000 .LC9\n00000000000000a0 l       .rodata.cst16\t0000000000000000 .LC10\n00000000000000b0 l       .rodata.cst16\t0000000000000000 .LC11\n00000000000000c0 l       .rodata.cst16\t0000000000000000 .LC12\n00000000000000d0 l       .rodata.cst16\t0000000000000000 .LC13\n00000000000000e0 l       .rodata.cst16\t0000000000000000 .LC14\n00000000000000f0 l       .rodata.cst16\t0000000000000000 .LC15\n0000000000000100 l       .rodata.cst16\t0000000000000000 .LC16\n0000000000000110 l       .rodata.cst16\t0000000000000000 .LC17\n0000000000000120 l       .rodata.cst16\t0000000000000000 .LC18\n0000000000000130 l       .rodata.cst16\t0000000000000000 .LC19\n0000000000000140 l       .rodata.cst16\t0000000000000000 .LC20\n0000000000000150 l       .rodata.cst16\t0000000000000000 .LC21\n0000000000000160 l       .rodata.cst16\t0000000000000000 .LC22\n0000000000000170 l       .rodata.cst16\t0000000000000000 .LC23\n0000000000000180 l       .rodata.cst16\t0000000000000000 .LC24\n0000000000000190 l       .rodata.cst16\t0000000000000000 .LC25\n00000000000001a0 l       .rodata.cst16\t0000000000000000 .LC26\n00000000000001b0 l       .rodata.cst16\t0000000000000000 .LC27\n0000000000000000         *UND*\t0000000000000000 __stack_chk_fail\n0000000000000000         *UND*\t0000000000000000 memcpy\n0000000000000000         *UND*\t0000000000000000 _GLOBAL_OFFSET_TABLE_\n0000000000000000 g     O .bss\t0000000000000004 cpu_has_sha256_accel\n0000000000000004 g     O .bss\t0000000000000004 cpu_has_sha1_accel\n00000000000041b0 g     F .text\t0000000000000032 DetectSHA1Acceleration\n0000000000000000         *UND*\t0000000000000000 __cpu_model\n0000000000000000         *UND*\t0000000000000000 __cpu_features2\n00000000000041f0 g     F .text\t0000000000000032 DetectSHA256Acceleration\n0000000000004260 g     F .text\t0000000000000017 RufusHashInitialize\n0000000000000000         *UND*\t0000000000000000 pthread_once\n0000000000004280 g     F .text\t00000000000000fc HashBuffer\n0000000000000040 g     O .data.rel.local\t0000000000000020 hash_init\n0000000000000020 g     O .data.rel.local\t0000000000000020 hash_write\n0000000000000000 g     O .data.rel.local\t0000000000000020 hash_final\n0000000000000000 g     O .data\t0000000000000010 hash_count\n\n\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "e90b077a525d18dda944ed868588b8af46f840d92c094dc63e09af0614053ebb",
+      "artifact_changed": false
+    },
+    "normalized_result": {
+      "stdout": "\n/tmp/rufus-linux-phase2/build-linux/hash-core.o:     file format elf64-x86-64\n\nSYMBOL TABLE:\n0000000000000000 l    df *ABS*\t0000000000000000 hash.c\n0000000000000000 l    d  .text\t0000000000000000 .text\n0000000000000000 l    d  .bss\t0000000000000000 .bss\n0000000000000000 l     F .text\t0000000000000072 sha512_init\n0000000000000080 l     F .text\t0000000000000072 sha256_init\n0000000000000100 l     F .text\t0000000000000060 sha1_init\n0000000000000160 l     F .text\t0000000000000054 md5_init\n00000000000001c0 l     F .text\t00000000000004fe sha512_transform\n0000000000000000 l     O .rodata\t0000000000000280 K512\n00000000000006c0 l     F .text\t00000000000001cb sha512_write\n0000000000000890 l     F .text\t00000000000003c8 sha256_transform_x86\n0000000000000c60 l     F .text\t0000000000000c31 sha256_transform_cc\n0000000000000280 l     O .rodata\t0000000000000100 K256\n00000000000018a0 l     F .text\t0000000000001382 sha1_transform_cc\n0000000000002c30 l     F .text\t00000000000002d9 sha1_transform_x86\n0000000000002f10 l     F .text\t00000000000006f6 md5_transform\n0000000000003610 l     F .text\t0000000000000136 md5_final\n0000000000003750 l     F .text\t00000000000001f5 md5_write\n0000000000003950 l     F .text\t000000000000021a sha256_write\n0000000000003b70 l     F .text\t000000000000021a sha1_write\n0000000000003d90 l     F .text\t0000000000000169 sha512_final\n0000000000003f00 l     F .text\t0000000000000138 sha1_final\n0000000000004040 l     F .text\t0000000000000168 sha256_final\n0000000000004230 l     F .text\t0000000000000029 initialize_hash_cpu\n0000000000000008 l     O .bss\t0000000000000004 hash_cpu_once\n0000000000000000 l    d  .rodata\t0000000000000000 .rodata\n0000000000000000 l    d  .debug_info\t0000000000000000 .debug_info\n0000000000000000 l    d  .debug_abbrev\t0000000000000000 .debug_abbrev\n0000000000000000 l    d  .debug_loclists\t0000000000000000 .debug_loclists\n0000000000000000 l    d  .debug_rnglists\t0000000000000000 .debug_rnglists\n0000000000000000 l    d  .debug_line\t0000000000000000 .debug_line\n0000000000000000 l    d  .debug_str\t0000000000000000 .debug_str\n0000000000000000 l    d  .debug_line_str\t0000000000000000 .debug_line_str\n0000000000000000 l       .rodata.cst16\t0000000000000000 .LC0\n0000000000000010 l       .rodata.cst16\t0000000000000000 .LC1\n0000000000000020 l       .rodata.cst16\t0000000000000000 .LC2\n0000000000000030 l       .rodata.cst16\t0000000000000000 .LC3\n0000000000000040 l       .rodata.cst16\t0000000000000000 .LC4\n0000000000000050 l       .rodata.cst16\t0000000000000000 .LC5\n0000000000000060 l       .rodata.cst16\t0000000000000000 .LC6\n0000000000000070 l       .rodata.cst16\t0000000000000000 .LC7\n0000000000000080 l       .rodata.cst16\t0000000000000000 .LC8\n0000000000000090 l       .rodata.cst16\t0000000000000000 .LC9\n00000000000000a0 l       .rodata.cst16\t0000000000000000 .LC10\n00000000000000b0 l       .rodata.cst16\t0000000000000000 .LC11\n00000000000000c0 l       .rodata.cst16\t0000000000000000 .LC12\n00000000000000d0 l       .rodata.cst16\t0000000000000000 .LC13\n00000000000000e0 l       .rodata.cst16\t0000000000000000 .LC14\n00000000000000f0 l       .rodata.cst16\t0000000000000000 .LC15\n0000000000000100 l       .rodata.cst16\t0000000000000000 .LC16\n0000000000000110 l       .rodata.cst16\t0000000000000000 .LC17\n0000000000000120 l       .rodata.cst16\t0000000000000000 .LC18\n0000000000000130 l       .rodata.cst16\t0000000000000000 .LC19\n0000000000000140 l       .rodata.cst16\t0000000000000000 .LC20\n0000000000000150 l       .rodata.cst16\t0000000000000000 .LC21\n0000000000000160 l       .rodata.cst16\t0000000000000000 .LC22\n0000000000000170 l       .rodata.cst16\t0000000000000000 .LC23\n0000000000000180 l       .rodata.cst16\t0000000000000000 .LC24\n0000000000000190 l       .rodata.cst16\t0000000000000000 .LC25\n00000000000001a0 l       .rodata.cst16\t0000000000000000 .LC26\n00000000000001b0 l       .rodata.cst16\t0000000000000000 .LC27\n0000000000000000         *UND*\t0000000000000000 __stack_chk_fail\n0000000000000000         *UND*\t0000000000000000 memcpy\n0000000000000000         *UND*\t0000000000000000 _GLOBAL_OFFSET_TABLE_\n0000000000000000 g     O .bss\t0000000000000004 cpu_has_sha256_accel\n0000000000000004 g     O .bss\t0000000000000004 cpu_has_sha1_accel\n00000000000041b0 g     F .text\t0000000000000032 DetectSHA1Acceleration\n0000000000000000         *UND*\t0000000000000000 __cpu_model\n0000000000000000         *UND*\t0000000000000000 __cpu_features2\n00000000000041f0 g     F .text\t0000000000000032 DetectSHA256Acceleration\n0000000000004260 g     F .text\t0000000000000017 RufusHashInitialize\n0000000000000000         *UND*\t0000000000000000 pthread_once\n0000000000004280 g     F .text\t00000000000000fc HashBuffer\n0000000000000040 g     O .data.rel.local\t0000000000000020 hash_init\n0000000000000020 g     O .data.rel.local\t0000000000000020 hash_write\n0000000000000000 g     O .data.rel.local\t0000000000000020 hash_final\n0000000000000000 g     O .data\t0000000000000010 hash_count\n\n\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "e90b077a525d18dda944ed868588b8af46f840d92c094dc63e09af0614053ebb",
+      "artifact_changed": false
+    },
+    "confidence": "observed",
+    "authority": "shipped-artifact",
+    "environment": {},
+    "limitations": [
+      "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+      "A non-zero process exit is preserved as an observed command result.",
+      "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "/tmp/rufus-linux-phase2/build-linux/hash-core.o"
+      }
+    ],
+    "evidence_links": []
+  }
+}

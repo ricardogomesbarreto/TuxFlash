@@ -1,0 +1,34 @@
+Readback 100/906: sources/diagnostic.dll: PASS
+Readback 200/906: sources/dlmanifests/microsoft.windows.com.base-dl.man: PASS
+Readback 300/906: sources/inf/setup.cfg: PASS
+Readback 302/906: sources/install.esd: PASS
+Readback 400/906: sources/reagent.admx: PASS
+Readback 500/906: sources/replacementmanifests/microsoft-activedirectory-powershell-replacement.man: PASS
+Readback 600/906: sources/replacementmanifests/microsoft.windows.com.complus.setup-replacement.man: PASS
+Readback 700/906: sources/replacementmanifests/servercore-wow64-rm.man: PASS
+Readback 800/906: sources/reportgen.dll: PASS
+Readback 883/906: sources/ws.dat: PASS
+Readback 900/906: support/logging/pt-br/actionqueueetw.dll.mui: PASS
+{
+  "status": "passed",
+  "target": {
+    "path": "[DISPOSITIVO_REMOVIDO]",
+    "size": [CAPACIDADE_LOCAL_REMOVIDA],
+    "type": "disk",
+    "rm": true,
+    "tran": "usb",
+    "serial": "[DADO_LOCAL_REMOVIDO]",
+    "ro": false
+  },
+  "source_sha256": "1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768",
+  "files": 906,
+  "bytes": 4387198448,
+  "failures": [],
+  "kernel_block_cache_invalidated": true,
+  "target_mount_readonly": true,
+  "fsck_vfat_exit_code": 0,
+  "elapsed_seconds": 139.21737238600326,
+  "physical_firmware_boot_performed": false,
+  "secure_boot_tested": false,
+  "finished_utc": "2026-10-20T13:31:06Z"
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "image": "boot.wim",
+    "exit_code": 0,
+    "elapsed_seconds": 3.3653105859993957,
+    "command": [
+      "/caminho/do/projeto/linux/runtime/bin/wimlib-imagex",
+      "verify",
+      "/caminho/dos/testes/.lufus-windows-validation-20261020/wim-check/boot.wim"
+    ]
+  },
+  {
+    "image": "install.esd",
+    "exit_code": 0,
+    "elapsed_seconds": 58.46413019600004,
+    "command": [
+      "/caminho/do/projeto/linux/runtime/bin/wimlib-imagex",
+      "verify",
+      "/caminho/dos/testes/.lufus-windows-validation-20261020/wim-check/install.esd"
+    ]
+  }
+]

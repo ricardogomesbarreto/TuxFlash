@@ -1,0 +1,206 @@
+{
+  "version": "0.3.3",
+  "frontend_sha256": "7f0de0a8cc60cf148028b97a43130e03ac38c366b2d2424dd08f84f76a59c60e",
+  "helper_sha256": "db42ced7c6c40c4668e787ece7b6e4fdfb78a4b716d0d945448a5640f0937314",
+  "meson_suites_passed": 16,
+  "meson_suites_failed": 0,
+  "vm": {
+    "helper_sha256": "db42ced7c6c40c4668e787ece7b6e4fdfb78a4b716d0d945448a5640f0937314",
+    "backend_cases_passed": 40,
+    "minimal_firmware_boots_passed": 3,
+    "tested_portable_runtime": true
+  },
+  "gui": [
+    {
+      "language": "pt_BR",
+      "view": "about",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "pt_BR",
+      "view": "credits",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "pt_BR",
+      "view": "notes",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "en",
+      "view": "about",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "en",
+      "view": "credits",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "en",
+      "view": "notes",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "es",
+      "view": "about",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "es",
+      "view": "credits",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "es",
+      "view": "notes",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "zh_CN",
+      "view": "about",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "zh_CN",
+      "view": "credits",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    },
+    {
+      "language": "zh_CN",
+      "view": "notes",
+      "passed": true,
+      "private_gtk": true,
+      "cjk_glyphs_missing": 0,
+      "developer_link_verified": true,
+      "lufus_repository_link_verified": true,
+      "operation_completion_cases": 4,
+      "browser_opened": false
+    }
+  ],
+  "address_and_undefined_sanitizers": {
+    "passed": true,
+    "cases": {
+      "device_safety": 3,
+      "helper_mount": 6,
+      "helper_durability": 10
+    },
+    "leak_detection_enabled": false
+  },
+  "physical": {
+    "passed": true,
+    "application": "TuxFlash 0.3.3",
+    "helper_sha256": "db42ced7c6c40c4668e787ece7b6e4fdfb78a4b716d0d945448a5640f0937314",
+    "image_written": false,
+    "read_only_device_open": true,
+    "compared_bytes_per_pass": 1073741824,
+    "read_passes": 2,
+    "reads_match": true,
+    "kernel_block_cache_invalidated": true,
+    "wrong_disk_sequence_refused": true,
+    "full_device_capacity_tested": false,
+    "physical_firmware_boot_performed": false,
+    "device_identifiers_included": false,
+    "elapsed_seconds": 62.51,
+    "write_test_status": "Not executed: automatic approval review requires explicit approval of the Linux Mint ISO payload"
+  },
+  "write_test_pending_explicit_iso_approval": true,
+  "original_windows_files_preserved": 772,
+  "rea_elf_analysis_performed": true,
+  "initial_failures_fixed": [
+    "test compared device hash after unmount instead of while protected mount remained active",
+    "BCD scripts relied on host /usr/bin/env and failed to propagate generator errors"
+  ],
+  "translations": [
+    {
+      "language": "pt_BR",
+      "source_messages": 264,
+      "translated_source_messages": 264,
+      "format_checks_passed": true
+    },
+    {
+      "language": "en",
+      "source_messages": 264,
+      "translated_source_messages": 264,
+      "format_checks_passed": true
+    },
+    {
+      "language": "zh_CN",
+      "source_messages": 264,
+      "translated_source_messages": 264,
+      "format_checks_passed": true
+    },
+    {
+      "language": "es",
+      "source_messages": 264,
+      "translated_source_messages": 264,
+      "format_checks_passed": true
+    }
+  ]
+}

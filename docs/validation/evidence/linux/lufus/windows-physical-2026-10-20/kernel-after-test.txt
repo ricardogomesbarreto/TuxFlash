@@ -1,0 +1,1 @@
+Detalhes locais do kernel removidos por privacidade. Consulte o resumo técnico de validação.

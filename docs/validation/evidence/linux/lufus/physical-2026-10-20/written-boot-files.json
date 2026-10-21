@@ -1,0 +1,29 @@
+{
+  "serial": "[REMOVIDO]",
+  "mount": {
+    "target": "/run/media/usuario/Linux Mint 22.3 MATE 64-bit",
+    "source": "[DISPOSITIVO_REMOVIDO]",
+    "fstype": "iso9660",
+    "options": "ro,nosuid,nodev,relatime,nojoliet,check=s,map=n,blocksize=2048,uid=1000,gid=1000,dmode=500,fmode=400,iocharset=utf8"
+  },
+  "partition_layout_matches_source": true,
+  "efi_files": [
+    {
+      "path": "EFI/boot/bootia32.efi",
+      "bytes": 385024,
+      "sha256": "05a3b015c53af3569d0b8d736eaec0db68bd795ef4138875777411e41b9fa9d5"
+    },
+    {
+      "path": "EFI/boot/bootx64.efi",
+      "bytes": 966664,
+      "sha256": "6fe6e1bcbe6cf6baec8e056d40361ca1aa715cc04ddcc2855351de060b84350b"
+    },
+    {
+      "path": "EFI/boot/grubx64.efi",
+      "bytes": 2328456,
+      "sha256": "52b8b3503d3efabfac8793f07e1db5d22c51d90ebb5b6319962fab5d02f49956"
+    }
+  ],
+  "bios_loader_bytes": 38912,
+  "physical_firmware_boot_performed": false
+}

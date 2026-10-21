@@ -1,0 +1,82 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Lufus
+Upstream-Contact: Open Research Tools contributors
+Source: https://github.com/openresearchtools/lufus
+Disclaimer: Lufus is an independent Linux fork and is not an official Rufus release.
+Comment:
+ Rufus is the upstream project and is deliberately credited first. Detailed
+ component revisions and corresponding-source locations are documented in
+ /usr/share/doc/lufus/THIRD_PARTY_NOTICES.md.
+
+Files: *
+Copyright:
+ Pete Batard and Rufus contributors
+ 2026 Open Research Tools contributors
+License: GPL-3+
+ Lufus is a modified fork of Rufus. Individual inherited files retain their
+ original notices.
+
+Files: linux/*
+Copyright: 2026 Open Research Tools contributors
+License: GPL-3+
+
+Files: linux/packaging/bcd-sys-app-run
+       linux/tools/reg_import.c
+       linux/tools/set_windows_san_policy.c
+Copyright: 2026 Open Research Tools contributors
+License: GPL-3+
+
+Files: usr/libexec/bcd-sys/*.sh
+       usr/libexec/bcd-sys/Resources/*
+       usr/libexec/bcd-sys/Templates/*
+       usr/share/lufus/sources/bcd-sys-9f8589c-source.tar.gz
+Copyright: Joseph P. Zeller and BCD-SYS contributors
+License: GPL-3+
+Comment:
+ These paths describe files staged into the binary package from pinned
+ BCD-SYS revision 9f8589cdb095acb06d7fa91c54d27af02a95de90. The complete
+ modified source, templates, generated BCD bases, upstream LICENSE, and
+ revision information are included in the corresponding source archive.
+
+Files: src/ms-sys/inc/mbr_win7.h
+       src/ms-sys/inc/br_ntfs_0x0.h
+       src/ms-sys/inc/br_ntfs_0x54.h
+Copyright: ms-sys contributors
+License: GPL-2+
+
+Files: res/uefi/uefi-ntfs.img
+Copyright: UEFI:NTFS, ntfs-3g, EfiFs and their respective contributors
+License: bundled-uefi-components
+ This byte-for-byte upstream image combines components under GPL-2+, GPL-3+,
+ LGPL-2+ and retained EDK II/third-party notices including
+ BSD-2-Clause-Patent. Corresponding source and exact revisions are installed
+ under /usr/share/lufus/sources and documented in THIRD_PARTY_NOTICES.md.
+
+Files: res/md5/*.efi
+Copyright: uefi-md5sum and its contributors
+License: GPL-2+
+ These are byte-for-byte pinned upstream binaries. Their Secure Boot
+ signatures are trust metadata and do not change the software license.
+
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation, either version 3 of the License, or (at your option) any later
+ version.
+ .
+ On Debian systems, the complete text of the GNU General Public License version
+ 3 is available in /usr/share/common-licenses/GPL-3.
+
+License: GPL-2+
+ This program is free software: you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation, either version 2 of the License, or (at your option) any later
+ version.
+ .
+ On Debian systems, the complete text of the GNU General Public License version
+ 2 is available in /usr/share/common-licenses/GPL-2.
+
+License: bundled-uefi-components
+ The complete license texts and notices are contained in the corresponding
+ source archives installed under /usr/share/lufus/sources. See
+ /usr/share/doc/lufus/THIRD_PARTY_NOTICES.md for the component-to-source map.

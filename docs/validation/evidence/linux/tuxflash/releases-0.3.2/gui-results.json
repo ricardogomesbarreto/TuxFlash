@@ -1,0 +1,74 @@
+[
+  {
+    "language": "pt_BR",
+    "view": "legal",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "pt_BR",
+    "view": "notes",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "en",
+    "view": "legal",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "en",
+    "view": "notes",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "es",
+    "view": "legal",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "es",
+    "view": "notes",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "zh_CN",
+    "view": "legal",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "zh_CN",
+    "view": "notes",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  }
+]

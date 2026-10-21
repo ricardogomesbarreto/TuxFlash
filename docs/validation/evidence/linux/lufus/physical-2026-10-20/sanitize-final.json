@@ -1,0 +1,27 @@
+{
+  "helper_source_sha256": "e1369adae1b1d9019e600267b74525c207a91b4476d71e1818ff18bd825b0cad",
+  "command": [
+    "cc",
+    "-O1",
+    "-g",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "/tmp/lufus-integration/project/linux/tests/test_helper_durability.c",
+    "/tmp/lufus-integration/project/linux/src/progress.c",
+    "/tmp/lufus-integration/project/linux/src/windows_options.c",
+    "-o",
+    "/tmp/lufus-physical-validation/test-copy-sanitize-final",
+    "-I/tmp/lufus-integration/sysroot/usr/include/json-glib-1.0",
+    "-I/tmp/lufus-integration/sysroot/usr/include/glib-2.0",
+    "-I/tmp/lufus-integration/sysroot/usr/lib/x86_64-linux-gnu/glib-2.0/include",
+    "-I/tmp/lufus-integration/sysroot/usr/include/libmount",
+    "-I/tmp/lufus-integration/sysroot/usr/include/blkid",
+    "-I/tmp/lufus-integration/sysroot/usr/include/sysprof-6",
+    "-pthread",
+    "-ljson-glib-1.0",
+    "-lgio-2.0",
+    "-lgobject-2.0",
+    "-lglib-2.0"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,1 @@
+Mounted [DISPOSITIVO_REMOVIDO] at /run/media/usuario/Linux Mint 22.3 MATE 64-bit

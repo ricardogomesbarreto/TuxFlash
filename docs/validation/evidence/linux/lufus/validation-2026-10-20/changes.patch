@@ -1,0 +1,182 @@
+--- a/linux/src/helper.c
++++ b/linux/src/helper.c
+@@ -7,6 +7,7 @@
+ #define _GNU_SOURCE
+ #include "progress.h"
+ #include "windows_options.h"
++#include <json-glib/json-glib.h>
+ 
+ #include <dirent.h>
+ #include <errno.h>
+@@ -277,29 +278,46 @@
+     return has_suffix(source, ".vhd") || has_suffix(source, ".vhdx");
+ }
+ 
++/* QEMU JSON includes child nodes before the root virtual-size. Reading the
++ * first matching text field returns the container length, not disk capacity. */
++static uint64_t virtual_disk_size_from_json(const char *output)
++{
++    JsonParser *parser = json_parser_new();
++    uint64_t result = 0;
++    if (output != NULL && json_parser_load_from_data(parser, output, -1, NULL)) {
++        JsonNode *root = json_parser_get_root(parser);
++        if (root != NULL && JSON_NODE_HOLDS_OBJECT(root)) {
++            JsonObject *object = json_node_get_object(root);
++            JsonNode *size = json_object_get_member(object, "virtual-size");
++            if (size != NULL && JSON_NODE_HOLDS_VALUE(size) &&
++                json_node_get_value_type(size) == G_TYPE_INT64 &&
++                json_node_get_int(size) > 0)
++                result = (uint64_t)json_node_get_int(size);
++        }
++    }
++    g_object_unref(parser);
++    return result;
++}
++
++static const char *virtual_disk_format(const char *source)
++{
++    return has_suffix(source, ".vhd") ? "vpc" : "vhdx";
++}
++
+ static uint64_t virtual_disk_size(const char *source)
+ {
+     GError *error = NULL;
+     GSubprocess *process = g_subprocess_new(G_SUBPROCESS_FLAGS_STDOUT_PIPE |
+                                             G_SUBPROCESS_FLAGS_STDERR_SILENCE,
+                                             &error, "qemu-img", "info", "--output=json",
+-                                            "--force-share", source, NULL);
++                                            "--force-share", "-f", virtual_disk_format(source),
++                                            source, NULL);
+     char *output = NULL;
+-    char *field;
+     uint64_t result = 0;
+-    if (process == NULL || !g_subprocess_communicate_utf8(process, NULL, NULL,
+-                                                          &output, NULL, &error) ||
+-        !g_subprocess_get_successful(process))
+-        goto out;
+-    field = strstr(output, "\"virtual-size\"");
+-    if (field != NULL && (field = strchr(field, ':')) != NULL) {
+-        char *end = NULL;
+-        errno = 0;
+-        result = strtoull(field + 1, &end, 10);
+-        if (errno != 0 || end == field + 1)
+-            result = 0;
+-    }
+-out:
++    if (process != NULL && g_subprocess_communicate_utf8(process, NULL, NULL,
++                                                          &output, NULL, &error) &&
++        g_subprocess_get_successful(process))
++        result = virtual_disk_size_from_json(output);
+     if (error != NULL) {
+         event_message("LOG", error->message);
+         g_clear_error(&error);
+@@ -324,12 +342,13 @@
+ static int write_virtual_disk(const char *source, TargetInfo *target, bool verify)
+ {
+     uint64_t size = virtual_disk_size(source);
+-    char *convert[] = {"qemu-img", "convert", "-p", "-O", "raw",
++    char *convert[] = {"qemu-img", "convert", "-p", "-n", "-f",
++                       (char *)virtual_disk_format(source), "-O", "raw",
+                        (char *)source, target->path, NULL};
+     char *escaped_source = qemu_option_escape(source);
+     char *escaped_target = qemu_option_escape(target->path);
+     char *source_options = g_strdup_printf("driver=%s,file.driver=file,file.filename=%s",
+-                                            has_suffix(source, ".vhd") ? "vpc" : "vhdx",
++                                            virtual_disk_format(source),
+                                             escaped_source);
+     char *target_options = g_strdup_printf("driver=raw,size=%llu,file.driver=host_device,file.filename=%s",
+                                             (unsigned long long)size, escaped_target);
+@@ -3151,7 +3170,7 @@
+     } else {
+         char *size = g_strdup_printf("%llu", (unsigned long long)target.capacity);
+         char *output_format = strcmp(format, "vhd") == 0 ? "vpc" : "vhdx";
+-        char *options = strcmp(format, "vhd") == 0 ? "subformat=fixed" : "subformat=dynamic";
++        char *options = strcmp(format, "vhd") == 0 ? "subformat=fixed,force_size=on" : "subformat=dynamic";
+         char *create[] = {"qemu-img", "create", "-f", output_format, "-o", options,
+                           (char *)output, size, NULL};
+         char *convert[] = {"qemu-img", "convert", "-p", "-n", "-f", "raw", "-O",
+--- a/linux/src/cli.c
++++ b/linux/src/cli.c
+@@ -209,6 +209,10 @@
+         goto out;
+     }
+     if (g_strcmp0(kind, "uefi-shell") == 0) {
++        if (url_only && !list_languages) {
++            g_print("%s\n", shell_url);
++            goto out;
++        }
+         if (output == NULL || !g_path_is_absolute(output) ||
+             g_file_test(output, G_FILE_TEST_EXISTS) || list_languages) {
+             g_printerr("lufus download: UEFI Shell requires an absolute, new --output path\n");
+--- a/linux/meson.build
++++ b/linux/meson.build
+@@ -61,7 +61,7 @@
+   'src/helper.c',
+   'src/progress.c',
+   'src/windows_options.c',
+-  dependencies: [dependency('gio-2.0')],
++  dependencies: [dependency('gio-2.0'), json_glib],
+   install: true,
+   install_dir: get_option('libexecdir'),
+ )
+@@ -136,7 +136,7 @@
+   'src/progress.c',
+   'src/windows_options.c',
+   include_directories: include_directories('src'),
+-  dependencies: [dependency('gio-2.0')],
++  dependencies: [dependency('gio-2.0'), json_glib],
+ )
+ test('helper-durability', helper_durability_test)
+ 
+@@ -177,3 +177,13 @@
+   link_with: rufus_hash,
+ )
+ test('checksums-rufus-core', checksums_test)
++
++helper_images_test = executable(
++  'test-helper-images',
++  'tests/test_helper_images.c',
++  'src/progress.c',
++  'src/windows_options.c',
++  include_directories: include_directories('src'),
++  dependencies: [dependency('gio-2.0'), json_glib],
++)
++test('helper-images', helper_images_test)
+--- a/linux/runtime/libexec/bcd-sys/bcd-sys.sh
++++ b/linux/runtime/libexec/bcd-sys/bcd-sys.sh
+@@ -249,7 +249,7 @@
+              exit 1
+           fi
+      fi
+-     efifstype=$(lsblk -no FSTYPE "$efipart" | head -n1)
++     efifstype=$(blkid -p -s TYPE -o value "$efipart")
+      syspath="$(findmnt -n -S $efipart -o TARGET | head -n1)"
+      if   [[ -z "${syspath// }" ]]; then
+           rmsysmnt="true"
+@@ -329,7 +329,7 @@
+              exit 1
+           fi
+      fi
+-     sysfstype=$(lsblk -no FSTYPE "$syspart" | head -n1)
++     sysfstype=$(blkid -p -s TYPE -o value "$syspart")
+      syspath="$(findmnt -n -S $syspart -o TARGET | head -n1)"
+      if   [[ -z "${syspath// }" ]]; then
+           rmsysmnt="true"
+@@ -389,7 +389,7 @@
+      fi
+      efipart=$(findmnt -nT "$syspath" -o SOURCE)
+      efidisk=$(printf "$efipart" | sed 's/[0-9]\+$//;s/p\+$//')
+-     efifstype=$(lsblk -no FSTYPE "$efipart" | head -n1)
++     efifstype=$(blkid -p -s TYPE -o value "$efipart")
+      efischeme=$($SFDISK -l $efidisk | grep "Disklabel type:" | awk '{print $3}')
+      if [[ "$efischeme" != "gpt" && "$efischeme" != "dos" ]]; then
+         echo "${BGTYELLOW}ESP disk $efidisk is using $efischeme partition scheme.${NC}"
+@@ -435,7 +435,7 @@
+              exit 1
+           fi
+      fi
+-     sysfstype=$(lsblk -no FSTYPE "$syspart" | head -n1)
++     sysfstype=$(blkid -p -s TYPE -o value "$syspart")
+      if [[ "$firmware" == "both" ]]; then
+         efipart="$syspart"
+         efifstype="$sysfstype"

@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-21",
+  "version": "0.3.3",
+  "repository": "https://github.com/ricardogomesbarreto/TuxFlash",
+  "source_scope": "Git index exported to an empty directory; no dist, backups or generated application executables",
+  "native_meson_suites_passed": 16,
+  "native_meson_suites_failed": 0,
+  "independent_hash_and_platform_checks_passed": true,
+  "address_and_undefined_behavior_checks_passed": true,
+  "maintained_local_document_links_checked": 28,
+  "maintained_local_document_links_missing": 0,
+  "known_private_identifier_or_token_pattern_matches": 0,
+  "portable_archive_sha256": "52b02b2235270dcfb84284abb979ffceb894997f3977abe1fe031fa63270eca9",
+  "portable_archive_files_checked": 3144,
+  "portable_archive_unsafe_paths_or_named_owner_metadata": 0,
+  "physical_device_modified": false,
+  "scope_note": "These are build/unit/package checks, not full operating-system boot qualification. Historical validation retains its own scope."
+}

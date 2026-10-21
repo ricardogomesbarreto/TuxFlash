@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "value": {
+    "evidence_id": "ev_e7e7e0b37ea416c7d72e0b64921573283afa31d8491f84120c327bd502b4f7f3",
+    "subject": {
+      "name": "rufus-linux-probe",
+      "digest": {
+        "sha256": "3322d27b61b41aecf4c9be06eff0d5e381fc8cf922c31eec29e8f30567476a7d"
+      },
+      "local_path": "/tmp/rufus-master-linux-work/build-linux/rufus-linux-probe",
+      "format": "unknown",
+      "architecture": null
+    },
+    "provider": {
+      "id": "gnu.objdump",
+      "name": "GNU objdump",
+      "version": null
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.reverse-engineering.command-observation",
+    "operation": "inspect_with_objdump",
+    "parameters": {
+      "path": "/tmp/rufus-master-linux-work/build-linux/rufus-linux-probe",
+      "operation": "section_headers",
+      "follow_debug_links": false,
+      "provider_executable": "objdump",
+      "command_arguments": [
+        "-h",
+        "/tmp/rufus-master-linux-work/build-linux/rufus-linux-probe"
+      ]
+    },
+    "raw_result": {
+      "stdout": "\n/tmp/rufus-master-linux-work/build-linux/rufus-linux-probe:     file format elf64-x86-64\n\nSections:\nIdx Name          Size      VMA               LMA               File off  Algn\n  0 .note.gnu.build-id 00000024  0000000000000350  0000000000000350  00000350  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  1 .interp       0000001c  0000000000000374  0000000000000374  00000374  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  2 .gnu.hash     00000030  0000000000000390  0000000000000390  00000390  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  3 .dynsym       00000498  00000000000003c0  00000000000003c0  000003c0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  4 .dynstr       00000272  0000000000000858  0000000000000858  00000858  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  5 .gnu.version  00000062  0000000000000aca  0000000000000aca  00000aca  2**1\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  6 .gnu.version_r 00000090  0000000000000b30  0000000000000b30  00000b30  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  7 .rela.dyn     000000f0  0000000000000bc0  0000000000000bc0  00000bc0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  8 .rela.plt     000003d8  0000000000000cb0  0000000000000cb0  00000cb0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  9 .init         0000001b  0000000000002000  0000000000002000  00002000  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 10 .plt          000002a0  0000000000002020  0000000000002020  00002020  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 11 .plt.got      00000010  00000000000022c0  00000000000022c0  000022c0  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 12 .plt.sec      00000290  00000000000022d0  00000000000022d0  000022d0  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 13 .text         00001826  0000000000002580  0000000000002580  00002580  2**6\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 14 .fini         0000000d  0000000000003da8  0000000000003da8  00003da8  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 15 .rodata       00000381  0000000000004000  0000000000004000  00004000  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 16 .eh_frame_hdr 00000094  0000000000004384  0000000000004384  00004384  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 17 .eh_frame     0000035c  0000000000004418  0000000000004418  00004418  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 18 .note.gnu.property 00000030  0000000000004778  0000000000004778  00004778  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 19 .note.ABI-tag 00000020  00000000000047a8  00000000000047a8  000047a8  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 20 .init_array   00000008  0000000000005c68  0000000000005c68  00004c68  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 21 .fini_array   00000008  0000000000005c70  0000000000005c70  00004c70  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 22 .dynamic      00000200  0000000000005c78  0000000000005c78  00004c78  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 23 .got          00000188  0000000000005e78  0000000000005e78  00004e78  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 24 .data         00000010  0000000000006000  0000000000006000  00005000  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 25 .bss          00000030  0000000000006020  0000000000006020  00005010  2**5\n                  ALLOC\n 26 .comment      00000026  0000000000000000  0000000000000000  00005010  2**0\n                  CONTENTS, READONLY\n 27 .debug_aranges 00000080  0000000000000000  0000000000000000  00005036  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 28 .debug_info   00003588  0000000000000000  0000000000000000  000050b6  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 29 .debug_abbrev 00000854  0000000000000000  0000000000000000  0000863e  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 30 .debug_line   000013d3  0000000000000000  0000000000000000  00008e92  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 31 .debug_str    00000b03  0000000000000000  0000000000000000  0000a265  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 32 .debug_line_str 00000225  0000000000000000  0000000000000000  0000ad68  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 33 .debug_loclists 000014ea  0000000000000000  0000000000000000  0000af8d  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 34 .debug_rnglists 00000279  0000000000000000  0000000000000000  0000c477  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "3322d27b61b41aecf4c9be06eff0d5e381fc8cf922c31eec29e8f30567476a7d",
+      "artifact_changed": false
+    },
+    "normalized_result": {
+      "stdout": "\n/tmp/rufus-master-linux-work/build-linux/rufus-linux-probe:     file format elf64-x86-64\n\nSections:\nIdx Name          Size      VMA               LMA               File off  Algn\n  0 .note.gnu.build-id 00000024  0000000000000350  0000000000000350  00000350  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  1 .interp       0000001c  0000000000000374  0000000000000374  00000374  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  2 .gnu.hash     00000030  0000000000000390  0000000000000390  00000390  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  3 .dynsym       00000498  00000000000003c0  00000000000003c0  000003c0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  4 .dynstr       00000272  0000000000000858  0000000000000858  00000858  2**0\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  5 .gnu.version  00000062  0000000000000aca  0000000000000aca  00000aca  2**1\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  6 .gnu.version_r 00000090  0000000000000b30  0000000000000b30  00000b30  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  7 .rela.dyn     000000f0  0000000000000bc0  0000000000000bc0  00000bc0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  8 .rela.plt     000003d8  0000000000000cb0  0000000000000cb0  00000cb0  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n  9 .init         0000001b  0000000000002000  0000000000002000  00002000  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 10 .plt          000002a0  0000000000002020  0000000000002020  00002020  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 11 .plt.got      00000010  00000000000022c0  00000000000022c0  000022c0  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 12 .plt.sec      00000290  00000000000022d0  00000000000022d0  000022d0  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 13 .text         00001826  0000000000002580  0000000000002580  00002580  2**6\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 14 .fini         0000000d  0000000000003da8  0000000000003da8  00003da8  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, CODE\n 15 .rodata       00000381  0000000000004000  0000000000004000  00004000  2**4\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 16 .eh_frame_hdr 00000094  0000000000004384  0000000000004384  00004384  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 17 .eh_frame     0000035c  0000000000004418  0000000000004418  00004418  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 18 .note.gnu.property 00000030  0000000000004778  0000000000004778  00004778  2**3\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 19 .note.ABI-tag 00000020  00000000000047a8  00000000000047a8  000047a8  2**2\n                  CONTENTS, ALLOC, LOAD, READONLY, DATA\n 20 .init_array   00000008  0000000000005c68  0000000000005c68  00004c68  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 21 .fini_array   00000008  0000000000005c70  0000000000005c70  00004c70  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 22 .dynamic      00000200  0000000000005c78  0000000000005c78  00004c78  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 23 .got          00000188  0000000000005e78  0000000000005e78  00004e78  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 24 .data         00000010  0000000000006000  0000000000006000  00005000  2**3\n                  CONTENTS, ALLOC, LOAD, DATA\n 25 .bss          00000030  0000000000006020  0000000000006020  00005010  2**5\n                  ALLOC\n 26 .comment      00000026  0000000000000000  0000000000000000  00005010  2**0\n                  CONTENTS, READONLY\n 27 .debug_aranges 00000080  0000000000000000  0000000000000000  00005036  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 28 .debug_info   00003588  0000000000000000  0000000000000000  000050b6  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 29 .debug_abbrev 00000854  0000000000000000  0000000000000000  0000863e  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 30 .debug_line   000013d3  0000000000000000  0000000000000000  00008e92  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 31 .debug_str    00000b03  0000000000000000  0000000000000000  0000a265  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 32 .debug_line_str 00000225  0000000000000000  0000000000000000  0000ad68  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 33 .debug_loclists 000014ea  0000000000000000  0000000000000000  0000af8d  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n 34 .debug_rnglists 00000279  0000000000000000  0000000000000000  0000c477  2**0\n                  CONTENTS, READONLY, DEBUGGING, OCTETS\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "3322d27b61b41aecf4c9be06eff0d5e381fc8cf922c31eec29e8f30567476a7d",
+      "artifact_changed": false
+    },
+    "confidence": "observed",
+    "authority": "shipped-artifact",
+    "environment": {},
+    "limitations": [
+      "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+      "A non-zero process exit is preserved as an observed command result.",
+      "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "/tmp/rufus-master-linux-work/build-linux/rufus-linux-probe"
+      }
+    ],
+    "evidence_links": []
+  }
+}

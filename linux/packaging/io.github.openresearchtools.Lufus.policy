@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+  "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+  "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+  <vendor>Open Research Tools contributors</vendor>
+  <vendor_url>https://github.com/openresearchtools/lufus</vendor_url>
+  <action id="io.github.openresearchtools.Lufus.write-image">
+    <description>Write a disk image with Lufus</description>
+    <message>Authorization is required to write an image to a block device</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/libexec/lufus-helper</annotate>
+  </action>
+</policyconfig>

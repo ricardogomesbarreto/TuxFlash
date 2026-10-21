@@ -1,0 +1,11 @@
+{
+  "command": [
+    "make",
+    "-f",
+    "Makefile.linux",
+    "check-sanitize"
+  ],
+  "exit_code": 0,
+  "stdout": "cc -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -DRUFUS_HASH_CORE_ONLY -Isrc -Isrc/linux -O1 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -pthread -fsanitize=address,undefined -fno-omit-frame-pointer tests/linux/test_hash_memory.c src/hash.c  -o \"build-linux/test-hash-memory\"\nASAN_OPTIONS=detect_leaks=0 \"build-linux/test-hash-memory\"\n",
+  "stderr": ""
+}

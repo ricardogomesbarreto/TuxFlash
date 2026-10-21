@@ -1,0 +1,91 @@
+{
+  "received_archive": "lufus-master.zip",
+  "received_main_sha256": "861b136f9774c7e7356d1e9ba3ae17d6733002df440d41f86a80a0bd24225d9c",
+  "current_main_sha256": "dbe6856a5d63d9bcd2dac9b57450a6c7a52f037e8087a5a1f419a4a22b55457f",
+  "main_c_changes": [
+    {
+      "operation": "insert",
+      "original_lines": [
+        902,
+        901
+      ],
+      "current_lines": [
+        902,
+        911
+      ],
+      "new_text": [
+        "    char *executable = g_file_read_link(\"/proc/self/exe\", NULL);",
+        "    if (executable != NULL) {",
+        "        char *bin = g_path_get_dirname(executable);",
+        "        char *prefix = g_path_get_dirname(bin);",
+        "        char *candidate = g_build_filename(prefix, \"libexec\", \"lufus-helper\", NULL);",
+        "        g_free(executable);",
+        "        g_free(bin);",
+        "        g_free(prefix);",
+        "        return candidate;",
+        "    }"
+      ],
+      "old_text": []
+    },
+    {
+      "operation": "replace",
+      "original_lines": [
+        1789,
+        1789
+      ],
+      "current_lines": [
+        1799,
+        1808
+      ],
+      "new_text": [
+        "    char *executable = g_file_read_link(\"/proc/self/exe\", NULL);",
+        "    char *bin = executable != NULL ? g_path_get_dirname(executable) : NULL;",
+        "    char *prefix = bin != NULL ? g_path_get_dirname(bin) : NULL;",
+        "    char *locale_directory = prefix != NULL ?",
+        "        g_build_filename(prefix, \"share\", \"locale\", NULL) : g_strdup(\"/usr/share/locale\");",
+        "    bindtextdomain(\"lufus\", locale_directory);",
+        "    g_free(locale_directory);",
+        "    g_free(prefix);",
+        "    g_free(bin);",
+        "    g_free(executable);"
+      ],
+      "old_text": [
+        "    bindtextdomain(\"lufus\", \"/usr/share/locale\");"
+      ]
+    },
+    {
+      "operation": "replace",
+      "original_lines": [
+        1797,
+        1797
+      ],
+      "current_lines": [
+        1816,
+        1816
+      ],
+      "new_text": [
+        "        (strcmp(argv[1], \"list\") == 0 || strcmp(argv[1], \"checksum\") == 0 || strcmp(argv[1], \"probe\") == 0 ||"
+      ],
+      "old_text": [
+        "        (strcmp(argv[1], \"list\") == 0 || strcmp(argv[1], \"checksum\") == 0 ||"
+      ]
+    }
+  ],
+  "changes_scope": [
+    "Relative helper lookup",
+    "Relative gettext catalog lookup",
+    "CLI probe dispatch"
+  ],
+  "visual_layout_code_matches_received_lufus": true,
+  "data_assets": [],
+  "original_windows_win32_ui_reproduced": false,
+  "complete_windows_settings_parity": false,
+  "format_controls_disabled_in_current_gui": [
+    "Volume label",
+    "Filesystem",
+    "Cluster size",
+    "Quick format",
+    "Extended label/icon"
+  ],
+  "no_code_changes_in_this_continuation": true
+}

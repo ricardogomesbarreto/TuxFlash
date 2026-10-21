@@ -1,0 +1,26 @@
+{
+  "blockdevices": [
+    {
+      "name": "sda",
+      "path": "/dev/sda",
+      "size": 15525216256,
+      "type": "disk",
+      "fstype": null,
+      "label": null,
+      "parttype": null,
+      "mountpoints": [],
+      "children": [
+        {
+          "name": "sda1",
+          "path": "/dev/sda1",
+          "size": 15523119104,
+          "type": "part",
+          "fstype": "vfat",
+          "label": "LUFUS",
+          "parttype": "ebd0a0a2-b9e5-4433-87c0-68b6b72699c7",
+          "mountpoints": []
+        }
+      ]
+    }
+  ]
+}

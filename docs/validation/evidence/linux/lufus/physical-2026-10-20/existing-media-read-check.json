@@ -1,0 +1,19 @@
+{
+  "read_only": true,
+  "command": [
+    "md5sum",
+    "--check",
+    "--quiet",
+    "md5sum.txt"
+  ],
+  "mountpoint": "[CAMINHO_LOCAL_REMOVIDO]",
+  "exit_code": 0,
+  "elapsed_seconds": 102.75674964000063,
+  "manifest_file_count": 1294,
+  "manifest_total_bytes": 3084975100,
+  "serial": "[REMOVIDO]",
+  "model": "[REMOVIDO]",
+  "device_capacity_bytes": "[DADO_LOCAL_REMOVIDO]",
+  "physical_write_performed": false,
+  "host_mount": "[CAMINHO_LOCAL_REMOVIDO]"
+}

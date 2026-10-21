@@ -1,0 +1,6 @@
+{
+  "exit_code": 0,
+  "stdout": "{\"is_iso\": true, \"has_efi\": false, \"has_windows\": false, \"supports_windows_installer\": false, \"supports_windows_to_go\": false, \"supports_persistence\": false}",
+  "stderr": "",
+  "source_bytes": "abc"
+}

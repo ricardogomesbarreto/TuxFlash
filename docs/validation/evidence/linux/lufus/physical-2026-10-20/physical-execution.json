@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/caminho/do/projeto/executar-linux.sh",
+    "write",
+    "--image",
+    "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso",
+    "--device",
+    "[IDENTIFICADOR_REMOVIDO]",
+    "--mode",
+    "raw",
+    "--verify",
+    "--test-passes",
+    "1",
+    "--yes"
+  ],
+  "serial": "[REMOVIDO]",
+  "capacity": "[DADO_LOCAL_REMOVIDO]",
+  "helper_sha256": "d89bf28d660cc4e6bd188d00e29ba6287c2561918a452f7fcf17ff33f912ce5e",
+  "user_erase_confirmation_received": true,
+  "started_utc": "2026-10-20T11:39:30Z",
+  "status": "complete",
+  "pid": "[REMOVIDO]",
+  "exit_code": 0,
+  "elapsed_seconds": 1136.9421091050026
+}

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "cc",
+    "-fsyntax-only",
+    "-Isrc/ms-sys/inc",
+    "-Isrc/syslinux/libfat",
+    "-Isrc/syslinux/libinstaller",
+    "-Isrc/syslinux/win",
+    "-Isrc/libcdio",
+    "-Isrc/wimlib",
+    "-Ires",
+    "src/rufus.c"
+  ],
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "src/rufus.c:25:10: fatal error: windows.h: No such file or directory\n   25 | #include <windows.h>\n      |          ^~~~~~~~~~~\ncompilation terminated.\n"
+}

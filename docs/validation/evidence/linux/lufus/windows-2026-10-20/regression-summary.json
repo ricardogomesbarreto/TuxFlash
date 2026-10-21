@@ -1,0 +1,8 @@
+{
+  "helper_sha256": "afb9b9543bda34330c622e512ee57d741586470a877ffa3649543f19c7d1e157",
+  "backend_cases_passed": 34,
+  "minimal_firmware_boots_passed": 3,
+  "bcd_default_display_order_and_loader_type_checked": true,
+  "winload_script_sha256": "f42b395fd09d904db616071bc9e4dfe16a6d1f47ab2412b26d39887773418e97",
+  "guest_test_source_sha256": "45228ab2445b4568ac58f63c6a4340ad5c6c5ecda19c7e38c64180d66430b2d9"
+}

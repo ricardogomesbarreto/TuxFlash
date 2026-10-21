@@ -1,0 +1,31 @@
+{
+  "present": true,
+  "serial": "[REMOVIDO]",
+  "unmounted": true,
+  "observed_utc": "2026-10-20T12:57:03Z",
+  "inventory": {
+    "blockdevices": [
+      {
+        "path": "[DISPOSITIVO_REMOVIDO]",
+        "serial": "[REMOVIDO]",
+        "size": "14.5G",
+        "fstype": "iso9660",
+        "mountpoints": []
+      },
+      {
+        "path": "[DISPOSITIVO_REMOVIDO]",
+        "serial": null,
+        "size": "2.9G",
+        "fstype": "iso9660",
+        "mountpoints": []
+      },
+      {
+        "path": "[DISPOSITIVO_REMOVIDO]",
+        "serial": null,
+        "size": "5M",
+        "fstype": "vfat",
+        "mountpoints": []
+      }
+    ]
+  }
+}

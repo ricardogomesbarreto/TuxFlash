@@ -1,0 +1,30 @@
+{
+  "rea-main.zip": {
+    "path": "/caminho/das/imagens/rea-main.zip",
+    "bytes": 15858941,
+    "sha256": "2e82ceac46f2866e7144c4d57ab94ee0f9662512715106b030660be002356684"
+  },
+  "rufus-master.zip": {
+    "path": "/caminho/do/projeto.zip",
+    "bytes": 7835545,
+    "sha256": "397f4bf19faca5db223d3c6e38f3ef735d054581ed1ac137cac0ada1cd0d5a39"
+  },
+  "rufus-4.15.exe": {
+    "path": "/caminho/das/imagens/rufus-4.15.exe",
+    "bytes": 1989992,
+    "sha256": "84c8a437f8af89257524478489e5c85f1edf25f761d299e2bcde46ac0afbe106"
+  },
+  "rea": {
+    "version": "6.5.0",
+    "root_used": "/tmp/rufus-linux-port/tools/rea-main",
+    "method": "compiled REA service / GNU objdump; file_headers, section_headers, symbols",
+    "compiler": "node node_modules/typescript-termux/lib/tsc.js -p tsconfig.build.json"
+  },
+  "linux_probe_sha256": "3322d27b61b41aecf4c9be06eff0d5e381fc8cf922c31eec29e8f30567476a7d",
+  "phase2": {
+    "probe_sha256": "06f49cb9f1957b43eaf21118c8bce32e3cb9f7cefc47f6d7383464228e917ed4",
+    "hash_core_source_sha256": "710b8ee3a8f4304b9561f1ea3c03021621865d8ed174aa3f8a6b3fa53f94a1e6",
+    "crypto_backend": "shared original Rufus hash algorithms",
+    "rea_evidence_directory": "phase2"
+  }
+}

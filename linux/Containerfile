@@ -1,0 +1,8 @@
+FROM docker.io/library/ubuntu:24.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+COPY linux/setup-build-environment.sh /usr/local/sbin/setup-lufus-build-environment
+RUN /usr/local/sbin/setup-lufus-build-environment \
+    && rm /usr/local/sbin/setup-lufus-build-environment
+
+WORKDIR /workspace

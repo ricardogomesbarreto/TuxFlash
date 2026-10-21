@@ -1,0 +1,6 @@
+{
+  "helper_sha256": "db42ced7c6c40c4668e787ece7b6e4fdfb78a4b716d0d945448a5640f0937314",
+  "backend_cases_passed": 40,
+  "minimal_firmware_boots_passed": 3,
+  "tested_portable_runtime": true
+}

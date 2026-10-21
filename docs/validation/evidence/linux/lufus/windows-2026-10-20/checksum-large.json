@@ -1,0 +1,20 @@
+{
+  "source": "/caminho/das/imagens/Windows 10 PRO 2021.iso",
+  "source_bytes": 4393009152,
+  "crosses_4_GiB": true,
+  "native_exit_code": 0,
+  "native": {
+    "md5": "eab4ce94fdb7704479704c33292daff3",
+    "sha1": "98ee063027a7d5702b8ca2200a523342147ce75b",
+    "sha256": "1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768",
+    "sha512": "1f7b49fee19274a65371fabc634dad7617594b5bdbe929807afa32afcc1434ef31b495428b6fa9b1c597f17c1bc42606af1931d97b6d8a0093e4452509b21804"
+  },
+  "reference_hashlib": {
+    "md5": "eab4ce94fdb7704479704c33292daff3",
+    "sha1": "98ee063027a7d5702b8ca2200a523342147ce75b",
+    "sha256": "1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768",
+    "sha512": "1f7b49fee19274a65371fabc634dad7617594b5bdbe929807afa32afcc1434ef31b495428b6fa9b1c597f17c1bc42606af1931d97b6d8a0093e4452509b21804"
+  },
+  "passed": true,
+  "reference_seconds": 18.134254967000743
+}

@@ -1,0 +1,17 @@
+{
+  "installer": {
+    "startup_observed": true,
+    "observation": "WinPE/Windows Setup abriu a sele\u00e7\u00e3o de idioma em portugu\u00eas (Brasil); instala\u00e7\u00e3o n\u00e3o iniciada",
+    "screenshot": "/tmp/lufus-windows-validation/boot-installer-060.png",
+    "observed_after_seconds": 60
+  },
+  "togo": {
+    "startup_observed": true,
+    "setup_complete": false,
+    "observation": "Windows 10 Pro iniciou e avan\u00e7ou para Preparando-se, onde permanecia ap\u00f3s 15 minutos; configura\u00e7\u00e3o inicial e desktop n\u00e3o validados",
+    "screenshot": "/tmp/lufus-windows-validation/boot-togo-900.png",
+    "observed_after_seconds": 900,
+    "BCD_error_0xc0000098_corrected": true,
+    "validation_status": "partial"
+  }
+}

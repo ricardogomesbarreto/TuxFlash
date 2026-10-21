@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.openresearchtools.Lufus</id>
+  <name>Lufus</name>
+  <summary>Create bootable USB drives</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <description>
+    <p>
+      Lufus is a Linux version and GPLv3 fork of Rufus. It is a compiled native
+      GTK/libadwaita application for writing bootable disk images with a
+      familiar, compact workflow.
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.openresearchtools.Lufus.desktop</launchable>
+  <url type="homepage">https://github.com/openresearchtools/lufus</url>
+  <url type="bugtracker">https://github.com/openresearchtools/lufus/issues</url>
+  <developer id="io.github.openresearchtools">
+    <name>Open Research Tools contributors</name>
+  </developer>
+  <provides><binary>lufus</binary></provides>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.2.2" date="2026-09-22">
+      <description><p>Native Linux ARM64 packages alongside AMD64 releases.</p></description>
+    </release>
+    <release version="0.2.1" date="2026-08-30">
+      <description><p>Content-based Windows and Linux ISO mode detection.</p></description>
+    </release>
+    <release version="0.2.0" date="2026-08-26">
+      <description><p>Native Debian package and official Microsoft ISO downloads.</p></description>
+    </release>
+  </releases>
+</component>

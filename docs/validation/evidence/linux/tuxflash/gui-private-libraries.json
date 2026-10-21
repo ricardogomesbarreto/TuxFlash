@@ -1,0 +1,5 @@
+{
+  "libgtk-4.so": "private runtime",
+  "libadwaita-1.so": "private runtime",
+  "libc.so.6": "private runtime"
+}

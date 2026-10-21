@@ -1,0 +1,1502 @@
+c[?7l[2J[0mSeaBIOS (version 1.17.0-debian-1.17.0-1ubuntu1)
+Booting from ROM...
+c[?7l[2J6ad916b5244dbfaa7fcc6d30ed34fdaa0e9e77c4ae95629f638c8212c17af115  /opt/lufus/libexec/lufus-helper
+WIM Information:
+----------------
+Path:           /mnt/iso/sources/install.esd
+GUID:           0x81fe0c65f91c77419f331062fec5e8ca
+Version:        3584
+Image Count:    4
+Compression:    LZMS
+Chunk Size:     131072 bytes
+Part Number:    1/1
+Boot Index:     0
+Size:           3689867058 bytes
+Attributes:     Relative path junction
+
+Available Images:
+-----------------
+Index:                  1
+Name:                   Windows 10 Home
+Description:            Windows 10 Home
+Display Name:           Windows 10 Home
+Display Description:    Windows 10 Home
+Directory Count:        26555
+File Count:             98543
+Total Bytes:            14683747704
+Hard Link Bytes:        5712271549
+Creation Time:          Fri Apr 09 14:02:15 2021 UTC
+Last Modification Time: Sat Jun 19 19:10:58 2021 UTC
+Architecture:           x86_64
+Product Name:           Microsoft® Windows® Operating System
+Edition ID:             Core
+Installation Type:      Client
+Product Type:           WinNT
+Product Suite:          Terminal Server
+Languages:              pt-BR 
+Default Language:       pt-BR
+System Root:            WINDOWS
+Major Version:          10
+Minor Version:          0
+Build:                  19041
+Service Pack Build:     928
+Service Pack Level:     0
+Flags:                  Core
+WIMBoot compatible:     no
+
+Index:                  2
+Name:                   Windows 10 Home Single Language
+Description:            Windows 10 Home Single Language
+Display Name:           Windows 10 Home Single Language
+Display Description:    Windows 10 Home Single Language
+Directory Count:        26555
+File Count:             98544
+Total Bytes:            14684412441
+Hard Link Bytes:        5712271549
+Creation Time:          Fri Apr 09 14:04:28 2021 UTC
+Last Modification Time: Sat Jun 19 19:11:00 2021 UTC
+Architecture:           x86_64
+Product Name:           Microsoft® Windows® Operating System
+Edition ID:             CoreSingleLanguage
+Installation Type:      Client
+Product Type:           WinNT
+Product Suite:          Terminal Server
+Languages:              pt-BR 
+Default Language:       pt-BR
+System Root:            WINDOWS
+Major Version:          10
+Minor Version:          0
+Build:                  19041
+Service Pack Build:     928
+Service Pack Level:     0
+Flags:                  CoreSingleLanguage
+WIMBoot compatible:     no
+
+Index:                  3
+Name:                   Windows 10 Education
+Description:            Windows 10 Education
+Display Name:           Windows 10 Education
+Display Description:    Windows 10 Education
+Directory Count:        26737
+File Count:             99703
+Total Bytes:            14933789305
+Hard Link Bytes:        5834394995
+Creation Time:          Fri Apr 09 14:08:14 2021 UTC
+Last Modification Time: Sat Jun 19 19:11:03 2021 UTC
+Architecture:           x86_64
+Product Name:           Microsoft® Windows® Operating System
+Edition ID:             Education
+Installation Type:      Client
+Product Type:           WinNT
+Product Suite:          Terminal Server
+Languages:              pt-BR 
+Default Language:       pt-BR
+System Root:            WINDOWS
+Major Version:          10
+Minor Version:          0
+Build:                  19041
+Service Pack Build:     928
+Service Pack Level:     0
+Flags:                  Education
+WIMBoot compatible:     no
+
+Index:                  4
+Name:                   Windows 10 Pro
+Description:            Windows 10 Pro
+Display Name:           Windows 10 Pro
+Display Description:    Windows 10 Pro
+Directory Count:        26737
+File Count:             99700
+Total Bytes:            14930923940
+Hard Link Bytes:        5834394995
+Creation Time:          Fri Apr 09 14:01:33 2021 UTC
+Last Modification Time: Sat Jun 19 19:11:05 2021 UTC
+Architecture:           x86_64
+Product Name:           Microsoft® Windows® Operating System
+Edition ID:             Professional
+Installation Type:      Client
+Product Type:           WinNT
+Product Suite:          Terminal Server
+Languages:              pt-BR 
+Default Language:       pt-BR
+System Root:            WINDOWS
+Major Version:          10
+Minor Version:          0
+Build:                  19041
+Service Pack Build:     928
+Service Pack Level:     0
+Flags:                  Professional
+WIMBoot compatible:     no
+
+NAME          SIZE TYPE RM MAJ:MIN
+sda    34359738368 disk  1   8:0  
+sdb    15525216256 disk  1   8:16 
+`-sdb1 15523119104 part  1   8:17 
+WINDOWS START real-installer-uefi-fat32
+./boot/fonts/chs_boot.ttf: OK
+./boot/fonts/cht_boot.ttf: OK
+./boot/fonts/jpn_boot.ttf: OK
+./boot/fonts/kor_boot.ttf: OK
+./boot/fonts/malgunn_boot.ttf: OK
+./boot/fonts/malgun_boot.ttf: OK
+./boot/fonts/malgun_console.ttf: OK
+./boot/fonts/meiryon_boot.ttf: OK
+./boot/fonts/meiryo_boot.ttf: OK
+./boot/fonts/meiryo_console.ttf: OK
+./boot/fonts/msjhn_boot.ttf: OK
+./boot/fonts/msjh_boot.ttf: OK
+./boot/fonts/msjh_console.ttf: OK
+./boot/fonts/msyhn_boot.ttf: OK
+./boot/fonts/msyh_boot.ttf: OK
+./boot/fonts/msyh_console.ttf: OK
+./boot/fonts/segmono_boot.ttf: OK
+./boot/fonts/segoen_slboot.ttf: OK
+./boot/fonts/segoe_slboot.ttf: OK
+./boot/fonts/wgl4_boot.ttf: OK
+./boot/pt-br/bootsect.exe.mui: OK
+./boot/resources/bootres.dll: OK
+./boot/bcd: OK
+./boot/boot.sdi: OK
+./boot/bootfix.bin: OK
+./boot/bootsect.exe: OK
+./boot/etfsboot.com: OK
+./boot/memtest.exe: OK
+./efi/boot/bootx64.efi: OK
+./efi/microsoft/boot/fonts/chs_boot.ttf: OK
+./efi/microsoft/boot/fonts/cht_boot.ttf: OK
+./efi/microsoft/boot/fonts/jpn_boot.ttf: OK
+./efi/microsoft/boot/fonts/kor_boot.ttf: OK
+./efi/microsoft/boot/fonts/malgunn_boot.ttf: OK
+./efi/microsoft/boot/fonts/malgun_boot.ttf: OK
+./efi/microsoft/boot/fonts/malgun_console.ttf: OK
+./efi/microsoft/boot/fonts/meiryon_boot.ttf: OK
+./efi/microsoft/boot/fonts/meiryo_boot.ttf: OK
+./efi/microsoft/boot/fonts/meiryo_console.ttf: OK
+./efi/microsoft/boot/fonts/msjhn_boot.ttf: OK
+./efi/microsoft/boot/fonts/msjh_boot.ttf: OK
+./efi/microsoft/boot/fonts/msjh_console.ttf: OK
+./efi/microsoft/boot/fonts/msyhn_boot.ttf: OK
+./efi/microsoft/boot/fonts/msyh_boot.ttf: OK
+./efi/microsoft/boot/fonts/msyh_console.ttf: OK
+./efi/microsoft/boot/fonts/segmono_boot.ttf: OK
+./efi/microsoft/boot/fonts/segoen_slboot.ttf: OK
+./efi/microsoft/boot/fonts/segoe_slboot.ttf: OK
+./efi/microsoft/boot/fonts/wgl4_boot.ttf: OK
+./efi/microsoft/boot/resources/bootres.dll: OK
+./efi/microsoft/boot/bcd: OK
+./efi/microsoft/boot/cdboot.efi: OK
+./efi/microsoft/boot/cdboot_noprompt.efi: OK
+./efi/microsoft/boot/efisys.bin: OK
+./efi/microsoft/boot/efisys_noprompt.bin: OK
+./efi/microsoft/boot/memtest.efi: OK
+./efi/microsoft/boot/winsipolicy.p7b: OK
+./sources/dlmanifests/microsoft-activedirectory-webservices-dl/adwsmigrate.dll: OK
+./sources/dlmanifests/microsoft-windows-bluetooth-config/bthmigplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-com-complus-setup-dl/commig.dll: OK
+./sources/dlmanifests/microsoft-windows-com-dtc-setup-dl/msdtcstp.dll: OK
+./sources/dlmanifests/microsoft-windows-dhcpservermigplugin-dl/dhcpsrvmigplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-directoryservices-adam-dl/adammigrate.dll: OK
+./sources/dlmanifests/microsoft-windows-iasserver-migplugin/iasmigplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-iasserver-migplugin/iasmigreader.exe: OK
+./sources/dlmanifests/microsoft-windows-ie-clientnetworkprotocolimplementation-migration/wininetplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-internet-naming-service-runtime/winsplgn.dll: OK
+./sources/dlmanifests/microsoft-windows-msmq-messagingcoreservice/mqmigplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-networkbridge/bridgemigplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-networkloadbalancing-core/nlbmigplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-rasconnectionmanager/cmmigr.dll: OK
+./sources/dlmanifests/microsoft-windows-rasserver-migplugin/rasmigplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-tapisetup/tapimigplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-terminalservices-licenseserver/tlsmigplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-textservicesframework-migration-dl/chxmig.dll: OK
+./sources/dlmanifests/microsoft-windows-textservicesframework-migration-dl/imjpmig.dll: OK
+./sources/dlmanifests/microsoft-windows-textservicesframework-migration-dl/imkrmig.dll: OK
+./sources/dlmanifests/microsoft-windows-textservicesframework-migration-dl/msctfmig.dll: OK
+./sources/dlmanifests/microsoft-windows-textservicesframework-migration-dl/tabletextservicemig.dll: OK
+./sources/dlmanifests/microsoft-windows-unimodem-config/modemmigplugin.dll: OK
+./sources/dlmanifests/microsoft-windows-winsock-core-infrastructure-upgrade/wsupgrade.dll: OK
+./sources/dlmanifests/microsoft-windows-wmi-core/wmimigrationplugin.dll: OK
+./sources/dlmanifests/networking-mpssvc-svc/icfupgd.dll: OK
+./sources/dlmanifests/accessibilitycpl-dl.man: OK
+./sources/dlmanifests/activedirectory-webservices-dl.man: OK
+./sources/dlmanifests/activedirectory-wmireplicationprovider-dl.man: OK
+./sources/dlmanifests/adsi-ldap-extensions-dl.man: OK
+./sources/dlmanifests/adsi-ldap-provider-dl.man: OK
+./sources/dlmanifests/adsi-router-dl.man: OK
+./sources/dlmanifests/adsi-winnt-provider-dl.man: OK
+./sources/dlmanifests/bluetooth-config-dl.man: OK
+./sources/dlmanifests/browserservice-dl.man: OK
+./sources/dlmanifests/capi2_certs-dl.man: OK
+./sources/dlmanifests/commandprompt-dl.man: OK
+./sources/dlmanifests/coreos-dl.man: OK
+./sources/dlmanifests/credential-manager-dl.man: OK
+./sources/dlmanifests/cryptoconfig-dl.man: OK
+./sources/dlmanifests/crypto_keys-dl.man: OK
+./sources/dlmanifests/dfsclient-dl.man: OK
+./sources/dlmanifests/dfsmgmt-dl.man: OK
+./sources/dlmanifests/dhcpclient-dl.man: OK
+./sources/dlmanifests/directoryservices-adam-dl.man: OK
+./sources/dlmanifests/directoryservices-domain-dl.man: OK
+./sources/dlmanifests/directoryservices-ism-smtp-dl.man: OK
+./sources/dlmanifests/dns-client-dl.man: OK
+./sources/dlmanifests/dns-server-service-dl.man: OK
+./sources/dlmanifests/dpapi_keys-dl.man: OK
+./sources/dlmanifests/etw-core-dl.man: OK
+./sources/dlmanifests/etwtracing.man: OK
+./sources/dlmanifests/eventlog-dl.man: OK
+./sources/dlmanifests/explorer-dl.man: OK
+./sources/dlmanifests/feclient-dl.man: OK
+./sources/dlmanifests/fonts-type1-dl.man: OK
+./sources/dlmanifests/frs-core-dl.man: OK
+./sources/dlmanifests/gpbase-dl.man: OK
+./sources/dlmanifests/gpmc-dl.man: OK
+./sources/dlmanifests/gpmgmt-dl.man: OK
+./sources/dlmanifests/grouppolicy-admin-gpedit-dl.man: OK
+./sources/dlmanifests/grouppolicy-admin-gpedit-snapin-dl.man: OK
+./sources/dlmanifests/grouppolicy-cse-softwareinstallation-dl.man: OK
+./sources/dlmanifests/grouppolicy-serveradmintools-gpmc-dl.man: OK
+./sources/dlmanifests/ieframe-dl.man: OK
+./sources/dlmanifests/ime-traditional-chinese-migration-dl.man: OK
+./sources/dlmanifests/isns_service-dl.man: OK
+./sources/dlmanifests/kerberos-key-distribution-center-dl.man: OK
+./sources/dlmanifests/ldap-client-dl.man: OK
+./sources/dlmanifests/microsoft-windows-bits-client-dl.man: OK
+./sources/dlmanifests/microsoft-windows-certificateservices-ca-dl.man: OK
+./sources/dlmanifests/microsoft-windows-certificateservices-camanagement-dl.man: OK
+./sources/dlmanifests/microsoft-windows-certificateservices-mscep-dl.man: OK
+./sources/dlmanifests/microsoft-windows-errorreportingcore-dl.man: OK
+./sources/dlmanifests/microsoft-windows-errorreportingfaults-dl.man: OK
+./sources/dlmanifests/microsoft-windows-fax-client-applications-dl.man: OK
+./sources/dlmanifests/microsoft-windows-fax-client-proenterprise-dl.man: OK
+./sources/dlmanifests/microsoft-windows-fax-common-dl.man: OK
+./sources/dlmanifests/microsoft-windows-fax-server-dl.man: OK
+./sources/dlmanifests/microsoft-windows-fax-service-dl.man: OK
+./sources/dlmanifests/microsoft-windows-htmlhelp-dl.man: OK
+./sources/dlmanifests/microsoft-windows-ie-esc-dl.man: OK
+./sources/dlmanifests/microsoft-windows-ie-feeds-platform-dl.man: OK
+./sources/dlmanifests/microsoft-windows-ie-internetexplorer-dl.man: OK
+./sources/dlmanifests/microsoft-windows-iis-corewebengine-deployment-dl.man: OK
+./sources/dlmanifests/microsoft-windows-netfx35-dl.man: OK
+./sources/dlmanifests/microsoft-windows-netfx35cdfcomp-dl.man: OK
+./sources/dlmanifests/microsoft-windows-netfxcorecomp-dl.man: OK
+./sources/dlmanifests/microsoft-windows-storagemigration-dl.man: OK
+./sources/dlmanifests/microsoft-windows-tapisetup-dl.man: OK
+./sources/dlmanifests/microsoft-windows-terminalservices-clientactivexcore-dl.man: OK
+./sources/dlmanifests/microsoft-windows-wab-dl.man: OK
+./sources/dlmanifests/microsoft-windows-wcfcorecomp-dl.man: OK
+./sources/dlmanifests/microsoft.windows.com.base-dl.man: OK
+./sources/dlmanifests/microsoft.windows.com.complus.setup.dl.man: OK
+./sources/dlmanifests/msmq-dcom-dl.man: OK
+./sources/dlmanifests/msmq-domain-ic-dl.man: OK
+./sources/dlmanifests/msmq-http-dl.man: OK
+./sources/dlmanifests/msmq-messagingcoreservice-dl.man: OK
+./sources/dlmanifests/msmq-multicast-dl.man: OK
+./sources/dlmanifests/msmq-routing-dl.man: OK
+./sources/dlmanifests/msmq-triggers-dl.man: OK
+./sources/dlmanifests/mup-dl.man: OK
+./sources/dlmanifests/netfx-wcf-http-activation-dl.man: OK
+./sources/dlmanifests/netfx-wcf-msmqactivation-registration-dl.man: OK
+./sources/dlmanifests/netfx-wcf-pipeactivation-registration-dl.man: OK
+./sources/dlmanifests/netfx-wcf-tcpactivation-registration-dl.man: OK
+./sources/dlmanifests/netfx-wcf-tcpportsharing-dl.man: OK
+./sources/dlmanifests/netfx3-dl.man: OK
+./sources/dlmanifests/netfx4-wcf-client-dl.man: OK
+./sources/dlmanifests/netfx4-wcf-extended-dl.man: OK
+./sources/dlmanifests/netfx4clientcorecomp-dl.man: OK
+./sources/dlmanifests/netlogon-dl.man: OK
+./sources/dlmanifests/ntfs-dl.man: OK
+./sources/dlmanifests/ntoskrnl-dl.man: OK
+./sources/dlmanifests/odbc32dll-dl.man: OK
+./sources/dlmanifests/partmgr-dl.man: OK
+./sources/dlmanifests/printing-spooler-core-dl.man: OK
+./sources/dlmanifests/printing-spooler-networkclient-dl.man: OK
+./sources/dlmanifests/rights-management-client-v1-api-dl.man: OK
+./sources/dlmanifests/rights-management-services-server-dl.man: OK
+./sources/dlmanifests/rpc-http-dl.man: OK
+./sources/dlmanifests/rpc-http_proxy-dl.man: OK
+./sources/dlmanifests/rpc-local-dl.man: OK
+./sources/dlmanifests/rpc-remote-dl.man: OK
+./sources/dlmanifests/schannel-dl.man: OK
+./sources/dlmanifests/schedsvc-dl.man: OK
+./sources/dlmanifests/security-digest-dl.man: OK
+./sources/dlmanifests/security-kerberos-dl.man: OK
+./sources/dlmanifests/security-ntlm-dl.man: OK
+./sources/dlmanifests/security-ntlm-lmc.man: OK
+./sources/dlmanifests/shutdown-event-tracker-dl.man: OK
+./sources/dlmanifests/smartcardsubsystem-dl.man: OK
+./sources/dlmanifests/smbserver-dl.man: OK
+./sources/dlmanifests/smss-dl.man: OK
+./sources/dlmanifests/smtpsvc-admin-dl.man: OK
+./sources/dlmanifests/smtpsvc-service-dl.man: OK
+./sources/dlmanifests/speechcommon-dl.man: OK
+./sources/dlmanifests/tabletpc-tabbtn-dl.man: OK
+./sources/dlmanifests/tabletpcinputpanel-dl.man: OK
+./sources/dlmanifests/tabletpcjournal-dl.man: OK
+./sources/dlmanifests/tabletpcplatforminput-core-dl.man: OK
+./sources/dlmanifests/terminalservices-appserver-dl.man: OK
+./sources/dlmanifests/terminalservices-appserver-licensing-dl.man: OK
+./sources/dlmanifests/terminalservices-drivers-dl.man: OK
+./sources/dlmanifests/terminalservices-licenseserver-dl.man: OK
+./sources/dlmanifests/terminalservices-localsessionmanager-dl.man: OK
+./sources/dlmanifests/terminalservices-rdp-winstationextensions-dl.man: OK
+./sources/dlmanifests/terminalservices-remoteconnectionmanager-dl.man: OK
+./sources/dlmanifests/terminalservices-sessiondirectory-client-dl.man: OK
+./sources/dlmanifests/terminalservices-sessiondirectory-server-dl.man: OK
+./sources/dlmanifests/terminalservices-terminalservicesclient-dl.man: OK
+./sources/dlmanifests/textservicesframework-migration-dl.man: OK
+./sources/dlmanifests/video-tvvideocontrol-dl.man: OK
+./sources/dlmanifests/volsnap-dl.man: OK
+./sources/dlmanifests/wcf-http-activation-dl.man: OK
+./sources/dlmanifests/wcf-http-activation-postapply-dl.man: OK
+./sources/dlmanifests/wcf-nonhttp-activation-dl.man: OK
+./sources/dlmanifests/web-services-for-management-core-dl.man: OK
+./sources/dlmanifests/webenroll-dl.man: OK
+./sources/dlmanifests/win32k-settings-dl.man: OK
+./sources/dlmanifests/windowssearchengine-dl.man: OK
+./sources/dlmanifests/winlogon-dl.man: OK
+./sources/dlmanifests/wmi-core-dl.man: OK
+./sources/dlmanifests/workstationservice-dl.man: OK
+./sources/etwproviders/pt-br/actionqueueetw.dll.mui: OK
+./sources/etwproviders/actionqueueetw.dll: OK
+./sources/etwproviders/auditetw.dll: OK
+./sources/etwproviders/cmisetupetw.dll: OK
+./sources/etwproviders/etwproviderinstall.vbs: OK
+./sources/etwproviders/oobeldretw.dll: OK
+./sources/etwproviders/setupcletw.dll: OK
+./sources/etwproviders/setupetw.dll: OK
+./sources/etwproviders/setupugcetw.dll: OK
+./sources/etwproviders/sysprepetw.dll: OK
+./sources/etwproviders/windeployetw.dll: OK
+./sources/etwproviders/winsetupetw.dll: OK
+./sources/inf/setup.cfg: OK
+./sources/migration/wtr/adminpack_en-us.inf: OK
+./sources/migration/wtr/adminpack_en-us_noloc.inf: OK
+./sources/migration/wtr/adobe_flash.inf: OK
+./sources/migration/wtr/appmanwtr.inf: OK
+./sources/migration/wtr/browserchoice_win7.inf: OK
+./sources/migration/wtr/browserchoice_win8.inf: OK
+./sources/migration/wtr/compattelemetry.inf: OK
+./sources/migration/wtr/dtumig.inf: OK
+./sources/migration/wtr/ftp_7.0.inf: OK
+./sources/migration/wtr/ftp_7.5_en-us_noloc.inf: OK
+./sources/migration/wtr/ftp_7.5_loc.inf: OK
+./sources/migration/wtr/gwxmig.inf: OK
+./sources/migration/wtr/powershell_en-us_noloc.inf: OK
+./sources/migration/wtr/powershell_loc.inf: OK
+./sources/migration/wtr/standardcollector.inf: OK
+./sources/migration/wtr/unpmig.inf: OK
+./sources/migration/wtr/webdav_7.0.inf: OK
+./sources/migration/wtr/webdav_7.5_en-us_noloc.inf: OK
+./sources/migration/wtr/webdav_7.5_loc.inf: OK
+./sources/pt-br/acres.dll.mui: OK
+./sources/pt-br/actionqueue.dll.mui: OK
+./sources/pt-br/appraiser.dll.mui: OK
+./sources/pt-br/appraiserwc.dll.mui: OK
+./sources/pt-br/arunres.dll.mui: OK
+./sources/pt-br/cmisetup.dll.mui: OK
+./sources/pt-br/compatctrl.dll.mui: OK
+./sources/pt-br/compatresources.dll.mui: OK
+./sources/pt-br/compres.dll.mui: OK
+./sources/pt-br/credits.rtf: OK
+./sources/pt-br/dism.exe.mui: OK
+./sources/pt-br/dismapi.dll.mui: OK
+./sources/pt-br/dismcore.dll.mui: OK
+./sources/pt-br/dismprov.dll.mui: OK
+./sources/pt-br/erofflps.txt: OK
+./sources/pt-br/folderprovider.dll.mui: OK
+./sources/pt-br/imagingprovider.dll.mui: OK
+./sources/pt-br/input.dll.mui: OK
+./sources/pt-br/logprovider.dll.mui: OK
+./sources/pt-br/mediasetupuimgr.dll.mui: OK
+./sources/pt-br/migres.dll.mui: OK
+./sources/pt-br/nlsbres.dll.mui: OK
+./sources/pt-br/oobe_help_opt_in_details.rtf: OK
+./sources/pt-br/pnpibs.dll.mui: OK
+./sources/pt-br/privacy.rtf: OK
+./sources/pt-br/reagent.adml: OK
+./sources/pt-br/reagent.dll.mui: OK
+./sources/pt-br/rollback.exe.mui: OK
+./sources/pt-br/setup.exe.mui: OK
+./sources/pt-br/setupcompat.dll.mui: OK
+./sources/pt-br/setupcore.dll.mui: OK
+./sources/pt-br/setuperror.exe.mui: OK
+./sources/pt-br/setupplatform.exe.mui: OK
+./sources/pt-br/setupprep.exe.mui: OK
+./sources/pt-br/setup_help_upgrade_or_custom.rtf: OK
+./sources/pt-br/setup_help_whattokeep.rtf: OK
+./sources/pt-br/smiengine.dll.mui: OK
+./sources/pt-br/spwizres.dll.mui: OK
+./sources/pt-br/upgloader.dll.mui: OK
+./sources/pt-br/uxlibres.dll.mui: OK
+./sources/pt-br/vhdprovider.dll.mui: OK
+./sources/pt-br/vofflps.rtf: OK
+./sources/pt-br/w32uires.dll.mui: OK
+./sources/pt-br/wdsclient.dll.mui: OK
+./sources/pt-br/wdsimage.dll.mui: OK
+./sources/pt-br/wimprovider.dll.mui: OK
+./sources/pt-br/windlp.dll.mui: OK
+./sources/pt-br/winsetup.dll.mui: OK
+./sources/replacementmanifests/hwvid-migration-2/hwvidmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-activedirectory-webservices/adwsmigrate.dll: OK
+./sources/replacementmanifests/microsoft-client-license-platform-service-migration/clipmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-edge-migration-plugin/edge.dat: OK
+./sources/replacementmanifests/microsoft-edge-migration-plugin/edgemigrationplugin.dll: OK
+./sources/replacementmanifests/microsoft-edge-migration-plugin/edgeupdate.dat: OK
+./sources/replacementmanifests/microsoft-onecore-tiledatarepository/tilestoremigrationplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-appmanagement-migration/appmanmigrationplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-appx-deployment-server/appxprovisioning.xml: OK
+./sources/replacementmanifests/microsoft-windows-appx-deployment-server/appxupgrademigrationplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-appx-deployment-server/microsoft.windows.secondarytileexperience_10.0.0.0_neutral__cw5n1h2txyewy.xml: OK
+./sources/replacementmanifests/microsoft-windows-appx-deployment-server/windows.miracastview_6.3.0.0_neutral_neutral_cw5n1h2txyewy.xml: OK
+./sources/replacementmanifests/microsoft-windows-audio-mmecore-other/audmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-bth-user/bthmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-com-complus-setup/commig.dll: OK
+./sources/replacementmanifests/microsoft-windows-deviceassociationframeworkmigration/dafmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-directoryservices-adam-client/adammigrate.dll: OK
+./sources/replacementmanifests/microsoft-windows-iis-rm/iismig.dll: OK
+./sources/replacementmanifests/microsoft-windows-mapscontrol-migration/mapsmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-mup/mupmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-network-setup/netsetupapi.dll: OK
+./sources/replacementmanifests/microsoft-windows-network-setup/netsetupengine.dll: OK
+./sources/replacementmanifests/microsoft-windows-network-setup/networkbindingenginemigplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-offlinefiles-core/pt-br/cscmig.dll.mui: OK
+./sources/replacementmanifests/microsoft-windows-offlinefiles-core/cscmig.dll: OK
+./sources/replacementmanifests/microsoft-windows-pnpmigration/pnpmig.dll: OK
+./sources/replacementmanifests/microsoft-windows-pnpmigration/pnpmig.inf: OK
+./sources/replacementmanifests/microsoft-windows-rasapi-mig/pbkmigr.dll: OK
+./sources/replacementmanifests/microsoft-windows-rasserver-migplugin/rasmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-security-ngc-localaccountmigplugin/ngclocalaccountmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-shmig/pt-br/shmig.dll.mui: OK
+./sources/replacementmanifests/microsoft-windows-shmig/shmig.dll: OK
+./sources/replacementmanifests/microsoft-windows-sxs/pt-br/sxsmigplugin.dll.mui: OK
+./sources/replacementmanifests/microsoft-windows-sxs/sxsmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-tcpip/netiomig.dll: OK
+./sources/replacementmanifests/microsoft-windows-terminalservices-appserver-licensing/tsmigplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-terminalservices-licenseserver/tlsrepplugin.dll: OK
+./sources/replacementmanifests/microsoft-windows-textservicesframework-migration/chxmig.dll: OK
+./sources/replacementmanifests/microsoft-windows-textservicesframework-migration/imjpmig.dll: OK
+./sources/replacementmanifests/microsoft-windows-textservicesframework-migration/imkrmig.dll: OK
+./sources/replacementmanifests/microsoft-windows-textservicesframework-migration/msctfmig.dll: OK
+./sources/replacementmanifests/microsoft-windows-textservicesframework-migration/tabletextservicemig.dll: OK
+./sources/replacementmanifests/microsoft-windows-virtualization-vmswitch/vmswitchmigrationplugin.dll: OK
+./sources/replacementmanifests/networkbridge/bridgemigplugin.dll: OK
+./sources/replacementmanifests/networking-mpssvc-svc/icfupgd.dll: OK
+./sources/replacementmanifests/printing-localprinting-replacement/apmonportmig.dll: OK
+./sources/replacementmanifests/printing-localprinting-replacement/usbportmig.dll: OK
+./sources/replacementmanifests/sppmig/sppmig.dll: OK
+./sources/replacementmanifests/windowssearchengine/wsearchmigplugin.dll: OK
+./sources/replacementmanifests/wpc/wpcmigration.downlevel.dll: OK
+./sources/replacementmanifests/wpc/wpcmigration.uplevel.dll: OK
+./sources/replacementmanifests/activedirectory-webservices-replacement.man: OK
+./sources/replacementmanifests/adsi-router-replacement.man: OK
+./sources/replacementmanifests/application-experience-program-compatibility-assistant-replacement.man: OK
+./sources/replacementmanifests/appmanmigration-replacement.man: OK
+./sources/replacementmanifests/appxalluserstore-replacement.man: OK
+./sources/replacementmanifests/appxdeploymentserver-replacement.man: OK
+./sources/replacementmanifests/audiommecore-mm-other-migration-replacement.man: OK
+./sources/replacementmanifests/authui-migration-replacement.man: OK
+./sources/replacementmanifests/authui-migration-win8-replacement.man: OK
+./sources/replacementmanifests/bisrv-replacement.man: OK
+./sources/replacementmanifests/bthmig-replacement.man: OK
+./sources/replacementmanifests/capi2_certs-repl.man: OK
+./sources/replacementmanifests/certificateenrollment-replacement.man: OK
+./sources/replacementmanifests/cliplicensemigration-replacement.man: OK
+./sources/replacementmanifests/cloudapreplacement.man: OK
+./sources/replacementmanifests/cloudexperiencehostonecore-replacement.man: OK
+./sources/replacementmanifests/codeintegrity-repl.man: OK
+./sources/replacementmanifests/commandprompt-win7-replacement.man: OK
+./sources/replacementmanifests/commandprompt-win8-replacement.man: OK
+./sources/replacementmanifests/contentdeliverymanager.utilities-replacement.man: OK
+./sources/replacementmanifests/coreos-repl.man: OK
+./sources/replacementmanifests/credential-manager-replacement.man: OK
+./sources/replacementmanifests/crypto_keys-repl.man: OK
+./sources/replacementmanifests/dataintegrityscan-replacement.man: OK
+./sources/replacementmanifests/dcb-repl.man: OK
+./sources/replacementmanifests/desktopux-replacement.man: OK
+./sources/replacementmanifests/deviceassociationframework-replacement.man: OK
+./sources/replacementmanifests/devicedirectory-devicedirectoryclient-desktop-replacement.man: OK
+./sources/replacementmanifests/deviceregistration-replacement.man: OK
+./sources/replacementmanifests/dhcpclientdll-repl.man: OK
+./sources/replacementmanifests/dhcpserver-tools-replacement.man: OK
+./sources/replacementmanifests/dhcpservermigplugin-rep.man: OK
+./sources/replacementmanifests/dhcpservermigpluginwin8-replacement.man: OK
+./sources/replacementmanifests/directaccessservermanagement-repl.man: OK
+./sources/replacementmanifests/directoryservices-adam-client-replacement.man: OK
+./sources/replacementmanifests/directoryservices-adam-tools-replacement.man: OK
+./sources/replacementmanifests/directoryservices-administrativecenter-replacement.man: OK
+./sources/replacementmanifests/directoryservices-domaincontroller-servercoreupg-replacement.man: OK
+./sources/replacementmanifests/directoryservices-domaincontroller-tools-replacement.man: OK
+./sources/replacementmanifests/directoryservices-sm-plugin.registration-replacement.man: OK
+./sources/replacementmanifests/displayconfigsettings_win7update.man: OK
+./sources/replacementmanifests/dmrcwin7replacement.man: OK
+./sources/replacementmanifests/dns-client-mw-replacement.man: OK
+./sources/replacementmanifests/dns-client-replacement.man: OK
+./sources/replacementmanifests/dns-server-role-replacement.man: OK
+./sources/replacementmanifests/dns-server-tools-replacement.man: OK
+./sources/replacementmanifests/dpapi_keys-repl.man: OK
+./sources/replacementmanifests/dsreg-replacement.man: OK
+./sources/replacementmanifests/edgemigrationplugin.man: OK
+./sources/replacementmanifests/edpnotify-replacement.man: OK
+./sources/replacementmanifests/elam-replacement.man: OK
+./sources/replacementmanifests/etw-core-replacement.man: OK
+./sources/replacementmanifests/eudcedit-replacement.man: OK
+./sources/replacementmanifests/explorer-repl.man: OK
+./sources/replacementmanifests/extensibleauthenticationprotocolhostservice-rep.man: OK
+./sources/replacementmanifests/failovercluster-core-wow64-rm.man: OK
+./sources/replacementmanifests/feclient-replacement-th.man: OK
+./sources/replacementmanifests/fidocredprov_dll_repl.man: OK
+./sources/replacementmanifests/fileserver-replacement.man: OK
+./sources/replacementmanifests/font-truetype-fontsregistrysettingsmigration-replacement.man: OK
+./sources/replacementmanifests/fonts-type1-replacement.man: OK
+./sources/replacementmanifests/fundisc-replacement.man: OK
+./sources/replacementmanifests/fveapi-replacement.man: OK
+./sources/replacementmanifests/gpbase-replacement.man: OK
+./sources/replacementmanifests/gpiobuttons-replacement.man: OK
+./sources/replacementmanifests/hal-repl.man: OK
+./sources/replacementmanifests/helpandsupport-replacement.man: OK
+./sources/replacementmanifests/http-replacement.man: OK
+./sources/replacementmanifests/hwvid-migration-replacement-2.man: OK
+./sources/replacementmanifests/identityserver-migration-replacement.man: OK
+./sources/replacementmanifests/identityserver-proxymigration-replacement.man: OK
+./sources/replacementmanifests/identitystore-replacement.man: OK
+./sources/replacementmanifests/iis-adminservice-rm.man: OK
+./sources/replacementmanifests/iis-appwarmup-rm.man: OK
+./sources/replacementmanifests/iis-ftpsvc-rm.man: OK
+./sources/replacementmanifests/iis-managementconsole-rm.man: OK
+./sources/replacementmanifests/iis-sharedlibraries-rm.man: OK
+./sources/replacementmanifests/iis-w3logsvc-rm.man: OK
+./sources/replacementmanifests/iis-w3svc-rm.man: OK
+./sources/replacementmanifests/ime-eashared-migration-replacement.man: OK
+./sources/replacementmanifests/international-core-replacement.man: OK
+./sources/replacementmanifests/international-timezones-replacement.man: OK
+./sources/replacementmanifests/internet-naming-service-runtime-rep.man: OK
+./sources/replacementmanifests/internet-naming-tools-replacement.man: OK
+./sources/replacementmanifests/ipv4ipv6coexistencemigration-net-replacement.man: OK
+./sources/replacementmanifests/kernel-pnp-repl.man: OK
+./sources/replacementmanifests/kernel-server-replacement.man: OK
+./sources/replacementmanifests/kernel32-replacement.man: OK
+./sources/replacementmanifests/kernel32-server-replacement.man: OK
+./sources/replacementmanifests/keyboardfilter-replacement.man: OK
+./sources/replacementmanifests/legacy-sapi-repl.man: OK
+./sources/replacementmanifests/mdm_migration-replacement.man: OK
+./sources/replacementmanifests/media-settings-migration-replacement.man: OK
+./sources/replacementmanifests/mfmpeg2srcsnk-migration-replacement.man: OK
+./sources/replacementmanifests/mfplat-migration-replacement.man: OK
+./sources/replacementmanifests/mfsrcsnk-migration-replacement.man: OK
+./sources/replacementmanifests/microsoft-activedirectory-powershell-replacement.man: OK
+./sources/replacementmanifests/microsoft-certificateauthority-enrollment-serverupgrade-replacement.man: OK
+./sources/replacementmanifests/microsoft-certificateservices-ca-serverupgrade-replacement.man: OK
+./sources/replacementmanifests/microsoft-certificateservices-mscep-serverupgrade-replacement.man: OK
+./sources/replacementmanifests/microsoft-certificateservices-ocsp-serverupgrade-replacement.man: OK
+./sources/replacementmanifests/microsoft-certificateservices-policy-serverupgrade-replacement.man: OK
+./sources/replacementmanifests/microsoft-certificateservices-webenrollment-serverupgrade-replacement.man: OK
+./sources/replacementmanifests/microsoft-hyper-v-client-migration-replacement.man: OK
+./sources/replacementmanifests/microsoft-hyper-v-drivers-migration-replacement.man: OK
+./sources/replacementmanifests/microsoft-hyper-v-migration-replacement.man: OK
+./sources/replacementmanifests/microsoft-onecore-tiledatarepository-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-advertisingid-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-container-manager.man: OK
+./sources/replacementmanifests/microsoft-windows-credentialmanagementrole-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-credentialmanagementrole-tools-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-deployment-services-admin-pack-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-deviceaccess-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-enterprisemgmt-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-errorreportingcore-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-errorreportingfaults-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-failovercluster-adminpak-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-fax-service-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-feedback-service-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-flighting-settings.replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-geolocation-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-identity-foundation-migration-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-ie-adminkitbranding-repl.man: OK
+./sources/replacementmanifests/microsoft-windows-ie-clientnetworkprotocolimplementation-repl.man: OK
+./sources/replacementmanifests/microsoft-windows-ie-internetexplorer-repl-2.man: OK
+./sources/replacementmanifests/microsoft-windows-ie-internetexplorer-repl.man: OK
+./sources/replacementmanifests/microsoft-windows-ie-pdm-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-netfx35cdfcomp-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-netfxcorecomp-repl.man: OK
+./sources/replacementmanifests/microsoft-windows-network-setup-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-networkbridge-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-offlinefiles-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-parentalcontrolssettings-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-powershell-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-powershell-ws08-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-powershellwebaccess-commands-powershell-migration-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-rmapi-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-securestartup-filterdriver-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-security-ngc-credprov-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-security-ngc-ctnrsvc-repl.man: OK
+./sources/replacementmanifests/microsoft-windows-servermanager-rsat-featuretools-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-servermanager-rsat-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-servermanager-rsat-roletools-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-servermanager-shell-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-services-targetedcontent-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-slb-mux-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-smb1-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-softwareinventorylogging-scheduledtasks-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-storagemigration-od-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-storagemigration-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-sxs-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-virtualization-vmswitch-migration-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-wcfcorecomp-replacement.man: OK
+./sources/replacementmanifests/microsoft-windows-workstationservice-replacement.man: OK
+./sources/replacementmanifests/microsoft.windows.com.complus.setup-replacement.man: OK
+./sources/replacementmanifests/microsoft.windows.com.dtc.setup-replacement.man: OK
+./sources/replacementmanifests/microsoftwindowsdefragcore-replacement.man: OK
+./sources/replacementmanifests/mmdeviceapi-migration-replacement.man: OK
+./sources/replacementmanifests/mmsys-migration-replacement.man: OK
+./sources/replacementmanifests/mpr-replacement.man: OK
+./sources/replacementmanifests/msmpeg2vdec-migration-replacement.man: OK
+./sources/replacementmanifests/muisettings-replacement.man: OK
+./sources/replacementmanifests/mup-replacement.man: OK
+./sources/replacementmanifests/ndis-repl.man: OK
+./sources/replacementmanifests/netfx-wcf-http-activation-replacement.man: OK
+./sources/replacementmanifests/netfx-wcf-msmqactivation-registration-replacement.man: OK
+./sources/replacementmanifests/netfx-wcf-pipeactivation-registration-replacement.man: OK
+./sources/replacementmanifests/netfx-wcf-tcpactivation-registration-replacement.man: OK
+./sources/replacementmanifests/netfx3-replacement.man: OK
+./sources/replacementmanifests/netfx4-policy-replacement.man: OK
+./sources/replacementmanifests/netfx4-replacement.man: OK
+./sources/replacementmanifests/netfx4-wcf-client-replacement.man: OK
+./sources/replacementmanifests/netfx4-wcf-extended-replacement.man: OK
+./sources/replacementmanifests/netfx4clientcorecomp-replacement.man: OK
+./sources/replacementmanifests/networking-mpssvc-svc.replacement.man: OK
+./sources/replacementmanifests/networkloadbalancingmanagementclient-replacement.man: OK
+./sources/replacementmanifests/networkloadbalancingmanagementheadlessserver-replacement.man: OK
+./sources/replacementmanifests/networkprofile-replacement.man: OK
+./sources/replacementmanifests/networksecurity.replacement.man: OK
+./sources/replacementmanifests/nfs-admincore-repl.man: OK
+./sources/replacementmanifests/nfs-clientcore-repl.man: OK
+./sources/replacementmanifests/nfs-servercore-repl.man: OK
+./sources/replacementmanifests/nfs-servercoreupg-clientcore-repl.man: OK
+./sources/replacementmanifests/nfs-servercoreupg-servercore-repl.man: OK
+./sources/replacementmanifests/ngclocalaccountmigplugin-replacement.man: OK
+./sources/replacementmanifests/ngcpopkeysrv_dll-repl.man: OK
+./sources/replacementmanifests/nlasvc-replace.man: OK
+./sources/replacementmanifests/notepad-repl.man: OK
+./sources/replacementmanifests/npas-role-replacement.man: OK
+./sources/replacementmanifests/npsui-replacement.man: OK
+./sources/replacementmanifests/odbc32dll-repl.man: OK
+./sources/replacementmanifests/onecore_speechcommon-rep.man: OK
+./sources/replacementmanifests/pcpksp_dll-repl.man: OK
+./sources/replacementmanifests/peerdist-client-migration-replacement.man: OK
+./sources/replacementmanifests/peerdist-server-migration-replacement.man: OK
+./sources/replacementmanifests/peerdist-upgrade-replacement.man: OK
+./sources/replacementmanifests/peertopeergrouping-replacement.man: OK
+./sources/replacementmanifests/performancecounterinfrastructurenonexecutable-replacement.man: OK
+./sources/replacementmanifests/personalizationcsp-repl.man: OK
+./sources/replacementmanifests/pnpmigration-replacement.man: OK
+./sources/replacementmanifests/posproviders-replacement.man: OK
+./sources/replacementmanifests/power-energyestimationengine-replacement.man: OK
+./sources/replacementmanifests/powercpl-replacement.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-v1019h1.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-v1119h1.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-v12vb.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-v4rs1.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-v5rs1.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-v6rs2.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-v7rs2.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-v8rs4.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-v9rs5.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-vista.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-win10.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-win7.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-definitions-replacement-win8.man: OK
+./sources/replacementmanifests/powermanagement-powerpolicy-migration-replacement.man: OK
+./sources/replacementmanifests/ppipolicies-encryption-replacement.man: OK
+./sources/replacementmanifests/ppipolicies-general-replacement.man: OK
+./sources/replacementmanifests/ppipolicies-miracast-replacement.man: OK
+./sources/replacementmanifests/ppipolicies-power-replacement.man: OK
+./sources/replacementmanifests/printing-localprinting-replacement.man: OK
+./sources/replacementmanifests/printing-server-foundation-features-upgrade.man: OK
+./sources/replacementmanifests/printing-servercore-wow64-rm.man: OK
+./sources/replacementmanifests/printing-spooler-core-replacement.man: OK
+./sources/replacementmanifests/processmodel-cpt-rm.man: OK
+./sources/replacementmanifests/profsvcreplacement.man: OK
+./sources/replacementmanifests/propsys-replacement.man: OK
+./sources/replacementmanifests/quickactions-windows-replacement.man: OK
+./sources/replacementmanifests/rasapi-repl.man: OK
+./sources/replacementmanifests/rasbase-rassstp-repl.man: OK
+./sources/replacementmanifests/rasbase-repl.man: OK
+./sources/replacementmanifests/rasddm-repl.man: OK
+./sources/replacementmanifests/rasmanservice-repl.man: OK
+./sources/replacementmanifests/rasmanservice-replv2.man: OK
+./sources/replacementmanifests/rasmanservice-replv3.man: OK
+./sources/replacementmanifests/rasppp-repl.man: OK
+./sources/replacementmanifests/rasrqs-repl.man: OK
+./sources/replacementmanifests/rasserver-repl.man: OK
+./sources/replacementmanifests/rasserveradmintools-replacement.man: OK
+./sources/replacementmanifests/refs-replacement.man: OK
+./sources/replacementmanifests/refs-v1-replacement.man: OK
+./sources/replacementmanifests/retaildemo.deployment.replacement.man: OK
+./sources/replacementmanifests/rights-management-client-v1-api-replacement.man: OK
+./sources/replacementmanifests/rights-management-services-admin-tools-replacement.man: OK
+./sources/replacementmanifests/rights-management-services-management-tools-replacement.man: OK
+./sources/replacementmanifests/rights-management-services-role-replacement.man: OK
+./sources/replacementmanifests/schedsvc-replacement.man: OK
+./sources/replacementmanifests/security-spp-migration-replacement.man: OK
+./sources/replacementmanifests/securitycenter-core-replacement.man: OK
+./sources/replacementmanifests/servercore-wow64-rm.man: OK
+./sources/replacementmanifests/settingsync-repl.man: OK
+./sources/replacementmanifests/sharedpccsp-repl.man: OK
+./sources/replacementmanifests/sharemgmt-rsatclient-tools-replacement.man: OK
+./sources/replacementmanifests/shmig-replacement.man: OK
+./sources/replacementmanifests/signalmanager-replacement.man: OK
+./sources/replacementmanifests/signature-replacement.man: OK
+./sources/replacementmanifests/smartcardsubsystem-repl.man: OK
+./sources/replacementmanifests/snmp-gui-tools-replacement.man: OK
+./sources/replacementmanifests/sounds-migration-replacement.man: OK
+./sources/replacementmanifests/spectrum-replacement.man: OK
+./sources/replacementmanifests/srm-cbadriver-repl.man: OK
+./sources/replacementmanifests/srm-datascrndriver-repl.man: OK
+./sources/replacementmanifests/srm-infrastructure-repl.man: OK
+./sources/replacementmanifests/srm-management-repl.man: OK
+./sources/replacementmanifests/srm-quotadriver-repl.man: OK
+./sources/replacementmanifests/srm-service-repl.man: OK
+./sources/replacementmanifests/srm-service-reports-repl.man: OK
+./sources/replacementmanifests/srm-ui-repl.man: OK
+./sources/replacementmanifests/srumon-replacement.man: OK
+./sources/replacementmanifests/starttiledata-replacement.man: OK
+./sources/replacementmanifests/sysdm-replacement.man: OK
+./sources/replacementmanifests/sysmain-replacement.man: OK
+./sources/replacementmanifests/systemsettingsthreshold-replacement.man: OK
+./sources/replacementmanifests/tabletpcplatforminput-core-replacement.man: OK
+./sources/replacementmanifests/tcblaunch-replacement.man: OK
+./sources/replacementmanifests/tcpip-replacement.man: OK
+./sources/replacementmanifests/terminalservices-appserver-licensing-replacement.man: OK
+./sources/replacementmanifests/terminalservices-gateway-package-r-replacement.man: OK
+./sources/replacementmanifests/terminalservices-gateway-package-replacement.man: OK
+./sources/replacementmanifests/terminalservices-gateway-ui-package-r-replacement.man: OK
+./sources/replacementmanifests/terminalservices-gateway-ui-package-replacement.man: OK
+./sources/replacementmanifests/terminalservices-licenseserver-replacement.man: OK
+./sources/replacementmanifests/terminalservices-localsessionmanager-replacement.man: OK
+./sources/replacementmanifests/terminalservices-publishing-wmiprovider-replacement.man: OK
+./sources/replacementmanifests/terminalservices-rapweb-replacement.man: OK
+./sources/replacementmanifests/terminalservices-rapwebpart-replacement.man: OK
+./sources/replacementmanifests/terminalservices-rdp-winstationextensions-replacement.man: OK
+./sources/replacementmanifests/terminalservices-remoteconnectionmanager-replacement.man: OK
+./sources/replacementmanifests/terminalservices-role-package-r-replacement.man: OK
+./sources/replacementmanifests/terminalservices-role-package-replacement.man: OK
+./sources/replacementmanifests/terminalservices-sessiondirectory-client-replacement.man: OK
+./sources/replacementmanifests/terminalservices-sessiondirectory-server-replacement.man: OK
+./sources/replacementmanifests/terminalservices-tsv-vmhostagent-replacement.man: OK
+./sources/replacementmanifests/tetheringservice-repl.man: OK
+./sources/replacementmanifests/textservicesframework-migration-replacement.man: OK
+./sources/replacementmanifests/time-service-replacement.man: OK
+./sources/replacementmanifests/tpmdriverwmi-replacement.man: OK
+./sources/replacementmanifests/tpmvsc-repl.man: OK
+./sources/replacementmanifests/twinui-replacement.man: OK
+./sources/replacementmanifests/udfs-replacement.man: OK
+./sources/replacementmanifests/updateservices-common-replacement.man: OK
+./sources/replacementmanifests/updateservices-services-replacement.man: OK
+./sources/replacementmanifests/upnpdevicehost-replacement.man: OK
+./sources/replacementmanifests/upnpdevicehost-server-replacement.man: OK
+./sources/replacementmanifests/upnpssdp-replacement.man: OK
+./sources/replacementmanifests/upnpssdp-server-replacement.man: OK
+./sources/replacementmanifests/usbmigration-replacement.man: OK
+./sources/replacementmanifests/video-tvvideocontrol-replacement.man: OK
+./sources/replacementmanifests/virtualdiskservice-repl.man: OK
+./sources/replacementmanifests/volsnap-repl.man: OK
+./sources/replacementmanifests/vssservice-repl.man: OK
+./sources/replacementmanifests/wbiosrvc-replacement.man: OK
+./sources/replacementmanifests/wcf-http-activation-replacement.man: OK
+./sources/replacementmanifests/wcf-nonhttp-activation-replacement.man: OK
+./sources/replacementmanifests/web-services-for-management-core-replacement.man: OK
+./sources/replacementmanifests/webdavredir-clientonly-replacement.man: OK
+./sources/replacementmanifests/webdavredir-serveronly-replacement.man: OK
+./sources/replacementmanifests/wia-coreservices-replacement.man: OK
+./sources/replacementmanifests/wicamigrationav-rl.man: OK
+./sources/replacementmanifests/wid8-migration.man: OK
+./sources/replacementmanifests/win32k-settings-repl.man: OK
+./sources/replacementmanifests/windows-senseclient-service-rep.man: OK
+./sources/replacementmanifests/windows.cortana.desktop-repl.man: OK
+./sources/replacementmanifests/windows.holographic.displaythrottling-replacement.man: OK
+./sources/replacementmanifests/windows.media-migration-replacement.man: OK
+./sources/replacementmanifests/windows.sharedpc.accountmanager-repl.man: OK
+./sources/replacementmanifests/windows.ui.shell-repl.man: OK
+./sources/replacementmanifests/windowspushnotifications-platform-library-replacement.man: OK
+./sources/replacementmanifests/windowssearchengine-replacement.man: OK
+./sources/replacementmanifests/windowsstoreapi-replacement.man: OK
+./sources/replacementmanifests/windowsupdate-replacement.man: OK
+./sources/replacementmanifests/windowswebapphost-replacement.man: OK
+./sources/replacementmanifests/winlogon-replacement.man: OK
+./sources/replacementmanifests/winmde-migration-replacement.man: OK
+./sources/replacementmanifests/winnat-replacement.man: OK
+./sources/replacementmanifests/winsat-cmi-replacement.man: OK
+./sources/replacementmanifests/wlidsvc.vista-win7.man: OK
+./sources/replacementmanifests/wmdmigration-replacement.man: OK
+./sources/replacementmanifests/wmi-core-replacement.man: OK
+./sources/replacementmanifests/wmiacpi-replacement.man: OK
+./sources/replacementmanifests/wmpnsservice-migration-replacement.man: OK
+./sources/replacementmanifests/wmpplayer-migration-replacement.man: OK
+./sources/replacementmanifests/wsinfra-other-mw-replacement.man: OK
+./sources/replacementmanifests/wsinfra-upgrade-replacement.man: OK
+./sources/replacementmanifests/wwansvc-servercfg-repl.man: OK
+./sources/sxs/Microsoft-Windows-InternetExplorer-Optional-Package~31bf3856ad364e35~amd64~pt-BR~.cab: OK
+./sources/sxs/microsoft-windows-internetexplorer-optional-package~31bf3856ad364e35~amd64~~.cab: OK
+./sources/sxs/Microsoft-Windows-NetFx3-OnDemand-Package~31bf3856ad364e35~amd64~pt-BR~.cab: OK
+./sources/sxs/microsoft-windows-netfx3-ondemand-package~31bf3856ad364e35~amd64~~.cab: OK
+./sources/uup/metadata/desktoptargetcompdb_neutral.xml.cab: OK
+./sources/vista/webservices.dll: OK
+./sources/xp/webservices.dll: OK
+./sources/acmigration.dll: OK
+./sources/acres.dll: OK
+./sources/actionqueue.dll: OK
+./sources/adfscomp.dll: OK
+./sources/admtv3check.dll: OK
+./sources/aeinv.dll: OK
+./sources/alert.gif: OK
+./sources/appcompat.xsl: OK
+./sources/appcompatservicing.dll: OK
+./sources/appcompat_bidi.xsl: OK
+./sources/appcompat_detailed.xsl: OK
+./sources/appcompat_detailed_bidi.xsl: OK
+./sources/appcompat_detailed_bidi_txt.xsl: OK
+./sources/appcompat_detailed_txt.xsl: OK
+./sources/appraiser.dll: OK
+./sources/appraiser.sdb: OK
+./sources/appraiserdatasha1.cat: OK
+./sources/appraiserres.dll: OK
+./sources/appraiserwc.dll: OK
+./sources/arunimg.dll: OK
+./sources/arunres.dll: OK
+./sources/autorun.dll: OK
+./sources/background_cli.bmp: OK
+./sources/boot.wim: OK
+./sources/cdplib.mof: OK
+./sources/cdplibuninstall.mof: OK
+./sources/clustercompliance.dll: OK
+./sources/cmi2migxml.dll: OK
+./sources/cmisetup.dll: OK
+./sources/compatctrl.dll: OK
+./sources/compatresources.dll: OK
+./sources/compres.dll: OK
+./sources/cryptosetup.dll: OK
+./sources/csiagent.dll: OK
+./sources/cversion.ini: OK
+./sources/db_msftproductionwindowssigningca.cer: OK
+./sources/devinv.dll: OK
+./sources/diager.dll: OK
+./sources/diagnostic.dll: OK
+./sources/diagtrack.dll: OK
+./sources/diagtrackrunner.exe: OK
+./sources/dism.exe: OK
+./sources/dismapi.dll: OK
+./sources/dismcore.dll: OK
+./sources/dismcoreps.dll: OK
+./sources/dismprov.dll: OK
+./sources/du.dll: OK
+./sources/facilitator.dll: OK
+./sources/folderprovider.dll: OK
+./sources/gatherosstate.exe: OK
+./sources/generaltel.dll: OK
+./sources/hwcompat.dll: OK
+./sources/hwcompat.txt: OK
+./sources/hwcompatPE.txt: OK
+./sources/hwexclude.txt: OK
+./sources/hwexcludePE.txt: OK
+./sources/hypervcomplcheck.dll: OK
+./sources/iasmigplugin.dll: OK
+./sources/idwbinfo.txt: OK
+./sources/iiscomp.dll: OK
+./sources/imagingprovider.dll: OK
+./sources/input.dll: OK
+./sources/install.esd: OK
+./sources/itgtupg.dll: OK
+./sources/lang.ini: OK
+./sources/locale.nls: OK
+./sources/logprovider.dll: OK
+./sources/mediasetupuimgr.dll: OK
+./sources/migapp.xml: OK
+./sources/migcore.dll: OK
+./sources/mighost.exe: OK
+./sources/migisol.dll: OK
+./sources/migres.dll: OK
+./sources/migstore.dll: OK
+./sources/migsys.dll: OK
+./sources/migtestplugin.dll: OK
+./sources/mitigation.dll: OK
+./sources/mxeagent.dll: OK
+./sources/nlsbres.dll: OK
+./sources/ntdsupg.dll: OK
+./sources/ntfrsupg.dll: OK
+./sources/nxquery.inf: OK
+./sources/nxquery.sys: OK
+./sources/offline.xml: OK
+./sources/offlineprofileutils.dll: OK
+./sources/oscomps.woa.xml: OK
+./sources/oscomps.xml: OK
+./sources/osfilter.inf: OK
+./sources/outofbox_windows_db.bin: OK
+./sources/pnpibs.dll: OK
+./sources/pnppropmig.dll: OK
+./sources/product.ini: OK
+./sources/rdsupgcheck.dll: OK
+./sources/reagent.admx: OK
+./sources/reagent.dll: OK
+./sources/reagent.xml: OK
+./sources/reportgen.dll: OK
+./sources/reservemanager.dll: OK
+./sources/rmsupg.dll: OK
+./sources/rollback.exe: OK
+./sources/schema.dat: OK
+./sources/sdbapiu.dll: OK
+./sources/segoeui.ttf: OK
+./sources/setup.exe: OK
+./sources/setupcompat.dll: OK
+./sources/setupcore.dll: OK
+./sources/setupdiag.exe: OK
+./sources/setuperror.exe: OK
+./sources/setuphost.exe: OK
+./sources/setupmgr.dll: OK
+./sources/setupplatform.cfg: OK
+./sources/setupplatform.dll: OK
+./sources/setupplatform.exe: OK
+./sources/setupprep.exe: OK
+./sources/sfcn.dat: OK
+./sources/sflcid.dat: OK
+./sources/sflistrs1.dat: OK
+./sources/sflistw7.dat: OK
+./sources/sflistw8.dat: OK
+./sources/sflistw8.woa.dat: OK
+./sources/sflistwb.dat: OK
+./sources/sflistwb.woa.dat: OK
+./sources/sflistwt.dat: OK
+./sources/sflistwt.woa.dat: OK
+./sources/sfpat.inf: OK
+./sources/sfpatrs1.inf: OK
+./sources/sfpatw7.inf: OK
+./sources/sfpatw8.inf: OK
+./sources/sfpatwb.inf: OK
+./sources/sfpatwt.inf: OK
+./sources/smiengine.dll: OK
+./sources/spflvrnt.dll: OK
+./sources/spprgrss.dll: OK
+./sources/spwizeng.dll: OK
+./sources/spwizimg.dll: OK
+./sources/spwizres.dll: OK
+./sources/sqmapi.dll: OK
+./sources/uddicomp.dll: OK
+./sources/unattend.dll: OK
+./sources/unbcl.dll: OK
+./sources/uninstall.xml: OK
+./sources/uninstall_data.xml: OK
+./sources/updateagent.dll: OK
+./sources/upgloader.dll: OK
+./sources/upgradeagent.dll: OK
+./sources/upgradeagent.xml: OK
+./sources/upgrade_bulk.xml: OK
+./sources/upgrade_comp.xml: OK
+./sources/upgrade_data.xml: OK
+./sources/upgrade_frmwrk.xml: OK
+./sources/upgwow_bulk.xml: OK
+./sources/uxlib.dll: OK
+./sources/uxlibres.dll: OK
+./sources/vhdprovider.dll: OK
+./sources/w32uiimg.dll: OK
+./sources/w32uires.dll: OK
+./sources/warning.gif: OK
+./sources/wdsclient.dll: OK
+./sources/wdsclientapi.dll: OK
+./sources/wdscore.dll: OK
+./sources/wdscsl.dll: OK
+./sources/wdsimage.dll: OK
+./sources/wdstptc.dll: OK
+./sources/wdsupgcompl.dll: OK
+./sources/wdsutil.dll: OK
+./sources/wicadevicefilters.xml: OK
+./sources/wimprovider.dll: OK
+./sources/win32ui.dll: OK
+./sources/windlp.dll: OK
+./sources/winsetup.dll: OK
+./sources/winsetupboot.hiv: OK
+./sources/winsetupboot.sys: OK
+./sources/wpx.dll: OK
+./support/logging/pt-br/actionqueueetw.dll.mui: OK
+./support/logging/actionqueueetw.dll: OK
+./support/logging/auditetw.dll: OK
+./support/logging/cmisetupetw.dll: OK
+./support/logging/etwproviderinstall.vbs: OK
+./support/logging/microsoft-windows-actionqueue-instrumentation.man: OK
+./support/logging/microsoft-windows-audit-instrumentation.man: OK
+./support/logging/microsoft-windows-cmisetup-instrumentation.man: OK
+./support/logging/microsoft-windows-oobeldr-instrumentation.man: OK
+./support/logging/microsoft-windows-setup-events.man: OK
+./support/logging/microsoft-windows-setup-instrumentation.man: OK
+./support/logging/microsoft-windows-setupcl-instrumentation.man: OK
+./support/logging/microsoft-windows-setupugc-instrumentation.man: OK
+./support/logging/microsoft-windows-sysprep-instrumentation.man: OK
+./support/logging/microsoft-windows-windeploy-instrumentation.man: OK
+./support/logging/oobeldretw.dll: OK
+./support/logging/setupcletw.dll: OK
+./support/logging/setupetw.dll: OK
+./support/logging/setupugcetw.dll: OK
+./support/logging/sysprepetw.dll: OK
+./support/logging/windeployetw.dll: OK
+./support/logging/winsetupetw.dll: OK
+./autorun.inf: OK
+./bootmgr: OK
+./bootmgr.efi: OK
+./setup.exe: OK
+fsck.fat 4.2 (2021-01-31)
+/dev/sdb1: 991 files, 536219/1893060 clusters
+WINDOWS PASS real-installer-uefi-fat32-and-all-file-hashes
+WINDOWS START real-windows-to-go-32gib
+STARTED Creating Windows To Go media
+STAGE_TEXT 0 10 Analyzing existing boot records...
+PROGRESS 0 0
+PROGRESS_PERCENT 1000
+STAGE_TEXT 10 20 Clearing MBR/PBR/GPT structures...
+PROGRESS 0 0
+STAGE_TEXT 20 30 Partitioning (GPT)...
+PROGRESS 0 0
+Checking that no-one is using this disk right now ... OK
+
+Disk /dev/sda: 32 GiB, 34359738368 bytes, 67108864 sectors
+Disk model: QEMU HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+>>> Script header accepted.
+>>> Script header accepted.
+>>> Script header accepted.
+>>> Created a new GPT disklabel (GUID: B9DC8EFB-8ED8-4F41-887F-5EC120AE2487).
+/dev/sda1: Created a new partition 1 of type 'EFI System' and of size 512 MiB.
+/dev/sda2: Created a new partition 2 of type 'Microsoft basic data' and of size 31.5 GiB.
+/dev/sda3: Done.
+
+New situation:
+Disklabel type: gpt
+Disk identifier: B9DC8EFB-8ED8-4F41-887F-5EC120AE2487
+
+Device       Start      End  Sectors  Size Type
+/dev/sda1     2048  1050623  1048576  512M EFI System
+/dev/sda2  1050624 67106815 66056192 31.5G Microsoft basic data
+
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+STAGE_TEXT 30 150 Formatting (NTFS)...
+PROGRESS 0 0
+mkfs.fat 4.2 (2021-01-31)
+Cluster size has been automatically set to 4096 bytes.
+Creating NTFS volume structures.
+mkntfs completed successfully. Have a nice day.
+STAGE_TEXT 150 160 Writing Master Boot Record...
+PROGRESS_PERCENT 1000
+STAGE_TEXT 160 160 Writing Partition Boot Record...
+PROGRESS_PERCENT 1000
+LOG Applying the selected Windows image to NTFS
+STAGE_PERCENT 160 970 Applying Windows image
+PROGRESS 0 0
+LOG [WARNING] Ignoring extended attributes of 11151 files
+LOG Applying image 4 ("Windows 10 Pro") from "/tmp/lufus-iso.Nt4GDx/sources/install.esd" to NTFS volume "/dev/sda2"
+PROGRESS_PERCENT 0
+PROGRESS_PERCENT 0
+PROGRESS_PERCENT 0
+PROGRESS_PERCENT 10
+PROGRESS_PERCENT 10
+PROGRESS_PERCENT 10
+PROGRESS_PERCENT 20
+PROGRESS_PERCENT 20
+PROGRESS_PERCENT 20
+PROGRESS_PERCENT 29
+PROGRESS_PERCENT 29
+PROGRESS_PERCENT 29
+PROGRESS_PERCENT 39
+PROGRESS_PERCENT 39
+PROGRESS_PERCENT 39
+PROGRESS_PERCENT 49
+PROGRESS_PERCENT 49
+PROGRESS_PERCENT 59
+PROGRESS_PERCENT 59
+PROGRESS_PERCENT 59
+PROGRESS_PERCENT 69
+PROGRESS_PERCENT 69
+PROGRESS_PERCENT 69
+PROGRESS_PERCENT 78
+PROGRESS_PERCENT 78
+PROGRESS_PERCENT 78
+PROGRESS_PERCENT 88
+PROGRESS_PERCENT 88
+PROGRESS_PERCENT 88
+PROGRESS_PERCENT 98
+PROGRESS_PERCENT 98
+PROGRESS_PERCENT 98
+PROGRESS_PERCENT 108
+PROGRESS_PERCENT 108
+PROGRESS_PERCENT 118
+PROGRESS_PERCENT 118
+PROGRESS_PERCENT 118
+PROGRESS_PERCENT 127
+PROGRESS_PERCENT 127
+PROGRESS_PERCENT 127
+PROGRESS_PERCENT 137
+PROGRESS_PERCENT 137
+PROGRESS_PERCENT 137
+PROGRESS_PERCENT 147
+PROGRESS_PERCENT 147
+PROGRESS_PERCENT 147
+PROGRESS_PERCENT 157
+PROGRESS_PERCENT 157
+PROGRESS_PERCENT 157
+PROGRESS_PERCENT 167
+PROGRESS_PERCENT 167
+PROGRESS_PERCENT 176
+PROGRESS_PERCENT 176
+PROGRESS_PERCENT 176
+PROGRESS_PERCENT 186
+PROGRESS_PERCENT 186
+PROGRESS_PERCENT 186
+PROGRESS_PERCENT 196
+PROGRESS_PERCENT 196
+PROGRESS_PERCENT 196
+PROGRESS_PERCENT 206
+PROGRESS_PERCENT 206
+PROGRESS_PERCENT 206
+PROGRESS_PERCENT 216
+PROGRESS_PERCENT 216
+PROGRESS_PERCENT 216
+PROGRESS_PERCENT 225
+PROGRESS_PERCENT 225
+PROGRESS_PERCENT 235
+PROGRESS_PERCENT 235
+PROGRESS_PERCENT 235
+PROGRESS_PERCENT 245
+PROGRESS_PERCENT 245
+PROGRESS_PERCENT 245
+PROGRESS_PERCENT 255
+PROGRESS_PERCENT 255
+PROGRESS_PERCENT 255
+PROGRESS_PERCENT 265
+PROGRESS_PERCENT 265
+PROGRESS_PERCENT 265
+PROGRESS_PERCENT 274
+PROGRESS_PERCENT 274
+PROGRESS_PERCENT 274
+PROGRESS_PERCENT 284
+PROGRESS_PERCENT 284
+PROGRESS_PERCENT 294
+PROGRESS_PERCENT 294
+PROGRESS_PERCENT 294
+PROGRESS_PERCENT 304
+PROGRESS_PERCENT 304
+PROGRESS_PERCENT 304
+PROGRESS_PERCENT 314
+PROGRESS_PERCENT 314
+PROGRESS_PERCENT 314
+PROGRESS_PERCENT 323
+PROGRESS_PERCENT 323
+PROGRESS_PERCENT 323
+PROGRESS_PERCENT 333
+PROGRESS_PERCENT 333
+PROGRESS_PERCENT 333
+PROGRESS_PERCENT 343
+PROGRESS_PERCENT 343
+PROGRESS_PERCENT 353
+PROGRESS_PERCENT 353
+PROGRESS_PERCENT 353
+PROGRESS_PERCENT 363
+PROGRESS_PERCENT 363
+PROGRESS_PERCENT 363
+PROGRESS_PERCENT 372
+PROGRESS_PERCENT 372
+PROGRESS_PERCENT 372
+PROGRESS_PERCENT 382
+PROGRESS_PERCENT 382
+PROGRESS_PERCENT 382
+PROGRESS_PERCENT 392
+PROGRESS_PERCENT 392
+PROGRESS_PERCENT 392
+PROGRESS_PERCENT 402
+PROGRESS_PERCENT 402
+PROGRESS_PERCENT 412
+PROGRESS_PERCENT 412
+PROGRESS_PERCENT 412
+PROGRESS_PERCENT 421
+PROGRESS_PERCENT 421
+PROGRESS_PERCENT 421
+PROGRESS_PERCENT 431
+PROGRESS_PERCENT 431
+PROGRESS_PERCENT 431
+PROGRESS_PERCENT 441
+PROGRESS_PERCENT 441
+PROGRESS_PERCENT 441
+PROGRESS_PERCENT 451
+PROGRESS_PERCENT 451
+PROGRESS_PERCENT 461
+PROGRESS_PERCENT 461
+PROGRESS_PERCENT 461
+PROGRESS_PERCENT 470
+PROGRESS_PERCENT 470
+PROGRESS_PERCENT 470
+PROGRESS_PERCENT 480
+PROGRESS_PERCENT 480
+PROGRESS_PERCENT 480
+PROGRESS_PERCENT 490
+PROGRESS_PERCENT 490
+PROGRESS_PERCENT 490
+PROGRESS_PERCENT 500
+PROGRESS_PERCENT 500
+PROGRESS_PERCENT 500
+PROGRESS_PERCENT 510
+PROGRESS_PERCENT 510
+PROGRESS_PERCENT 519
+PROGRESS_PERCENT 519
+PROGRESS_PERCENT 519
+PROGRESS_PERCENT 529
+PROGRESS_PERCENT 529
+PROGRESS_PERCENT 529
+PROGRESS_PERCENT 539
+PROGRESS_PERCENT 539
+PROGRESS_PERCENT 539
+PROGRESS_PERCENT 549
+PROGRESS_PERCENT 549
+PROGRESS_PERCENT 549
+PROGRESS_PERCENT 559
+PROGRESS_PERCENT 559
+PROGRESS_PERCENT 559
+PROGRESS_PERCENT 568
+PROGRESS_PERCENT 568
+PROGRESS_PERCENT 578
+PROGRESS_PERCENT 578
+PROGRESS_PERCENT 578
+PROGRESS_PERCENT 588
+PROGRESS_PERCENT 588
+PROGRESS_PERCENT 588
+PROGRESS_PERCENT 598
+PROGRESS_PERCENT 598
+PROGRESS_PERCENT 598
+PROGRESS_PERCENT 608
+PROGRESS_PERCENT 608
+PROGRESS_PERCENT 608
+PROGRESS_PERCENT 617
+PROGRESS_PERCENT 617
+PROGRESS_PERCENT 617
+PROGRESS_PERCENT 627
+PROGRESS_PERCENT 627
+PROGRESS_PERCENT 637
+PROGRESS_PERCENT 637
+PROGRESS_PERCENT 637
+PROGRESS_PERCENT 647
+PROGRESS_PERCENT 647
+PROGRESS_PERCENT 647
+PROGRESS_PERCENT 657
+PROGRESS_PERCENT 657
+PROGRESS_PERCENT 657
+PROGRESS_PERCENT 666
+PROGRESS_PERCENT 666
+PROGRESS_PERCENT 666
+PROGRESS_PERCENT 676
+PROGRESS_PERCENT 676
+PROGRESS_PERCENT 676
+PROGRESS_PERCENT 686
+PROGRESS_PERCENT 686
+PROGRESS_PERCENT 696
+PROGRESS_PERCENT 696
+PROGRESS_PERCENT 696
+PROGRESS_PERCENT 706
+PROGRESS_PERCENT 706
+PROGRESS_PERCENT 706
+PROGRESS_PERCENT 715
+PROGRESS_PERCENT 715
+PROGRESS_PERCENT 715
+PROGRESS_PERCENT 725
+PROGRESS_PERCENT 725
+PROGRESS_PERCENT 725
+PROGRESS_PERCENT 735
+PROGRESS_PERCENT 735
+PROGRESS_PERCENT 735
+PROGRESS_PERCENT 745
+PROGRESS_PERCENT 745
+PROGRESS_PERCENT 755
+PROGRESS_PERCENT 755
+PROGRESS_PERCENT 755
+PROGRESS_PERCENT 764
+PROGRESS_PERCENT 764
+PROGRESS_PERCENT 764
+PROGRESS_PERCENT 774
+PROGRESS_PERCENT 774
+PROGRESS_PERCENT 774
+PROGRESS_PERCENT 784
+PROGRESS_PERCENT 784
+PROGRESS_PERCENT 784
+PROGRESS_PERCENT 794
+PROGRESS_PERCENT 794
+PROGRESS_PERCENT 794
+PROGRESS_PERCENT 804
+PROGRESS_PERCENT 804
+PROGRESS_PERCENT 813
+PROGRESS_PERCENT 813
+PROGRESS_PERCENT 813
+PROGRESS_PERCENT 823
+PROGRESS_PERCENT 823
+PROGRESS_PERCENT 823
+PROGRESS_PERCENT 833
+PROGRESS_PERCENT 833
+PROGRESS_PERCENT 833
+PROGRESS_PERCENT 843
+PROGRESS_PERCENT 843
+PROGRESS_PERCENT 843
+PROGRESS_PERCENT 853
+PROGRESS_PERCENT 853
+PROGRESS_PERCENT 853
+PROGRESS_PERCENT 862
+PROGRESS_PERCENT 862
+PROGRESS_PERCENT 872
+PROGRESS_PERCENT 872
+PROGRESS_PERCENT 872
+PROGRESS_PERCENT 882
+PROGRESS_PERCENT 882
+PROGRESS_PERCENT 882
+PROGRESS_PERCENT 892
+PROGRESS_PERCENT 892
+PROGRESS_PERCENT 892
+PROGRESS_PERCENT 902
+PROGRESS_PERCENT 902
+PROGRESS_PERCENT 902
+PROGRESS_PERCENT 911
+PROGRESS_PERCENT 911
+PROGRESS_PERCENT 921
+PROGRESS_PERCENT 921
+PROGRESS_PERCENT 921
+PROGRESS_PERCENT 931
+PROGRESS_PERCENT 931
+PROGRESS_PERCENT 931
+PROGRESS_PERCENT 941
+PROGRESS_PERCENT 941
+PROGRESS_PERCENT 941
+PROGRESS_PERCENT 951
+PROGRESS_PERCENT 951
+PROGRESS_PERCENT 951
+PROGRESS_PERCENT 960
+PROGRESS_PERCENT 960
+PROGRESS_PERCENT 960
+PROGRESS_PERCENT 970
+PROGRESS_PERCENT 970
+PROGRESS_PERCENT 0
+PROGRESS_PERCENT 10
+PROGRESS_PERCENT 20
+PROGRESS_PERCENT 29
+PROGRESS_PERCENT 39
+PROGRESS_PERCENT 49
+PROGRESS_PERCENT 59
+PROGRESS_PERCENT 69
+PROGRESS_PERCENT 78
+PROGRESS_PERCENT 88
+PROGRESS_PERCENT 98
+PROGRESS_PERCENT 108
+PROGRESS_PERCENT 118
+PROGRESS_PERCENT 127
+PROGRESS_PERCENT 137
+PROGRESS_PERCENT 147
+PROGRESS_PERCENT 157
+PROGRESS_PERCENT 167
+PROGRESS_PERCENT 176
+PROGRESS_PERCENT 186
+PROGRESS_PERCENT 196
+PROGRESS_PERCENT 206
+PROGRESS_PERCENT 216
+PROGRESS_PERCENT 225
+PROGRESS_PERCENT 235
+PROGRESS_PERCENT 245
+PROGRESS_PERCENT 255
+PROGRESS_PERCENT 265
+PROGRESS_PERCENT 284
+PROGRESS_PERCENT 294
+PROGRESS_PERCENT 304
+PROGRESS_PERCENT 314
+PROGRESS_PERCENT 323
+PROGRESS_PERCENT 333
+PROGRESS_PERCENT 343
+PROGRESS_PERCENT 363
+PROGRESS_PERCENT 372
+PROGRESS_PERCENT 382
+PROGRESS_PERCENT 392
+PROGRESS_PERCENT 402
+PROGRESS_PERCENT 412
+PROGRESS_PERCENT 421
+PROGRESS_PERCENT 431
+PROGRESS_PERCENT 441
+PROGRESS_PERCENT 451
+PROGRESS_PERCENT 461
+PROGRESS_PERCENT 470
+PROGRESS_PERCENT 480
+PROGRESS_PERCENT 490
+PROGRESS_PERCENT 500
+PROGRESS_PERCENT 510
+PROGRESS_PERCENT 519
+PROGRESS_PERCENT 529
+PROGRESS_PERCENT 539
+PROGRESS_PERCENT 549
+PROGRESS_PERCENT 559
+PROGRESS_PERCENT 568
+PROGRESS_PERCENT 578
+PROGRESS_PERCENT 588
+PROGRESS_PERCENT 598
+PROGRESS_PERCENT 608
+PROGRESS_PERCENT 627
+PROGRESS_PERCENT 637
+PROGRESS_PERCENT 647
+PROGRESS_PERCENT 657
+PROGRESS_PERCENT 666
+PROGRESS_PERCENT 676
+PROGRESS_PERCENT 686
+PROGRESS_PERCENT 696
+PROGRESS_PERCENT 706
+PROGRESS_PERCENT 715
+PROGRESS_PERCENT 725
+PROGRESS_PERCENT 735
+PROGRESS_PERCENT 745
+PROGRESS_PERCENT 755
+PROGRESS_PERCENT 764
+PROGRESS_PERCENT 774
+PROGRESS_PERCENT 784
+PROGRESS_PERCENT 794
+PROGRESS_PERCENT 804
+PROGRESS_PERCENT 813
+PROGRESS_PERCENT 833
+PROGRESS_PERCENT 843
+PROGRESS_PERCENT 853
+PROGRESS_PERCENT 862
+PROGRESS_PERCENT 872
+PROGRESS_PERCENT 882
+PROGRESS_PERCENT 902
+PROGRESS_PERCENT 911
+PROGRESS_PERCENT 921
+PROGRESS_PERCENT 931
+PROGRESS_PERCENT 941
+PROGRESS_PERCENT 951
+PROGRESS_PERCENT 960
+PROGRESS_PERCENT 970
+LOG Done applying WIM image.
+PROGRESS_PERCENT 980
+PROGRESS_PERCENT 980
+LOG Mounting Windows To Go filesystems
+LOG Setting Windows To Go internal disks offline
+LOG Creating Windows Boot Manager and BCD stores
+Get block device for mount point...
+Finished configuring UEFI boot files.
+PROGRESS_PERCENT 990
+STAGE_TEXT 970 970 Applying user options...
+PROGRESS_PERCENT 1000
+STAGE_TEXT 980 1000 Finalizing, please wait...
+PROGRESS_PERCENT 0
+PROGRESS_PERCENT 1000
+COMPLETE Windows To Go media created
+{0ce4991b-e6b3-4b16-b23c-5e0d9250e5d9}
+{1afa9c49-16ab-4a5c-901b-212802da9460}
+{3f7e7772-cfbb-482a-822c-3c6041cef567}
+{4636856e-540f-4170-a130-a84776f4c654}
+{5189b25c-5558-4bf2-bca4-289b11bd29e2}
+{6efb52bf-1766-41db-a6b3-0ee5eff72bd7}
+{7ea2e1ac-2e61-4728-aaa3-896d9d0a9f0e}
+{7ff607e0-4395-11db-b0de-0800200c9a66}
+{9dea862c-5cdd-4e70-acc1-f32b344d4795}
+{b2721d73-1db4-4c62-bf78-c548a880142d}
+{d36497bb-1ea4-455c-b784-7a62143c148c}
+4
+WINDOWS PASS real-windows-to-go-image-bcd-san-policy
+WINDOWS SUMMARY passed=2 failed=0
+[ 1140.676667] reboot: Power down

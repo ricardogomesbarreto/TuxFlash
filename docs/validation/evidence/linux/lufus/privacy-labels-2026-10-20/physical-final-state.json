@@ -1,0 +1,7 @@
+{
+  "volume_label": "WINDOWS 10",
+  "gpt_partition_name": "WINDOWS 10",
+  "unmounted": true,
+  "same_authorized_usb": true,
+  "personally_identifying_device_data_stored": false
+}

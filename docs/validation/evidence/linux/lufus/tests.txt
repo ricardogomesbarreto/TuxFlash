@@ -1,0 +1,14 @@
+1/9 lufus:helper-help          OK              0.07s
+2/9 lufus:windows-options      OK              0.06s
+3/9 lufus:downloads            OK              0.06s
+4/9 lufus:progress             OK              0.05s
+5/9 lufus:helper-durability    OK              0.04s
+6/9 lufus:licenses             OK              0.03s
+7/9 lufus:checksums-rufus-core OK              0.02s
+8/9 lufus:job-policy           OK              0.05s
+9/9 lufus:image-probe          OK              0.23s
+
+Ok:                9   
+Fail:              0   
+
+Full log written to /tmp/lufus-integration/project/linux/build/meson-logs/testlog.txt

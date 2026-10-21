@@ -1,0 +1,806 @@
+# TuxFlash translations. GPL-3.0-or-later.
+msgid ""
+msgstr "Project-Id-Version: TuxFlash 0.3.3\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: pt_BR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, c-format
+msgid "%s: %.1f%%"
+msgstr "%s: %.1f%%"
+
+msgid "No compatible devices found"
+msgstr "Nenhum dispositivo compatível encontrado"
+
+msgid "Standard Windows installation (UEFI/FAT32)"
+msgstr "Instalação padrão do Windows (UEFI/FAT32)"
+
+msgid "Standard Windows installation (UEFI:NTFS)"
+msgstr "Instalação padrão do Windows (UEFI:NTFS)"
+
+msgid "Standard Windows installation (BIOS/NTFS)"
+msgstr "Instalação padrão do Windows (BIOS/NTFS)"
+
+msgid "Standard Windows installation (BIOS + UEFI/NTFS)"
+msgstr "Instalação padrão do Windows (BIOS + UEFI/NTFS)"
+
+msgid "Windows To Go"
+msgstr "Windows To Go"
+
+msgid "Write in DD Image mode"
+msgstr "Gravar em modo de imagem DD"
+
+msgid "Persistent Linux live media"
+msgstr "Mídia Linux live com persistência"
+
+msgid "Read the USB back and compare it with the image after writing."
+msgstr "Após gravar, ler o pendrive e comparar os dados com a imagem."
+
+msgid "Verify the completed media and install the UEFI validation manifest."
+msgstr "Verificar a mídia pronta e instalar o manifesto de validação UEFI."
+
+msgid "Only local regular image files are supported"
+msgstr "Somente arquivos de imagem locais e regulares são aceitos"
+
+#, c-format
+msgid "%s — %s"
+msgstr "%s — %s"
+
+msgid "READY"
+msgstr "PRONTO"
+
+msgid "Detected Windows installation image"
+msgstr "Imagem de instalação do Windows detectada"
+
+msgid "Detected persistent-capable Linux live image"
+msgstr "Imagem Linux live compatível com persistência detectada"
+
+msgid "Detected non-Windows ISO; DD image mode selected"
+msgstr "ISO que não é do Windows detectada; modo de imagem DD selecionado"
+
+msgid "Select a bootable disk image"
+msgstr "Selecionar uma imagem de disco inicializável"
+
+msgid "Disk images"
+msgstr "Imagens de disco"
+
+msgid "All files"
+msgstr "Todos os arquivos"
+
+msgid "Windows ISO download failed"
+msgstr "Falha ao baixar a ISO do Windows"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Microsoft Website"
+msgstr "Site da Microsoft"
+
+msgid "ERROR"
+msgstr "ERRO"
+
+msgid "Official Microsoft ISO downloaded and selected"
+msgstr "ISO oficial da Microsoft baixada e selecionada"
+
+msgid "Choose a new local output file"
+msgstr "Escolha um novo arquivo local de destino"
+
+msgid "DOWNLOADING WINDOWS ISO"
+msgstr "BAIXANDO ISO DO WINDOWS"
+
+msgid "Contacting Microsoft…"
+msgstr "Conectando à Microsoft…"
+
+msgid "Save official Windows ISO"
+msgstr "Salvar ISO oficial do Windows"
+
+msgid "Download an official Windows ISO"
+msgstr "Baixar uma ISO oficial do Windows"
+
+msgid "TuxFlash obtains a temporary link from Microsoft and downloads the ISO directly from Microsoft."
+msgstr "O TuxFlash obtém um link temporário da Microsoft e baixa a ISO diretamente da Microsoft."
+
+msgid "Release"
+msgstr "Versão"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Architecture"
+msgstr "Arquitetura"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Download"
+msgstr "Baixar"
+
+msgid "Checksums"
+msgstr "Somas de verificação"
+
+msgid "CALCULATING CHECKSUMS"
+msgstr "CALCULANDO SOMAS DE VERIFICAÇÃO"
+
+msgid "CANCELLED"
+msgstr "CANCELADO"
+
+msgid "Write failed or authorization was cancelled"
+msgstr "A gravação falhou ou a autorização foi cancelada"
+
+msgid "START"
+msgstr "INICIAR"
+
+msgid "CANCEL"
+msgstr "CANCELAR"
+
+msgid "REQUESTING AUTHORIZATION"
+msgstr "SOLICITANDO AUTORIZAÇÃO"
+
+msgid "Authorizing…"
+msgstr "Autorizando…"
+
+msgid "Choose a new local output file and a source device"
+msgstr "Escolha um novo arquivo local de destino e um dispositivo de origem"
+
+#, c-format
+msgid "Save %s as an image?"
+msgstr "Salvar %s como imagem?"
+
+#, c-format
+msgid "TuxFlash will unmount %s for a consistent capture.\n\nOutput: %s"
+msgstr "O TuxFlash desmontará %s para obter uma captura consistente.\n\nDestino: %s"
+
+msgid "SAVE"
+msgstr "SALVAR"
+
+msgid "Save device image (raw, .vhd, or .vhdx)"
+msgstr "Salvar imagem do dispositivo (raw, .vhd ou .vhdx)"
+
+msgid "CANCELLING"
+msgstr "CANCELANDO"
+
+msgid "The selected device is read-only"
+msgstr "O dispositivo selecionado é somente leitura"
+
+msgid "Create media that silently erases a PC disk?"
+msgstr "Criar mídia que apaga um disco do computador sem confirmação?"
+
+#, c-format
+msgid "ALL DATA on the USB %s will be destroyed now.\n\nWhen this media is booted, Windows Setup will UNCONDITIONALLY ERASE the first detected disk (Disk 0) and install image index %u without prompting.\n\nImage: %s\nSize: %s"
+msgstr "TODOS OS DADOS do pendrive %s serão destruídos agora.\n\nAo iniciar por esta mídia, o instalador do Windows APAGARÁ INCONDICIONALMENTE o primeiro disco detectado (Disco 0) e instalará a imagem de índice %u sem pedir confirmação.\n\nImagem: %s\nTamanho: %s"
+
+#, c-format
+msgid "Erase %s?"
+msgstr "Apagar %s?"
+
+#, c-format
+msgid "ALL DATA on %s will be destroyed.\n\nImage: %s\nSize: %s"
+msgstr "TODOS OS DADOS de %s serão destruídos.\n\nImagem: %s\nTamanho: %s"
+
+msgid "CREATE DANGEROUS MEDIA"
+msgstr "CRIAR MÍDIA PERIGOSA"
+
+msgid "WRITE"
+msgstr "GRAVAR"
+
+msgid "I WILL disconnect every disk except the Windows installation target."
+msgstr "VOU desconectar todos os discos, exceto o destino da instalação do Windows."
+
+msgid "I WILL NOT leave this media connected to a PC I do not plan to erase."
+msgstr "NÃO VOU deixar esta mídia conectada a um computador que não pretendo apagar."
+
+msgid "I ACCEPT responsibility for any irreversible data loss."
+msgstr "ACEITO a responsabilidade por qualquer perda irreversível de dados."
+
+msgid "TuxFlash Log"
+msgstr "Log do TuxFlash"
+
+msgid "No log entries yet."
+msgstr "Nenhum registro no log."
+
+msgid "Ricardo Barreto — TuxFlash development"
+msgstr "Ricardo Barreto — desenvolvimento do TuxFlash"
+
+msgid "Pete Batard and Rufus contributors — upstream"
+msgstr "Pete Batard e colaboradores do Rufus — projeto original"
+
+msgid "Open Research Tools contributors — Linux implementation"
+msgstr "Colaboradores do Open Research Tools — implementação Linux"
+
+msgid "Ricardo Barreto and contributors"
+msgstr "Ricardo Barreto e colaboradores"
+
+msgid "Open Ricardo Barreto’s GitHub profile"
+msgstr "Abrir perfil de Ricardo Barreto no GitHub"
+
+msgid "Open Rufus contributors page"
+msgstr "Abrir página dos colaboradores do Rufus"
+
+msgid "Open Lufus contributors page"
+msgstr "Abrir página dos colaboradores do Lufus"
+
+msgid "Turn ISO images into bootable USB drives simply and safely."
+msgstr "Transforme imagens ISO em pendrives inicializáveis com simplicidade e segurança."
+
+msgid "Copyright © 2026 Ricardo Barreto\nCopyright © Pete Batard and Rufus contributors\nCopyright © 2026 Open Research Tools contributors"
+msgstr "Copyright © 2026 Ricardo Barreto\nCopyright © Pete Batard e colaboradores do Rufus\nCopyright © 2026 colaboradores do Open Research Tools"
+
+msgid "Read the GNU GPL v3 license"
+msgstr "Ler a licença GNU GPL v3"
+
+msgid "Wait for checksums to finish before closing TuxFlash"
+msgstr "Aguarde o cálculo das somas de verificação antes de fechar o TuxFlash"
+
+msgid "Cancel the active write before closing TuxFlash"
+msgstr "Cancele a gravação em andamento antes de fechar o TuxFlash"
+
+msgid "Cancel the active download before closing TuxFlash"
+msgstr "Cancele o download em andamento antes de fechar o TuxFlash"
+
+msgid "Disk or ISO image (Please select)"
+msgstr "Disco ou imagem ISO (selecione)"
+
+msgid "From image"
+msgstr "Conforme a imagem"
+
+msgid "BIOS (or UEFI-CSM)"
+msgstr "BIOS (ou UEFI-CSM)"
+
+msgid "UEFI (non CSM)"
+msgstr "UEFI (sem CSM)"
+
+msgid "BIOS or UEFI"
+msgstr "BIOS ou UEFI"
+
+msgid "Select"
+msgstr "Selecionar"
+
+msgid "Show advanced drive properties"
+msgstr "Mostrar propriedades avançadas do dispositivo"
+
+msgid "Drive Properties"
+msgstr "Propriedades do dispositivo"
+
+msgid "Refresh devices"
+msgstr "Atualizar dispositivos"
+
+msgid "Save this device as raw, VHD, or VHDX"
+msgstr "Salvar este dispositivo como raw, VHD ou VHDX"
+
+msgid "Device"
+msgstr "Dispositivo"
+
+msgid "Calculate image checksums"
+msgstr "Calcular somas de verificação da imagem"
+
+msgid "Download an official Windows ISO from Microsoft"
+msgstr "Baixar uma ISO oficial do Windows da Microsoft"
+
+msgid "Boot selection"
+msgstr "Seleção de boot"
+
+msgid "Image Option"
+msgstr "Opção de imagem"
+
+msgid "Remove requirement for 4GB+ RAM, Secure Boot and TPM 2.0"
+msgstr "Remover exigência de 4 GB+ de RAM, Secure Boot e TPM 2.0"
+
+msgid "Remove requirement for an online Microsoft account"
+msgstr "Remover exigência de conta Microsoft online"
+
+msgid "Disable data collection (skip privacy questions)"
+msgstr "Desativar coleta de dados (pular perguntas de privacidade)"
+
+msgid "Create a local account with username"
+msgstr "Criar uma conta local com o nome de usuário"
+
+msgid "Disable BitLocker automatic device encryption"
+msgstr "Desativar criptografia automática de dispositivos pelo BitLocker"
+
+msgid "Prevent Windows To Go from accessing internal disks"
+msgstr "Impedir que o Windows To Go acesse discos internos"
+
+msgid "⚠SILENTLY⚠ erase disk and install:"
+msgstr "⚠SEM CONFIRMAÇÃO⚠ apagar disco e instalar:"
+
+msgid "Creates media that does not prompt during Windows installation and unconditionally erases the first detected disk on the target PC. Disconnect every other disk before booting it."
+msgstr "Cria uma mídia que não pede confirmação durante a instalação do Windows e apaga incondicionalmente o primeiro disco detectado no computador de destino. Desconecte todos os outros discos antes de iniciar por ela."
+
+msgid "Windows image index"
+msgstr "Índice da imagem do Windows"
+
+msgid "Windows architecture"
+msgstr "Arquitetura do Windows"
+
+msgid "Windows To Go image index"
+msgstr "Índice da imagem do Windows To Go"
+
+msgid "Persistent partition size (MiB)"
+msgstr "Tamanho da partição persistente (MiB)"
+
+msgid "Determined by the selected image option"
+msgstr "Definido pela opção de imagem selecionada"
+
+msgid "Selected automatically from the image option"
+msgstr "Selecionado automaticamente conforme a opção de imagem"
+
+msgid "Partition scheme"
+msgstr "Esquema de partição"
+
+msgid "Target system"
+msgstr "Sistema de destino"
+
+msgid "List USB Hard Drives"
+msgstr "Listar discos rígidos USB"
+
+msgid "Add fixes for old BIOSes (extra partition, align, etc.)"
+msgstr "Adicionar correções para BIOS antigas (partição extra, alinhamento etc.)"
+
+msgid "Not available in this Linux version"
+msgstr "Indisponível nesta versão Linux"
+
+msgid "Verify written media (recommended)"
+msgstr "Verificar mídia gravada (recomendado)"
+
+msgid "Reads the completed filesystem and creates a signed UEFI validation manifest. Turn this off to skip the verification pass."
+msgstr "Lê o sistema de arquivos concluído e cria um manifesto de validação UEFI. Desative para pular a verificação."
+
+msgid "Default"
+msgstr "Padrão"
+
+msgid "4096 bytes"
+msgstr "4096 bytes"
+
+msgid "8192 bytes"
+msgstr "8192 bytes"
+
+msgid "16 kilobytes"
+msgstr "16 kilobytes"
+
+msgid "32 kilobytes"
+msgstr "32 kilobytes"
+
+msgid "1 pass"
+msgstr "1 passagem"
+
+msgid "2 passes"
+msgstr "2 passagens"
+
+msgid "3 passes"
+msgstr "3 passagens"
+
+msgid "4 passes"
+msgstr "4 passagens"
+
+msgid "Show advanced format options"
+msgstr "Mostrar opções avançadas de formatação"
+
+msgid "Quick format"
+msgstr "Formatação rápida"
+
+msgid "Create extended label and icon files"
+msgstr "Criar arquivos de rótulo estendido e ícone"
+
+msgid "Check device for bad blocks"
+msgstr "Verificar blocos defeituosos no dispositivo"
+
+msgid "Format Options"
+msgstr "Opções de formatação"
+
+msgid "Raw images preserve their embedded format"
+msgstr "Imagens raw preservam seu formato original"
+
+msgid "Volume label"
+msgstr "Rótulo do volume"
+
+msgid "File system"
+msgstr "Sistema de arquivos"
+
+msgid "Cluster size"
+msgstr "Tamanho do cluster"
+
+msgid "CLOSE"
+msgstr "FECHAR"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Finish the active operation before changing the language."
+msgstr "Conclua a operação em andamento antes de alterar o idioma."
+
+msgid "Language saved. Close and reopen TuxFlash to apply it."
+msgstr "Idioma salvo. Feche e abra novamente o TuxFlash para aplicar."
+
+msgid "Application language"
+msgstr "Idioma da aplicação"
+
+msgid "Choose a language. The change takes effect the next time you open TuxFlash."
+msgstr "Escolha um idioma. A alteração será aplicada na próxima vez que você abrir o TuxFlash."
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Bootable USB Creator for Linux"
+msgstr "Criador de pendrives inicializáveis para Linux"
+
+msgid "View log"
+msgstr "Ver log"
+
+msgid "About TuxFlash"
+msgstr "Sobre o TuxFlash"
+
+msgid "Writing virtual disk image"
+msgstr "Gravando imagem de disco virtual"
+
+msgid "Comparing virtual disk with target"
+msgstr "Comparando disco virtual com o destino"
+
+msgid "Verifying virtual disk image"
+msgstr "Verificando imagem de disco virtual"
+
+msgid "Virtual disk verification succeeded"
+msgstr "Verificação do disco virtual concluída"
+
+msgid "Verifying existing device image without rewriting it"
+msgstr "Verificando imagem existente no dispositivo sem regravá-la"
+
+msgid "Verifying existing device image"
+msgstr "Verificando imagem existente no dispositivo"
+
+msgid "Existing device image verification succeeded"
+msgstr "Verificação da imagem existente concluída"
+
+msgid "Existing device image verified"
+msgstr "Imagem existente no dispositivo verificada"
+
+msgid "Writing image"
+msgstr "Gravando imagem"
+
+msgid "Writing image data"
+msgstr "Gravando dados da imagem"
+
+msgid "Flushing data to the device"
+msgstr "Sincronizando dados com o dispositivo"
+
+msgid "Reading image back from target"
+msgstr "Lendo imagem de volta do destino"
+
+msgid "Verifying image data"
+msgstr "Verificando dados da imagem"
+
+msgid "Image verification succeeded"
+msgstr "Verificação da imagem concluída"
+
+msgid "Creating Windows installer media"
+msgstr "Criando mídia de instalação do Windows"
+
+msgid "Analyzing existing boot records..."
+msgstr "Analisando registros de boot existentes..."
+
+msgid "Clearing MBR/PBR/GPT structures..."
+msgstr "Limpando estruturas MBR/PBR/GPT..."
+
+msgid "Partitioning (MBR)..."
+msgstr "Particionando (MBR)..."
+
+msgid "Partitioning (GPT)..."
+msgstr "Particionando (GPT)..."
+
+msgid "Formatting (NTFS)..."
+msgstr "Formatando (NTFS)..."
+
+msgid "Formatting (FAT32)..."
+msgstr "Formatando (FAT32)..."
+
+msgid "Writing Master Boot Record..."
+msgstr "Gravando registro mestre de boot..."
+
+msgid "Writing Partition Boot Record..."
+msgstr "Gravando registro de boot da partição..."
+
+msgid "Copying ISO files"
+msgstr "Copiando arquivos da ISO"
+
+msgid "Applying Windows image"
+msgstr "Aplicando imagem do Windows"
+
+msgid "Applying Windows customization"
+msgstr "Aplicando personalizações do Windows"
+
+msgid "Applying user options..."
+msgstr "Aplicando opções do usuário..."
+
+msgid "Finalizing, please wait..."
+msgstr "Finalizando, aguarde..."
+
+msgid "Verifying media"
+msgstr "Verificando mídia"
+
+msgid "Windows installer media created"
+msgstr "Mídia de instalação do Windows criada"
+
+msgid "Creating Windows To Go media"
+msgstr "Criando mídia Windows To Go"
+
+msgid "Windows To Go media created"
+msgstr "Mídia Windows To Go criada"
+
+msgid "Creating persistent Linux media"
+msgstr "Criando mídia Linux com persistência"
+
+msgid "Inspecting Linux live media"
+msgstr "Inspecionando mídia Linux live"
+
+msgid "Creating persistent-media partitions"
+msgstr "Criando partições para mídia persistente"
+
+msgid "Formatting persistent-media filesystems"
+msgstr "Formatando sistemas de arquivos da mídia persistente"
+
+msgid "Mounting persistent live-media filesystem"
+msgstr "Montando sistema de arquivos da mídia live persistente"
+
+msgid "Copying Linux live-media files"
+msgstr "Copiando arquivos da mídia Linux live"
+
+msgid "Configuring Debian persistence"
+msgstr "Configurando persistência Debian"
+
+msgid "Configuring Ubuntu persistence"
+msgstr "Configurando persistência Ubuntu"
+
+msgid "Persistent Linux media created"
+msgstr "Mídia Linux com persistência criada"
+
+msgid "Running destructive fake-drive and bad-block test"
+msgstr "Executando teste destrutivo de capacidade falsa e blocos defeituosos"
+
+msgid "Capturing device image"
+msgstr "Capturando imagem do dispositivo"
+
+msgid "Reading source device"
+msgstr "Lendo dispositivo de origem"
+
+msgid "Flushing captured image"
+msgstr "Sincronizando imagem capturada"
+
+msgid "Creating virtual disk container"
+msgstr "Criando contêiner de disco virtual"
+
+msgid "Capturing device into virtual disk"
+msgstr "Capturando dispositivo em disco virtual"
+
+msgid "Device image captured"
+msgstr "Imagem do dispositivo capturada"
+
+msgid "Verification cancelled"
+msgstr "Verificação cancelada"
+
+msgid "Write cancelled; target is incomplete"
+msgstr "Gravação cancelada; o destino está incompleto"
+
+msgid "The image is larger than the selected device"
+msgstr "A imagem é maior que o dispositivo selecionado"
+
+msgid "The selected device changed after confirmation"
+msgstr "O dispositivo selecionado mudou após a confirmação"
+
+msgid "The selected device capacity changed after confirmation"
+msgstr "A capacidade do dispositivo mudou após a confirmação"
+
+msgid "Image decompression failed"
+msgstr "Falha ao descompactar a imagem"
+
+msgid "Rufus — upstream project"
+msgstr "Rufus — projeto de origem"
+
+msgid "Copyright © Pete Batard and Rufus contributors"
+msgstr "Copyright © Pete Batard e colaboradores do Rufus"
+
+msgid "GPL-3.0-or-later. Rufus is the original Windows application. Lufus supplies the native Linux foundation used by TuxFlash. Original source notices are retained. Source: https://github.com/pbatard/rufus"
+msgstr "GPL-3.0-or-later. O Rufus é a aplicação original para Windows. O Lufus fornece a base Linux nativa utilizada pelo TuxFlash. Os avisos dos fontes originais são preservados. Código: https://github.com/pbatard/rufus"
+
+msgid "BCD-SYS"
+msgstr "BCD-SYS"
+
+msgid "Copyright © Joseph P. Zeller and BCD-SYS contributors"
+msgstr "Copyright © Joseph P. Zeller e colaboradores do BCD-SYS"
+
+msgid "GPL-3.0-or-later. TuxFlash uses modified BCD scripts and registry templates. Source, patches and original notices accompany the application; the upstream AppImage is not included."
+msgstr "GPL-3.0-or-later. O TuxFlash usa scripts BCD e modelos de registro modificados. Código, alterações e avisos originais acompanham a aplicação; o AppImage original não é incluído."
+
+msgid "EfiFs"
+msgstr "EfiFs"
+
+msgid "Copyright © EfiFs and EDK II contributors"
+msgstr "Copyright © colaboradores do EfiFs e EDK II"
+
+msgid "GPL-3.0-or-later at project level. EDK II and other portions retain their own notices, including BSD-2-Clause-Patent. Source reference: https://github.com/pbatard/efifs"
+msgstr "GPL-3.0-or-later no projeto. As partes do EDK II e de outros componentes preservam seus próprios avisos, incluindo BSD-2-Clause-Patent. Referência dos fontes: https://github.com/pbatard/efifs"
+
+msgid "Fido"
+msgstr "Fido"
+
+msgid "Copyright © Pete Batard and Fido contributors"
+msgstr "Copyright © Pete Batard e colaboradores do Fido"
+
+msgid "GPL-3.0-or-later. The native Microsoft retail-ISO discovery code follows the Fido workflow. Source reference: https://github.com/pbatard/Fido"
+msgstr "GPL-3.0-or-later. A descoberta nativa de ISOs comerciais da Microsoft segue o fluxo do Fido. Referência dos fontes: https://github.com/pbatard/Fido"
+
+msgid "ms-sys boot-record sources"
+msgstr "Fontes de registros de boot ms-sys"
+
+msgid "Copyright © ms-sys contributors"
+msgstr "Copyright © colaboradores do ms-sys"
+
+msgid "GPL-2.0-or-later. Legacy BIOS boot-record code is inherited through Rufus. Its original source and license notices are retained."
+msgstr "GPL-2.0-or-later. O código dos registros de boot BIOS é herdado do Rufus. Seus fontes originais e avisos de licença são preservados."
+
+msgid "Noto Sans CJK"
+msgstr "Noto Sans CJK"
+
+msgid "Copyright © Noto font authors and contributors"
+msgstr "Copyright © autores e colaboradores das fontes Noto"
+
+msgid "SIL Open Font License 1.1 (OFL-1.1). The portable package includes this font to display Chinese. Its original notice is included in runtime/share/doc/tuxflash/dependencies/fonts-noto-cjk.copyright."
+msgstr "SIL Open Font License 1.1 (OFL-1.1). O pacote portátil inclui esta fonte para exibir chinês. O aviso original está em runtime/share/doc/tuxflash/dependencies/fonts-noto-cjk.copyright."
+
+msgid "ntfs-3g UEFI driver"
+msgstr "Driver UEFI ntfs-3g"
+
+msgid "Copyright © ntfs-3g and UEFI port contributors"
+msgstr "Copyright © colaboradores do ntfs-3g e da adaptação UEFI"
+
+msgid "GPL-2.0-or-later, with LGPL-2.0-or-later library portions. This driver is part of UEFI:NTFS. See original notices and source references in THIRD_PARTY_NOTICES.md."
+msgstr "GPL-2.0-or-later, com partes de bibliotecas sob LGPL-2.0-or-later. Este driver integra o UEFI:NTFS. Consulte os avisos originais e as referências aos fontes em THIRD_PARTY_NOTICES.md."
+
+msgid "UEFI:NTFS"
+msgstr "UEFI:NTFS"
+
+msgid "Copyright © Pete Batard and UEFI:NTFS contributors"
+msgstr "Copyright © Pete Batard e colaboradores do UEFI:NTFS"
+
+msgid "GPL-2.0-or-later. The boot loader and its components retain their original licenses and corresponding source references."
+msgstr "GPL-2.0-or-later. O carregador de boot e seus componentes preservam as licenças originais e as referências aos fontes correspondentes."
+
+msgid "uefi-md5sum"
+msgstr "uefi-md5sum"
+
+msgid "Copyright © Pete Batard and uefi-md5sum contributors"
+msgstr "Copyright © Pete Batard e colaboradores do uefi-md5sum"
+
+msgid "GPL-2.0-or-later. EFI media-verification loaders retain their original license notices. Source reference: https://github.com/pbatard/uefi-md5sum"
+msgstr "GPL-2.0-or-later. Os carregadores EFI de verificação de mídia preservam seus avisos de licença originais. Referência dos fontes: https://github.com/pbatard/uefi-md5sum"
+
+msgid "GLib and GIO"
+msgstr "GLib e GIO"
+
+msgid "Copyright © GLib contributors"
+msgstr "Copyright © colaboradores do GLib"
+
+msgid "Mainly LGPL-2.1-or-later, with separately licensed portions. The portable package bundles this dependency. Original notices and source-package identifiers are in runtime/share/doc/tuxflash. System installations retain the distribution notices."
+msgstr "Principalmente LGPL-2.1-or-later, com partes sob outras licenças. O pacote portátil inclui esta dependência. Avisos originais e identificação dos pacotes-fonte estão em runtime/share/doc/tuxflash. Instalações pelo sistema preservam os avisos da distribuição."
+
+msgid "GTK"
+msgstr "GTK"
+
+msgid "Copyright © GTK contributors"
+msgstr "Copyright © colaboradores do GTK"
+
+msgid "JSON-GLib"
+msgstr "JSON-GLib"
+
+msgid "Copyright © JSON-GLib contributors"
+msgstr "Copyright © colaboradores do JSON-GLib"
+
+msgid "LGPL-2.1-or-later. The portable package bundles this dependency. Original notices and source-package identifiers are in runtime/share/doc/tuxflash. System installations retain the distribution notices."
+msgstr "LGPL-2.1-or-later. O pacote portátil inclui esta dependência. Avisos originais e identificação dos pacotes-fonte estão em runtime/share/doc/tuxflash. Instalações pelo sistema preservam os avisos da distribuição."
+
+msgid "libadwaita"
+msgstr "libadwaita"
+
+msgid "Copyright © libadwaita contributors"
+msgstr "Copyright © colaboradores do libadwaita"
+
+msgid "LGPL-2.1-or-later, with separately licensed documentation and assets. The portable package bundles this dependency. Original notices and source-package identifiers are in runtime/share/doc/tuxflash. System installations retain the distribution notices."
+msgstr "LGPL-2.1-or-later, com documentação e recursos sob licenças próprias. O pacote portátil inclui esta dependência. Avisos originais e identificação dos pacotes-fonte estão em runtime/share/doc/tuxflash. Instalações pelo sistema preservam os avisos da distribuição."
+
+msgid "libsoup"
+msgstr "libsoup"
+
+msgid "Copyright © libsoup contributors"
+msgstr "Copyright © colaboradores do libsoup"
+
+msgid "Debian/Ubuntu disk and image utilities"
+msgstr "Utilitários de disco e imagem Debian/Ubuntu"
+
+msgid "Copyright © their respective upstream authors and contributors"
+msgstr "Copyright © respectivos autores e colaboradores dos projetos de origem"
+
+msgid "Utilities such as util-linux, dosfstools, ntfs-3g, e2fsprogs, wimlib, hivex, QEMU, F3, 7-Zip and compression tools keep their own licenses. The portable package bundles selected utilities; other installations may use system packages. See runtime/share/doc/tuxflash/dependencies and dependencies.json for notices, versions and source-package identifiers."
+msgstr "Utilitários como util-linux, dosfstools, ntfs-3g, e2fsprogs, wimlib, hivex, QEMU, F3, 7-Zip e ferramentas de compressão mantêm suas próprias licenças. O pacote portátil inclui utilitários selecionados; outras instalações podem usar pacotes do sistema. Consulte runtime/share/doc/tuxflash/dependencies e dependencies.json para avisos, versões e identificação dos pacotes-fonte."
+
+msgid "TuxFlash remains free and open-source software under GNU GPL version 3 or later (GPL-3.0-or-later). You may use, study, modify and redistribute it under that license. It is an independent Linux derivative of Rufus and Lufus, not an official Rufus release. Original authors keep their copyrights. Third-party components keep their own licenses; they are not relicensed as TuxFlash. The portable package includes application source in source/, the license in LICENSE.txt, and dependency notices in runtime/share/doc/tuxflash. Translated notices explain the licenses; the original license texts remain unchanged. See the licenses for their conditions and warranty disclaimers."
+msgstr "O TuxFlash continua sendo software livre e de código aberto sob a GNU GPL versão 3 ou posterior (GPL-3.0-or-later). Você pode usar, estudar, modificar e redistribuir o programa conforme essa licença. É um derivado Linux independente de Rufus e Lufus, sem ser uma versão oficial do Rufus. Os autores originais mantêm seus direitos autorais. Os componentes de terceiros preservam suas próprias licenças; elas não são substituídas pela licença do TuxFlash. O pacote portátil inclui o código da aplicação em source/, a licença em LICENSE.txt e os avisos das dependências em runtime/share/doc/tuxflash. Os avisos traduzidos explicam as licenças; os textos originais permanecem inalterados. Consulte as licenças para conhecer suas condições e exclusões de garantia."
+
+msgid "Updated in 0.3.2"
+msgstr "Atualizado na versão 0.3.2"
+
+msgid "Release notes now have their own page, separate from Legal."
+msgstr "As notas da versão agora têm uma página própria, separada da área Legal."
+
+msgid "Application and component license summaries are translated into Brazilian Portuguese, English, Simplified Chinese and Spanish."
+msgstr "Os resumos das licenças da aplicação e dos componentes estão traduzidos para Português do Brasil, inglês, chinês simplificado e espanhol."
+
+msgid "Legal notices now describe the portable dependencies and the Noto Sans CJK font accurately, while preserving original licenses and authors."
+msgstr "Os avisos legais agora descrevem corretamente as dependências do pacote portátil e a fonte Noto Sans CJK, preservando as licenças e os autores originais."
+
+msgid "Recent improvements"
+msgstr "Melhorias recentes"
+
+msgid "Version 0.3.1 introduced a saved interface-language selection and Ricardo Barreto’s developer credit with a GitHub link."
+msgstr "A versão 0.3.1 trouxe a escolha de idioma da interface salva e o crédito de desenvolvedor de Ricardo Barreto com link para o GitHub."
+
+msgid "Version 0.3.0 introduced the TuxFlash name and penguin icon, the x86-64 portable runtime and clearer partition/filesystem indicators."
+msgstr "A versão 0.3.0 trouxe o nome TuxFlash e o ícone de pinguim, o runtime portátil x86-64 e indicadores mais claros de particionamento e sistema de arquivos."
+
+msgid "Windows volume labels follow the ISO filename. DD/RAW offers read-back verification, and NTFS mounting can fall back from ntfs3 to ntfs-3g."
+msgstr "Os rótulos de volume do Windows acompanham o nome da ISO. O modo DD/RAW oferece conferência por leitura, e a montagem NTFS pode usar ntfs-3g quando ntfs3 falha."
+
+msgid "Rufus, Lufus and TuxFlash"
+msgstr "Rufus, Lufus e TuxFlash"
+
+msgid "Rufus is the original Windows application by Pete Batard and contributors. Its original Windows code and resources remain in this project."
+msgstr "O Rufus é a aplicação original para Windows, de Pete Batard e colaboradores. Seus fontes e recursos Windows originais continuam neste projeto."
+
+msgid "Lufus provides the native C/GTK Linux foundation and a separate privileged helper for device operations."
+msgstr "O Lufus fornece a base Linux nativa em C/GTK e um helper separado, com privilégios, para operações em dispositivos."
+
+msgid "TuxFlash builds on that foundation with the current identity, Ricardo Barreto’s contributions, four interface languages, packaging and integration fixes. It runs natively on Linux without Wine."
+msgstr "O TuxFlash evolui essa base com a identidade atual, as contribuições de Ricardo Barreto, quatro idiomas de interface, empacotamento e correções de integração. Ele roda nativamente no Linux, sem Wine."
+
+msgid "The Linux GTK interface follows the supplied Lufus layout; it is not the original Win32 window. TuxFlash is an independent derivative, not an official Rufus Linux release."
+msgstr "A interface GTK Linux segue a organização do Lufus recebido; ela não é a janela Win32 original. O TuxFlash é um derivado independente, sem ser uma versão oficial do Rufus para Linux."
+
+msgid "Scope and known limits"
+msgstr "Escopo e limites conhecidos"
+
+msgid "The ready-to-run portable package is Linux x86-64. Other architectures require a separate build and validation; no claim is made for every Linux distribution or every ISO."
+msgstr "O pacote portátil pronto é para Linux x86-64. Outras arquiteturas exigem compilação e validação próprias; não há garantia para toda distribuição Linux ou qualquer ISO."
+
+msgid "FFU is not supported. Windows To Go through a real desktop, Secure Boot and real Linux persistence across reboots still lack complete validation. Full feature parity with Rufus Windows has not been achieved."
+msgstr "FFU não é suportado. Windows To Go até uma sessão real de desktop, Secure Boot e persistência Linux real entre reinicializações ainda não têm validação completa. Não há equivalência integral de recursos com o Rufus Windows."
+
+msgid "Free and open source"
+msgstr "Software livre e código aberto"
+
+msgid "TuxFlash continues under GPL-3.0-or-later. You can use, study, modify and redistribute it under that license. Third-party licenses and original credits remain intact; see Legal for details."
+msgstr "O TuxFlash continua sob GPL-3.0-or-later. Você pode usar, estudar, modificar e redistribuir o programa conforme essa licença. As licenças de terceiros e os créditos originais permanecem preservados; veja a área Legal para detalhes."
+
+
+msgid "Lufus — base project for the Linux version"
+msgstr "Lufus — projeto-base da versão Linux"
+
+msgid "Open the Lufus repository"
+msgstr "Abrir o repositório do Lufus"
+
+msgid "Native bootable USB creator for Linux"
+msgstr "Criador de pendrives inicializáveis nativo para Linux"
+
+msgid "Operation completed successfully"
+msgstr "Operação concluída com sucesso"
+
+msgid "Updated in 0.3.3"
+msgstr "Novidades da versão 0.3.3"
+
+msgid "Stronger system-disk and active-swap protection, exact capacity checks and device sequence validation when supported by the kernel."
+msgstr "Proteção reforçada de discos do sistema e swap ativo, conferência exata da capacidade e validação da sequência do dispositivo quando disponível no kernel."
+
+msgid "The helper rechecks the target before external tools run. The interface reports success only after the helper exits successfully and its output has been read."
+msgstr "O helper confere novamente o destino antes de executar ferramentas externas. A interface só informa sucesso após o término correto do helper e a leitura de sua saída."
+
+msgid "Explicit Lufus repository credit, a native Linux description, safer legacy Polkit defaults and a portable package without unrelated application icons."
+msgstr "Crédito explícito ao repositório Lufus, descrição de aplicação nativa Linux, padrões mais restritos na política Polkit legada e pacote portátil sem ícones de aplicações não relacionadas."
+
+msgid "The selected device changed or became read-only"
+msgstr "O dispositivo selecionado mudou ou passou a ser somente leitura"
+
+msgid "Target contains active swap or mount inspection failed"
+msgstr "O destino contém swap ativo ou houve falha ao verificar as montagens"

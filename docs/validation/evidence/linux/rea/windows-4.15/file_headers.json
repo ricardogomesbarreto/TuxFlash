@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "value": {
+    "evidence_id": "ev_74ed1f64405192ce4c13c593ff9639b514f3a2349c34cc7512ffff62455e6c70",
+    "subject": {
+      "name": "rufus-4.15.exe",
+      "digest": {
+        "sha256": "84c8a437f8af89257524478489e5c85f1edf25f761d299e2bcde46ac0afbe106"
+      },
+      "local_path": "/caminho/das/imagens/rufus-4.15.exe",
+      "format": "unknown",
+      "architecture": null
+    },
+    "provider": {
+      "id": "gnu.objdump",
+      "name": "GNU objdump",
+      "version": null
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.reverse-engineering.command-observation",
+    "operation": "inspect_with_objdump",
+    "parameters": {
+      "path": "/caminho/das/imagens/rufus-4.15.exe",
+      "operation": "file_headers",
+      "follow_debug_links": false,
+      "provider_executable": "objdump",
+      "command_arguments": [
+        "-f",
+        "/caminho/das/imagens/rufus-4.15.exe"
+      ]
+    },
+    "raw_result": {
+      "stdout": "\n/caminho/das/imagens/rufus-4.15.exe:     file format pei-x86-64\narchitecture: i386:x86-64, flags 0x0000012f:\nHAS_RELOC, EXEC_P, HAS_LINENO, HAS_DEBUG, HAS_LOCALS, D_PAGED\nstart address 0x00000001405a46f0\n\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "84c8a437f8af89257524478489e5c85f1edf25f761d299e2bcde46ac0afbe106",
+      "artifact_changed": false
+    },
+    "normalized_result": {
+      "stdout": "\n/caminho/das/imagens/rufus-4.15.exe:     file format pei-x86-64\narchitecture: i386:x86-64, flags 0x0000012f:\nHAS_RELOC, EXEC_P, HAS_LINENO, HAS_DEBUG, HAS_LOCALS, D_PAGED\nstart address 0x00000001405a46f0\n\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "84c8a437f8af89257524478489e5c85f1edf25f761d299e2bcde46ac0afbe106",
+      "artifact_changed": false
+    },
+    "confidence": "observed",
+    "authority": "shipped-artifact",
+    "environment": {},
+    "limitations": [
+      "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+      "A non-zero process exit is preserved as an observed command result.",
+      "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "/caminho/das/imagens/rufus-4.15.exe"
+      }
+    ],
+    "evidence_links": []
+  }
+}

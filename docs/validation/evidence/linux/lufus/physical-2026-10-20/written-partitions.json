@@ -1,0 +1,14 @@
+[
+  {
+    "node": "/dev/sda1",
+    "start": 64,
+    "size": 6121568,
+    "type": "0"
+  },
+  {
+    "node": "/dev/sda2",
+    "start": 8452,
+    "size": 10240,
+    "type": "ef"
+  }
+]

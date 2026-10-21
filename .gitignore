@@ -1,0 +1,28 @@
+# Generated outputs and local release archives
+/build/
+/dist/
+/archive/
+/linux/runtime/bin/tuxflash
+/linux/runtime/bin/lufus
+/linux/runtime/libexec/tuxflash-helper
+/linux/runtime/libexec/lufus-helper
+/linux/runtime/libexec/bcd-sys/set-windows-san-policy
+# Editor and interpreter caches
+__pycache__/
+*.py[cod]
+*.swp
+*.swo
+.DS_Store
+
+# Machine-local integrity inventory (includes ignored delivery artifacts)
+/docs/validation/integrity.json
+# Credentials, local configuration and editor caches
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.venv/
+.idea/
+.vscode/
+.pytest_cache/

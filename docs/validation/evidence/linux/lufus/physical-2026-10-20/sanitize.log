@@ -1,0 +1,28 @@
+TAP version 14
+# random seed: R02S8825c3a0ecb4a3fa4ef2862ff21ed0c6
+1..10
+# Start of helper-durability tests
+PROGRESS 8192 20480
+PROGRESS 16384 20480
+PROGRESS 20480 20480
+ok 1 /helper-durability/periodic-and-tail-commits
+ok 2 /helper-durability/empty-commit
+PROGRESS 8 15
+PROGRESS 15 15
+ok 3 /helper-durability/validation-target-bytes
+# End of helper-durability tests
+# Start of helper-image-copy tests
+PROGRESS 8192 8193
+PROGRESS 8193 8193
+ok 4 /helper-image-copy/known-exact
+PROGRESS 8192 0
+PROGRESS 8193 0
+ok 5 /helper-image-copy/stream-exact
+ok 6 /helper-image-copy/source-shortened
+ok 7 /helper-image-copy/source-grown
+PROGRESS 8192 0
+ok 8 /helper-image-copy/stream-over-capacity
+PROGRESS 8192 8193
+ok 9 /helper-image-copy/known-over-capacity
+ok 10 /helper-image-copy/empty-stream
+# End of helper-image-copy tests

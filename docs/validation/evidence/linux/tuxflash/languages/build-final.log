@@ -1,0 +1,455 @@
+Cleaning... 0 files.
+The Meson build system
+Version: 1.10.1
+Source dir: /tmp/lufus-integration/project/linux
+Build dir: /tmp/lufus-integration/project/linux/build-local
+Build type: native build
+Project name: tuxflash
+Project version: 0.3.1
+C compiler for the host machine: cc (gcc 15.2.0 "cc (Ubuntu 15.2.0-16ubuntu1) 15.2.0")
+C linker for the host machine: cc ld.bfd 2.46
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Dependency gtk4 found: YES 4.22.4 (cached)
+Dependency libadwaita-1 found: YES 1.9.1 (cached)
+Dependency libsoup-3.0 found: YES 3.6.6 (cached)
+Dependency json-glib-1.0 found: YES 1.10.8 (cached)
+Dependency hivex found: YES 1.3.24 (cached)
+Dependency threads found: YES unknown (cached)
+Found pkg-config: YES (/usr/bin/pkg-config) 2.5.1
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Program /tmp/lufus-integration/sysroot/usr/bin/glib-compile-resources found: YES (/tmp/lufus-integration/sysroot/usr/bin/glib-compile-resources)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency glib-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency glib-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency glib-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Dependency glib-2.0 found: YES 2.88.0 (cached)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Program msgfmt found: YES (/tmp/lufus-integration/sysroot/usr/bin/msgfmt)
+Program msginit found: YES (/tmp/lufus-integration/sysroot/usr/bin/msginit)
+Program msgmerge found: YES (/tmp/lufus-integration/sysroot/usr/bin/msgmerge)
+Program xgettext found: YES (/tmp/lufus-integration/sysroot/usr/bin/xgettext)
+Dependency gio-2.0 found: YES 2.88.0 (cached)
+Build targets in project: 44
+
+tuxflash 0.3.1
+
+  User defined options
+    buildtype : release
+    libexecdir: libexec
+    prefix    : /usr
+
+Found ninja-1.13.2 at /tmp/lufus-integration/sysroot/usr/bin/ninja
+ninja: Entering directory `/tmp/lufus-integration/project/linux/build-local'
+[1/5] Compiling C object test-language.p/src_language.c.o
+[2/5] Compiling C object tuxflash.p/src_language.c.o
+[3/5] Linking target test-language
+[4/5] Compiling C object tuxflash.p/src_main.c.o
+In file included from /tmp/lufus-integration/sysroot/usr/include/gtk-4.0/gtk/gtk.h:36,
+                 from /tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adwaita.h:9,
+                 from ../src/main.c:18:
+/tmp/lufus-integration/sysroot/usr/include/gtk-4.0/gtk/gtkaccessiblehypertext.h:22:108: warning: ISO C does not allow extra ‘;’ outside of a function [-Wpedantic]
+   22 | G_DECLARE_FINAL_TYPE (GtkAccessibleHyperlink, gtk_accessible_hyperlink, GTK, ACCESSIBLE_HYPERLINK, GObject);
+      |                                                                                                            ^
+../src/main.c: In function ‘show_microsoft_download_error’:
+../src/main.c:692:5: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+  692 |     AdwMessageDialog *dialog = ADW_MESSAGE_DIALOG(adw_message_dialog_new(
+      |     ^~~~~~~~~~~~~~~~
+In file included from /tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adwaita.h:63:
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:694:5: warning: ‘adw_message_dialog_add_response’ is deprecated: Use 'adw_alert_dialog_add_response' instead [-Wdeprecated-declarations]
+  694 |     adw_message_dialog_add_response(dialog, "close", _("Close"));
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:95:6: note: declared here
+   95 | void adw_message_dialog_add_response (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:696:9: warning: ‘adw_message_dialog_add_response’ is deprecated: Use 'adw_alert_dialog_add_response' instead [-Wdeprecated-declarations]
+  696 |         adw_message_dialog_add_response(dialog, "website",
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:95:6: note: declared here
+   95 | void adw_message_dialog_add_response (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:698:9: warning: ‘adw_message_dialog_set_response_appearance’ is deprecated: Use 'adw_alert_dialog_set_response_appearance' instead [-Wdeprecated-declarations]
+  698 |         adw_message_dialog_set_response_appearance(
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:120:23: note: declared here
+  120 | void                  adw_message_dialog_set_response_appearance (AdwMessageDialog      *self,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:703:5: warning: ‘adw_message_dialog_set_default_response’ is deprecated: Use 'adw_alert_dialog_set_default_response' instead [-Wdeprecated-declarations]
+  703 |     adw_message_dialog_set_default_response(dialog, "close");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:135:13: note: declared here
+  135 | void        adw_message_dialog_set_default_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:704:5: warning: ‘adw_message_dialog_set_close_response’ is deprecated: Use 'adw_alert_dialog_set_close_response' instead [-Wdeprecated-declarations]
+  704 |     adw_message_dialog_set_close_response(dialog, "close");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:141:13: note: declared here
+  141 | void        adw_message_dialog_set_close_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘on_download_clicked’:
+../src/main.c:847:5: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+  847 |     dialog = ADW_MESSAGE_DIALOG(adw_message_dialog_new(GTK_WINDOW(state->window),
+      |     ^~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:859:5: warning: ‘adw_message_dialog_set_extra_child’ is deprecated: Use 'adw_alert_dialog_set_extra_child' instead [-Wdeprecated-declarations]
+  859 |     adw_message_dialog_set_extra_child(dialog, grid);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:91:12: note: declared here
+   91 | void       adw_message_dialog_set_extra_child (AdwMessageDialog *self,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:860:5: warning: ‘adw_message_dialog_add_responses’ is deprecated: Use 'adw_alert_dialog_add_responses' instead [-Wdeprecated-declarations]
+  860 |     adw_message_dialog_add_responses(dialog, "cancel", _("Cancel"),
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:104:6: note: declared here
+  104 | void adw_message_dialog_add_responses (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:863:5: warning: ‘adw_message_dialog_set_default_response’ is deprecated: Use 'adw_alert_dialog_set_default_response' instead [-Wdeprecated-declarations]
+  863 |     adw_message_dialog_set_default_response(dialog, "download");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:135:13: note: declared here
+  135 | void        adw_message_dialog_set_default_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:864:5: warning: ‘adw_message_dialog_set_response_appearance’ is deprecated: Use 'adw_alert_dialog_set_response_appearance' instead [-Wdeprecated-declarations]
+  864 |     adw_message_dialog_set_response_appearance(dialog, "download", ADW_RESPONSE_SUGGESTED);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:120:23: note: declared here
+  120 | void                  adw_message_dialog_set_response_appearance (AdwMessageDialog      *self,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘hashes_finished’:
+../src/main.c:908:13: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+  908 |             adw_message_dialog_new(GTK_WINDOW(state->window), _("Checksums"), body));
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:909:9: warning: ‘adw_message_dialog_add_response’ is deprecated: Use 'adw_alert_dialog_add_response' instead [-Wdeprecated-declarations]
+  909 |         adw_message_dialog_add_response(dialog, "close", _("Close"));
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:95:6: note: declared here
+   95 | void adw_message_dialog_add_response (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘update_silent_confirmation’:
+../src/main.c:1155:5: warning: ‘adw_message_dialog_set_response_enabled’ is deprecated: Use 'adw_alert_dialog_set_response_enabled' instead [-Wdeprecated-declarations]
+ 1155 |     adw_message_dialog_set_response_enabled(dialog, "write", accepted);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:128:10: note: declared here
+  128 | void     adw_message_dialog_set_response_enabled (AdwMessageDialog *self,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘capture_dialog_finished’:
+../src/main.c:1196:5: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+ 1196 |     dialog = ADW_MESSAGE_DIALOG(adw_message_dialog_new(GTK_WINDOW(state->window), heading, body));
+      |     ^~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1197:5: warning: ‘adw_message_dialog_add_responses’ is deprecated: Use 'adw_alert_dialog_add_responses' instead [-Wdeprecated-declarations]
+ 1197 |     adw_message_dialog_add_responses(dialog, "cancel", _("Cancel"), "write", _("SAVE"), NULL);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:104:6: note: declared here
+  104 | void adw_message_dialog_add_responses (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1198:5: warning: ‘adw_message_dialog_set_default_response’ is deprecated: Use 'adw_alert_dialog_set_default_response' instead [-Wdeprecated-declarations]
+ 1198 |     adw_message_dialog_set_default_response(dialog, "cancel");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:135:13: note: declared here
+  135 | void        adw_message_dialog_set_default_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1199:5: warning: ‘adw_message_dialog_set_close_response’ is deprecated: Use 'adw_alert_dialog_set_close_response' instead [-Wdeprecated-declarations]
+ 1199 |     adw_message_dialog_set_close_response(dialog, "cancel");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:141:13: note: declared here
+  141 | void        adw_message_dialog_set_close_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘on_start_clicked’:
+../src/main.c:1331:5: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+ 1331 |     dialog = ADW_MESSAGE_DIALOG(adw_message_dialog_new(GTK_WINDOW(state->window), heading, body));
+      |     ^~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1332:5: warning: ‘adw_message_dialog_add_responses’ is deprecated: Use 'adw_alert_dialog_add_responses' instead [-Wdeprecated-declarations]
+ 1332 |     adw_message_dialog_add_responses(
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:104:6: note: declared here
+  104 | void adw_message_dialog_add_responses (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1336:5: warning: ‘adw_message_dialog_set_default_response’ is deprecated: Use 'adw_alert_dialog_set_default_response' instead [-Wdeprecated-declarations]
+ 1336 |     adw_message_dialog_set_default_response(dialog, "cancel");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:135:13: note: declared here
+  135 | void        adw_message_dialog_set_default_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1337:5: warning: ‘adw_message_dialog_set_close_response’ is deprecated: Use 'adw_alert_dialog_set_close_response' instead [-Wdeprecated-declarations]
+ 1337 |     adw_message_dialog_set_close_response(dialog, "cancel");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:141:13: note: declared here
+  141 | void        adw_message_dialog_set_close_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1338:5: warning: ‘adw_message_dialog_set_response_appearance’ is deprecated: Use 'adw_alert_dialog_set_response_appearance' instead [-Wdeprecated-declarations]
+ 1338 |     adw_message_dialog_set_response_appearance(dialog, "write", ADW_RESPONSE_DESTRUCTIVE);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:120:23: note: declared here
+  120 | void                  adw_message_dialog_set_response_appearance (AdwMessageDialog      *self,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1350:9: warning: ‘adw_message_dialog_set_extra_child’ is deprecated: Use 'adw_alert_dialog_set_extra_child' instead [-Wdeprecated-declarations]
+ 1350 |         adw_message_dialog_set_extra_child(dialog, acknowledgements);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:91:12: note: declared here
+   91 | void       adw_message_dialog_set_extra_child (AdwMessageDialog *self,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1357:9: warning: ‘adw_message_dialog_set_response_enabled’ is deprecated: Use 'adw_alert_dialog_set_response_enabled' instead [-Wdeprecated-declarations]
+ 1357 |         adw_message_dialog_set_response_enabled(dialog, "write", FALSE);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:128:10: note: declared here
+  128 | void     adw_message_dialog_set_response_enabled (AdwMessageDialog *self,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘on_show_about’:
+../src/main.c:1453:5: warning: ‘adw_about_window_new’ is deprecated: Use 'adw_about_dialog_new' instead [-Wdeprecated-declarations]
+ 1453 |     AdwAboutWindow *about = ADW_ABOUT_WINDOW(adw_about_window_new());
+      |     ^~~~~~~~~~~~~~
+In file included from /tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adwaita.h:25:
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:26:12: note: declared here
+   26 | GtkWidget *adw_about_window_new (void) G_GNUC_WARN_UNUSED_RESULT;
+      |            ^~~~~~~~~~~~~~~~~~~~
+../src/main.c:1465:5: warning: ‘adw_about_window_set_application_name’ is deprecated: Use 'adw_about_dialog_set_application_name' instead [-Wdeprecated-declarations]
+ 1465 |     adw_about_window_set_application_name(about, "TuxFlash");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:35:13: note: declared here
+   35 | void        adw_about_window_set_application_name (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1466:5: warning: ‘adw_about_window_set_application_icon’ is deprecated: Use 'adw_about_dialog_set_application_icon' instead [-Wdeprecated-declarations]
+ 1466 |     adw_about_window_set_application_icon(about, APP_ID);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:41:13: note: declared here
+   41 | void        adw_about_window_set_application_icon (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1467:5: warning: ‘adw_about_window_set_version’ is deprecated: Use 'adw_about_dialog_set_version' instead [-Wdeprecated-declarations]
+ 1467 |     adw_about_window_set_version(about, LUFUS_VERSION);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:53:13: note: declared here
+   53 | void        adw_about_window_set_version (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1468:5: warning: ‘adw_about_window_set_website’ is deprecated: Use 'adw_about_dialog_set_website' instead [-Wdeprecated-declarations]
+ 1468 |     adw_about_window_set_website(about, "https://github.com/ricardogomesbarreto");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:77:13: note: declared here
+   77 | void        adw_about_window_set_website (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1469:5: warning: ‘adw_about_window_set_developer_name’ is deprecated: Use 'adw_about_dialog_set_developer_name' instead [-Wdeprecated-declarations]
+ 1469 |     adw_about_window_set_developer_name(about,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:47:13: note: declared here
+   47 | void        adw_about_window_set_developer_name (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1471:5: warning: ‘adw_about_window_set_developers’ is deprecated: Use 'adw_about_dialog_set_developers' instead [-Wdeprecated-declarations]
+ 1471 |     adw_about_window_set_developers(about, developers);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:112:21: note: declared here
+  112 | void                adw_about_window_set_developers (AdwAboutWindow  *self,
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1484:5: warning: ‘adw_about_window_set_comments’ is deprecated: Use 'adw_about_dialog_set_comments' instead [-Wdeprecated-declarations]
+ 1484 |     adw_about_window_set_comments(about,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:71:13: note: declared here
+   71 | void        adw_about_window_set_comments (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1486:5: warning: ‘adw_about_window_set_copyright’ is deprecated: Use 'adw_about_dialog_set_copyright' instead [-Wdeprecated-declarations]
+ 1486 |     adw_about_window_set_copyright(about,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:152:13: note: declared here
+  152 | void        adw_about_window_set_copyright (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1490:5: warning: ‘adw_about_window_set_license_type’ is deprecated: Use 'adw_about_dialog_set_license_type' instead [-Wdeprecated-declarations]
+ 1490 |     adw_about_window_set_license_type(about, GTK_LICENSE_CUSTOM);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:158:12: note: declared here
+  158 | void       adw_about_window_set_license_type (AdwAboutWindow *self,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1491:5: warning: ‘adw_about_window_set_license’ is deprecated: Use 'adw_about_dialog_set_license' instead [-Wdeprecated-declarations]
+ 1491 |     adw_about_window_set_license(about,
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:164:13: note: declared here
+  164 | void        adw_about_window_set_license (AdwAboutWindow *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1501:9: warning: ‘adw_about_window_add_legal_section’ is deprecated: Use 'adw_about_dialog_add_legal_section' instead [-Wdeprecated-declarations]
+ 1501 |         adw_about_window_add_legal_section(about,
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-about-window.h:168:6: note: declared here
+  168 | void adw_about_window_add_legal_section (AdwAboutWindow *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function ‘on_language_clicked’:
+../src/main.c:1825:5: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+ 1825 |     AdwMessageDialog *dialog = ADW_MESSAGE_DIALOG(adw_message_dialog_new(
+      |     ^~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1830:5: warning: ‘adw_message_dialog_set_extra_child’ is deprecated: Use 'adw_alert_dialog_set_extra_child' instead [-Wdeprecated-declarations]
+ 1830 |     adw_message_dialog_set_extra_child(dialog, choice);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:91:12: note: declared here
+   91 | void       adw_message_dialog_set_extra_child (AdwMessageDialog *self,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1832:5: warning: ‘adw_message_dialog_add_responses’ is deprecated: Use 'adw_alert_dialog_add_responses' instead [-Wdeprecated-declarations]
+ 1832 |     adw_message_dialog_add_responses(dialog, "cancel", _("Cancel"), "save", _("Save"), NULL);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:104:6: note: declared here
+  104 | void adw_message_dialog_add_responses (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1833:5: warning: ‘adw_message_dialog_set_default_response’ is deprecated: Use 'adw_alert_dialog_set_default_response' instead [-Wdeprecated-declarations]
+ 1833 |     adw_message_dialog_set_default_response(dialog, "save");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:135:13: note: declared here
+  135 | void        adw_message_dialog_set_default_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:1834:5: warning: ‘adw_message_dialog_set_close_response’ is deprecated: Use 'adw_alert_dialog_set_close_response' instead [-Wdeprecated-declarations]
+ 1834 |     adw_message_dialog_set_close_response(dialog, "cancel");
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/lufus-integration/sysroot/usr/include/libadwaita-1/adw-message-dialog.h:141:13: note: declared here
+  141 | void        adw_message_dialog_set_close_response (AdwMessageDialog *self,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[5/5] Linking target tuxflash
+INFO: autodetecting backend as ninja
+INFO: calculating backend command to run: /tmp/lufus-integration/sysroot/usr/bin/ninja -C /tmp/lufus-integration/project/linux/build-local -j 4
+ 1/13 tuxflash:helper-help                       OK              0.05s
+ 2/13 tuxflash:windows-options                   OK              0.05s
+ 3/13 tuxflash:downloads                         OK              0.04s
+ 4/13 tuxflash:progress                          OK              0.04s
+ 5/13 tuxflash:helper-durability                 OK              0.03s
+ 6/13 tuxflash:licenses                          OK              0.02s
+ 7/13 tuxflash:job-policy                        OK              0.06s
+ 8/13 tuxflash:checksums-rufus-core              OK              0.03s
+ 9/13 tuxflash:volume-label                      OK              0.02s
+10/13 tuxflash:helper-mount                      OK              0.02s
+11/13 tuxflash:language-preferences-and-catalogs OK              0.03s
+12/13 tuxflash:helper-images                     OK              0.05s
+13/13 tuxflash:image-probe                       OK              0.15s
+
+Ok:                13  
+Fail:              0   
+
+Full log written to /tmp/lufus-integration/project/linux/build-local/meson-logs/testlog.txt
+Installing subdir /tmp/lufus-integration/project/linux/assets/icons/hicolor to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/128x128/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/128x128/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/16x16/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/16x16/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/22x22/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/22x22/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/24x24/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/24x24/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/256x256/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/256x256/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/32x32/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/32x32/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/48x48/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/48x48/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/512x512/apps/org.tuxflash.TuxFlash.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/512x512/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/512x512/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/512x512/apps
+Installing /tmp/lufus-integration/project/linux/assets/icons/hicolor/64x64/apps/io.github.openresearchtools.Lufus.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/icons/hicolor/64x64/apps
+Installing subdir /tmp/lufus-integration/project/linux/runtime/share/lufus to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/lufus
+Installing /tmp/lufus-integration/project/linux/runtime/share/lufus/uefi-ntfs.img to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/lufus
+Installing /tmp/lufus-integration/project/linux/runtime/share/lufus/md5/bootarm.efi to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/lufus/md5
+Installing /tmp/lufus-integration/project/linux/runtime/share/lufus/md5/bootriscv64.efi to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/lufus/md5
+Installing /tmp/lufus-integration/project/linux/runtime/share/lufus/md5/bootia32.efi to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/lufus/md5
+Installing /tmp/lufus-integration/project/linux/runtime/share/lufus/md5/bootaa64.efi to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/lufus/md5
+Installing /tmp/lufus-integration/project/linux/runtime/share/lufus/md5/bootx64.efi to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/lufus/md5
+Installing /tmp/lufus-integration/project/linux/runtime/share/lufus/md5/bootloongarch64.efi to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/lufus/md5
+Installing subdir /tmp/lufus-integration/project/linux/runtime/share/locale to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/es/LC_MESSAGES/glib20.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/es/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/es/LC_MESSAGES/gtk40.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/es/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/es/LC_MESSAGES/libadwaita.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/es/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/es/LC_MESSAGES/tuxflash.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/es/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/en/LC_MESSAGES/tuxflash.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/en/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/uk_UA/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/uk_UA/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/th_TH/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/th_TH/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/ko_KR/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/ko_KR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/ru_RU/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/ru_RU/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/hu_HU/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/hu_HU/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/lt_LT/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/lt_LT/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/ja_JP/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/ja_JP/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/fi_FI/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/fi_FI/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/cs_CZ/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/cs_CZ/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/tr_TR/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/tr_TR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/vi_VN/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/vi_VN/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/ms_MY/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/ms_MY/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/zh_CN/LC_MESSAGES/glib20.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/zh_CN/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/zh_CN/LC_MESSAGES/gtk40.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/zh_CN/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/zh_CN/LC_MESSAGES/libadwaita.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/zh_CN/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/zh_CN/LC_MESSAGES/tuxflash.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/zh_CN/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/zh_CN/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/zh_CN/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/hr_HR/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/hr_HR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/pt_PT/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pt_PT/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/fr_FR/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/fr_FR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/sl_SI/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/sl_SI/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/bg_BG/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/bg_BG/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/de_DE/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/de_DE/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/zh_TW/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/zh_TW/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/ro_RO/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/ro_RO/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/pt_BR/LC_MESSAGES/glib20.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pt_BR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/pt_BR/LC_MESSAGES/gtk40.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pt_BR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/pt_BR/LC_MESSAGES/libadwaita.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pt_BR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/pt_BR/LC_MESSAGES/tuxflash.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pt_BR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/pt_BR/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pt_BR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/sk_SK/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/sk_SK/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/nb_NO/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/nb_NO/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/fa_IR/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/fa_IR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/da_DK/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/da_DK/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/sv_SE/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/sv_SE/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/it_IT/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/it_IT/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/sr_RS/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/sr_RS/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/nl_NL/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/nl_NL/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/es_ES/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/es_ES/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/he_IL/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/he_IL/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/lv_LV/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/lv_LV/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/id_ID/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/id_ID/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/el_GR/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/el_GR/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/ar_SA/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/ar_SA/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/runtime/share/locale/pl_PL/LC_MESSAGES/lufus.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pl_PL/LC_MESSAGES
+Installing subdir /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/AppRun to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/LICENSE to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/bcd-sys.sh to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/recovery.sh to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/update_device.sh to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/wbmfwvar.sh to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/winload.sh to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Templates/BCD-Recovery to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Templates
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Templates/BCD-Windows to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Templates
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Templates/BCD-NEW to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Templates
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Templates/recovery.reg to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Templates
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Templates/wbmoptdata.bin to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Templates
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Templates/winload.reg to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Templates
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Resources/Windows VHDX Native Boot.txt to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Resources
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Resources/attach-vhdx.sh to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Resources
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Resources/detach-vhdx.sh to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Resources
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Resources/help-page.txt to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Resources
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Resources/windows_entry_physical.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Resources
+Installing /tmp/lufus-integration/project/linux/runtime/libexec/bcd-sys/Resources/windows_entry_virtual.png to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys/Resources
+Installing tuxflash to /tmp/lufus-integration/project/linux/build-local/stage/usr/bin
+Installing tuxflash-helper to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec
+Installing set-windows-san-policy to /tmp/lufus-integration/project/linux/build-local/stage/usr/libexec/bcd-sys
+Installing po/pt_BR/LC_MESSAGES/tuxflash.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pt_BR/LC_MESSAGES
+Installing po/en/LC_MESSAGES/tuxflash.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/en/LC_MESSAGES
+Installing po/zh_CN/LC_MESSAGES/tuxflash.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/zh_CN/LC_MESSAGES
+Installing po/es/LC_MESSAGES/tuxflash.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/es/LC_MESSAGES
+Installing po/toolkit/libadwaita/pt_BR/LC_MESSAGES/libadwaita.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pt_BR/LC_MESSAGES
+Installing po/toolkit/libadwaita/es/LC_MESSAGES/libadwaita.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/es/LC_MESSAGES
+Installing po/toolkit/libadwaita/zh_CN/LC_MESSAGES/libadwaita.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/zh_CN/LC_MESSAGES
+Installing po/toolkit/gtk40/pt_BR/LC_MESSAGES/gtk40.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pt_BR/LC_MESSAGES
+Installing po/toolkit/gtk40/es/LC_MESSAGES/gtk40.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/es/LC_MESSAGES
+Installing po/toolkit/gtk40/zh_CN/LC_MESSAGES/gtk40.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/zh_CN/LC_MESSAGES
+Installing po/toolkit/glib20/pt_BR/LC_MESSAGES/glib20.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/pt_BR/LC_MESSAGES
+Installing po/toolkit/glib20/es/LC_MESSAGES/glib20.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/es/LC_MESSAGES
+Installing po/toolkit/glib20/zh_CN/LC_MESSAGES/glib20.mo to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/locale/zh_CN/LC_MESSAGES
+Installing /tmp/lufus-integration/project/linux/packaging/org.tuxflash.TuxFlash.desktop to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/applications
+Installing /tmp/lufus-integration/project/linux/packaging/org.tuxflash.TuxFlash.metainfo.xml to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/metainfo
+Installing /tmp/lufus-integration/project/linux/packaging/org.tuxflash.TuxFlash.policy to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/polkit-1/actions
+Installing /tmp/lufus-integration/project/linux/THIRD_PARTY_NOTICES.md to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/doc/tuxflash
+Installing /tmp/lufus-integration/project/linux/UPSTREAM-LICENSE.txt to /tmp/lufus-integration/project/linux/build-local/stage/usr/share/doc/tuxflash
+Native programs rebuilt in /tmp/lufus-integration/project/linux/runtime

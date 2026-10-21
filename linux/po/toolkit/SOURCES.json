@@ -1,0 +1,47 @@
+[
+  {
+    "file": "libadwaita/pt_BR.po",
+    "url": "https://raw.githubusercontent.com/GNOME/libadwaita/1.9.1/po/pt_BR.po",
+    "sha256": "f5409e22b3d0256e857a6a6c93e00d4ad06f49392261b589f4ed2697543d8a9f"
+  },
+  {
+    "file": "libadwaita/es.po",
+    "url": "https://raw.githubusercontent.com/GNOME/libadwaita/1.9.1/po/es.po",
+    "sha256": "c677ba2a9d5b749b39c550ba076aacbfdf34d34c2b528347500f8788c049424a"
+  },
+  {
+    "file": "libadwaita/zh_CN.po",
+    "url": "https://raw.githubusercontent.com/GNOME/libadwaita/1.9.1/po/zh_CN.po",
+    "sha256": "c60da0238c06c482f3c8db79d4758515dabe5ff4d1de4cb0086384d3e0101de6"
+  },
+  {
+    "file": "gtk40/pt_BR.po",
+    "url": "https://raw.githubusercontent.com/GNOME/gtk/4.22.4/po/pt_BR.po",
+    "sha256": "5ca70ee9ad8c2e8cad906af2ade4bec14a1a1b02004a19a40db29517518abf8b"
+  },
+  {
+    "file": "gtk40/es.po",
+    "url": "https://raw.githubusercontent.com/GNOME/gtk/4.22.4/po/es.po",
+    "sha256": "cdb29a57aee862403f99ba2c89e1f95a227ed5827228d964574dd7503a4c4d9c"
+  },
+  {
+    "file": "gtk40/zh_CN.po",
+    "url": "https://raw.githubusercontent.com/GNOME/gtk/4.22.4/po/zh_CN.po",
+    "sha256": "2e977b1a68b6ec78358701784b252f7773104b62e3ddd18bc089214c8277114d"
+  },
+  {
+    "file": "glib20/pt_BR.po",
+    "url": "https://raw.githubusercontent.com/GNOME/glib/2.88.0/po/pt_BR.po",
+    "sha256": "86c2dc824ef88240df7d54e8259aa1530b7b74466f272beda76599dd10241703"
+  },
+  {
+    "file": "glib20/es.po",
+    "url": "https://raw.githubusercontent.com/GNOME/glib/2.88.0/po/es.po",
+    "sha256": "02d8dc879e9979fe0c57a386f7c4ab3446fc1ffa2e3529aa45016ffd650dd47b"
+  },
+  {
+    "file": "glib20/zh_CN.po",
+    "url": "https://raw.githubusercontent.com/GNOME/glib/2.88.0/po/zh_CN.po",
+    "sha256": "1a78d45ba156c9b423d196cf19e19ec216eda59140a663840597c1d7e6d1d5dd"
+  }
+]

@@ -1,0 +1,806 @@
+# TuxFlash translations. GPL-3.0-or-later.
+msgid ""
+msgstr "Project-Id-Version: TuxFlash 0.3.3\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
+
+#, c-format
+msgid "%s: %.1f%%"
+msgstr "%s: %.1f%%"
+
+msgid "No compatible devices found"
+msgstr "未找到兼容设备"
+
+msgid "Standard Windows installation (UEFI/FAT32)"
+msgstr "标准 Windows 安装（UEFI/FAT32）"
+
+msgid "Standard Windows installation (UEFI:NTFS)"
+msgstr "标准 Windows 安装（UEFI:NTFS）"
+
+msgid "Standard Windows installation (BIOS/NTFS)"
+msgstr "标准 Windows 安装（BIOS/NTFS）"
+
+msgid "Standard Windows installation (BIOS + UEFI/NTFS)"
+msgstr "标准 Windows 安装（BIOS + UEFI/NTFS）"
+
+msgid "Windows To Go"
+msgstr "Windows To Go"
+
+msgid "Write in DD Image mode"
+msgstr "以 DD 镜像模式写入"
+
+msgid "Persistent Linux live media"
+msgstr "带持久化存储的 Linux Live 介质"
+
+msgid "Read the USB back and compare it with the image after writing."
+msgstr "写入后回读 USB 设备并与镜像比较。"
+
+msgid "Verify the completed media and install the UEFI validation manifest."
+msgstr "验证已创建的介质并安装 UEFI 验证清单。"
+
+msgid "Only local regular image files are supported"
+msgstr "仅支持本地普通镜像文件"
+
+#, c-format
+msgid "%s — %s"
+msgstr "%s — %s"
+
+msgid "READY"
+msgstr "就绪"
+
+msgid "Detected Windows installation image"
+msgstr "已检测到 Windows 安装镜像"
+
+msgid "Detected persistent-capable Linux live image"
+msgstr "已检测到支持持久化存储的 Linux Live 镜像"
+
+msgid "Detected non-Windows ISO; DD image mode selected"
+msgstr "已检测到非 Windows ISO；已选择 DD 镜像模式"
+
+msgid "Select a bootable disk image"
+msgstr "选择可启动磁盘镜像"
+
+msgid "Disk images"
+msgstr "磁盘镜像"
+
+msgid "All files"
+msgstr "所有文件"
+
+msgid "Windows ISO download failed"
+msgstr "Windows ISO 下载失败"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Microsoft Website"
+msgstr "Microsoft 网站"
+
+msgid "ERROR"
+msgstr "错误"
+
+msgid "Official Microsoft ISO downloaded and selected"
+msgstr "已下载并选择 Microsoft 官方 ISO"
+
+msgid "Choose a new local output file"
+msgstr "选择新的本地输出文件"
+
+msgid "DOWNLOADING WINDOWS ISO"
+msgstr "正在下载 WINDOWS ISO"
+
+msgid "Contacting Microsoft…"
+msgstr "正在连接 Microsoft…"
+
+msgid "Save official Windows ISO"
+msgstr "保存 Windows 官方 ISO"
+
+msgid "Download an official Windows ISO"
+msgstr "下载 Windows 官方 ISO"
+
+msgid "TuxFlash obtains a temporary link from Microsoft and downloads the ISO directly from Microsoft."
+msgstr "TuxFlash 从 Microsoft 获取临时链接，并直接从 Microsoft 下载 ISO。"
+
+msgid "Release"
+msgstr "版本"
+
+msgid "Language"
+msgstr "语言"
+
+msgid "Architecture"
+msgstr "架构"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Checksums"
+msgstr "校验和"
+
+msgid "CALCULATING CHECKSUMS"
+msgstr "正在计算校验和"
+
+msgid "CANCELLED"
+msgstr "已取消"
+
+msgid "Write failed or authorization was cancelled"
+msgstr "写入失败或授权已取消"
+
+msgid "START"
+msgstr "开始"
+
+msgid "CANCEL"
+msgstr "取消"
+
+msgid "REQUESTING AUTHORIZATION"
+msgstr "正在请求授权"
+
+msgid "Authorizing…"
+msgstr "正在授权…"
+
+msgid "Choose a new local output file and a source device"
+msgstr "选择新的本地输出文件和源设备"
+
+#, c-format
+msgid "Save %s as an image?"
+msgstr "将 %s 保存为镜像？"
+
+#, c-format
+msgid "TuxFlash will unmount %s for a consistent capture.\n\nOutput: %s"
+msgstr "TuxFlash 将卸载 %s 以确保镜像捕获一致。\n\n输出：%s"
+
+msgid "SAVE"
+msgstr "保存"
+
+msgid "Save device image (raw, .vhd, or .vhdx)"
+msgstr "保存设备镜像（raw、.vhd 或 .vhdx）"
+
+msgid "CANCELLING"
+msgstr "正在取消"
+
+msgid "The selected device is read-only"
+msgstr "所选设备为只读"
+
+msgid "Create media that silently erases a PC disk?"
+msgstr "创建会无提示擦除电脑磁盘的介质？"
+
+#, c-format
+msgid "ALL DATA on the USB %s will be destroyed now.\n\nWhen this media is booted, Windows Setup will UNCONDITIONALLY ERASE the first detected disk (Disk 0) and install image index %u without prompting.\n\nImage: %s\nSize: %s"
+msgstr "USB 设备 %s 上的所有数据将立即被销毁。\n\n从此介质启动时，Windows 安装程序将无条件擦除检测到的第一个磁盘（磁盘 0），并在不提示确认的情况下安装索引为 %u 的镜像。\n\n镜像：%s\n大小：%s"
+
+#, c-format
+msgid "Erase %s?"
+msgstr "擦除 %s？"
+
+#, c-format
+msgid "ALL DATA on %s will be destroyed.\n\nImage: %s\nSize: %s"
+msgstr "%s 上的所有数据都将被销毁。\n\n镜像：%s\n大小：%s"
+
+msgid "CREATE DANGEROUS MEDIA"
+msgstr "创建危险介质"
+
+msgid "WRITE"
+msgstr "写入"
+
+msgid "I WILL disconnect every disk except the Windows installation target."
+msgstr "我会断开除 Windows 安装目标以外的所有磁盘。"
+
+msgid "I WILL NOT leave this media connected to a PC I do not plan to erase."
+msgstr "我不会将此介质连接到不打算擦除的电脑上。"
+
+msgid "I ACCEPT responsibility for any irreversible data loss."
+msgstr "我接受任何不可逆数据丢失的责任。"
+
+msgid "TuxFlash Log"
+msgstr "TuxFlash 日志"
+
+msgid "No log entries yet."
+msgstr "暂无日志记录。"
+
+msgid "Ricardo Barreto — TuxFlash development"
+msgstr "Ricardo Barreto — TuxFlash 开发"
+
+msgid "Pete Batard and Rufus contributors — upstream"
+msgstr "Pete Batard 和 Rufus 贡献者 — 上游项目"
+
+msgid "Open Research Tools contributors — Linux implementation"
+msgstr "Open Research Tools 贡献者 — Linux 实现"
+
+msgid "Ricardo Barreto and contributors"
+msgstr "Ricardo Barreto 和贡献者"
+
+msgid "Open Ricardo Barreto’s GitHub profile"
+msgstr "打开 Ricardo Barreto 的 GitHub 个人主页"
+
+msgid "Open Rufus contributors page"
+msgstr "打开 Rufus 贡献者页面"
+
+msgid "Open Lufus contributors page"
+msgstr "打开 Lufus 贡献者页面"
+
+msgid "Turn ISO images into bootable USB drives simply and safely."
+msgstr "简单、安全地将 ISO 镜像制作成可启动 USB 设备。"
+
+msgid "Copyright © 2026 Ricardo Barreto\nCopyright © Pete Batard and Rufus contributors\nCopyright © 2026 Open Research Tools contributors"
+msgstr "Copyright © 2026 Ricardo Barreto\nCopyright © Pete Batard 和 Rufus 贡献者\nCopyright © 2026 Open Research Tools 贡献者"
+
+msgid "Read the GNU GPL v3 license"
+msgstr "阅读 GNU GPL v3 许可证"
+
+msgid "Wait for checksums to finish before closing TuxFlash"
+msgstr "请等待校验和计算完成后再关闭 TuxFlash"
+
+msgid "Cancel the active write before closing TuxFlash"
+msgstr "请先取消正在进行的写入，再关闭 TuxFlash"
+
+msgid "Cancel the active download before closing TuxFlash"
+msgstr "请先取消正在进行的下载，再关闭 TuxFlash"
+
+msgid "Disk or ISO image (Please select)"
+msgstr "磁盘或 ISO 镜像（请选择）"
+
+msgid "From image"
+msgstr "由镜像决定"
+
+msgid "BIOS (or UEFI-CSM)"
+msgstr "BIOS（或 UEFI-CSM）"
+
+msgid "UEFI (non CSM)"
+msgstr "UEFI（无 CSM）"
+
+msgid "BIOS or UEFI"
+msgstr "BIOS 或 UEFI"
+
+msgid "Select"
+msgstr "选择"
+
+msgid "Show advanced drive properties"
+msgstr "显示高级设备属性"
+
+msgid "Drive Properties"
+msgstr "设备属性"
+
+msgid "Refresh devices"
+msgstr "刷新设备"
+
+msgid "Save this device as raw, VHD, or VHDX"
+msgstr "将此设备保存为 raw、VHD 或 VHDX"
+
+msgid "Device"
+msgstr "设备"
+
+msgid "Calculate image checksums"
+msgstr "计算镜像校验和"
+
+msgid "Download an official Windows ISO from Microsoft"
+msgstr "从 Microsoft 下载 Windows 官方 ISO"
+
+msgid "Boot selection"
+msgstr "启动选择"
+
+msgid "Image Option"
+msgstr "镜像选项"
+
+msgid "Remove requirement for 4GB+ RAM, Secure Boot and TPM 2.0"
+msgstr "移除 4 GB 以上内存、安全启动和 TPM 2.0 的要求"
+
+msgid "Remove requirement for an online Microsoft account"
+msgstr "移除联机 Microsoft 账户要求"
+
+msgid "Disable data collection (skip privacy questions)"
+msgstr "禁用数据收集（跳过隐私问题）"
+
+msgid "Create a local account with username"
+msgstr "使用以下用户名创建本地账户"
+
+msgid "Disable BitLocker automatic device encryption"
+msgstr "禁用 BitLocker 自动设备加密"
+
+msgid "Prevent Windows To Go from accessing internal disks"
+msgstr "阻止 Windows To Go 访问内部磁盘"
+
+msgid "⚠SILENTLY⚠ erase disk and install:"
+msgstr "⚠无提示⚠擦除磁盘并安装："
+
+msgid "Creates media that does not prompt during Windows installation and unconditionally erases the first detected disk on the target PC. Disconnect every other disk before booting it."
+msgstr "创建在 Windows 安装过程中不提示确认的介质，并无条件擦除目标电脑检测到的第一个磁盘。启动此介质前请断开所有其他磁盘。"
+
+msgid "Windows image index"
+msgstr "Windows 镜像索引"
+
+msgid "Windows architecture"
+msgstr "Windows 架构"
+
+msgid "Windows To Go image index"
+msgstr "Windows To Go 镜像索引"
+
+msgid "Persistent partition size (MiB)"
+msgstr "持久化分区大小（MiB）"
+
+msgid "Determined by the selected image option"
+msgstr "由所选镜像选项决定"
+
+msgid "Selected automatically from the image option"
+msgstr "根据镜像选项自动选择"
+
+msgid "Partition scheme"
+msgstr "分区方案"
+
+msgid "Target system"
+msgstr "目标系统"
+
+msgid "List USB Hard Drives"
+msgstr "列出 USB 硬盘"
+
+msgid "Add fixes for old BIOSes (extra partition, align, etc.)"
+msgstr "添加旧版 BIOS 修复（额外分区、对齐等）"
+
+msgid "Not available in this Linux version"
+msgstr "此 Linux 版本暂不支持"
+
+msgid "Verify written media (recommended)"
+msgstr "验证已写入的介质（推荐）"
+
+msgid "Reads the completed filesystem and creates a signed UEFI validation manifest. Turn this off to skip the verification pass."
+msgstr "读取已创建的文件系统并生成 UEFI 验证清单。关闭此选项可跳过验证。"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "4096 bytes"
+msgstr "4096 字节"
+
+msgid "8192 bytes"
+msgstr "8192 字节"
+
+msgid "16 kilobytes"
+msgstr "16 KB"
+
+msgid "32 kilobytes"
+msgstr "32 KB"
+
+msgid "1 pass"
+msgstr "1 轮"
+
+msgid "2 passes"
+msgstr "2 轮"
+
+msgid "3 passes"
+msgstr "3 轮"
+
+msgid "4 passes"
+msgstr "4 轮"
+
+msgid "Show advanced format options"
+msgstr "显示高级格式化选项"
+
+msgid "Quick format"
+msgstr "快速格式化"
+
+msgid "Create extended label and icon files"
+msgstr "创建扩展卷标和图标文件"
+
+msgid "Check device for bad blocks"
+msgstr "检查设备坏块"
+
+msgid "Format Options"
+msgstr "格式化选项"
+
+msgid "Raw images preserve their embedded format"
+msgstr "原始镜像保留其内置格式"
+
+msgid "Volume label"
+msgstr "卷标"
+
+msgid "File system"
+msgstr "文件系统"
+
+msgid "Cluster size"
+msgstr "簇大小"
+
+msgid "CLOSE"
+msgstr "关闭"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Finish the active operation before changing the language."
+msgstr "请先完成当前操作，再更改语言。"
+
+msgid "Language saved. Close and reopen TuxFlash to apply it."
+msgstr "语言已保存。请关闭并重新打开 TuxFlash 以应用更改。"
+
+msgid "Application language"
+msgstr "应用语言"
+
+msgid "Choose a language. The change takes effect the next time you open TuxFlash."
+msgstr "请选择语言。更改将在下次打开 TuxFlash 时生效。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Bootable USB Creator for Linux"
+msgstr "Linux 可启动 USB 制作工具"
+
+msgid "View log"
+msgstr "查看日志"
+
+msgid "About TuxFlash"
+msgstr "关于 TuxFlash"
+
+msgid "Writing virtual disk image"
+msgstr "正在写入虚拟磁盘镜像"
+
+msgid "Comparing virtual disk with target"
+msgstr "正在比较虚拟磁盘与目标设备"
+
+msgid "Verifying virtual disk image"
+msgstr "正在验证虚拟磁盘镜像"
+
+msgid "Virtual disk verification succeeded"
+msgstr "虚拟磁盘验证成功"
+
+msgid "Verifying existing device image without rewriting it"
+msgstr "正在验证设备上的现有镜像，不重新写入"
+
+msgid "Verifying existing device image"
+msgstr "正在验证设备上的现有镜像"
+
+msgid "Existing device image verification succeeded"
+msgstr "现有设备镜像验证成功"
+
+msgid "Existing device image verified"
+msgstr "已验证设备上的现有镜像"
+
+msgid "Writing image"
+msgstr "正在写入镜像"
+
+msgid "Writing image data"
+msgstr "正在写入镜像数据"
+
+msgid "Flushing data to the device"
+msgstr "正在将数据同步到设备"
+
+msgid "Reading image back from target"
+msgstr "正在从目标设备回读镜像"
+
+msgid "Verifying image data"
+msgstr "正在验证镜像数据"
+
+msgid "Image verification succeeded"
+msgstr "镜像验证成功"
+
+msgid "Creating Windows installer media"
+msgstr "正在创建 Windows 安装介质"
+
+msgid "Analyzing existing boot records..."
+msgstr "正在分析现有启动记录..."
+
+msgid "Clearing MBR/PBR/GPT structures..."
+msgstr "正在清除 MBR/PBR/GPT 结构..."
+
+msgid "Partitioning (MBR)..."
+msgstr "正在分区（MBR）..."
+
+msgid "Partitioning (GPT)..."
+msgstr "正在分区（GPT）..."
+
+msgid "Formatting (NTFS)..."
+msgstr "正在格式化（NTFS）..."
+
+msgid "Formatting (FAT32)..."
+msgstr "正在格式化（FAT32）..."
+
+msgid "Writing Master Boot Record..."
+msgstr "正在写入主引导记录..."
+
+msgid "Writing Partition Boot Record..."
+msgstr "正在写入分区引导记录..."
+
+msgid "Copying ISO files"
+msgstr "正在复制 ISO 文件"
+
+msgid "Applying Windows image"
+msgstr "正在应用 Windows 镜像"
+
+msgid "Applying Windows customization"
+msgstr "正在应用 Windows 自定义设置"
+
+msgid "Applying user options..."
+msgstr "正在应用用户选项..."
+
+msgid "Finalizing, please wait..."
+msgstr "正在完成，请稍候..."
+
+msgid "Verifying media"
+msgstr "正在验证介质"
+
+msgid "Windows installer media created"
+msgstr "Windows 安装介质已创建"
+
+msgid "Creating Windows To Go media"
+msgstr "正在创建 Windows To Go 介质"
+
+msgid "Windows To Go media created"
+msgstr "Windows To Go 介质已创建"
+
+msgid "Creating persistent Linux media"
+msgstr "正在创建带持久化存储的 Linux 介质"
+
+msgid "Inspecting Linux live media"
+msgstr "正在检查 Linux Live 介质"
+
+msgid "Creating persistent-media partitions"
+msgstr "正在创建持久化介质分区"
+
+msgid "Formatting persistent-media filesystems"
+msgstr "正在格式化持久化介质文件系统"
+
+msgid "Mounting persistent live-media filesystem"
+msgstr "正在挂载持久化 Live 介质文件系统"
+
+msgid "Copying Linux live-media files"
+msgstr "正在复制 Linux Live 介质文件"
+
+msgid "Configuring Debian persistence"
+msgstr "正在配置 Debian 持久化存储"
+
+msgid "Configuring Ubuntu persistence"
+msgstr "正在配置 Ubuntu 持久化存储"
+
+msgid "Persistent Linux media created"
+msgstr "带持久化存储的 Linux 介质已创建"
+
+msgid "Running destructive fake-drive and bad-block test"
+msgstr "正在运行破坏性的虚假容量和坏块检测"
+
+msgid "Capturing device image"
+msgstr "正在捕获设备镜像"
+
+msgid "Reading source device"
+msgstr "正在读取源设备"
+
+msgid "Flushing captured image"
+msgstr "正在同步已捕获的镜像"
+
+msgid "Creating virtual disk container"
+msgstr "正在创建虚拟磁盘容器"
+
+msgid "Capturing device into virtual disk"
+msgstr "正在将设备捕获到虚拟磁盘"
+
+msgid "Device image captured"
+msgstr "设备镜像已捕获"
+
+msgid "Verification cancelled"
+msgstr "验证已取消"
+
+msgid "Write cancelled; target is incomplete"
+msgstr "写入已取消；目标设备数据不完整"
+
+msgid "The image is larger than the selected device"
+msgstr "镜像大于所选设备容量"
+
+msgid "The selected device changed after confirmation"
+msgstr "所选设备在确认后发生了变化"
+
+msgid "The selected device capacity changed after confirmation"
+msgstr "所选设备容量在确认后发生了变化"
+
+msgid "Image decompression failed"
+msgstr "镜像解压失败"
+
+msgid "Rufus — upstream project"
+msgstr "Rufus — 上游项目"
+
+msgid "Copyright © Pete Batard and Rufus contributors"
+msgstr "Copyright © Pete Batard 和 Rufus 贡献者"
+
+msgid "GPL-3.0-or-later. Rufus is the original Windows application. Lufus supplies the native Linux foundation used by TuxFlash. Original source notices are retained. Source: https://github.com/pbatard/rufus"
+msgstr "GPL-3.0-or-later。Rufus 是原始 Windows 应用。Lufus 提供 TuxFlash 使用的原生 Linux 基础。保留原始源代码声明。源代码：https://github.com/pbatard/rufus"
+
+msgid "BCD-SYS"
+msgstr "BCD-SYS"
+
+msgid "Copyright © Joseph P. Zeller and BCD-SYS contributors"
+msgstr "Copyright © Joseph P. Zeller 和 BCD-SYS 贡献者"
+
+msgid "GPL-3.0-or-later. TuxFlash uses modified BCD scripts and registry templates. Source, patches and original notices accompany the application; the upstream AppImage is not included."
+msgstr "GPL-3.0-or-later。TuxFlash 使用修改后的 BCD 脚本和注册表模板。应用附带源代码、补丁及原始声明，不包含上游 AppImage。"
+
+msgid "EfiFs"
+msgstr "EfiFs"
+
+msgid "Copyright © EfiFs and EDK II contributors"
+msgstr "Copyright © EfiFs 和 EDK II 贡献者"
+
+msgid "GPL-3.0-or-later at project level. EDK II and other portions retain their own notices, including BSD-2-Clause-Patent. Source reference: https://github.com/pbatard/efifs"
+msgstr "项目采用 GPL-3.0-or-later。EDK II 和其他部分保留各自的声明，包括 BSD-2-Clause-Patent。源代码参考：https://github.com/pbatard/efifs"
+
+msgid "Fido"
+msgstr "Fido"
+
+msgid "Copyright © Pete Batard and Fido contributors"
+msgstr "Copyright © Pete Batard 和 Fido 贡献者"
+
+msgid "GPL-3.0-or-later. The native Microsoft retail-ISO discovery code follows the Fido workflow. Source reference: https://github.com/pbatard/Fido"
+msgstr "GPL-3.0-or-later。原生 Microsoft 零售 ISO 查找代码遵循 Fido 工作流程。源代码参考：https://github.com/pbatard/Fido"
+
+msgid "ms-sys boot-record sources"
+msgstr "ms-sys 引导记录源代码"
+
+msgid "Copyright © ms-sys contributors"
+msgstr "Copyright © ms-sys 贡献者"
+
+msgid "GPL-2.0-or-later. Legacy BIOS boot-record code is inherited through Rufus. Its original source and license notices are retained."
+msgstr "GPL-2.0-or-later。传统 BIOS 引导记录代码继承自 Rufus，保留其原始源代码和许可证声明。"
+
+msgid "Noto Sans CJK"
+msgstr "Noto Sans CJK"
+
+msgid "Copyright © Noto font authors and contributors"
+msgstr "Copyright © Noto 字体作者和贡献者"
+
+msgid "SIL Open Font License 1.1 (OFL-1.1). The portable package includes this font to display Chinese. Its original notice is included in runtime/share/doc/tuxflash/dependencies/fonts-noto-cjk.copyright."
+msgstr "SIL Open Font License 1.1（OFL-1.1）。便携包包含此字体以显示中文。原始声明位于 runtime/share/doc/tuxflash/dependencies/fonts-noto-cjk.copyright。"
+
+msgid "ntfs-3g UEFI driver"
+msgstr "ntfs-3g UEFI 驱动"
+
+msgid "Copyright © ntfs-3g and UEFI port contributors"
+msgstr "Copyright © ntfs-3g 和 UEFI 移植贡献者"
+
+msgid "GPL-2.0-or-later, with LGPL-2.0-or-later library portions. This driver is part of UEFI:NTFS. See original notices and source references in THIRD_PARTY_NOTICES.md."
+msgstr "GPL-2.0-or-later，部分库采用 LGPL-2.0-or-later。此驱动属于 UEFI:NTFS。原始声明及源代码参考见 THIRD_PARTY_NOTICES.md。"
+
+msgid "UEFI:NTFS"
+msgstr "UEFI:NTFS"
+
+msgid "Copyright © Pete Batard and UEFI:NTFS contributors"
+msgstr "Copyright © Pete Batard 和 UEFI:NTFS 贡献者"
+
+msgid "GPL-2.0-or-later. The boot loader and its components retain their original licenses and corresponding source references."
+msgstr "GPL-2.0-or-later。引导加载程序及其组件保留原始许可证和对应的源代码引用。"
+
+msgid "uefi-md5sum"
+msgstr "uefi-md5sum"
+
+msgid "Copyright © Pete Batard and uefi-md5sum contributors"
+msgstr "Copyright © Pete Batard 和 uefi-md5sum 贡献者"
+
+msgid "GPL-2.0-or-later. EFI media-verification loaders retain their original license notices. Source reference: https://github.com/pbatard/uefi-md5sum"
+msgstr "GPL-2.0-or-later。EFI 介质验证加载程序保留原始许可证声明。源代码参考：https://github.com/pbatard/uefi-md5sum"
+
+msgid "GLib and GIO"
+msgstr "GLib 和 GIO"
+
+msgid "Copyright © GLib contributors"
+msgstr "Copyright © GLib 贡献者"
+
+msgid "Mainly LGPL-2.1-or-later, with separately licensed portions. The portable package bundles this dependency. Original notices and source-package identifiers are in runtime/share/doc/tuxflash. System installations retain the distribution notices."
+msgstr "主要采用 LGPL-2.1-or-later，部分采用其他许可证。便携包包含此依赖组件。原始声明和源码包标识位于 runtime/share/doc/tuxflash。系统安装保留发行版声明。"
+
+msgid "GTK"
+msgstr "GTK"
+
+msgid "Copyright © GTK contributors"
+msgstr "Copyright © GTK 贡献者"
+
+msgid "JSON-GLib"
+msgstr "JSON-GLib"
+
+msgid "Copyright © JSON-GLib contributors"
+msgstr "Copyright © JSON-GLib 贡献者"
+
+msgid "LGPL-2.1-or-later. The portable package bundles this dependency. Original notices and source-package identifiers are in runtime/share/doc/tuxflash. System installations retain the distribution notices."
+msgstr "LGPL-2.1-or-later。便携包包含此依赖组件。原始声明和源码包标识位于 runtime/share/doc/tuxflash。系统安装保留发行版声明。"
+
+msgid "libadwaita"
+msgstr "libadwaita"
+
+msgid "Copyright © libadwaita contributors"
+msgstr "Copyright © libadwaita 贡献者"
+
+msgid "LGPL-2.1-or-later, with separately licensed documentation and assets. The portable package bundles this dependency. Original notices and source-package identifiers are in runtime/share/doc/tuxflash. System installations retain the distribution notices."
+msgstr "采用 LGPL-2.1-or-later，文档和资源另有各自许可证。便携包包含此依赖组件。原始声明和源码包标识位于 runtime/share/doc/tuxflash。系统安装保留发行版声明。"
+
+msgid "libsoup"
+msgstr "libsoup"
+
+msgid "Copyright © libsoup contributors"
+msgstr "Copyright © libsoup 贡献者"
+
+msgid "Debian/Ubuntu disk and image utilities"
+msgstr "Debian/Ubuntu 磁盘和镜像工具"
+
+msgid "Copyright © their respective upstream authors and contributors"
+msgstr "Copyright © 各上游作者和贡献者"
+
+msgid "Utilities such as util-linux, dosfstools, ntfs-3g, e2fsprogs, wimlib, hivex, QEMU, F3, 7-Zip and compression tools keep their own licenses. The portable package bundles selected utilities; other installations may use system packages. See runtime/share/doc/tuxflash/dependencies and dependencies.json for notices, versions and source-package identifiers."
+msgstr "util-linux、dosfstools、ntfs-3g、e2fsprogs、wimlib、hivex、QEMU、F3、7-Zip 和压缩工具等实用程序保留各自的许可证。便携包包含部分工具，其他安装方式可能使用系统软件包。请参阅 runtime/share/doc/tuxflash/dependencies 和 dependencies.json，了解声明、版本和源码包标识。"
+
+msgid "TuxFlash remains free and open-source software under GNU GPL version 3 or later (GPL-3.0-or-later). You may use, study, modify and redistribute it under that license. It is an independent Linux derivative of Rufus and Lufus, not an official Rufus release. Original authors keep their copyrights. Third-party components keep their own licenses; they are not relicensed as TuxFlash. The portable package includes application source in source/, the license in LICENSE.txt, and dependency notices in runtime/share/doc/tuxflash. Translated notices explain the licenses; the original license texts remain unchanged. See the licenses for their conditions and warranty disclaimers."
+msgstr "TuxFlash 继续作为自由开源软件，采用 GNU GPL 第 3 版或更新版本（GPL-3.0-or-later）。您可以依照该许可证使用、研究、修改和重新分发本软件。它是基于 Rufus 和 Lufus 的独立 Linux 衍生版本，并非 Rufus 官方版本。原作者保留其版权。第三方组件保留各自的许可证，不会被替换为 TuxFlash 的许可证。便携包在 source/ 中提供应用源代码，在 LICENSE.txt 中提供许可证，并在 runtime/share/doc/tuxflash 中提供依赖组件声明。翻译的声明用于说明许可证，许可证原文保持不变。有关条件和免责声明，请参阅各许可证。"
+
+msgid "Updated in 0.3.2"
+msgstr "0.3.2 版本更新"
+
+msgid "Release notes now have their own page, separate from Legal."
+msgstr "发行说明现在有独立页面，与法律信息分开。"
+
+msgid "Application and component license summaries are translated into Brazilian Portuguese, English, Simplified Chinese and Spanish."
+msgstr "应用和组件的许可证摘要现已翻译为巴西葡萄牙语、英语、简体中文和西班牙语。"
+
+msgid "Legal notices now describe the portable dependencies and the Noto Sans CJK font accurately, while preserving original licenses and authors."
+msgstr "法律声明现已准确说明便携包依赖组件及 Noto Sans CJK 字体，同时保留原始许可证和作者署名。"
+
+msgid "Recent improvements"
+msgstr "近期改进"
+
+msgid "Version 0.3.1 introduced a saved interface-language selection and Ricardo Barreto’s developer credit with a GitHub link."
+msgstr "0.3.1 版本加入了可保存的界面语言选择，以及带有 GitHub 链接的 Ricardo Barreto 开发者署名。"
+
+msgid "Version 0.3.0 introduced the TuxFlash name and penguin icon, the x86-64 portable runtime and clearer partition/filesystem indicators."
+msgstr "0.3.0 版本加入了 TuxFlash 名称和企鹅图标、x86-64 便携运行环境，以及更清晰的分区和文件系统显示。"
+
+msgid "Windows volume labels follow the ISO filename. DD/RAW offers read-back verification, and NTFS mounting can fall back from ntfs3 to ntfs-3g."
+msgstr "Windows 卷标根据 ISO 文件名生成。DD/RAW 支持回读验证，NTFS 挂载可在 ntfs3 失败时改用 ntfs-3g。"
+
+msgid "Rufus, Lufus and TuxFlash"
+msgstr "Rufus、Lufus 与 TuxFlash"
+
+msgid "Rufus is the original Windows application by Pete Batard and contributors. Its original Windows code and resources remain in this project."
+msgstr "Rufus 是 Pete Batard 和贡献者开发的原始 Windows 应用。其原始 Windows 源代码和资源仍保留在本项目中。"
+
+msgid "Lufus provides the native C/GTK Linux foundation and a separate privileged helper for device operations."
+msgstr "Lufus 提供原生 C/GTK Linux 基础，并通过独立的特权辅助进程执行设备操作。"
+
+msgid "TuxFlash builds on that foundation with the current identity, Ricardo Barreto’s contributions, four interface languages, packaging and integration fixes. It runs natively on Linux without Wine."
+msgstr "TuxFlash 在此基础上加入当前品牌、Ricardo Barreto 的贡献、四种界面语言、打包和集成修复。它原生运行于 Linux，无需 Wine。"
+
+msgid "The Linux GTK interface follows the supplied Lufus layout; it is not the original Win32 window. TuxFlash is an independent derivative, not an official Rufus Linux release."
+msgstr "Linux GTK 界面沿用所提供的 Lufus 布局，并非原始 Win32 窗口。TuxFlash 是独立衍生项目，不是 Rufus 官方 Linux 版本。"
+
+msgid "Scope and known limits"
+msgstr "适用范围与已知限制"
+
+msgid "The ready-to-run portable package is Linux x86-64. Other architectures require a separate build and validation; no claim is made for every Linux distribution or every ISO."
+msgstr "即用型便携包面向 Linux x86-64。其他架构需要单独构建和验证，不保证支持所有 Linux 发行版或任意 ISO。"
+
+msgid "FFU is not supported. Windows To Go through a real desktop, Secure Boot and real Linux persistence across reboots still lack complete validation. Full feature parity with Rufus Windows has not been achieved."
+msgstr "不支持 FFU。Windows To Go 实际桌面会话、安全启动以及重启后的真实 Linux 持久化仍未完成验证。尚未实现与 Windows 版 Rufus 的完整功能对等。"
+
+msgid "Free and open source"
+msgstr "自由开源"
+
+msgid "TuxFlash continues under GPL-3.0-or-later. You can use, study, modify and redistribute it under that license. Third-party licenses and original credits remain intact; see Legal for details."
+msgstr "TuxFlash 继续采用 GPL-3.0-or-later。您可依照该许可证使用、研究、修改和重新分发本软件。第三方许可证和原始署名保持不变，详情请查看法律信息。"
+
+
+msgid "Lufus — base project for the Linux version"
+msgstr "Lufus — Linux 版本的基础项目"
+
+msgid "Open the Lufus repository"
+msgstr "打开 Lufus 代码仓库"
+
+msgid "Native bootable USB creator for Linux"
+msgstr "原生 Linux 启动 U 盘制作工具"
+
+msgid "Operation completed successfully"
+msgstr "操作已成功完成"
+
+msgid "Updated in 0.3.3"
+msgstr "0.3.3 版本更新"
+
+msgid "Stronger system-disk and active-swap protection, exact capacity checks and device sequence validation when supported by the kernel."
+msgstr "加强系统磁盘和活动交换空间保护，精确检查容量，并在内核支持时验证设备序列号。"
+
+msgid "The helper rechecks the target before external tools run. The interface reports success only after the helper exits successfully and its output has been read."
+msgstr "辅助进程在运行外部工具前重新检查目标设备。仅在辅助进程成功退出且其输出读取完毕后，界面才会报告成功。"
+
+msgid "Explicit Lufus repository credit, a native Linux description, safer legacy Polkit defaults and a portable package without unrelated application icons."
+msgstr "明确列出 Lufus 仓库致谢，添加原生 Linux 说明，收紧旧版 Polkit 默认策略，并从便携包中移除无关应用图标。"
+
+msgid "The selected device changed or became read-only"
+msgstr "所选设备已更改或变为只读状态"
+
+msgid "Target contains active swap or mount inspection failed"
+msgstr "目标设备包含活动交换空间，或挂载检查失败"

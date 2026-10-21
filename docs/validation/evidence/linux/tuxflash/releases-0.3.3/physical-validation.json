@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "application": "TuxFlash 0.3.3",
+  "helper_sha256": "db42ced7c6c40c4668e787ece7b6e4fdfb78a4b716d0d945448a5640f0937314",
+  "image_written": false,
+  "read_only_device_open": true,
+  "compared_bytes_per_pass": 1073741824,
+  "read_passes": 2,
+  "reads_match": true,
+  "kernel_block_cache_invalidated": true,
+  "wrong_disk_sequence_refused": true,
+  "full_device_capacity_tested": false,
+  "physical_firmware_boot_performed": false,
+  "device_identifiers_included": false,
+  "elapsed_seconds": 62.51,
+  "write_test_status": "Not executed: automatic approval review requires explicit approval of the Linux Mint ISO payload"
+}

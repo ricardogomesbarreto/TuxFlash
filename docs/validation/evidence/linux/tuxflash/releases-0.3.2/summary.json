@@ -1,0 +1,22 @@
+{
+  "application": "TuxFlash",
+  "version": "0.3.2",
+  "frontend_sha256": "ef1f8f750318016df6c70e19822f365750cdbe607068ba710c99b35721c4dd9b",
+  "helper_sha256": "28a1fc9ba7aaee03eff0f5e75bc4ea56225335e55e509bb0ac1da0cc4be8e3f6",
+  "helper_unchanged": true,
+  "project_license": "GPL-3.0-or-later",
+  "original_license_text_sha256": "0b383d5a63da644f628d99c33976ea6487ed89aaa59f0b3257992deac1171e6b",
+  "original_license_text_changed": false,
+  "third_party_licenses_replaced": false,
+  "catalog_messages": {
+    "pt_BR": 255,
+    "en": 255,
+    "es": 255,
+    "zh_CN": 255
+  },
+  "meson_suites_passed": 13,
+  "legal_and_release_notes_gui_scenarios_passed": 8,
+  "physical_disks_modified": false,
+  "source_notice_summaries_translated": true,
+  "release_notes_separate_from_legal": true
+}

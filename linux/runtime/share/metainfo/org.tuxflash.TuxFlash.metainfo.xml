@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.tuxflash.TuxFlash</id>
+  <name>TuxFlash</name>
+  <summary>Bootable USB Creator for Linux</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <description><p>Transforme imagens ISO em pendrives inicializáveis com simplicidade e segurança.</p><p>Native Linux application based on Rufus and Lufus. Original projects and component licenses are retained.</p></description>
+  <launchable type="desktop-id">org.tuxflash.TuxFlash.desktop</launchable>
+  <provides><binary>tuxflash</binary></provides>
+  <content_rating type="oars-1.1"/>
+  <releases><release version="0.3.3" date="2026-10-20"><description><p>Stronger target validation, system/swap protection, reliable completion and cancellation, explicit Lufus credit and portable integration fixes.</p></description></release><release version="0.3.2" date="2026-10-20"><description><p>Localized release notes, open-source license summaries and current portable dependency notices.</p></description></release><release version="0.3.1" date="2026-10-20"><description><p>Ricardo Barreto developer credit and four interface languages: Brazilian Portuguese, English, Simplified Chinese and Spanish.</p></description></release><release version="0.3.0" date="2026-10-20"><description><p>TuxFlash identity, supplied penguin icon, and native Linux media creation.</p></description></release></releases>
+</component>

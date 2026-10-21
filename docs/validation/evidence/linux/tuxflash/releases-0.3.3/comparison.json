@@ -1,0 +1,41 @@
+[
+  {
+    "archive": "rufus-master.zip",
+    "archive_sha256": "397f4bf19faca5db223d3c6e38f3ef735d054581ed1ac137cac0ada1cd0d5a39",
+    "regular_files": 816,
+    "linux_source_files": 0,
+    "comparison": []
+  },
+  {
+    "archive": "lufus-master.zip",
+    "archive_sha256": "4931ca604abd2522e37ce4680bb12170c12601f248b0e25f020747d41e8c9975",
+    "regular_files": 871,
+    "linux_source_files": 20,
+    "comparison": [
+      {
+        "path": "linux/src/main.c",
+        "base_sha256": "861b136f9774c7e7356d1e9ba3ae17d6733002df440d41f86a80a0bd24225d9c",
+        "current_sha256": "a2bd3daf03cb8dd26c285d301b301e8f2e6ebe849e9c88bacb0d214edaa186ba",
+        "differs": true
+      },
+      {
+        "path": "linux/src/helper.c",
+        "base_sha256": "ee8d2672cef24123d16e55f883dafe43b8d2d5b28e13f1adb4890c4499316ce0",
+        "current_sha256": "07ae3cb13efe528bb53136c144dca7f19c2651ab12560acc19cd9f1f4ca902f9",
+        "differs": true
+      },
+      {
+        "path": "linux/src/devices.c",
+        "base_sha256": "304483b65803e825b88e63d6ccc7a627dde12414b4666e46103cdb4d0e99d2c9",
+        "current_sha256": "47c18293351652534ba02daf5787876eff34452e5f5e5d60ee41e9571fdbe672",
+        "differs": true
+      },
+      {
+        "path": "linux/src/job.c",
+        "base_sha256": "3a336e2e32bee719dee7639c111ed4fc8ba8143897544157f0e59a566151b900",
+        "current_sha256": "bdb4f8e7feceaebe4801d91d48172f76aa934e01ba9f3324ddd52bee54a861d4",
+        "differs": true
+      }
+    ]
+  }
+]

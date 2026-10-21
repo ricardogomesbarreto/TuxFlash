@@ -1,0 +1,612 @@
+--- a/src/hash.c
++++ b/src/hash.c
+@@ -65,6 +65,10 @@
+ #include <string.h>
+ #include <inttypes.h>
+ #include <errno.h>
++#ifdef RUFUS_HASH_CORE_ONLY
++#include "hash_core.h"
++#include "linux/hash_compat.h"
++#else
+ #include <intrin.h>
+ #include <windows.h>
+ #include <windowsx.h>
+@@ -78,8 +82,9 @@
+ #include "resource.h"
+ #include "msapi_utf8.h"
+ #include "localization.h"
+-
+-#if (defined(_M_IX86) || defined(_M_X64) || defined(__i386__) || defined(__i386) || \
++#endif /* RUFUS_HASH_CORE_ONLY */
++
++#if !defined(RUFUS_HASH_DISABLE_ACCELERATION) && (defined(_M_IX86) || defined(_M_X64) || defined(__i386__) || defined(__i386) || \
+      defined(_X86_) || defined(__I86__) || defined(__x86_64__))
+ #define CPU_X86_SHA1_ACCELERATION       1
+ #define CPU_X86_SHA256_ACCELERATION     1
+@@ -100,15 +105,19 @@
+ #define NUM_BUFFERS         3   // 2 + 1 as a mere double buffered async I/O
+                                 // would modify the buffer being processed.
+ 
+-/* Globals */
++/* Algorithm state is shared by the Windows build and portable core build. */
++BOOL cpu_has_sha1_accel = FALSE, cpu_has_sha256_accel = FALSE;
++uint32_t hash_count[HASH_MAX] = { MD5_HASHSIZE, SHA1_HASHSIZE, SHA256_HASHSIZE, SHA512_HASHSIZE };
++
++#ifndef RUFUS_HASH_CORE_ONLY
++/* Windows UI, asynchronous I/O and trust-database state. */
+ char hash_str[HASH_MAX][150];
+ HANDLE data_ready[HASH_MAX] = { 0 }, thread_ready[HASH_MAX] = { 0 };
+ DWORD read_size[NUM_BUFFERS];
+ BOOL enable_extra_hashes = FALSE, validate_md5sum = FALSE;
+-BOOL cpu_has_sha1_accel = FALSE, cpu_has_sha256_accel = FALSE;
+ uint8_t ALIGNED(64) buffer[NUM_BUFFERS][BUFFER_SIZE];
+ uint8_t* pe256ssp = NULL;
+-uint32_t proc_bufnum, hash_count[HASH_MAX] = { MD5_HASHSIZE, SHA1_HASHSIZE, SHA256_HASHSIZE, SHA512_HASHSIZE };
++uint32_t proc_bufnum;
+ uint32_t pe256ssp_size = 0;
+ uint64_t md5sum_totalbytes;
+ StrArray modified_files = { 0 };
+@@ -117,6 +126,7 @@
+ extern const char* efi_archname[ARCH_MAX];
+ extern char *sbat_level_txt, *sb_active_txt, *sb_revoked_txt;
+ extern BOOL expert_mode, usb_debug;
++#endif /* !RUFUS_HASH_CORE_ONLY */
+ 
+ /*
+  * Detect if the processor supports SHA-1 acceleration. We only check for
+@@ -189,6 +199,20 @@
+ 	return FALSE;
+ #endif
+ }
++
++#ifdef RUFUS_HASH_CORE_ONLY
++static pthread_once_t hash_cpu_once = PTHREAD_ONCE_INIT;
++static void initialize_hash_cpu(void)
++{
++	cpu_has_sha1_accel = DetectSHA1Acceleration();
++	cpu_has_sha256_accel = DetectSHA256Acceleration();
++}
++
++void RufusHashInitialize(void)
++{
++	(void)pthread_once(&hash_cpu_once, initialize_hash_cpu);
++}
++#endif
+ 
+ /*
+  * Rotate 32 or 64 bit integers by n bytes.
+@@ -1292,7 +1316,7 @@
+ 
+ 		num = MD5_BLOCKSIZE - num;
+ 		if (len < num) {
+-			memcpy(p, buf, num);
++			memcpy(p, buf, len);
+ 			return;
+ 		}
+ 		memcpy(p, buf, num);
+@@ -1525,6 +1549,7 @@
+ hash_write_t *hash_write[HASH_MAX] = { md5_write, sha1_write , sha256_write, sha512_write };
+ hash_final_t *hash_final[HASH_MAX] = { md5_final, sha1_final , sha256_final, sha512_final };
+ 
++#ifndef RUFUS_HASH_CORE_ONLY
+ /* Compute an individual hash without threading or buffering, for a single file */
+ BOOL HashFile(const unsigned type, const char* path, uint8_t* hash)
+ {
+@@ -1860,19 +1885,25 @@
+ 	return r;
+ }
+ 
++#endif /* !RUFUS_HASH_CORE_ONLY */
++
+ /*
+  * Compute the hash of a single buffer.
+  */
+ BOOL HashBuffer(const unsigned type, const uint8_t* buf, const size_t len, uint8_t* hash)
+ {
+ 	BOOL r = FALSE;
+-	HASH_CONTEXT hash_ctx = { {0} };
+-
+-	if ((type >= HASH_MAX) || (hash == NULL))
++	HASH_CONTEXT hash_ctx = {0};
++
++	if ((type >= HASH_MAX) || (hash == NULL) || ((buf == NULL) && (len != 0)))
+ 		goto out;
+ 
++#ifdef RUFUS_HASH_CORE_ONLY
++	RufusHashInitialize();
++#endif
+ 	hash_init[type](&hash_ctx);
+-	hash_write[type](&hash_ctx, buf, len);
++	if (len != 0)
++		hash_write[type](&hash_ctx, buf, len);
+ 	hash_final[type](&hash_ctx);
+ 
+ 	memcpy(hash, hash_ctx.buf, hash_count[type]);
+@@ -1882,6 +1913,7 @@
+ 	return r;
+ }
+ 
++#ifndef RUFUS_HASH_CORE_ONLY
+ /*
+  * Hash dialog callback
+  */
+@@ -2700,3 +2732,5 @@
+ 	return errors;
+ }
+ #endif
++
++#endif /* !RUFUS_HASH_CORE_ONLY */
+--- a/src/rufus.h
++++ b/src/rufus.h
+@@ -533,56 +533,14 @@
+ 	uint32_t* address;	// 32-bit will do, as we're not dealing with >4GB DLLs...
+ } dll_resolver_t;
+ 
+-/* Alignment macro */
+-#if defined(__GNUC__)
+-#define ALIGNED(m) __attribute__ ((__aligned__(m)))
+-#elif defined(_MSC_VER)
+-#define ALIGNED(m) __declspec(align(m))
+-#endif
+-
+-/* Hash definitions */
+-enum hash_type {
+-	HASH_MD5 = 0,
+-	HASH_SHA1,
+-	HASH_SHA256,
+-	HASH_SHA512,
+-	HASH_MAX
+-};
+-
+-/* Blocksize for each hash algorithm - Must be a power of 2 */
+-#define MD5_BLOCKSIZE       64
+-#define SHA1_BLOCKSIZE      64
+-#define SHA256_BLOCKSIZE    64
+-#define SHA512_BLOCKSIZE    128
+-#define MAX_BLOCKSIZE       SHA512_BLOCKSIZE
+-
+-/* Hashsize for each hash algorithm */
+-#define MD5_HASHSIZE        16
+-#define SHA1_HASHSIZE       20
+-#define SHA256_HASHSIZE     32
+-#define SHA512_HASHSIZE     64
+-#define MAX_HASHSIZE        SHA512_HASHSIZE
+-
+-/* Context for the hash algorithms */
+-typedef struct ALIGNED(64) {
+-	uint8_t buf[MAX_BLOCKSIZE];
+-	uint64_t state[8];
+-	uint64_t bytecount;
+-} HASH_CONTEXT;
++/* Shared algorithm types are independent of the Windows UI. */
++#include "hash_core.h"
+ 
+ /* Certificate info */
+ typedef struct {
+ 	char name[256];
+ 	uint8_t thumbprint[SHA1_HASHSIZE];
+ } cert_info_t;
+-
+-/* Hash functions */
+-typedef void hash_init_t(HASH_CONTEXT* ctx);
+-typedef void hash_write_t(HASH_CONTEXT* ctx, const uint8_t* buf, size_t len);
+-typedef void hash_final_t(HASH_CONTEXT* ctx);
+-extern hash_init_t* hash_init[HASH_MAX];
+-extern hash_write_t* hash_write[HASH_MAX];
+-extern hash_final_t* hash_final[HASH_MAX];
+ 
+ /* SBAT entry */
+ typedef struct {
+--- /dev/null
++++ b/src/hash_core.h
+@@ -0,0 +1,63 @@
++/* SPDX-License-Identifier: GPL-3.0-or-later
++ * Shared hash definitions from Rufus rufus.h, Copyright Pete Batard and contributors.
++ * No operating system headers or GUI types belong in this interface.
++ */
++#ifndef RUFUS_HASH_CORE_H
++#define RUFUS_HASH_CORE_H
++#include <stddef.h>
++#include <stdint.h>
++
++/* Alignment macro */
++#if defined(__GNUC__)
++#define ALIGNED(m) __attribute__ ((__aligned__(m)))
++#elif defined(_MSC_VER)
++#define ALIGNED(m) __declspec(align(m))
++#endif
++
++/* Hash definitions */
++enum hash_type {
++	HASH_MD5 = 0,
++	HASH_SHA1,
++	HASH_SHA256,
++	HASH_SHA512,
++	HASH_MAX
++};
++
++/* Blocksize for each hash algorithm - Must be a power of 2 */
++#define MD5_BLOCKSIZE       64
++#define SHA1_BLOCKSIZE      64
++#define SHA256_BLOCKSIZE    64
++#define SHA512_BLOCKSIZE    128
++#define MAX_BLOCKSIZE       SHA512_BLOCKSIZE
++
++/* Hashsize for each hash algorithm */
++#define MD5_HASHSIZE        16
++#define SHA1_HASHSIZE       20
++#define SHA256_HASHSIZE     32
++#define SHA512_HASHSIZE     64
++#define MAX_HASHSIZE        SHA512_HASHSIZE
++
++/* Context for the hash algorithms */
++typedef struct ALIGNED(64) {
++	uint8_t buf[MAX_BLOCKSIZE];
++	uint64_t state[8];
++	uint64_t bytecount;
++} HASH_CONTEXT;
++
++/* Hash functions */
++typedef void hash_init_t(HASH_CONTEXT* ctx);
++typedef void hash_write_t(HASH_CONTEXT* ctx, const uint8_t* buf, size_t len);
++typedef void hash_final_t(HASH_CONTEXT* ctx);
++extern hash_init_t* hash_init[HASH_MAX];
++extern hash_write_t* hash_write[HASH_MAX];
++extern hash_final_t* hash_final[HASH_MAX];
++
++extern uint32_t hash_count[HASH_MAX];
++extern int cpu_has_sha1_accel, cpu_has_sha256_accel;
++int DetectSHA1Acceleration(void);
++int DetectSHA256Acceleration(void);
++int HashBuffer(unsigned type, const uint8_t *buffer, size_t length, uint8_t *digest);
++#ifdef RUFUS_HASH_CORE_ONLY
++void RufusHashInitialize(void);
++#endif
++#endif
+--- /dev/null
++++ b/src/linux/hash_compat.h
+@@ -0,0 +1,53 @@
++/* SPDX-License-Identifier: GPL-3.0-or-later */
++#ifndef RUFUS_LINUX_HASH_COMPAT_H
++#define RUFUS_LINUX_HASH_COMPAT_H
++
++/* Compile the original hash algorithms without the Windows UI and I/O code.
++ * BOOL is the return type of their existing public functions; no Windows API
++ * is emulated here. This build currently supports little-endian Linux only. */
++#if !defined(__linux__) || !defined(__BYTE_ORDER__) || __BYTE_ORDER__ != __ORDER_LITTLE_ENDIAN__
++#error "The portable Rufus hash build currently requires little-endian Linux"
++#endif
++
++#include <pthread.h>
++#include <string.h>
++
++#if defined(__i386__) || defined(__x86_64__)
++#include <immintrin.h>
++#endif
++
++typedef int BOOL;
++#define FALSE 0
++#define TRUE 1
++
++/* memcpy avoids undefined behavior when a caller supplies unaligned input. */
++static inline uint32_t read_swap32(const void *p)
++{
++    uint32_t value;
++    memcpy(&value, p, sizeof(value));
++    return __builtin_bswap32(value);
++}
++
++static inline uint64_t read_swap64(const void *p)
++{
++    uint64_t value;
++    memcpy(&value, p, sizeof(value));
++    return __builtin_bswap64(value);
++}
++
++static inline void write_swap32(void *p, uint32_t value)
++{
++    value = __builtin_bswap32(value);
++    memcpy(p, &value, sizeof(value));
++}
++
++static inline void write_swap64(void *p, uint64_t value)
++{
++    value = __builtin_bswap64(value);
++    memcpy(p, &value, sizeof(value));
++}
++
++/* The Windows macro prefetches beyond the current block. Omit the hint in this
++ * initial build; it is not required for the algorithm or its acceleration. */
++#define PREFETCH64(pointer) ((void)0)
++#endif
+--- a/src/linux/platform.c
++++ b/src/linux/platform.c
+@@ -3,7 +3,7 @@
+ 
+ #include <errno.h>
+ #include <fcntl.h>
+-#include <openssl/evp.h>
++#include "hash_core.h"
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/stat.h>
+@@ -96,12 +96,10 @@
+ int rf_hash_image(const char *path, struct rf_hashes *out,
+                   rf_progress_fn progress, void *context)
+ {
+-    const EVP_MD *algorithms[] = {EVP_md5(), EVP_sha1(), EVP_sha256(), EVP_sha512()};
+-    EVP_MD_CTX *hash[4] = {NULL, NULL, NULL, NULL};
++    HASH_CONTEXT hash[HASH_MAX];
+     char *outputs[4];
+     struct rf_hashes result = {0};
+     struct stat before;
+-    unsigned char digest[EVP_MAX_MD_SIZE];
+     unsigned char *buffer = NULL;
+     uint64_t done = 0;
+     int status = -1, fd, saved;
+@@ -119,13 +117,9 @@
+     buffer = malloc(CHUNK);
+     if (buffer == NULL)
+         goto finish;
+-    for (size_t i = 0; i < 4; i++) {
+-        hash[i] = EVP_MD_CTX_new();
+-        if (hash[i] == NULL || EVP_DigestInit_ex(hash[i], algorithms[i], NULL) != 1) {
+-            errno = EIO;
+-            goto finish;
+-        }
+-    }
++    RufusHashInitialize();
++    for (size_t i = 0; i < HASH_MAX; i++)
++        hash_init[i](&hash[i]);
+     if (report(progress, 0, (uint64_t)before.st_size, context) < 0)
+         goto finish;
+     while (done < (uint64_t)before.st_size) {
+@@ -133,12 +127,8 @@
+         size_t n = remaining > CHUNK ? CHUNK : (size_t)remaining;
+         if (read_exact(fd, buffer, n, (off_t)done) < 0)
+             goto finish;
+-        for (size_t i = 0; i < 4; i++) {
+-            if (EVP_DigestUpdate(hash[i], buffer, n) != 1) {
+-                errno = EIO;
+-                goto finish;
+-            }
+-        }
++        for (size_t i = 0; i < HASH_MAX; i++)
++            hash_write[i](&hash[i], buffer, n);
+         done += n;
+         if (report(progress, done, (uint64_t)before.st_size, context) < 0)
+             goto finish;
+@@ -147,22 +137,17 @@
+         goto finish;
+     for (size_t i = 0; i < 4; i++) {
+         static const char hex[] = "0123456789abcdef";
+-        unsigned int length = 0;
+-        if (EVP_DigestFinal_ex(hash[i], digest, &length) != 1) {
+-            errno = EIO;
+-            goto finish;
+-        }
++        unsigned int length = hash_count[i];
++        hash_final[i](&hash[i]);
+         for (unsigned int j = 0; j < length; j++) {
+-            outputs[i][2 * j] = hex[digest[j] >> 4];
+-            outputs[i][2 * j + 1] = hex[digest[j] & 15];
++            outputs[i][2 * j] = hex[hash[i].buf[j] >> 4];
++            outputs[i][2 * j + 1] = hex[hash[i].buf[j] & 15];
+         }
+         outputs[i][2 * length] = '\0';
+     }
+     status = 0;
+ finish:
+     saved = errno;
+-    for (size_t i = 0; i < 4; i++)
+-        EVP_MD_CTX_free(hash[i]);
+     free(buffer);
+     if (close(fd) < 0 && status == 0) {
+         saved = errno;
+--- a/Makefile.linux
++++ b/Makefile.linux
+@@ -1,30 +1,45 @@
+ # Independent Linux platform validation build. The complete Rufus GUI is not yet
+ # ported; the original Windows build and resource files remain untouched.
+ CC ?= cc
+-PKG_CONFIG ?= pkg-config
++AR ?= ar
+ BUILD_DIR ?= build-linux
+-CPPFLAGS += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -Isrc/linux
++CPPFLAGS += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -DRUFUS_HASH_CORE_ONLY -Isrc -Isrc/linux
+ CFLAGS ?= -O2 -g
+ LINUX_WARNINGS = -std=c11 -Wall -Wextra -Wpedantic -Werror
+-OPENSSL_CFLAGS = $(shell $(PKG_CONFIG) --cflags openssl)
+-OPENSSL_LIBS = $(shell $(PKG_CONFIG) --libs openssl)
+ PLATFORM_SOURCES = src/linux/platform.c src/linux/platform.h
++HASH_SOURCES = src/hash.c src/hash_core.h src/linux/hash_compat.h
++HASH_LIBRARY = $(BUILD_DIR)/librufus-hash.a
++THREAD_FLAGS = -pthread
+ 
+-.PHONY: all check dependencies
++.PHONY: all check check-sanitize
+ all: $(BUILD_DIR)/rufus-linux-probe
+-
+-dependencies:
+-	@$(PKG_CONFIG) --exists openssl || { echo 'Necessario: OpenSSL development headers e pkg-config.' >&2; exit 1; }
+ 
+ $(BUILD_DIR):
+ 	mkdir -p "$@"
+ 
+-$(BUILD_DIR)/rufus-linux-probe: src/linux/probe.c $(PLATFORM_SOURCES) Makefile.linux | $(BUILD_DIR) dependencies
+-	$(CC) $(CPPFLAGS) $(OPENSSL_CFLAGS) $(CFLAGS) $(LINUX_WARNINGS) src/linux/probe.c src/linux/platform.c $(LDFLAGS) $(OPENSSL_LIBS) -o "$@"
++$(BUILD_DIR)/hash-core.o: $(HASH_SOURCES) Makefile.linux | $(BUILD_DIR)
++	$(CC) $(CPPFLAGS) $(CFLAGS) $(LINUX_WARNINGS) $(THREAD_FLAGS) -fPIC -c src/hash.c -o "$@"
+ 
+-$(BUILD_DIR)/test-linux-platform: tests/linux/test_platform.c $(PLATFORM_SOURCES) Makefile.linux | $(BUILD_DIR) dependencies
+-	$(CC) $(CPPFLAGS) $(OPENSSL_CFLAGS) $(CFLAGS) $(LINUX_WARNINGS) tests/linux/test_platform.c src/linux/platform.c $(LDFLAGS) $(OPENSSL_LIBS) -o "$@"
++$(HASH_LIBRARY): $(BUILD_DIR)/hash-core.o
++	$(AR) rcs "$@" "$<"
+ 
+-check: $(BUILD_DIR)/rufus-linux-probe $(BUILD_DIR)/test-linux-platform
++$(BUILD_DIR)/libhash-core.so: $(BUILD_DIR)/hash-core.o
++	$(CC) -shared $(THREAD_FLAGS) $(LDFLAGS) "$<" -o "$@"
++
++$(BUILD_DIR)/rufus-linux-probe: src/linux/probe.c $(PLATFORM_SOURCES) $(HASH_LIBRARY) Makefile.linux | $(BUILD_DIR)
++	$(CC) $(CPPFLAGS) $(CFLAGS) $(LINUX_WARNINGS) $(THREAD_FLAGS) src/linux/probe.c src/linux/platform.c $(HASH_LIBRARY) $(LDFLAGS) -o "$@"
++
++$(BUILD_DIR)/test-linux-platform: tests/linux/test_platform.c $(PLATFORM_SOURCES) $(HASH_LIBRARY) Makefile.linux | $(BUILD_DIR)
++	$(CC) $(CPPFLAGS) $(CFLAGS) $(LINUX_WARNINGS) $(THREAD_FLAGS) tests/linux/test_platform.c src/linux/platform.c $(HASH_LIBRARY) $(LDFLAGS) -o "$@"
++
++check: $(BUILD_DIR)/rufus-linux-probe $(BUILD_DIR)/test-linux-platform $(BUILD_DIR)/libhash-core.so
+ 	"$(BUILD_DIR)/test-linux-platform"
+ 	python3 tests/linux/test_probe.py "$(BUILD_DIR)/rufus-linux-probe"
++	python3 tests/linux/test_hash_core.py "$(BUILD_DIR)/libhash-core.so"
++
++# Optional native memory checks. Requires the compiler's ASan/UBSan runtimes.
++$(BUILD_DIR)/test-hash-memory: tests/linux/test_hash_memory.c $(HASH_SOURCES) Makefile.linux | $(BUILD_DIR)
++	$(CC) $(CPPFLAGS) -O1 -g $(LINUX_WARNINGS) $(THREAD_FLAGS) -fsanitize=address,undefined -fno-omit-frame-pointer tests/linux/test_hash_memory.c src/hash.c $(LDFLAGS) -o "$@"
++
++check-sanitize: $(BUILD_DIR)/test-hash-memory
++	ASAN_OPTIONS=detect_leaks=0 "$(BUILD_DIR)/test-hash-memory"
+--- /dev/null
++++ b/tests/linux/test_hash_core.py
+@@ -0,0 +1,118 @@
++#!/usr/bin/env python3
++# SPDX-License-Identifier: GPL-3.0-or-later
++"""Compare the actual src/hash.c algorithms against Python's independent hashes."""
++import concurrent.futures
++import ctypes as c
++import hashlib
++from pathlib import Path
++import random
++import sys
++import unittest
++
++LIBRARY = Path(sys.argv.pop(1)).resolve()
++ALGORITHMS = ("md5", "sha1", "sha256", "sha512")
++
++
++class HashCoreTests(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        cls.lib = c.CDLL(str(LIBRARY))
++        cls.lib.HashBuffer.argtypes = [c.c_uint, c.c_void_p, c.c_size_t, c.c_void_p]
++        cls.lib.HashBuffer.restype = c.c_int
++        cls.lib.RufusHashInitialize()
++        cls.sha1 = c.c_int.in_dll(cls.lib, "cpu_has_sha1_accel")
++        cls.sha256 = c.c_int.in_dll(cls.lib, "cpu_has_sha256_accel")
++        cls.detected = (cls.lib.DetectSHA1Acceleration(), cls.lib.DetectSHA256Acceleration())
++        cls.init = [c.CFUNCTYPE(None, c.c_void_p)(address)
++                    for address in (c.c_void_p * 4).in_dll(cls.lib, "hash_init")]
++        cls.write = [c.CFUNCTYPE(None, c.c_void_p, c.c_void_p, c.c_size_t)(address)
++                     for address in (c.c_void_p * 4).in_dll(cls.lib, "hash_write")]
++        cls.final = [c.CFUNCTYPE(None, c.c_void_p)(address)
++                     for address in (c.c_void_p * 4).in_dll(cls.lib, "hash_final")]
++        print(f"CPU SHA acceleration detected: SHA1={cls.detected[0]}, SHA256={cls.detected[1]}")
++
++    def tearDown(self):
++        self.sha1.value, self.sha256.value = self.detected
++
++    def modes(self):
++        # Never force an ISA unsupported by the actual CPU.
++        for label, flags in (("scalar", (0, 0)), ("detected", self.detected)):
++            self.sha1.value, self.sha256.value = flags
++            yield label
++
++    def digest(self, kind, data, offset=0):
++        source = c.create_string_buffer(len(data) + offset + 1)
++        if data:
++            c.memmove(c.addressof(source) + offset, data, len(data))
++        output = (c.c_ubyte * 64)()
++        result = self.lib.HashBuffer(kind, c.addressof(source) + offset, len(data), output)
++        self.assertEqual(result, 1)
++        size = hashlib.new(ALGORITHMS[kind]).digest_size
++        return bytes(output[:size]).hex()
++
++    def test_padding_boundaries_and_unaligned_inputs(self):
++        lengths = (0, 1, 2, 55, 56, 57, 63, 64, 65, 111, 112, 113, 127, 128,
++                   129, 255, 256, 257, 4095, 4096, 4097, 1048576 + 31)
++        for mode in self.modes():
++            for length in lengths:
++                data = (bytes(range(256)) * ((length + 255) // 256))[:length]
++                for kind, name in enumerate(ALGORITHMS):
++                    expected = hashlib.new(name, data).hexdigest()
++                    for offset in (0, 1, 3):
++                        with self.subTest(mode=mode, algorithm=name, length=length, offset=offset):
++                            self.assertEqual(self.digest(kind, data, offset), expected)
++
++    def test_known_vectors(self):
++        for mode in self.modes():
++            for data in (b"abc", b"The quick brown fox jumps over the lazy dog", b"a" * 1000000):
++                for kind, name in enumerate(ALGORITHMS):
++                    with self.subTest(mode=mode, algorithm=name, length=len(data)):
++                        self.assertEqual(self.digest(kind, data), hashlib.new(name, data).hexdigest())
++
++    def test_streaming_tiny_and_random_chunks(self):
++        rng = random.Random(8162412)
++        for mode in self.modes():
++            for length in (2, 63, 64, 65, 127, 128, 129, 8193):
++                data = rng.randbytes(length)
++                for kind, name in enumerate(ALGORITHMS):
++                    for chunk_limit in (1, 17, 300):
++                        # HASH_CONTEXT is aligned to 64 bytes in the shared C header.
++                        storage = c.create_string_buffer(320)
++                        context = (c.addressof(storage) + 63) & ~63
++                        self.init[kind](context)
++                        position = 0
++                        while position < length:
++                            size = min(rng.randint(1, chunk_limit), length - position)
++                            segment = c.create_string_buffer(data[position:position + size], size)
++                            self.write[kind](context, segment, size)
++                            position += size
++                        self.final[kind](context)
++                        actual = c.string_at(context, hashlib.new(name).digest_size).hex()
++                        with self.subTest(mode=mode, algorithm=name, length=length, limit=chunk_limit):
++                            self.assertEqual(actual, hashlib.new(name, data).hexdigest())
++
++    def test_invalid_arguments_do_not_write_output(self):
++        output = (c.c_ubyte * 64)(*([0x5A] * 64))
++        for kind, source, length, destination in (
++            (4, None, 0, output), (0xFFFFFFFF, None, 0, output),
++            (0, None, 1, output), (0, None, 0, None),
++        ):
++            self.assertEqual(self.lib.HashBuffer(kind, source, length, destination), 0)
++            self.assertEqual(bytes(output), b"\x5a" * 64)
++        for kind, name in enumerate(ALGORITHMS):
++            self.assertEqual(self.lib.HashBuffer(kind, None, 0, output), 1)
++            size = hashlib.new(name).digest_size
++            self.assertEqual(bytes(output[:size]), hashlib.new(name, b"").digest())
++
++    def test_concurrent_independent_contexts(self):
++        self.sha1.value, self.sha256.value = self.detected
++        def task(index):
++            data = bytes([index]) * (4096 + index)
++            return all(self.digest(kind, data) == hashlib.new(name, data).hexdigest()
++                       for kind, name in enumerate(ALGORITHMS))
++        with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
++            self.assertTrue(all(pool.map(task, range(32))))
++
++
++if __name__ == "__main__":
++    unittest.main(verbosity=2)
+--- /dev/null
++++ b/tests/linux/test_hash_memory.c
+@@ -0,0 +1,22 @@
++/* SPDX-License-Identifier: GPL-3.0-or-later */
++#include "hash_core.h"
++#include <assert.h>
++#include <stdlib.h>
++
++int main(void)
++{
++    HASH_CONTEXT context;
++    unsigned char *one = malloc(1);
++    assert(one != NULL);
++    *one = 'a';
++    for (unsigned type = 0; type < HASH_MAX; type++) {
++        hash_init[type](&context);
++        /* Each pointer is exactly one accessible byte long. The second write
++         * must not read the rest of the algorithm's pending 64/128-byte block. */
++        hash_write[type](&context, one, 1);
++        hash_write[type](&context, one, 1);
++        hash_final[type](&context);
++    }
++    free(one);
++    return 0;
++}

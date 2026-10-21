@@ -1,0 +1,8 @@
+{
+  "compiler": "cc (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "node": "v22.22.1",
+  "python": "Python 3.14.4",
+  "binutils": "GNU objdump (GNU Binutils for Ubuntu) 2.46",
+  "binary_sha256": "06f49cb9f1957b43eaf21118c8bce32e3cb9f7cefc47f6d7383464228e917ed4",
+  "hash_source_sha256": "710b8ee3a8f4304b9561f1ea3c03021621865d8ed174aa3f8a6b3fa53f94a1e6"
+}

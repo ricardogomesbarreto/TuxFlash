@@ -1,0 +1,60 @@
+{
+  "mode": "togo",
+  "command": [
+    "/tmp/lufus-vm-validation/qemu/usr/bin/qemu-system-x86_64",
+    "-L",
+    "/tmp/lufus-vm-validation/qemu/usr/share/qemu",
+    "-machine",
+    "q35",
+    "-accel",
+    "tcg,thread=multi",
+    "-cpu",
+    "max",
+    "-m",
+    "2048",
+    "-smp",
+    "2",
+    "-nodefaults",
+    "-drive",
+    "if=pflash,format=raw,readonly=on,file=/tmp/lufus-vm-validation/qemu/usr/share/OVMF/OVMF_CODE_4M.fd",
+    "-drive",
+    "if=pflash,format=raw,file=/caminho/dos/testes/.lufus-windows-validation-20261020/boot-togo-vars.fd,snapshot=on",
+    "-device",
+    "VGA,romfile=/tmp/lufus-vm-validation/qemu/usr/share/seabios/vgabios-stdvga.bin",
+    "-display",
+    "none",
+    "-serial",
+    "file:/tmp/lufus-windows-validation/boot-togo-serial.log",
+    "-monitor",
+    "none",
+    "-qmp",
+    "unix:/tmp/lufus-windows-validation/boot-togo.sock,server=on,wait=off",
+    "-device",
+    "qemu-xhci,id=xhci",
+    "-drive",
+    "if=none,file=/caminho/dos/testes/.lufus-windows-validation-20261020/windows-to-go.img,format=raw,snapshot=on,id=usb",
+    "-device",
+    "usb-storage,bus=xhci.0,drive=usb,removable=on,bootindex=1",
+    "-nic",
+    "none"
+  ],
+  "physical_disks_attached": false,
+  "network_enabled": false,
+  "secure_boot_enabled": false,
+  "snapshot_writes_only": true,
+  "started_utc": "2026-10-20T12:43:03Z",
+  "screenshots": [
+    {
+      "elapsed_seconds": 30.108902313004364,
+      "path": "/tmp/lufus-windows-validation/boot-togo-030.png"
+    },
+    {
+      "elapsed_seconds": 60.24082990100578,
+      "path": "/tmp/lufus-windows-validation/boot-togo-060.png"
+    }
+  ],
+  "status": "completed; screenshots require visual assessment",
+  "pid": "[REMOVIDO]",
+  "exit_code": 0,
+  "elapsed_seconds": 63.27259519000654
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "file": "org.tuxflash.TuxFlash.policy",
+    "passed": true,
+    "active_session": "auth_admin",
+    "inactive_and_remote": "no",
+    "gui_environment_forwarding": false
+  },
+  {
+    "file": "io.github.openresearchtools.Lufus.policy",
+    "passed": true,
+    "active_session": "auth_admin",
+    "inactive_and_remote": "no",
+    "gui_environment_forwarding": false
+  }
+]

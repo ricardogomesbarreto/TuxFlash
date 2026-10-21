@@ -1,0 +1,56 @@
+[
+  {
+    "language": "pt_BR",
+    "view": "main",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "en",
+    "view": "main",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "es",
+    "view": "main",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "zh_CN",
+    "view": "main",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "zh_CN",
+    "view": "language",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  },
+  {
+    "language": "pt_BR",
+    "view": "credits",
+    "passed": true,
+    "private_gtk": true,
+    "cjk_glyphs_missing": 0,
+    "developer_link_verified": true,
+    "browser_opened": false
+  }
+]

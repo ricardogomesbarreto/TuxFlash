@@ -1,0 +1,216 @@
+Log of Meson test suite run on 2026-10-20T08:47:32.848656
+
+Inherited environment: [REMOVIDO POR PRIVACIDADE]
+
+==================================== 1/10 ====================================
+test:         lufus:helper-help
+start time:   11:47:32
+duration:     0.05s
+result:       exit status 0
+command:      ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MESON_TEST_ITERATION=1 MSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 MALLOC_PERTURB_=48 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /tmp/lufus-integration/project/linux/build-local/lufus-helper --help
+----------------------------------- stdout -----------------------------------
+Usage: lufus-helper write --source IMAGE --target DEVICE --major-minor N:N --size BYTES [--verify]
+       lufus-helper verify --source IMAGE --target DEVICE --major-minor N:N --size BYTES
+       lufus-helper windows-installer --source ISO --target DEVICE --major-minor N:N --size BYTES --windows-flags N --architecture ARCH --windows-index N --target-system uefi|bios|bios-uefi [--uefi-ntfs] [--runtime-validation] [--local-account NAME]
+       lufus-helper windows-to-go --source ISO --target DEVICE --major-minor N:N --size BYTES --windows-index N --windows-flags N --architecture ARCH [--local-account NAME]
+       lufus-helper linux-persistent --source ISO --target DEVICE --major-minor N:N --size BYTES --persistence-size BYTES [--runtime-validation]
+       lufus-helper device-test --target DEVICE --major-minor N:N --size BYTES --passes 1..4
+       lufus-helper capture --target DEVICE --major-minor N:N --size BYTES --output PATH --capture-format raw|vhd|vhdx
+==============================================================================
+
+==================================== 2/10 ====================================
+test:         lufus:windows-options
+start time:   11:47:32
+duration:     0.04s
+result:       exit status 0
+command:      ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MESON_TEST_ITERATION=1 MSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 MALLOC_PERTURB_=20 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /tmp/lufus-integration/project/linux/build-local/test-windows-options
+----------------------------------- stdout -----------------------------------
+TAP version 14
+# random seed: R02S57d26b747da3f649f98b80b0b9103c80
+1..4
+# Start of windows-options tests
+ok 1 /windows-options/full-answer-file
+ok 2 /windows-options/reject-reserved-account
+ok 3 /windows-options/silent-requires-image-index
+ok 4 /windows-options/regular-answer-does-not-wipe
+# End of windows-options tests
+==============================================================================
+
+==================================== 3/10 ====================================
+test:         lufus:downloads
+start time:   11:47:32
+duration:     0.04s
+result:       exit status 0
+command:      ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MESON_TEST_ITERATION=1 MSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 MALLOC_PERTURB_=4 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /tmp/lufus-integration/project/linux/build-local/test-downloads
+----------------------------------- stdout -----------------------------------
+TAP version 14
+# random seed: R02S3cb3b229a34533006a61103333d02a9b
+1..4
+# Start of downloads tests
+ok 1 /downloads/releases
+ok 2 /downloads/invalid-release
+ok 3 /downloads/unsupported-architecture
+ok 4 /downloads/sentinel-errors
+# End of downloads tests
+==============================================================================
+
+==================================== 4/10 ====================================
+test:         lufus:progress
+start time:   11:47:32
+duration:     0.03s
+result:       exit status 0
+command:      ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MESON_TEST_ITERATION=1 MSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 MALLOC_PERTURB_=22 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /tmp/lufus-integration/project/linux/build-local/test-progress
+----------------------------------- stdout -----------------------------------
+TAP version 14
+# random seed: R02S281e66c41c76d9bd450e2fe2dec49132
+1..8
+# Start of progress tests
+# Start of layout tests
+ok 1 /progress/layout/fat32
+ok 2 /progress/layout/ntfs
+ok 3 /progress/layout/windows-to-go
+# End of layout tests
+# Start of status tests
+ok 4 /progress/status/visible
+ok 5 /progress/status/forbidden
+# End of status tests
+# Start of validation tests
+ok 6 /progress/validation/enabled
+ok 7 /progress/validation/disabled
+ok 8 /progress/validation/bytes
+# End of validation tests
+# End of progress tests
+==============================================================================
+
+==================================== 5/10 ====================================
+test:         lufus:helper-durability
+start time:   11:47:32
+duration:     0.03s
+result:       exit status 0
+command:      ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MALLOC_PERTURB_=70 MSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 MESON_TEST_ITERATION=1 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /tmp/lufus-integration/project/linux/build-local/test-helper-durability
+----------------------------------- stdout -----------------------------------
+TAP version 14
+# random seed: R02Sdc735d7b45f4e4095d33fadd84f8576c
+1..10
+# Start of helper-durability tests
+PROGRESS 8192 20480
+PROGRESS 16384 20480
+PROGRESS 20480 20480
+ok 1 /helper-durability/periodic-and-tail-commits
+ok 2 /helper-durability/empty-commit
+PROGRESS 8 15
+PROGRESS 15 15
+ok 3 /helper-durability/validation-target-bytes
+# End of helper-durability tests
+# Start of helper-image-copy tests
+PROGRESS 8192 8193
+PROGRESS 8193 8193
+ok 4 /helper-image-copy/known-exact
+PROGRESS 8192 0
+PROGRESS 8193 0
+ok 5 /helper-image-copy/stream-exact
+ok 6 /helper-image-copy/source-shortened
+ok 7 /helper-image-copy/source-grown
+PROGRESS 8192 0
+ok 8 /helper-image-copy/stream-over-capacity
+PROGRESS 8192 8193
+ok 9 /helper-image-copy/known-over-capacity
+ok 10 /helper-image-copy/empty-stream
+# End of helper-image-copy tests
+==============================================================================
+
+==================================== 6/10 ====================================
+test:         lufus:licenses
+start time:   11:47:32
+duration:     0.02s
+result:       exit status 0
+command:      ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MESON_TEST_ITERATION=1 MSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 MALLOC_PERTURB_=145 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /tmp/lufus-integration/project/linux/build-local/test-licenses
+----------------------------------- stdout -----------------------------------
+TAP version 14
+# random seed: R02S98f2f01d9dc3af635dd61c678f27f2a8
+1..3
+# Start of licenses tests
+ok 1 /licenses/rufus-first
+ok 2 /licenses/complete-and-sorted
+ok 3 /licenses/expected-groups
+# End of licenses tests
+==============================================================================
+
+==================================== 7/10 ====================================
+test:         lufus:job-policy
+start time:   11:47:32
+duration:     0.04s
+result:       exit status 0
+command:      ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MESON_TEST_ITERATION=1 MSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 MALLOC_PERTURB_=48 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /tmp/lufus-integration/project/linux/build-local/test-job-policy
+----------------------------------- stdout -----------------------------------
+TAP version 14
+# random seed: R02Sa99f0f3da72d7d849be9916e7379a905
+1..4
+# Start of job tests
+ok 1 /job/runtime-validation-policy
+ok 2 /job/runtime-validation-helper-argument
+ok 3 /job/silent-install-helper-arguments
+ok 4 /job/silent-install-mode-policy
+# End of job tests
+==============================================================================
+
+==================================== 8/10 ====================================
+test:         lufus:checksums-rufus-core
+start time:   11:47:32
+duration:     0.02s
+result:       exit status 0
+command:      ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MESON_TEST_ITERATION=1 MSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 MALLOC_PERTURB_=43 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /tmp/lufus-integration/project/linux/build-local/test-checksums
+----------------------------------- stdout -----------------------------------
+TAP version 14
+# random seed: R02Sd6400816b6c426d6760bc65d10948fd3
+1..2
+# Start of checksums tests
+ok 1 /checksums/original-rufus-vectors
+ok 2 /checksums/cancellation-and-nonregular
+# End of checksums tests
+==============================================================================
+
+==================================== 9/10 ====================================
+test:         lufus:helper-images
+start time:   11:47:32
+duration:     0.05s
+result:       exit status 0
+command:      ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MESON_TEST_ITERATION=1 MSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 MALLOC_PERTURB_=194 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /tmp/lufus-integration/project/linux/build-local/test-helper-images
+----------------------------------- stdout -----------------------------------
+TAP version 14
+# random seed: R02Sfa1aabc1879abc2d7702e794edbb6cdd
+1..3
+# Start of helper-images tests
+ok 1 /helper-images/root-capacity
+ok 2 /helper-images/invalid-capacity
+Formatting '/tmp/lufus-helper-images-O1KKX3/disk.vhd', fmt=vpc size=67108864 subformat=fixed force_size=on
+Formatting '/tmp/lufus-helper-images-O1KKX3/disk.vhdx', fmt=vhdx size=67108864 log_size=1048576 block_size=0 subformat=dynamic
+ok 3 /helper-images/real-containers
+# End of helper-images tests
+==============================================================================
+
+=================================== 10/10 ====================================
+test:         lufus:image-probe
+start time:   11:47:32
+duration:     0.14s
+result:       exit status 0
+command:      ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MESON_TEST_ITERATION=1 MSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 MALLOC_PERTURB_=90 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /tmp/lufus-integration/project/linux/build-local/test-image-probe
+----------------------------------- stdout -----------------------------------
+TAP version 14
+# random seed: R02S720ce0f890a97d5d5503a5a5f9745bd2
+1..8
+# Start of image-probe tests
+ok 1 /image-probe/windows-installer
+ok 2 /image-probe/ubuntu-persistence
+ok 3 /image-probe/debian-persistence
+ok 4 /image-probe/generic-not-windows
+ok 5 /image-probe/reactos-not-persistence
+ok 6 /image-probe/winpe-markers
+ok 7 /image-probe/real-iso
+ok 8 /image-probe/reject-non-optical-files
+# End of image-probe tests
+==============================================================================
+
+
+Ok:                10  
+Fail:              0   

@@ -1,0 +1,26 @@
+lufus (0.2.2) unstable; urgency=medium
+
+  * Build and test native Linux ARM64 packages alongside AMD64.
+  * Publish both Debian packages and their SHA-256 checksums on each release.
+  * Verify each package matches the build matrix architecture before upload.
+
+ -- Open Research Tools contributors <opensource@openresearchtools.org>  Tue, 22 Sep 2026 19:45:00 +0100
+
+lufus (0.2.1) unstable; urgency=medium
+
+  * Classify ISO contents using Rufus-compatible boot capability flags.
+  * Show Windows modes only for actual Windows installation media.
+  * Default Linux and generic ISOHybrid media to lossless DD image mode.
+  * Read both ISO9660 and Microsoft retail-ISO UDF directory trees.
+
+ -- Open Research Tools contributors <opensource@openresearchtools.org>  Sun, 30 Aug 2026 14:30:00 +0100
+
+lufus (0.2.0) unstable; urgency=medium
+
+  * Initial native Linux release.
+  * Provide shared GTK and CLI disk-writing workflows, Windows installer and
+    Windows To Go media, Linux persistence, capture, validation, and testing.
+  * Add Debian/Ubuntu privilege separation, component attribution,
+    corresponding source, and reproducible Podman packaging.
+
+ -- Open Research Tools contributors <opensource@openresearchtools.org>  Sat, 29 Aug 2026 20:00:00 +0100

@@ -1,0 +1,32 @@
+{
+  "checked_utc": "2026-10-20T13:32:06Z",
+  "device": {
+    "name": "sda",
+    "path": "[DISPOSITIVO_REMOVIDO]",
+    "size": "[DADO_LOCAL_REMOVIDO]",
+    "type": "disk",
+    "tran": "usb",
+    "serial": "[REMOVIDO]",
+    "fstype": null,
+    "label": null,
+    "parttype": null,
+    "mountpoints": [],
+    "children": [
+      {
+        "name": "sda1",
+        "path": "[DISPOSITIVO_REMOVIDO]",
+        "size": 15523119104,
+        "type": "part",
+        "tran": null,
+        "serial": null,
+        "fstype": "vfat",
+        "label": "LUFUS",
+        "parttype": "ebd0a0a2-b9e5-4433-87c0-68b6b72699c7",
+        "mountpoints": []
+      }
+    ]
+  },
+  "unmounted": true,
+  "contents": "Windows 10 installer UEFI/GPT/FAT32",
+  "physical_firmware_boot_performed": false
+}

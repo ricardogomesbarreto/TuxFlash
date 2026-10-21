@@ -1,0 +1,144 @@
+{
+  "date": "2026-10-20",
+  "target": {
+    "by_id": "[IDENTIFICADOR_REMOVIDO]",
+    "serial": "[REMOVIDO]",
+    "bytes": "[DADO_LOCAL_REMOVIDO]",
+    "major_minor": "8:0"
+  },
+  "physical_read_check": {
+    "read_only": true,
+    "command": [
+      "md5sum",
+      "--check",
+      "--quiet",
+      "md5sum.txt"
+    ],
+    "mountpoint": "[CAMINHO_LOCAL_REMOVIDO]",
+    "exit_code": 0,
+    "elapsed_seconds": 102.75674964000063,
+    "manifest_file_count": 1294,
+    "manifest_total_bytes": 3084975100,
+    "serial": "[REMOVIDO]",
+    "model": "[REMOVIDO]",
+    "device_capacity_bytes": "[DADO_LOCAL_REMOVIDO]",
+    "physical_write_performed": false,
+    "host_mount": "[CAMINHO_LOCAL_REMOVIDO]"
+  },
+  "physical_write_performed": true,
+  "erase_confirmation_received": true,
+  "system_authentication_required": true,
+  "windows_iso_available": true,
+  "helper_sha256": "6ad916b5244dbfaa7fcc6d30ed34fdaa0e9e77c4ae95629f638c8212c17af115",
+  "meson_suites_passed": 10,
+  "copy_boundary_cases_passed": 7,
+  "helper_asan_ubsan_passed": true,
+  "vm_backend_cases_passed": 34,
+  "minimal_firmware_boots_passed": 3,
+  "ui_source_unchanged": true,
+  "remaining": [
+    "Physical firmware boot",
+    "Windows on physical USB",
+    "Complete Windows installation and To Go desktop",
+    "Linux persistence across boots",
+    "Secure Boot",
+    "FFU unsupported"
+  ],
+  "physical_write": {
+    "command": [
+      "/caminho/do/projeto/executar-linux.sh",
+      "write",
+      "--image",
+      "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso",
+      "--device",
+      "[IDENTIFICADOR_REMOVIDO]",
+      "--mode",
+      "raw",
+      "--verify",
+      "--test-passes",
+      "1",
+      "--yes"
+    ],
+    "serial": "[REMOVIDO]",
+    "capacity": "[DADO_LOCAL_REMOVIDO]",
+    "helper_sha256": "d89bf28d660cc4e6bd188d00e29ba6287c2561918a452f7fcf17ff33f912ce5e",
+    "user_erase_confirmation_received": true,
+    "started_utc": "2026-10-20T11:39:30Z",
+    "status": "complete",
+    "pid": "[REMOVIDO]",
+    "exit_code": 0,
+    "elapsed_seconds": 1136.9421091050026
+  },
+  "physical_post_verification": {
+    "command": [
+      "pkexec",
+      "/caminho/do/projeto/linux/runtime/libexec/lufus-helper",
+      "verify",
+      "--source",
+      "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso",
+      "--target",
+      "[IDENTIFICADOR_REMOVIDO]",
+      "--major-minor",
+      "8:0",
+      "--size",
+      "[CAPACIDADE_LOCAL_REMOVIDA]"
+    ],
+    "serial": "[REMOVIDO]",
+    "helper_sha256": "6ad916b5244dbfaa7fcc6d30ed34fdaa0e9e77c4ae95629f638c8212c17af115",
+    "compared_bytes": 3134275584,
+    "rewrites_image": false,
+    "started_utc": "2026-10-20T11:59:14Z",
+    "status": "complete",
+    "pid": "[REMOVIDO]",
+    "exit_code": 0,
+    "elapsed_seconds": 98.25354333900032,
+    "device_cache_invalidated": true,
+    "verified": true
+  },
+  "write_helper_sha256": "d89bf28d660cc4e6bd188d00e29ba6287c2561918a452f7fcf17ff33f912ce5e",
+  "system_authentication_completed": true,
+  "windows_source": "/caminho/das/imagens/Windows 10 PRO 2021.iso",
+  "windows_validation_status": "See ../windows-2026-10-20/summary.json",
+  "physical_firmware_boot_performed": false,
+  "final_media": "Linux Mint 22.3 MATE ISO image; connected and unmounted",
+  "f3_capacity_probe": {
+    "passed": true,
+    "announced_blocks_512": "[DADO_LOCAL_REMOVIDO]",
+    "usable_blocks_512": "[DADO_LOCAL_REMOVIDO]",
+    "bytes": "[DADO_LOCAL_REMOVIDO]",
+    "full_surface_bad_block_scan": false
+  },
+  "partition_layout_matches_source": true,
+  "final_device_state": {
+    "present": true,
+    "serial": "[REMOVIDO]",
+    "unmounted": true,
+    "observed_utc": "2026-10-20T12:57:03Z",
+    "inventory": {
+      "blockdevices": [
+        {
+          "path": "[DISPOSITIVO_REMOVIDO]",
+          "serial": "[REMOVIDO]",
+          "size": "14.5G",
+          "fstype": "iso9660",
+          "mountpoints": []
+        },
+        {
+          "path": "[DISPOSITIVO_REMOVIDO]",
+          "serial": null,
+          "size": "2.9G",
+          "fstype": "iso9660",
+          "mountpoints": []
+        },
+        {
+          "path": "[DISPOSITIVO_REMOVIDO]",
+          "serial": null,
+          "size": "5M",
+          "fstype": "vfat",
+          "mountpoints": []
+        }
+      ]
+    }
+  },
+  "current_delivered_helper_sha256": "afb9b9543bda34330c622e512ee57d741586470a877ffa3649543f19c7d1e157"
+}

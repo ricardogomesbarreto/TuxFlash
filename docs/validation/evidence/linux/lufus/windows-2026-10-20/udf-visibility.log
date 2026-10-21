@@ -1,0 +1,14 @@
+c[?7l[2J[0mSeaBIOS (version 1.17.0-debian-1.17.0-1ubuntu1)
+Booting from ROM...
+c[?7l[2J6ad916b5244dbfaa7fcc6d30ed34fdaa0e9e77c4ae95629f638c8212c17af115  /opt/lufus/libexec/lufus-helper
+TARGET   SOURCE     FSTYPE OPTIONS
+/mnt/iso /dev/loop0 udf    ro,relatime,iocharset=utf8
+UDF DEFAULT regular-files=905
+UDF DEFAULT ws.dat omitted
+TARGET   SOURCE     FSTYPE OPTIONS
+/mnt/iso /dev/loop0 udf    ro,relatime,unhide,iocharset=utf8
+UDF UNHIDE regular-files=906
+/mnt/iso/sources/ws.dat
+3bb6e21d6218470af6a46e145ec60d42433fe5ee4ec2efa660075a7404c26872  /mnt/iso/sources/ws.dat
+UDF VISIBILITY PASS
+[   15.732172] reboot: Power down

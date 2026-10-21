@@ -1,0 +1,38 @@
+Lufus for Debian and Ubuntu
+===========================
+
+Lufus is an independent Linux fork of Rufus. Rufus is the first upstream
+project credited in the application About window and in the package copyright
+file. Lufus and the inherited Rufus work are distributed under GPL-3.0-or-later;
+individual inherited files retain their original notices.
+
+Bundled boot components
+-----------------------
+
+Pinned boot artifacts and the BCD-SYS scripts are installed with their license
+notices and corresponding source. See:
+
+  /usr/share/doc/lufus/copyright
+  /usr/share/doc/lufus/THIRD_PARTY_NOTICES.md
+  /usr/share/lufus/sources/
+
+BCD-SYS is installed from its pinned GPL source scripts. The upstream AppImage
+and its duplicate private runtime libraries are not included. Fixed BCD base
+hives are generated from BCD-SYS's source templates during the Podman build by
+Lufus's native hivex-based importer. A native libhivex editor applies the
+Windows To Go internal-disk SAN policy without the removed Perl frontend.
+
+Distribution dependencies
+-------------------------
+
+GTK, libadwaita, GLib, libsoup, JSON-GLib and command-line disk/image tools are
+normal Debian package dependencies. They are not bundled or relicensed by
+Lufus. apt installs them from the target distribution, and their authoritative
+notices remain under /usr/share/doc/<package>/copyright.
+
+Privilege separation
+--------------------
+
+Only /usr/libexec/lufus-helper performs privileged disk operations. The polkit
+policy authorizes an active local desktop user, while the helper independently
+revalidates the selected whole device immediately before destructive access.

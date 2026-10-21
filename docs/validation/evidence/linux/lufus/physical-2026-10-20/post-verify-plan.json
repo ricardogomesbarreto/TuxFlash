@@ -1,0 +1,19 @@
+{
+  "target": {
+    "by_id": "[IDENTIFICADOR_REMOVIDO]",
+    "serial": "[REMOVIDO]",
+    "bytes": "[DADO_LOCAL_REMOVIDO]",
+    "major_minor": "8:0"
+  },
+  "source": {
+    "path": "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso",
+    "bytes": 3134275584,
+    "sha256": "7609294da613b75eea89bb918292125e9f06418a368136fb190466e15bf8c373",
+    "mtime_ns": 1776270749074118994
+  },
+  "helper_sha256": "6ad916b5244dbfaa7fcc6d30ed34fdaa0e9e77c4ae95629f638c8212c17af115",
+  "user_erase_confirmation_received": true,
+  "operation": "Read back existing USB image after block-device cache invalidation; do not rewrite it",
+  "executed": true,
+  "exit_code": 0
+}

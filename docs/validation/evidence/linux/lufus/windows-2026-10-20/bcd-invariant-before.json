@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "default": "{d36497bb-1ea4-455c-b784-7a62143c148c}",
+  "display_order": "\u647b\u3633\u3934\u6237\u2d62\u6531\u3461\u342d\u3535\u2d63\u3762\u3438\u372d\u3661\u3132\u3334\u3163\u3834\u7d63",
+  "display_order_bytes": 40,
+  "cause": "REG_MULTI_SZ encoded as ASCII bytes instead of UTF-16LE"
+}

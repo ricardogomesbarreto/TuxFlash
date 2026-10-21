@@ -1,0 +1,57 @@
+[
+  {
+    "arguments": [
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "Lufus 0.2.2\n",
+    "stderr": ""
+  },
+  {
+    "arguments": [
+      "--help"
+    ],
+    "exit_code": 0,
+    "stdout": "Lufus - bootable media creator\n\nUsage:\n  lufus                         Open the graphical interface\n  lufus list [--all]            List eligible target devices\n  lufus checksum --image PATH   Calculate image checksums\n  lufus probe --image PATH      Inspect ISO capabilities without mounting\n  lufus download [OPTIONS]      Discover/download official Microsoft or UEFI Shell ISOs\n  lufus write [OPTIONS]         Write a raw image or Windows installer\n  lufus test-device [OPTIONS]   Destructively test real capacity and blocks\n  lufus capture [OPTIONS]       Save a device as raw, VHD, or VHDX\n  lufus --version               Show the version\n\nRun 'lufus COMMAND --help' for command-specific options.\n",
+    "stderr": ""
+  },
+  {
+    "arguments": [
+      "list",
+      "--all"
+    ],
+    "exit_code": 0,
+    "stdout": "DEVICE\tSIZE\tTRANSPORT\tMODEL\tSERIAL\n",
+    "stderr": ""
+  },
+  {
+    "arguments": [
+      "checksum",
+      "--image",
+      "/tmp/lufus-cli-8l2xtt05/abc.img"
+    ],
+    "exit_code": 0,
+    "stdout": "MD5  900150983cd24fb0d6963f7d28e17f72\nSHA-1  a9993e364706816aba3e25717850c26c9cd0d89d\nSHA-256  ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad\nSHA-512  ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f\n",
+    "stderr": ""
+  },
+  {
+    "arguments": [
+      "probe",
+      "--image",
+      "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"is_iso\": true, \"has_efi\": true, \"has_windows\": false, \"supports_windows_installer\": false, \"supports_windows_to_go\": false, \"supports_persistence\": true}",
+    "stderr": ""
+  },
+  {
+    "arguments": [
+      "probe",
+      "--image",
+      "/tmp/lufus-cli-8l2xtt05/abc.img"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "lufus probe: The file has no ISO9660 or UDF volume descriptor\n"
+  }
+]

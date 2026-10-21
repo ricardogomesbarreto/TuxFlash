@@ -1,0 +1,35 @@
+{
+  "requires_user_erase_confirmation": false,
+  "requires_system_authentication": true,
+  "target": {
+    "by_id": "[IDENTIFICADOR_REMOVIDO]",
+    "serial": "[REMOVIDO]",
+    "bytes": "[DADO_LOCAL_REMOVIDO]",
+    "major_minor": "8:0"
+  },
+  "source": {
+    "path": "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso",
+    "bytes": 3134275584,
+    "sha256": "7609294da613b75eea89bb918292125e9f06418a368136fb190466e15bf8c373",
+    "mtime_ns": 1776270749074118994
+  },
+  "operation": "one F3 capacity probe then RAW write with byte-for-byte verification; does not establish a complete full-surface bad-block scan",
+  "command": [
+    "/caminho/do/projeto/executar-linux.sh",
+    "write",
+    "--image",
+    "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso",
+    "--device",
+    "[IDENTIFICADOR_REMOVIDO]",
+    "--mode",
+    "raw",
+    "--verify",
+    "--test-passes",
+    "1",
+    "--yes"
+  ],
+  "executed": true,
+  "user_erase_confirmation_received": true,
+  "authorization": "User explicitly authorized erasing and testing the identified USB in this conversation",
+  "exit_code": 0
+}

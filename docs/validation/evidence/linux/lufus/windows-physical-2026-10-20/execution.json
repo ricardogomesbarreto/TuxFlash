@@ -1,0 +1,35 @@
+{
+  "target": {
+    "path": "[DISPOSITIVO_REMOVIDO]",
+    "size": "[DADO_LOCAL_REMOVIDO]",
+    "type": "disk",
+    "rm": true,
+    "tran": "usb",
+    "serial": "[REMOVIDO]",
+    "ro": false
+  },
+  "source": "/caminho/das/imagens/Windows 10 PRO 2021.iso",
+  "source_sha256": "1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768",
+  "helper_sha256": "afb9b9543bda34330c622e512ee57d741586470a877ffa3649543f19c7d1e157",
+  "command": [
+    "/caminho/do/projeto/executar-linux.sh",
+    "write",
+    "--image",
+    "/caminho/das/imagens/Windows 10 PRO 2021.iso",
+    "--device",
+    "[IDENTIFICADOR_REMOVIDO]",
+    "--mode",
+    "windows-installer",
+    "--target-system",
+    "uefi",
+    "--no-runtime-validation",
+    "--yes"
+  ],
+  "prior_user_erase_authorization": true,
+  "status": "write passed",
+  "started_utc": "2026-10-20T13:17:20Z",
+  "scope": "Windows 10 installer UEFI/GPT/FAT32; no unattended customization; runtime validation disabled to compare original ISO files",
+  "pid": "[REMOVIDO]",
+  "exit_code": 0,
+  "elapsed_seconds": 679.9176673070033
+}

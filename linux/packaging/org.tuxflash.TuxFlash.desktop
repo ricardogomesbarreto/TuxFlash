@@ -1,0 +1,19 @@
+[Desktop Entry]
+Version=1.0
+Name=TuxFlash
+GenericName=Bootable USB Creator for Linux
+GenericName[pt_BR]=Criador de pendrives inicializáveis para Linux
+GenericName[es]=Creador de unidades USB de arranque para Linux
+GenericName[zh_CN]=Linux 可启动 USB 制作工具
+Comment[en]=Turn ISO images into bootable USB drives simply and safely.
+Comment[es]=Transforme imágenes ISO en unidades USB de arranque de forma sencilla y segura.
+Comment[zh_CN]=简单、安全地将 ISO 镜像制作成可启动 USB 设备。
+Comment=Transforme imagens ISO em pendrives inicializáveis com simplicidade e segurança.
+Exec=tuxflash
+Icon=org.tuxflash.TuxFlash
+Terminal=false
+Type=Application
+Categories=Utility;System;
+Keywords=USB;ISO;bootable;Linux;pendrive;
+StartupNotify=true
+StartupWMClass=org.tuxflash.TuxFlash

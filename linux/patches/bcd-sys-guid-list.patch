@@ -1,0 +1,15 @@
+--- a/Linux/winload.sh
++++ b/Linux/winload.sh
+@@ -23,9 +23,9 @@
+ 
+ guid_list () {
+ if  [[ "$2" == "true" ]]; then
+-    printf '%s\0\0' "$1" | hexdump -ve '/1 "%02x\0\0"'
+-else
+-    newguidlist=$(printf '%s\0' "$1" | hexdump -ve '/1 "%02x\0\0"')
++    printf '%s\0\0' "$1" | hexdump -ve '/1 "%02x00"'
++else
++    newguidlist=$(printf '%s\0' "$1" | hexdump -ve '/1 "%02x00"')
+     newguidlist+="$3"
+     echo "$newguidlist"
+ fi

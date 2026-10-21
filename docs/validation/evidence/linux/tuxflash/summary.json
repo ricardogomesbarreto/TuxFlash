@@ -1,0 +1,27 @@
+{
+  "application": "TuxFlash",
+  "version": "0.3.0",
+  "architecture": "x86_64",
+  "native_linux": true,
+  "frontend_sha256": "8b42fa2dc9563f3a92c68ee0d074b8c2238fae8aab7520e12c96ace091d50a5d",
+  "helper_sha256": "28a1fc9ba7aaee03eff0f5e75bc4ea56225335e55e509bb0ac1da0cc4be8e3f6",
+  "icon_sha256": "5df7bfbb8ececcba30815ed2fabca89d903632d8e2fbeffc59fd39aea974153f",
+  "meson_suites_passed": 12,
+  "meson_suites_failed": 0,
+  "portable_minimal_linux_backend_cases_passed": 34,
+  "firmware_marker_boots_passed": 3,
+  "firmware_tests_are_full_operating_system_boots": false,
+  "gui_passed": true,
+  "gui_libraries_verified_private": [
+    "GTK4",
+    "libadwaita",
+    "glibc"
+  ],
+  "relocation_path_with_spaces_and_ampersand_passed": true,
+  "diagnostic_tools_available": 25,
+  "physical_usb_modified_this_stage": false,
+  "windows_to_go_desktop_validated": false,
+  "universal_linux_compatibility_claimed": false,
+  "original_win32_source_and_resources_unchanged": 772,
+  "privacy_records_sanitized": true
+}

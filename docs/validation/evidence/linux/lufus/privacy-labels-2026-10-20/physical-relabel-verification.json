@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "target": {
+    "path": "[DISPOSITIVO_REMOVIDO]",
+    "size": "[DADO_LOCAL_REMOVIDO]",
+    "type": "disk",
+    "rm": true,
+    "tran": "usb",
+    "serial": "[REMOVIDO]",
+    "ro": false
+  },
+  "source_sha256": "1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768",
+  "files": 906,
+  "bytes": 4387198448,
+  "failures": [],
+  "extra_files_count": 1,
+  "kernel_block_cache_invalidated": true,
+  "target_mount_readonly": true,
+  "fsck_vfat_exit_code": 0,
+  "elapsed_seconds": 147.59113029299624,
+  "physical_firmware_boot_performed": false,
+  "secure_boot_tested": false,
+  "finished_utc": "2026-10-20T21:20:25Z"
+}

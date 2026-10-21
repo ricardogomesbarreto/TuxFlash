@@ -1,0 +1,12 @@
+{
+  "status": "labels renamed",
+  "old_volume_label": "[OMITIDO POR PRIVACIDADE]",
+  "new_volume_label": "WINDOWS 10",
+  "old_partition_name": "[OMITIDO POR PRIVACIDADE]",
+  "new_partition_name": "WINDOWS 10",
+  "other_partition_metadata_unchanged": true,
+  "reformatted": false,
+  "source_iso_rewritten": false,
+  "physical_boot_before_rename_reported_by_user": true,
+  "physical_boot_after_rename_tested": false
+}

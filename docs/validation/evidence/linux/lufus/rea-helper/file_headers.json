@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "value": {
+    "evidence_id": "ev_be84529fee4f65fc7a1c331af42bd711d15d31cad946c17c3274098937ba0ad9",
+    "subject": {
+      "name": "lufus-helper",
+      "digest": {
+        "sha256": "926bfd5060f2aaf6baa72958eafa8b7b155acd1bca1e57df8d0e15decedb0aac"
+      },
+      "local_path": "/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper",
+      "format": "unknown",
+      "architecture": null
+    },
+    "provider": {
+      "id": "gnu.objdump",
+      "name": "GNU objdump",
+      "version": null
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.reverse-engineering.command-observation",
+    "operation": "inspect_with_objdump",
+    "parameters": {
+      "path": "/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper",
+      "operation": "file_headers",
+      "follow_debug_links": false,
+      "provider_executable": "objdump",
+      "command_arguments": [
+        "-f",
+        "/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper"
+      ]
+    },
+    "raw_result": {
+      "stdout": "\n/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper:     file format elf64-x86-64\narchitecture: i386:x86-64, flags 0x00000150:\nHAS_SYMS, DYNAMIC, D_PAGED\nstart address 0x00000000000053a0\n\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "926bfd5060f2aaf6baa72958eafa8b7b155acd1bca1e57df8d0e15decedb0aac",
+      "artifact_changed": false
+    },
+    "normalized_result": {
+      "stdout": "\n/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper:     file format elf64-x86-64\narchitecture: i386:x86-64, flags 0x00000150:\nHAS_SYMS, DYNAMIC, D_PAGED\nstart address 0x00000000000053a0\n\n",
+      "stderr": "",
+      "exit_code": 0,
+      "signal": null,
+      "output_truncated": false,
+      "completion_status": "complete",
+      "artifact_sha256_after": "926bfd5060f2aaf6baa72958eafa8b7b155acd1bca1e57df8d0e15decedb0aac",
+      "artifact_changed": false
+    },
+    "confidence": "observed",
+    "authority": "shipped-artifact",
+    "environment": {},
+    "limitations": [
+      "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+      "A non-zero process exit is preserved as an observed command result.",
+      "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "/tmp/lufus-integration/project/linux/runtime/libexec/lufus-helper"
+      }
+    ],
+    "evidence_links": []
+  }
+}

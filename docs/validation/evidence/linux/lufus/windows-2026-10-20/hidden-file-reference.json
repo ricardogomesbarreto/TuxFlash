@@ -1,0 +1,9 @@
+{
+  "path": "sources/ws.dat",
+  "bytes": 111,
+  "sha256": "3bb6e21d6218470af6a46e145ec60d42433fe5ee4ec2efa660075a7404c26872",
+  "default_mount_regular_files": 905,
+  "unhide_mount_regular_files": 906,
+  "reference_matches_kernel_read": true,
+  "documentation": "https://docs.kernel.org/filesystems/udf.html"
+}

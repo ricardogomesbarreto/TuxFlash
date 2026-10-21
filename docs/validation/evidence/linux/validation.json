@@ -1,0 +1,53 @@
+{
+  "native_build": {
+    "command": "make -f Makefile.linux",
+    "exit_code": 0,
+    "format": "ELF 64-bit LSB PIE, x86-64, dynamically linked",
+    "full_rufus": false,
+    "crypto_backend": "original src/hash.c, not OpenSSL"
+  },
+  "tests": {
+    "command": "make -f Makefile.linux check",
+    "exit_code": 0,
+    "python_integration_tests": 7,
+    "c_checks": [
+      "hash cancellation keeps output unchanged",
+      "cancel before create leaves destination absent",
+      "cancel during copy reports ECANCELED and leaves partial file",
+      "concurrent source growth rejected by hash and copy"
+    ],
+    "python_hash_core_groups": 5,
+    "details": "phase2/tests.json"
+  },
+  "real_iso_probe": {
+    "artifact": "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso",
+    "exit_code": 0,
+    "write_access": false,
+    "boot_test": false
+  },
+  "rea_inspections": {
+    "windows_exe": 3,
+    "linux_probe": 3,
+    "provider": "GNU objdump",
+    "deep_decompilation": false,
+    "windows_target_executed": false,
+    "phase2_disassembly_and_symbols": 4
+  },
+  "not_validated": [
+    "GUI on Linux",
+    "USB writing",
+    "partitioning",
+    "formatting",
+    "bootability",
+    "Windows To Go",
+    "feature parity",
+    "full Rufus Linux build"
+  ],
+  "current_phase": "phase2",
+  "memory_sanitizer": {
+    "exit_code": 0,
+    "details": "phase2/sanitizer-after.json",
+    "leak_detection": false
+  },
+  "windows_full_build_tested": false
+}

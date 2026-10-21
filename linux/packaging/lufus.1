@@ -1,0 +1,57 @@
+.TH LUFUS 1 "September 2026" "Lufus 0.2.2" "User Commands"
+.SH NAME
+lufus \- create bootable USB media on Linux
+.SH SYNOPSIS
+.B lufus
+.RI [ command ]
+.RI [ options ]
+.SH DESCRIPTION
+.B Lufus
+is an independent Linux fork of Rufus.  Its GTK interface and command-line
+interface submit work to the same privilege-separated disk engine.
+.SH COMMANDS
+.TP
+.B list
+List eligible removable devices.
+.TP
+.B checksum
+Calculate image checksums.
+.TP
+.B write
+Write raw, Windows installer, Windows To Go, or persistent Linux media.
+.TP
+.B capture
+Capture a device as raw, fixed VHD, or dynamic VHDX.
+.TP
+.B test-device
+Run destructive F3 capacity and block testing.
+.TP
+.B download
+Discover or download supported Microsoft Windows and UEFI Shell images.
+.SH OPTIONS
+Run
+.B lufus COMMAND --help
+for the options accepted by a specific command.  Destructive noninteractive
+writes require
+.BR --yes .
+.SH FILES
+.TP
+.I /usr/share/doc/lufus/copyright
+Debian-format copyright and license record.
+.TP
+.I /usr/share/doc/lufus/THIRD_PARTY_NOTICES.md
+Bundled-component licenses, revisions, and provenance.
+.TP
+.I /usr/share/lufus/sources/
+Corresponding source for pinned bundled components.
+.SH SAFETY
+Writing or testing a device destroys its contents.  Verify the complete target
+path and disconnect unrelated disks before creating silent-install media.
+.SH SEE ALSO
+.BR pkexec (1),
+.BR 7z (1),
+.BR wimlib-imagex (1),
+.BR qemu-img (1)
+.SH AUTHORS
+Rufus by Pete Batard and contributors; Lufus Linux implementation by Open
+Research Tools contributors.

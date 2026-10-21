@@ -1,0 +1,12 @@
+{
+  "helper_sha256": "6ad916b5244dbfaa7fcc6d30ed34fdaa0e9e77c4ae95629f638c8212c17af115",
+  "meson_suites_passed": 10,
+  "vm_backend_cases_passed": 34,
+  "minimal_firmware_boots_passed": 3,
+  "cache_invalidation": "BLKFLSBUF required before RAW/VHD/VHDX verification",
+  "standalone_helper_verify": "Uncompressed RAW/ISO only; rejects destructive pretests",
+  "physical_post_verification_status": "passed",
+  "physical_verification_log": "../physical-post-verify.log",
+  "physical_compared_bytes": 3134275584,
+  "helper_asan_ubsan_passed": true
+}

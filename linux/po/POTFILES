@@ -1,0 +1,5 @@
+src/main.c
+src/language.c
+src/status_translations.h
+src/licenses.c
+src/release_notes.c

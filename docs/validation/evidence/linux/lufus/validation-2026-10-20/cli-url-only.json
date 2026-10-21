@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/tmp/lufus-integration/project/executar-linux.sh",
+    "download",
+    "--kind",
+    "uefi-shell",
+    "--url-only",
+    "--output",
+    "/tmp/lufus-cli-z2v4f7wq/must-not-be-created.iso"
+  ],
+  "exit_code": 0,
+  "stdout": "https://github.com/pbatard/UEFI-Shell/releases/download/26H1/UEFI-Shell-2.2-26H1-RELEASE.iso\n",
+  "stderr": "",
+  "output_created": false
+}

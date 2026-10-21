@@ -1,0 +1,35 @@
+{
+  "native_gui_sha256": "b73ab8b4332173992a13a3c657fcdae09b44d9405e43d439fcfcfc418739ead4",
+  "native_helper_sha256": "5c7c6fb31e4f353b09694f3049da70bf026ac931a580d26731e9f9c1db050bc7",
+  "meson_suites_passed": 11,
+  "backend_cases_passed": 34,
+  "minimal_firmware_boots_passed": 3,
+  "gui_label_and_privacy_test_passed": true,
+  "physical_installer_boot_reported_by_user": true,
+  "complete_windows_installation_validated": false,
+  "physical_boot_after_relabel_tested": false,
+  "windows_to_go_full_real_iso_validation": false,
+  "privacy_scope": "Project documents, records and historical backups; personal paths, names, host/device identifiers and inherited environments removed",
+  "layout_preserved": true,
+  "fat32_example_label": "WINDOWS 10",
+  "ntfs_example_label": "Windows 10 PRO 2021",
+  "shared_label_source_sha256": "cad8826b003324eace15b5b5a176352c346a3f44a85dca6b340939a9cab4ec60",
+  "physical_volume_and_gpt_label": "WINDOWS 10",
+  "physical_original_files_verified_after_relabel": 906,
+  "physical_files_bytes_verified_after_relabel": 4387198448,
+  "physical_extra_files_preserved_count": 1,
+  "physical_relabel_filesystem_check_passed": true,
+  "physical_relabel_partition_geometry_unchanged": true,
+  "privacy_residual_identifier_matches": 0,
+  "privacy_project_files_scanned": 1340,
+  "historical_backup_files_anonymized": 27,
+  "REA_helper_inspection": {
+    "version": "6.5.0",
+    "operations": [
+      "file_headers",
+      "section_headers",
+      "symbols"
+    ],
+    "completed": true
+  }
+}

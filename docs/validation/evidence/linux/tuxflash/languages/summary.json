@@ -1,0 +1,21 @@
+{
+  "application": "TuxFlash",
+  "version": "0.3.1",
+  "frontend_sha256": "d8425b3db8a85539efded15f6bc4ba0cfaeb8bb2cc000faec1804e459f9a3253",
+  "helper_sha256": "28a1fc9ba7aaee03eff0f5e75bc4ea56225335e55e509bb0ac1da0cc4be8e3f6",
+  "helper_unchanged": true,
+  "meson_suites_passed": 13,
+  "catalog_messages": {
+    "pt_BR": 192,
+    "en": 192,
+    "zh_CN": 192,
+    "es": 192
+  },
+  "gui_scenarios_passed": 6,
+  "developer": "Ricardo Barreto",
+  "developer_profile": "https://github.com/ricardogomesbarreto",
+  "previous_authors_retained": true,
+  "language_applied_after_reopen": true,
+  "public_name_and_profile_explicitly_authorized": true,
+  "physical_devices_written": false
+}

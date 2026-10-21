@@ -1,0 +1,26 @@
+[
+  {
+    "language": "pt_BR",
+    "source_messages": 264,
+    "translated_source_messages": 264,
+    "format_checks_passed": true
+  },
+  {
+    "language": "en",
+    "source_messages": 264,
+    "translated_source_messages": 264,
+    "format_checks_passed": true
+  },
+  {
+    "language": "zh_CN",
+    "source_messages": 264,
+    "translated_source_messages": 264,
+    "format_checks_passed": true
+  },
+  {
+    "language": "es",
+    "source_messages": 264,
+    "translated_source_messages": 264,
+    "format_checks_passed": true
+  }
+]

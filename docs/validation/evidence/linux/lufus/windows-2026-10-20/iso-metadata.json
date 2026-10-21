@@ -1,0 +1,19 @@
+{
+  "file_count": 906,
+  "sum_file_bytes": 4387198448,
+  "edition_count": 4,
+  "editions": [
+    "Windows 10 Home",
+    "Windows 10 Home Single Language",
+    "Windows 10 Education",
+    "Windows 10 Pro"
+  ],
+  "architecture": "x86_64",
+  "language": "pt-BR",
+  "build": 19041,
+  "service_pack_build": 928,
+  "to_go_test_index": 4,
+  "to_go_test_edition": "Windows 10 Pro",
+  "install_esd_integrity_table_present": false,
+  "source_authenticity_verified": false
+}

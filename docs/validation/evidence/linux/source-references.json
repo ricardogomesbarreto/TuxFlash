@@ -1,0 +1,1320 @@
+{
+  "method": "lexical source references, not a complete call graph",
+  "scope": "top-level src/*.c and src/*.h; third-party trees and new Linux layer excluded",
+  "file_count": 60,
+  "counts": {
+    "windows_headers": 55,
+    "gui": 11,
+    "disk_io": 89,
+    "device_discovery": 14,
+    "formatting": 13,
+    "wimlib_references": 51,
+    "virtual_disks": 6,
+    "windows_network": 6
+  },
+  "references": {
+    "windows_headers": [
+      {
+        "path": "src/badblocks.c",
+        "line": 24,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 26,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 34,
+        "text": "#include <setupapi.h>"
+      },
+      {
+        "path": "src/dos.c",
+        "line": 27,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/dos_locale.c",
+        "line": 26,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 24,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 32,
+        "text": "#include <vds.h>"
+      },
+      {
+        "path": "src/format.c",
+        "line": 24,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/format.c",
+        "line": 35,
+        "text": "#include <vds.h>"
+      },
+      {
+        "path": "src/format_ext.c",
+        "line": 25,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/format_fat32.c",
+        "line": 26,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/hash.c",
+        "line": 73,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/icon.c",
+        "line": 26,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/iso.c",
+        "line": 28,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/iso.c",
+        "line": 36,
+        "text": "#include <virtdisk.h>"
+      },
+      {
+        "path": "src/localization.c",
+        "line": 26,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/net.c",
+        "line": 26,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/net.c",
+        "line": 35,
+        "text": "#include <virtdisk.h>"
+      },
+      {
+        "path": "src/parser.c",
+        "line": 26,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/pki.c",
+        "line": 26,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/process.c",
+        "line": 30,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/rufus.c",
+        "line": 25,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/rufus.c",
+        "line": 32,
+        "text": "#include <winioctl.h>"
+      },
+      {
+        "path": "src/smart.c",
+        "line": 28,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/stdfn.c",
+        "line": 24,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/stdio.c",
+        "line": 25,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/stdlg.c",
+        "line": 26,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/syslinux.c",
+        "line": 23,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/ui.c",
+        "line": 26,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/ui.c",
+        "line": 32,
+        "text": "#include <winioctl.h>"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 27,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 20,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/badblocks.h",
+        "line": 21,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/darkmode.h",
+        "line": 22,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/dev.h",
+        "line": 20,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/drive.h",
+        "line": 20,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/drive.h",
+        "line": 22,
+        "text": "#include <winioctl.h>   // for DISK_GEOMETRY"
+      },
+      {
+        "path": "src/drive.h",
+        "line": 89,
+        "text": "#include <vds.h>"
+      },
+      {
+        "path": "src/format.h",
+        "line": 21,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/format.h",
+        "line": 22,
+        "text": "#include <winioctl.h>\t// for MEDIA_TYPE"
+      },
+      {
+        "path": "src/gpt_types.h",
+        "line": 20,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/localization_data.h",
+        "line": 20,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/missing.h",
+        "line": 20,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/msapi_utf8.h",
+        "line": 25,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/msapi_utf8.h",
+        "line": 34,
+        "text": "#include <setupapi.h>"
+      },
+      {
+        "path": "src/ntdll.h",
+        "line": 25,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/registry.h",
+        "line": 19,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/rufus.h",
+        "line": 19,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/settings.h",
+        "line": 19,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/ui.h",
+        "line": 20,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/ui_data.h",
+        "line": 20,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/vhd.h",
+        "line": 21,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/vhd.h",
+        "line": 22,
+        "text": "#include <virtdisk.h>"
+      },
+      {
+        "path": "src/winio.h",
+        "line": 21,
+        "text": "#include <windows.h>"
+      },
+      {
+        "path": "src/wue.h",
+        "line": 20,
+        "text": "#include <windows.h>"
+      }
+    ],
+    "gui": [
+      {
+        "path": "src/rufus.c",
+        "line": 2860,
+        "text": "hLogDialog = MyCreateDialog(hMainInstance, IDD_LOG, hDlg, (DLGPROC)LogCallback);"
+      },
+      {
+        "path": "src/rufus.c",
+        "line": 3353,
+        "text": "int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd)"
+      },
+      {
+        "path": "src/rufus.c",
+        "line": 3355,
+        "text": "int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)"
+      },
+      {
+        "path": "src/rufus.c",
+        "line": 3877,
+        "text": "hDlg = MyCreateDialog(hInstance, IDD_DIALOG, NULL, MainCallback);"
+      },
+      {
+        "path": "src/stdlg.c",
+        "line": 457,
+        "text": "SendMessageW(enl->nmhdr.hwndFrom, EM_GETTEXTRANGE, 0, (LPARAM)&tr);"
+      },
+      {
+        "path": "src/stdlg.c",
+        "line": 1382,
+        "text": "SendMessageW(ttlist[i].hTip, TTM_ADDTOOLW, 0, (LPARAM)&toolInfo);"
+      },
+      {
+        "path": "src/stdlg.c",
+        "line": 2230,
+        "text": "HWND MyCreateDialog(HINSTANCE hInstance, int Dialog_ID, HWND hWndParent, DLGPROC lpDialogFunc)"
+      },
+      {
+        "path": "src/msapi_utf8.h",
+        "line": 211,
+        "text": "ret = SendMessageW(hWnd, Msg, wParam, (LPARAM)wlParam);"
+      },
+      {
+        "path": "src/msapi_utf8.h",
+        "line": 475,
+        "text": "size = (int)SendMessageW(hCtrl, CB_GETLBTEXTLEN, (WPARAM)index, (LPARAM)0);"
+      },
+      {
+        "path": "src/msapi_utf8.h",
+        "line": 479,
+        "text": "size = (int)SendMessageW(hCtrl, CB_GETLBTEXT, (WPARAM)index, (LPARAM)wlpString);"
+      },
+      {
+        "path": "src/rufus.h",
+        "line": 776,
+        "text": "extern HWND MyCreateDialog(HINSTANCE hInstance, int Dialog_ID, HWND hWndParent, DLGPROC lpDialogFunc);"
+      }
+    ],
+    "disk_io": [
+      {
+        "path": "src/dev.c",
+        "line": 156,
+        "text": "if (!DeviceIoControl(handle, IOCTL_USB_GET_NODE_CONNECTION_INFORMATION_EX, &conn_info, size, &conn_info, size, &size, NULL)) {"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 187,
+        "text": "if (DeviceIoControl(handle, IOCTL_USB_GET_NODE_CONNECTION_SUPERSPEEDPLUS_INFORMATION, &ssp, sizeof(ssp), &ssp, sizeof(ssp), &size, NULL)) {"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 212,
+        "text": "if (!DeviceIoControl(handle, IOCTL_USB_GET_DESCRIPTOR_FROM_NODE_CONNECTION, req, header_size + size, req, header_size + size, &size, NULL) ||"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 243,
+        "text": "if (!DeviceIoControl(handle, IOCTL_USB_GET_NODE_CONNECTION_INFORMATION_EX_V2, &conn_info_v2, size, &conn_info_v2, size, &size, NULL)) {"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 298,
+        "text": "if (!DeviceIoControl(handle, IOCTL_USB_HUB_CYCLE_PORT, &cycle_port, size, &cycle_port, size, &size, NULL)) {"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 523,
+        "text": "if (!DeviceIoControl(hDrive, IOCTL_DISK_GET_DRIVE_GEOMETRY_EX, NULL, 0, geometry, sizeof(geometry), &size, NULL))"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 531,
+        "text": "if ((buffer != NULL) && (SetFilePointerEx(hDrive, li, NULL, FILE_BEGIN)) &&"
+      },
+      {
+        "path": "src/dos.c",
+        "line": 309,
+        "text": "dll_handle = CreateFileU(diskcopy_dll_path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 101,
+        "text": "ret = DeviceIoControl(hMountMgr, IOCTL_MOUNTMGR_SET_AUTO_MOUNT, &enable, sizeof(enable), NULL, 0, NULL, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 117,
+        "text": "ret = DeviceIoControl(hMountMgr, IOCTL_MOUNTMGR_QUERY_AUTO_MOUNT, NULL, 0, enabled, sizeof(*enabled), &size, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 190,
+        "text": "if (DeviceIoControl(hDrive, FSCTL_ALLOW_EXTENDED_DASD_IO, NULL, 0, NULL, 0, NULL, NULL)) {"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 196,
+        "text": "if (DeviceIoControl(hDrive, FSCTL_LOCK_VOLUME, NULL, 0, NULL, 0, NULL, NULL))"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 318,
+        "text": "r = DeviceIoControl(hDrive, IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS, NULL, 0, &DiskExtents, sizeof(DiskExtents), &size, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1070,
+        "text": "if (!DeviceIoControl(hDrive, IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS, NULL, 0, &DiskExtents, sizeof(DiskExtents), &size, NULL) ||"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1073,
+        "text": "s = DeviceIoControl(hDrive, IOCTL_STORAGE_GET_DEVICE_NUMBER, NULL, 0, &DeviceNumber, sizeof(DeviceNumber), &size, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1184,
+        "text": "r = DeviceIoControl(hPhysical, IOCTL_DISK_GET_DRIVE_GEOMETRY_EX, NULL, 0, geometry, sizeof(geometry), &size, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1361,
+        "text": "if (DeviceIoControl(hPhysical, IOCTL_STORAGE_CHECK_VERIFY, NULL, 0, NULL, 0, NULL, NULL))"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1403,
+        "text": "r = DeviceIoControl(hPhysical, IOCTL_DISK_GET_DRIVE_GEOMETRY_EX, NULL, 0, geometry, sizeof(geometry), &size, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1421,
+        "text": "r = DeviceIoControl(hPhysical, IOCTL_DISK_GET_DRIVE_GEOMETRY_EX, NULL, 0, geometry, sizeof(geometry), &size, NULL) && (size > 0);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1520,
+        "text": "r = DeviceIoControl(hPhysical, IOCTL_DISK_GET_DRIVE_LAYOUT_EX, NULL, 0, layout, sizeof(layout), &size, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1609,
+        "text": "r = DeviceIoControl(hPhysical, IOCTL_DISK_GET_DRIVE_LAYOUT_EX, NULL, 0, layout, sizeof(layout), &dl_size, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1647,
+        "text": "if (SetFilePointerEx(hPhysical, DriveLayout->PartitionEntry[esp_index].StartingOffset, NULL, FILE_BEGIN) &&"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1703,
+        "text": "r = DeviceIoControl(hPhysical, IOCTL_DISK_SET_DRIVE_LAYOUT_EX, (BYTE*)DriveLayout, dl_size, NULL, 0, NULL, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1788,
+        "text": "if (!SetFilePointerEx(hPhysical, StartingOffset, NULL, FILE_BEGIN))"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1840,
+        "text": "if (!SetFilePointerEx(hPhysical, StartingOffset, NULL, FILE_BEGIN))"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1852,
+        "text": "if (!SetFilePointerEx(hPhysical, StartingOffset, NULL, FILE_BEGIN))"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1884,
+        "text": "if (!SetFilePointerEx(hPhysical, StartingOffset, NULL, FILE_BEGIN))"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1931,
+        "text": "r = DeviceIoControl(hPhysical, IOCTL_DISK_GET_DRIVE_GEOMETRY_EX, NULL, 0, geometry, sizeof(geometry), &size, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1955,
+        "text": "r = DeviceIoControl(hPhysical, IOCTL_DISK_GET_DRIVE_LAYOUT_EX, NULL, 0, layout, sizeof(layout), &size, NULL );"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 1995,
+        "text": "if (SetFilePointerEx(hPhysical, DriveLayout->PartitionEntry[i].StartingOffset, NULL, FILE_BEGIN) &&"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 2112,
+        "text": "if (!DeviceIoControl(hDrive, FSCTL_DISMOUNT_VOLUME, NULL, 0, NULL, 0, NULL, NULL)) {"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 2290,
+        "text": "if (!SetFilePointerEx(hDrive, li_offset, NULL, FILE_BEGIN)) {"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 2538,
+        "text": "if (!SetFilePointerEx(hDrive, li, NULL, FILE_BEGIN)) {"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 2591,
+        "text": "if (!DeviceIoControl(hDrive, IOCTL_DISK_CREATE_DISK, (BYTE*)&CreateDisk, size, NULL, 0, NULL, NULL)) {"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 2603,
+        "text": "if (!DeviceIoControl(hDrive, IOCTL_DISK_SET_DRIVE_LAYOUT_EX, (BYTE*)&DriveLayoutEx, size, NULL, 0, NULL, NULL)) {"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 2619,
+        "text": "r = DeviceIoControl(hDrive, IOCTL_DISK_UPDATE_PROPERTIES, NULL, 0, NULL, 0, NULL, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 2633,
+        "text": "r = DeviceIoControl(hDrive, IOCTL_DISK_CREATE_DISK, (BYTE*)&CreateDisk, sizeof(CreateDisk), NULL, 0, NULL, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 2639,
+        "text": "r = DeviceIoControl(hDrive, IOCTL_DISK_UPDATE_PROPERTIES, NULL, 0, NULL, 0, NULL, NULL);"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 2681,
+        "text": "if (!DeviceIoControl(hLogical, FSCTL_QUERY_PERSISTENT_VOLUME_STATE, &data, sizeof(data),"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 2712,
+        "text": "r = DeviceIoControl(hPhysical, IOCTL_DISK_GET_DRIVE_LAYOUT_EX, NULL, 0, layout, sizeof(layout), &size, NULL);"
+      },
+      {
+        "path": "src/format.c",
+        "line": 735,
+        "text": "if (!SetFilePointerEx(hPhysicalDrive, liFilePointer, &liFilePointer, FILE_BEGIN) || (liFilePointer.QuadPart != 0ULL))"
+      },
+      {
+        "path": "src/format.c",
+        "line": 744,
+        "text": "if (SetFilePointerEx(hPhysicalDrive, liFilePointer, &liFilePointer, FILE_BEGIN) &&"
+      },
+      {
+        "path": "src/format.c",
+        "line": 889,
+        "text": "if (!DeviceIoControl(hPhysicalDrive, IOCTL_DISK_UPDATE_PROPERTIES, NULL, 0, NULL, 0, NULL, NULL))"
+      },
+      {
+        "path": "src/format.c",
+        "line": 1171,
+        "text": "if (!SetFilePointerEx(hPhysicalDrive, li, NULL, FILE_BEGIN))"
+      },
+      {
+        "path": "src/format.c",
+        "line": 1246,
+        "text": "if (!SetFilePointerEx(hPhysicalDrive, li, NULL, FILE_BEGIN)) {"
+      },
+      {
+        "path": "src/format.c",
+        "line": 1267,
+        "text": "if (!SetFilePointerEx(hPhysicalDrive, li, NULL, FILE_BEGIN)) {"
+      },
+      {
+        "path": "src/format.c",
+        "line": 1283,
+        "text": "hSourceImage = CreateFileU(image_path, GENERIC_READ, FILE_SHARE_READ, NULL,"
+      },
+      {
+        "path": "src/format.c",
+        "line": 1405,
+        "text": "if (!SetFilePointerEx(hPhysicalDrive, li, NULL, FILE_BEGIN)) {"
+      },
+      {
+        "path": "src/format_ext.c",
+        "line": 256,
+        "text": "h = CreateFileU(volume_name, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);"
+      },
+      {
+        "path": "src/format_fat32.c",
+        "line": 214,
+        "text": "if (!DeviceIoControl (hLogicalVolume, IOCTL_DISK_GET_DRIVE_GEOMETRY, NULL, 0, &dgDrive,"
+      },
+      {
+        "path": "src/format_fat32.c",
+        "line": 216,
+        "text": "if (!DeviceIoControl (hLogicalVolume, IOCTL_DISK_GET_DRIVE_GEOMETRY_EX, NULL, 0, xdgDrive,"
+      },
+      {
+        "path": "src/format_fat32.c",
+        "line": 226,
+        "text": "if (!DeviceIoControl (hLogicalVolume, IOCTL_DISK_GET_PARTITION_INFO, NULL, 0, &piDrive,"
+      },
+      {
+        "path": "src/format_fat32.c",
+        "line": 228,
+        "text": "if (!DeviceIoControl (hLogicalVolume, IOCTL_DISK_GET_PARTITION_INFO_EX, NULL, 0, &xpiDrive,"
+      },
+      {
+        "path": "src/hash.c",
+        "line": 1565,
+        "text": "h = CreateFileU(path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, NULL);"
+      },
+      {
+        "path": "src/icon.c",
+        "line": 108,
+        "text": "hFile = CreateFileU(path, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ,"
+      },
+      {
+        "path": "src/iso.c",
+        "line": 640,
+        "text": "HANDLE dir_handle = CreateFileU(path, GENERIC_READ | GENERIC_WRITE,"
+      },
+      {
+        "path": "src/iso.c",
+        "line": 1632,
+        "text": "file_handle = CreateFileU(dest_file, GENERIC_READ | GENERIC_WRITE,"
+      },
+      {
+        "path": "src/iso.c",
+        "line": 2016,
+        "text": "handle = CreateFileU(target, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ,"
+      },
+      {
+        "path": "src/iso.c",
+        "line": 2092,
+        "text": "if (!SetFilePointerEx(hPhysicalDrive, li, NULL, FILE_BEGIN))"
+      },
+      {
+        "path": "src/iso.c",
+        "line": 2094,
+        "text": "hDestImage = CreateFileU(img_save->ImagePath, GENERIC_WRITE, FILE_SHARE_WRITE, NULL,"
+      },
+      {
+        "path": "src/iso.c",
+        "line": 2119,
+        "text": "if (!SetFilePointerEx(hPhysicalDrive, li, NULL, FILE_BEGIN))"
+      },
+      {
+        "path": "src/iso.c",
+        "line": 2144,
+        "text": "if (!SetFilePointerEx(hDestImage, li, NULL, FILE_BEGIN)) {"
+      },
+      {
+        "path": "src/iso.c",
+        "line": 2231,
+        "text": "exe = CreateFileU(cmd, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);"
+      },
+      {
+        "path": "src/net.c",
+        "line": 273,
+        "text": "hFile = CreateFileU(file, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);"
+      },
+      {
+        "path": "src/net.c",
+        "line": 389,
+        "text": "hFile = CreateFileU(file, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);"
+      },
+      {
+        "path": "src/rufus.c",
+        "line": 1214,
+        "text": "hFile = CreateFileU(path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);"
+      },
+      {
+        "path": "src/rufus.c",
+        "line": 3435,
+        "text": "hFile = CreateFileU(cur_dir, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,"
+      },
+      {
+        "path": "src/rufus.c",
+        "line": 3459,
+        "text": "hFile = CreateFileU(temp_dir, GENERIC_READ, FILE_SHARE_READ, NULL,"
+      },
+      {
+        "path": "src/rufus.c",
+        "line": 3735,
+        "text": "hFile = CreateFileU(loc_file, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ,"
+      },
+      {
+        "path": "src/smart.c",
+        "line": 147,
+        "text": "r = DeviceIoControl(hPhysical, IOCTL_SCSI_PASS_THROUGH_DIRECT, &sptdwb, size, &sptdwb, size, &size, FALSE);"
+      },
+      {
+        "path": "src/smart.c",
+        "line": 386,
+        "text": "r = DeviceIoControl(hdevice, SMART_GET_VERSION, NULL, 0, &vers, sizeof(vers), &size, NULL);"
+      },
+      {
+        "path": "src/stdfn.c",
+        "line": 701,
+        "text": "handle = CreateFileU(path, dwDesiredAccess, FILE_SHARE_READ, sa,"
+      },
+      {
+        "path": "src/stdfn.c",
+        "line": 720,
+        "text": "SetFilePointerEx(handle, liZero, NULL, FILE_END);"
+      },
+      {
+        "path": "src/stdio.c",
+        "line": 559,
+        "text": "HANDLE hFile = CreateFileW(cfx_params->lpFileName, cfx_params->dwDesiredAccess,"
+      },
+      {
+        "path": "src/stdio.c",
+        "line": 626,
+        "text": "if (!SetFilePointerEx(hFile, liZero, (PLARGE_INTEGER)&overlapped.Offset, FILE_CURRENT)) {"
+      },
+      {
+        "path": "src/stdio.c",
+        "line": 721,
+        "text": "return CreateFileU(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes,"
+      },
+      {
+        "path": "src/syslinux.c",
+        "line": 64,
+        "text": "if (!SetFilePointerEx((HANDLE) pp, offset, NULL, FILE_BEGIN)) {"
+      },
+      {
+        "path": "src/syslinux.c",
+        "line": 303,
+        "text": "if (!SetFilePointerEx(f_handle, liZero, NULL, FILE_BEGIN) ||"
+      },
+      {
+        "path": "src/syslinux.c",
+        "line": 313,
+        "text": "if (!SetFilePointerEx(d_handle, liZero, NULL, FILE_BEGIN) ||"
+      },
+      {
+        "path": "src/syslinux.c",
+        "line": 328,
+        "text": "if (!SetFilePointerEx(d_handle, liZero, NULL, FILE_BEGIN) ||"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 175,
+        "text": "handle = CreateFileU(path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 195,
+        "text": "IGNORE_RETVAL(SetFilePointerEx(handle, ptr, NULL, FILE_BEGIN));"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 613,
+        "text": "if (!SetFilePointerEx(handle, liZero, NULL, FILE_BEGIN)) {"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1173,
+        "text": "CloseHandle(CreateFileU(appraiserres_dll_src, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ,"
+      },
+      {
+        "path": "src/drive.h",
+        "line": 336,
+        "text": "return DeviceIoControl(hDrive, FSCTL_UNLOCK_VOLUME, NULL, 0, NULL, 0, NULL, NULL);"
+      },
+      {
+        "path": "src/msapi_utf8.h",
+        "line": 501,
+        "text": "static __inline HANDLE CreateFileU(const char* lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode,"
+      },
+      {
+        "path": "src/msapi_utf8.h",
+        "line": 508,
+        "text": "ret = CreateFileW(wlpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes,"
+      },
+      {
+        "path": "src/msapi_utf8.h",
+        "line": 527,
+        "text": "h = CreateFileU(lpFileName, dwDesiredAccess, dwShareMode, &sa, dwCreationDisposition, dwFlagsAndAttributes, NULL);"
+      },
+      {
+        "path": "src/winio.h",
+        "line": 69,
+        "text": "fd->hFile = CreateFileU(lpFileName, dwDesiredAccess, dwShareMode, NULL,"
+      }
+    ],
+    "device_discovery": [
+      {
+        "path": "src/dev.c",
+        "line": 331,
+        "text": "dev_info = SetupDiGetClassDevsA(&GUID_DEVINTERFACE_DISK, NULL, NULL, DIGCF_PRESENT | DIGCF_ALLCLASSES);"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 338,
+        "text": "for (i = 0; SetupDiEnumDeviceInfo(dev_info, i, &dev_info_data); i++) {"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 468,
+        "text": "dev_info = SetupDiGetClassDevsA(&GUID_DEVINTERFACE_CDROM, NULL, NULL, DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 470,
+        "text": "uprintf(\"SetupDiGetClassDevs (Interface) failed: %s\", WindowsErrorString());"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 474,
+        "text": "for (i = 0; SetupDiEnumDeviceInfo(dev_info, i, &dev_info_data); i++) {"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 489,
+        "text": "if (!SetupDiEnumDeviceInterfaces(dev_info, &dev_info_data, &GUID_DEVINTERFACE_CDROM, j, &devint_data)) {"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 650,
+        "text": "dev_info = SetupDiGetClassDevsA(&GUID_DEVINTERFACE_USB_HUB, NULL, NULL, DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 654,
+        "text": "for (i=0; SetupDiEnumDeviceInfo(dev_info, i, &dev_info_data); i++) {"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 659,
+        "text": "if ( (SetupDiEnumDeviceInterfaces(dev_info, &dev_info_data, &GUID_DEVINTERFACE_USB_HUB, 0, &devint_data))"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 759,
+        "text": "dev_info = SetupDiGetClassDevsA(&GUID_DEVINTERFACE_DISK, NULL, NULL, DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 761,
+        "text": "uprintf(\"SetupDiGetClassDevs (Interface) failed: %s\", WindowsErrorString());"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 765,
+        "text": "for (i = 0; num_drives < MAX_DRIVES && SetupDiEnumDeviceInfo(dev_info, i, &dev_info_data); i++) {"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 910,
+        "text": "&& (CM_Get_Parent(&grandparent_inst, parent_inst, 0) == CR_SUCCESS)"
+      },
+      {
+        "path": "src/dev.c",
+        "line": 999,
+        "text": "if (!SetupDiEnumDeviceInterfaces(dev_info, &dev_info_data, &GUID_DEVINTERFACE_DISK, j, &devint_data)) {"
+      }
+    ],
+    "formatting": [
+      {
+        "path": "src/drive.c",
+        "line": 467,
+        "text": "hr = CoCreateInstance(&CLSID_VdsLoader, NULL, CLSCTX_LOCAL_SERVER | CLSCTX_REMOTE_SERVER,"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 509,
+        "text": "hr = CoCreateInstance(&CLSID_VdsLoader, NULL, CLSCTX_LOCAL_SERVER | CLSCTX_REMOTE_SERVER,"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 592,
+        "text": "hr = CoCreateInstance(&CLSID_VdsLoader, NULL, CLSCTX_LOCAL_SERVER | CLSCTX_REMOTE_SERVER,"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 740,
+        "text": "hr = CoCreateInstance(&CLSID_VdsLoader, NULL, CLSCTX_LOCAL_SERVER | CLSCTX_REMOTE_SERVER,"
+      },
+      {
+        "path": "src/drive.c",
+        "line": 858,
+        "text": "hr = CoCreateInstance(&CLSID_VdsLoader, NULL, CLSCTX_LOCAL_SERVER | CLSCTX_REMOTE_SERVER,"
+      },
+      {
+        "path": "src/format.c",
+        "line": 370,
+        "text": "hr = CoCreateInstance(&CLSID_VdsLoader, NULL, CLSCTX_LOCAL_SERVER | CLSCTX_REMOTE_SERVER,"
+      },
+      {
+        "path": "src/format.c",
+        "line": 529,
+        "text": "hr = IVdsVolumeMF3_FormatEx2(pVolumeMF3, wFSName, usFsVersion, ClusterSize, wLabel, Flags, &pAsync);"
+      },
+      {
+        "path": "src/format.c",
+        "line": 631,
+        "text": "pfFormatEx(wVolumeName, SelectedDrive.MediaType, wFSName, wLabel,"
+      },
+      {
+        "path": "src/net.c",
+        "line": 121,
+        "text": "hr = CoCreateInstance(&CLSID_NetworkListManager, NULL, CLSCTX_ALL,"
+      },
+      {
+        "path": "src/stdlg.c",
+        "line": 145,
+        "text": "hr = CoCreateInstance(save ? &CLSID_FileSaveDialog : &CLSID_FileOpenDialog, NULL, CLSCTX_INPROC,"
+      },
+      {
+        "path": "src/stdlg.c",
+        "line": 1483,
+        "text": "hr = CoCreateInstance(&CLSID_TaskbarList, NULL, CLSCTX_ALL, &IID_ITaskbarList3, (LPVOID)&ptbl);"
+      },
+      {
+        "path": "src/ui.c",
+        "line": 82,
+        "text": "IGNORE_RETVAL(CoCreateInstance(&CLSID_AccPropServices, NULL, CLSCTX_INPROC, &IID_IAccPropServices, (LPVOID)&pfaps));"
+      },
+      {
+        "path": "src/drive.h",
+        "line": 315,
+        "text": "#define IVdsVolumeMF3_FormatEx2(This, pwszFileSystemTypeName, usFileSystemRevision, ulDesiredUnitAllocationSize, pwszLabel, Options, ppAsync) (This)->lpVtbl->FormatEx2(This, pwszFileSystemTypeName, usFileSystemRevision, ulDesiredUnitAllocationSize, pwszLabel, Options, ppAsync)"
+      }
+    ],
+    "wimlib_references": [
+      {
+        "path": "src/vhd.c",
+        "line": 58,
+        "text": "static struct wimlib_progress_info_split last_split_progress;"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 206,
+        "text": "static enum wimlib_progress_status WimProgressFunc(enum wimlib_progress_msg msg_type,"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 207,
+        "text": "union wimlib_progress_info* info, void* progctx)"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 285,
+        "text": "struct wimlib_wim_info info;"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 290,
+        "text": "r = wimlib_open_wimU(image, 0, &wim);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 292,
+        "text": "r = wimlib_get_wim_info(wim, &info);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 293,
+        "text": "wimlib_free(wim);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 318,
+        "text": "wimlib_global_init(0);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 319,
+        "text": "wimlib_set_print_errors(true);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 320,
+        "text": "r = wimlib_open_wimU(image, 0, &wim);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 322,
+        "text": "r = wimlib_extract_pathsU(wim, index, dst, &src, 1, WIMLIB_EXTRACT_FLAG_NO_PRESERVE_DIR_STRUCTURE);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 323,
+        "text": "wimlib_free(wim);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 332,
+        "text": "wimlib_global_cleanup();"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 347,
+        "text": "wimlib_global_init(0);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 348,
+        "text": "wimlib_set_print_errors(true);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 349,
+        "text": "r = wimlib_open_wimU(src, 0, &wim);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 351,
+        "text": "wimlib_register_progress_function(wim, WimProgressFunc, NULL);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 352,
+        "text": "r = wimlib_splitU(wim, dst, 4094ULL * MB, WIMLIB_WRITE_FLAG_FSYNC);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 353,
+        "text": "wimlib_free(wim);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 355,
+        "text": "wimlib_global_cleanup();"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 366,
+        "text": "wimlib_global_init(0);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 367,
+        "text": "wimlib_set_print_errors(true);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 370,
+        "text": "r = wimlib_open_wimU(image, 0, &wim);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 374,
+        "text": "wimlib_register_progress_function(wim, WimProgressFunc, NULL);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 375,
+        "text": "r = wimlib_extract_imageU(wim, index, dst, 0);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 376,
+        "text": "wimlib_free(wim);"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 380,
+        "text": "wimlib_global_cleanup();"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 74,
+        "text": "r = wimlib_open_wimU(wim_path, 0, &wim);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 80,
+        "text": "r = wimlib_get_xml_data(wim, (void**)&xml, &xml_len);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 97,
+        "text": "wimlib_free(wim);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 743,
+        "text": "r = wimlib_open_wimU(wim_path, 0, &wim);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 749,
+        "text": "r = wimlib_get_xml_data(wim, (void**)&xml, &xml_len);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 759,
+        "text": "wimlib_free(wim);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 798,
+        "text": "r = wimlib_open_wim(wim_path, 0, &wim);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 803,
+        "text": "r = wimlib_get_xml_data(wim, (void**)&xml, &xml_len);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 843,
+        "text": "wimlib_free(wim);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 894,
+        "text": "r = wimlib_open_wim(wim_path, 0, &wim);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 899,
+        "text": "r = wimlib_get_xml_data(wim, (void**)&xml, &xml_len);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 975,
+        "text": "wimlib_free(wim);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1142,
+        "text": "struct wimlib_update_command wuc[2] = { 0 };"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1228,
+        "text": "wimlib_global_init(0);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1229,
+        "text": "wimlib_set_print_errors(true);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1230,
+        "text": "update_boot_wim = (wimlib_open_wimU(boot_wim_path, WIMLIB_OPEN_FLAG_WRITE_ACCESS, &wim) == 0);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1236,
+        "text": "if (wimlib_resolve_image(wim, L\"2\") != 2) {"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1252,
+        "text": "if (wimlib_extract_pathsU(wim, wim_index, tmp_path[0], &reg_path, 1,"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1363,
+        "text": "if (wimlib_extract_pathsU(wim, wim_index, tmp_path[1], &efi_ex_path, 1,"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1365,
+        "text": "wimlib_extract_pathsU(wim, wim_index, tmp_path[1], &fonts_ex_path, 1,"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1434,
+        "text": "if (wimlib_update_image(wim, wim_index, wuc, wuc_index, 0) != 0 ||"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1435,
+        "text": "wimlib_overwrite(wim, WIMLIB_WRITE_FLAG_RECOMPRESS, 0) != 0) {"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1444,
+        "text": "wimlib_free(wim);"
+      },
+      {
+        "path": "src/wue.c",
+        "line": 1445,
+        "text": "wimlib_global_cleanup();"
+      }
+    ],
+    "virtual_disks": [
+      {
+        "path": "src/vhd.c",
+        "line": 410,
+        "text": "r = OpenVirtualDisk(&vtype, wpath, VIRTUAL_DISK_ACCESS_READ | VIRTUAL_DISK_ACCESS_GET_INFO,"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 419,
+        "text": "r = AttachVirtualDisk(mounted_handle, NULL, ATTACH_VIRTUAL_DISK_FLAG_READ_ONLY |"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 468,
+        "text": "// Since we no longer have to deal with Windows 7, we can call on CreateVirtualDisk()"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 498,
+        "text": "// a source path, CreateVirtualDisk() automatically clones the source to"
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 508,
+        "text": "// CreateVirtualDisk() does not have an overwrite flag..."
+      },
+      {
+        "path": "src/vhd.c",
+        "line": 511,
+        "text": "r = CreateVirtualDisk(&vtype, wDst, VIRTUAL_DISK_ACCESS_NONE, NULL,"
+      }
+    ],
+    "windows_network": [
+      {
+        "path": "src/net.c",
+        "line": 145,
+        "text": "hSession = InternetOpenA((user_agent == NULL) ? default_agent : user_agent,"
+      },
+      {
+        "path": "src/net.c",
+        "line": 227,
+        "text": "hRequest = HttpOpenRequestA(hConnection, \"GET\", UrlParts.lpszUrlPath, NULL, NULL, accept_types,"
+      },
+      {
+        "path": "src/net.c",
+        "line": 296,
+        "text": "if (!InternetReadFile(hRequest, buf, sizeof(buf), &dwDownloaded) || (dwDownloaded == 0))"
+      },
+      {
+        "path": "src/net.c",
+        "line": 650,
+        "text": "hRequest = HttpOpenRequestA(hConnection, \"GET\", UrlParts.lpszUrlPath, NULL, NULL, accept_types,"
+      },
+      {
+        "path": "src/net.c",
+        "line": 709,
+        "text": "if (!InternetReadFile(hRequest, buf, dwTotalSize, &dwDownloaded) || (dwDownloaded != dwTotalSize))"
+      },
+      {
+        "path": "src/net.c",
+        "line": 1028,
+        "text": "hRequest = HttpOpenRequestA(hConnection, \"GET\", UrlParts.lpszUrlPath, NULL, NULL, accept_types,"
+      }
+    ]
+  },
+  "source_digests": {
+    "src/badblocks.c": "b153f25f9f6a4da95d9fd23b4226c62567200646b79566c7e45751c8645b1a73",
+    "src/cregex_compile.c": "6db65a38c5f67372d46de96e0b673e219c531c5a5bb9e9d468088f3e35e0cc76",
+    "src/cregex_parse.c": "4cb037ce81192327580a882a16691812a748c5118513eb374fee210ff8055775",
+    "src/cregex_vm.c": "2842b7459d1257b8806a1e97ccd9b82af4f3954352d94de03ccd366c5970dd80",
+    "src/darkmode.c": "c9ce1aa23b24be3f380466eb2b4e86916976f4c5835e49bb6db97395c6ca3627",
+    "src/dev.c": "fded177d09450094256f51ea86a86eac40c573556e205598b59e58f58f6dd051",
+    "src/dos.c": "513cbccfc490300c2aa2bd48690ddcd68f72fce18928dc6e780723c4b74e9730",
+    "src/dos_locale.c": "bfc334bd290f284efac7b6f41b0e0286f661e436f79691875e1112af13e972bc",
+    "src/drive.c": "094dd8d1778cd57c46db2b298f531c7cb943cf73b9f94578377dca3a521b30aa",
+    "src/format.c": "ddce608766181d61b1fdc9294218ea6341e8bac8db1215cc2541df57e0e0e028",
+    "src/format_ext.c": "ef2c1026baeace5130837cabc43485340081bad482517a2727e796fef099516a",
+    "src/format_fat32.c": "3646174e2e043de4c62ec12a9e8ef431aa745e5fac96164e4cefc4f95d1f774d",
+    "src/hash.c": "710b8ee3a8f4304b9561f1ea3c03021621865d8ed174aa3f8a6b3fa53f94a1e6",
+    "src/icon.c": "c2e09ca6b332df584708dc2c86168b55930bef57233beb7491e0c861ac821507",
+    "src/iso.c": "c16f9cbde36cf77537f4ee41ce4e4ad9bd075387231d26a18cef46ef068676ba",
+    "src/localization.c": "aabca26be097b4fcba4df544da2df213062f745a06d4f8d49a1e15f20101b6e0",
+    "src/net.c": "830e6fe0a60b03a87112db2f39f99b86cc6bed1f5d6adc3a13bc90096fe993fc",
+    "src/parser.c": "8c91ec1a2bb850b5048967a7b0bd047f21d2245f52b850d422e9c2c47dc64d12",
+    "src/pki.c": "ddf84a833107a3463be149402b9567cb22848c4a7f0b9f95dcf0d98d85564b3c",
+    "src/process.c": "cdb72a353295c95963210e9110604b8e962b1ea2ff052af44052d3cfd94effbd",
+    "src/rufus.c": "5d6b5069ad788193e21d54a26fea83bc75b1c555df2956274a615f16e1f76510",
+    "src/smart.c": "bd7b96ac3c9e308c56f9d63726a74670fc7886b8bcc5c060ceb76a568ee772c7",
+    "src/stdfn.c": "f0ff4081dc4f5bd6610f38a5807228d9b097e826707f47aed52f08e9631d8d4e",
+    "src/stdio.c": "21e6c9ede81eaffcd8c93fc872b7d0f5c5804e219adc4407a471bd4249aa504c",
+    "src/stdlg.c": "756e7c34fe9f93d3ec0331138d82aadea8a27ded4b8fcecdeeb42054205724f8",
+    "src/syslinux.c": "9b9066640c9c16edf5a1c554185306abfacf9181979a70fc55cd7009e8ec3650",
+    "src/ui.c": "691384c1c43bc9fc62637f8271262d8ef4fe23758048bc8f1ec61216f2109002",
+    "src/vhd.c": "55d8f50f7e9479360e347482fa6d5814cd30c75680f6b2b0a971f1559336db72",
+    "src/wue.c": "008324575e23b15e9c9c92be41530cade644e13545f4153f3fe36ecf61879e29",
+    "src/xml.c": "9ec50d02dcf39369c28504330c43e74914138201d3256ace6b0c58ce9ef1742e",
+    "src/badblocks.h": "60fa9fa5a8cb0e23067471b0b6300a12543f64e3f381c06dc9c1e63cf62b06bc",
+    "src/cregex.h": "d73b750ca853d1a202d3e073dc567a57d2bba9e35d5e3cc482377020225ac2d6",
+    "src/darkmode.h": "80cadedcbc3bf8b908156512935b5d3810c411af65df10804924511bc520e83e",
+    "src/db.h": "a6a350390be17b5d8d47ed9c5d31fefbb0083825ef1e6e06bd61c32e17d2ac9e",
+    "src/dev.h": "21f564195d0f26465b695e82bb8f157186fab8084547fa2f9349e08def0382af",
+    "src/dos.h": "1d9cf6f57faef6234c819aad0ca491eeed539277a8d32c7b32941e9f9d033b0e",
+    "src/drive.h": "1e852ae32febc777a3f9b9942f8f91bbaae6c4040a062358345cd0bb496bf95d",
+    "src/efi.h": "0f9e05300b0aeeb693ab514fe23cfb83583ef04858bb20b5059af0266a6c6e8a",
+    "src/format.h": "51d5a53c21d8bfd2be796d0474acada2dad48df039e404be5c7e6bd1c59c4add",
+    "src/gpt_types.h": "82773534c4409bafde7ee5cc59fc8a1294847fc8d23daa699b6bd8fbd910a42d",
+    "src/hash_core.h": "9049e0bdeb580ecfb60adec83491b180b1c7f74aff4251397d7bf43f0116baf8",
+    "src/hdd_vs_ufd.h": "4fa8c8c4325c57748caa7cd6c3e6857e29f8ca28c3d1ddd33a5b7edd01b41fdb",
+    "src/license.h": "f754cfea2ade513d55574f1c6a6f198e6c3d434df3d2fd80a0026904f33ffdc9",
+    "src/localization.h": "f35e400d959f39595c341767e86978c67f3dec615fe1cb71764b24d214ecf560",
+    "src/localization_data.h": "8b50f4a4405a110ee699a28b9f138e93ffba921bdea4908abd1695c091a1ed9a",
+    "src/mbr_types.h": "802e4bd1a706a649994dfda9d9da65d6c44088ef804f26f9cb08a7547e8e0bcf",
+    "src/missing.h": "edbf7c7e716f98c0ef1ced1b05dd67d873d937dff927cd2905960df15bece014",
+    "src/msapi_utf8.h": "e6d165205d0901cd8fd1309476ddeda34843e2517652d323f4f0741740a8c7c7",
+    "src/ntdll.h": "72b14988b1d3b7faa0ae61c877667884cbeed0a0d4fdb81b8f25ca8ee614b50c",
+    "src/registry.h": "4c88b20852e8bf56e7c285a0632290f6d5d244bd8e561d54d7fa35a98a1648da",
+    "src/resource.h": "19c0266d4394b0525c42c69fdbb4703d81a838e2f62f25c4f345e085c6ef7ae8",
+    "src/rufus.h": "21194f4482f53999745d1fb1fbaf99548f210bed2517d49a1d732dc2895dc414",
+    "src/settings.h": "54506060b5c77270a4fc78dd51f613b629385a42645f0d1c4e5641db31e30211",
+    "src/smart.h": "b68129ae7a736bbbbdcd71a62d2b89619276d09632e9df7068d4a62e57e164fb",
+    "src/ui.h": "c96ee172eb7a527188c5a7bd956f75de57c4a62829ce9d9de73a49ec92a6476c",
+    "src/ui_data.h": "04b595d32782f4ffc685c97b439176a555854269738cfb9beaa11b9950175703",
+    "src/vhd.h": "7a1d8c31fe44fa537a8360db07763bf9b36a3f59e1cb791d13e0e41cdef8875b",
+    "src/winio.h": "33d68bdcdb5dd96b3a68e1810d6fd7637bcad6c8bfa9e8078b4dd0db0c9f3ae5",
+    "src/wue.h": "5dbfb72b3edb3938bd7edb38b13d5b7ae7845928f0a2d7e8f33b56e673836526",
+    "src/xml.h": "c79444f8492fd2b5ccbcef021bc44625e3dab46f88b25f1b0cd34c5ba16b0c8b"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "partitiontable": {
+    "label": "dos",
+    "id": "0x4dfe065a",
+    "device": "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso",
+    "unit": "sectors",
+    "sectorsize": 512,
+    "partitions": [
+      {
+        "node": "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso1",
+        "start": 64,
+        "size": 6121568,
+        "type": "0",
+        "bootable": true
+      },
+      {
+        "node": "/caminho/das/imagens/linuxmint-22.3-mate-64bit.iso2",
+        "start": 8452,
+        "size": 10240,
+        "type": "ef"
+      }
+    ]
+  }
+}

@@ -1,0 +1,470 @@
+--- supplied/linux/meson.build
++++ integrated/linux/meson.build
+@@ -12,11 +12,24 @@
+ soup = dependency('libsoup-3.0', version: '>= 3.4')
+ json_glib = dependency('json-glib-1.0', version: '>= 1.8')
+ hivex = dependency('hivex')
++threads = dependency('threads')
++
+ 
+ add_project_arguments(
+   '-D_FILE_OFFSET_BITS=64',
+   '-D_FORTIFY_SOURCE=2',
+   language: 'c',
++)
++
++# Reuse the original Rufus algorithms ported in the preceding work.
++rufus_includes = include_directories('../src', '../src/linux')
++rufus_hash = static_library(
++  'rufus-linux-core',
++  '../src/hash.c',
++  '../src/linux/platform.c',
++  include_directories: rufus_includes,
++  c_args: ['-D_GNU_SOURCE', '-DRUFUS_HASH_CORE_ONLY'],
++  dependencies: [threads],
+ )
+ 
+ helper_install_dir = get_option('prefix') / get_option('libexecdir')
+@@ -33,6 +46,9 @@
+   'src/image_probe.c',
+   'src/licenses.c',
+   dependencies: [gtk, adwaita, soup, json_glib],
++  include_directories: rufus_includes,
++  link_with: rufus_hash,
++  link_args: ['-pthread'],
+   c_args: [
+     '-DLUFUS_VERSION="' + meson.project_version() + '"',
+     '-DLUFUS_HELPER_PATH="' + helper_install_dir / 'lufus-helper' + '"',
+@@ -151,3 +167,13 @@
+   dependencies: [dependency('gio-2.0')],
+ )
+ test('image-probe', image_probe_test)
++
++checksums_test = executable(
++  'test-checksums',
++  'tests/test_checksums.c',
++  'src/checksums.c',
++  include_directories: [include_directories('src'), rufus_includes],
++  dependencies: [dependency('gio-2.0'), threads],
++  link_with: rufus_hash,
++)
++test('checksums-rufus-core', checksums_test)
+--- supplied/linux/src/main.c
++++ integrated/linux/src/main.c
+@@ -899,6 +899,16 @@
+ 
+ static char *helper_path(void)
+ {
++    char *executable = g_file_read_link("/proc/self/exe", NULL);
++    if (executable != NULL) {
++        char *bin = g_path_get_dirname(executable);
++        char *prefix = g_path_get_dirname(bin);
++        char *candidate = g_build_filename(prefix, "libexec", "lufus-helper", NULL);
++        g_free(executable);
++        g_free(bin);
++        g_free(prefix);
++        return candidate;
++    }
+     return g_strdup(LUFUS_HELPER_PATH);
+ }
+ 
+@@ -1786,7 +1796,16 @@
+ {
+     char *helper;
+     setlocale(LC_ALL, "");
+-    bindtextdomain("lufus", "/usr/share/locale");
++    char *executable = g_file_read_link("/proc/self/exe", NULL);
++    char *bin = executable != NULL ? g_path_get_dirname(executable) : NULL;
++    char *prefix = bin != NULL ? g_path_get_dirname(bin) : NULL;
++    char *locale_directory = prefix != NULL ?
++        g_build_filename(prefix, "share", "locale", NULL) : g_strdup("/usr/share/locale");
++    bindtextdomain("lufus", locale_directory);
++    g_free(locale_directory);
++    g_free(prefix);
++    g_free(bin);
++    g_free(executable);
+     bind_textdomain_codeset("lufus", "UTF-8");
+     textdomain("lufus");
+     if (argc == 2 && strcmp(argv[1], "--version") == 0) {
+@@ -1794,7 +1813,7 @@
+         return 0;
+     }
+     if (argc > 1 &&
+-        (strcmp(argv[1], "list") == 0 || strcmp(argv[1], "checksum") == 0 ||
++        (strcmp(argv[1], "list") == 0 || strcmp(argv[1], "checksum") == 0 || strcmp(argv[1], "probe") == 0 ||
+          strcmp(argv[1], "write") == 0 || strcmp(argv[1], "test-device") == 0 ||
+          strcmp(argv[1], "capture") == 0 || strcmp(argv[1], "download") == 0 ||
+          strcmp(argv[1], "help") == 0 ||
+--- supplied/linux/src/cli.c
++++ integrated/linux/src/cli.c
+@@ -7,6 +7,7 @@
+ #include "cli.h"
+ 
+ #include "checksums.h"
++#include "image_probe.h"
+ #include "devices.h"
+ #include "downloads.h"
+ #include "job.h"
+@@ -58,6 +59,40 @@
+     g_ptr_array_unref(devices);
+ 
+ out:
++    g_option_context_free(context);
++    return status;
++}
++
++static int command_probe(int argc, char **argv)
++{
++    char *image = NULL;
++    GError *error = NULL;
++    LufusImageReport report;
++    GOptionEntry entries[] = {
++        {"image", 'i', 0, G_OPTION_ARG_FILENAME, &image, "ISO image", "PATH"},
++        {NULL}
++    };
++    GOptionContext *context = g_option_context_new("probe --image PATH");
++    int status = 0;
++    g_option_context_add_main_entries(context, entries, NULL);
++    if (!g_option_context_parse(context, &argc, &argv, &error) || image == NULL) {
++        g_printerr("lufus probe: %s\n", error != NULL ? error->message : "--image is required");
++        status = 64;
++    } else if (!lufus_image_probe_iso(image, &report, &error)) {
++        g_printerr("lufus probe: %s\n", error->message);
++        status = 1;
++    } else {
++        g_print("{\"is_iso\":%s,\"has_efi\":%s,\"has_windows\":%s,"
++                "\"supports_windows_installer\":%s,\"supports_windows_to_go\":%s,"
++                "\"supports_persistence\":%s}\n",
++                report.is_iso ? "true" : "false", report.has_efi ? "true" : "false",
++                report.has_windows ? "true" : "false",
++                report.supports_windows_installer ? "true" : "false",
++                report.supports_windows_to_go ? "true" : "false",
++                report.supports_persistence ? "true" : "false");
++    }
++    g_clear_error(&error);
++    g_free(image);
+     g_option_context_free(context);
+     return status;
+ }
+@@ -804,6 +839,7 @@
+         "  lufus                         Open the graphical interface\n"
+         "  lufus list [--all]            List eligible target devices\n"
+         "  lufus checksum --image PATH   Calculate image checksums\n"
++        "  lufus probe --image PATH      Inspect ISO capabilities without mounting\n"
+         "  lufus download [OPTIONS]      Discover/download official Microsoft or UEFI Shell ISOs\n"
+         "  lufus write [OPTIONS]         Write a raw image or Windows installer\n"
+         "  lufus test-device [OPTIONS]   Destructively test real capacity and blocks\n"
+@@ -822,6 +858,8 @@
+     argv++;
+     if (strcmp(argv[0], "list") == 0)
+         return command_list(argc, argv);
++    if (strcmp(argv[0], "probe") == 0)
++        return command_probe(argc, argv);
+     if (strcmp(argv[0], "checksum") == 0)
+         return command_checksum(argc, argv);
+     if (strcmp(argv[0], "download") == 0)
+--- supplied/linux/src/checksums.c
++++ integrated/linux/src/checksums.c
+@@ -1,56 +1,29 @@
+ /* SPDX-License-Identifier: GPL-3.0-or-later */
++#include "checksums.h"
++#include "platform.h"
++#include <errno.h>
+ 
+-#include "checksums.h"
+-
+-#include <errno.h>
+-#include <glib/gstdio.h>
+-#include <stdio.h>
++static int cancelled(uint64_t completed, uint64_t total, void *context)
++{
++    GCancellable *cancellable = context;
++    (void)completed;
++    (void)total;
++    return cancellable != NULL && g_cancellable_is_cancelled(cancellable);
++}
+ 
+ char *lufus_checksums_file(const char *path, GCancellable *cancellable, GError **error)
+ {
+-    GChecksum *checksums[] = {
+-        g_checksum_new(G_CHECKSUM_MD5),
+-        g_checksum_new(G_CHECKSUM_SHA1),
+-        g_checksum_new(G_CHECKSUM_SHA256),
+-        g_checksum_new(G_CHECKSUM_SHA512)
+-    };
+-    const char *names[] = {"MD5", "SHA-1", "SHA-256", "SHA-512"};
+-    unsigned char *buffer = g_malloc(4U * 1024U * 1024U);
+-    GString *output = g_string_new(NULL);
+-    FILE *file = g_fopen(path, "rb");
+-    size_t count;
+-    guint index;
+-    char *result = NULL;
+-
+-    if (file == NULL) {
+-        g_set_error(error, G_FILE_ERROR, g_file_error_from_errno(errno),
+-                    "Could not open image: %s", g_strerror(errno));
+-        goto out;
++    struct rf_hashes hashes;
++    if (rf_hash_image(path, &hashes, cancelled, cancellable) != 0) {
++        int saved = errno;
++        if (saved == ECANCELED)
++            g_set_error_literal(error, G_IO_ERROR, G_IO_ERROR_CANCELLED,
++                                "Checksum calculation cancelled");
++        else
++            g_set_error(error, G_FILE_ERROR, g_file_error_from_errno(saved),
++                        "Could not hash image: %s", g_strerror(saved));
++        return NULL;
+     }
+-    while ((count = fread(buffer, 1, 4U * 1024U * 1024U, file)) > 0) {
+-        if (cancellable != NULL && g_cancellable_set_error_if_cancelled(cancellable, error))
+-            goto out;
+-        for (index = 0; index < G_N_ELEMENTS(checksums); index++)
+-            g_checksum_update(checksums[index], buffer, count);
+-    }
+-    if (ferror(file)) {
+-        g_set_error_literal(error, G_FILE_ERROR, G_FILE_ERROR_FAILED,
+-                            "Could not read image");
+-        goto out;
+-    }
+-    for (index = 0; index < G_N_ELEMENTS(checksums); index++) {
+-        g_string_append_printf(output, "%s  %s\n", names[index],
+-                               g_checksum_get_string(checksums[index]));
+-    }
+-    result = g_string_free(g_steal_pointer(&output), FALSE);
+-
+-out:
+-    if (file != NULL)
+-        fclose(file);
+-    g_free(buffer);
+-    if (output != NULL)
+-        g_string_free(output, TRUE);
+-    for (index = 0; index < G_N_ELEMENTS(checksums); index++)
+-        g_checksum_free(checksums[index]);
+-    return result;
++    return g_strdup_printf("MD5  %s\nSHA-1  %s\nSHA-256  %s\nSHA-512  %s\n",
++                           hashes.md5, hashes.sha1, hashes.sha256, hashes.sha512);
+ }
+--- supplied/linux/src/image_probe.c
++++ integrated/linux/src/image_probe.c
+@@ -4,9 +4,14 @@
+  * SPDX-License-Identifier: GPL-3.0-or-later
+  */
+ 
++#define _GNU_SOURCE
+ #include "image_probe.h"
+ 
++#include <errno.h>
++#include <fcntl.h>
+ #include <string.h>
++#include <sys/stat.h>
++#include <unistd.h>
+ 
+ static gboolean basename_is(const char *path, const char *name)
+ {
+@@ -199,12 +204,53 @@
+     return TRUE;
+ }
+ 
++static gboolean has_optical_descriptor(const char *path, GError **error)
++{
++    struct stat details;
++    unsigned char descriptor[7];
++    gboolean recognized = FALSE;
++    int fd = open(path, O_RDONLY | O_CLOEXEC | O_NONBLOCK);
++    if (fd < 0) {
++        int saved = errno;
++        g_set_error(error, G_IO_ERROR, g_io_error_from_errno(saved),
++                    "Could not open ISO: %s", g_strerror(saved));
++        return FALSE;
++    }
++    if (fstat(fd, &details) == 0 && S_ISREG(details.st_mode)) {
++        /* ISO9660 descriptors and UDF's volume recognition sequence begin at
++         * logical sector 16. A successful listing alone is not evidence of an
++         * ISO: xorriso can treat arbitrary data as an empty, blank medium. */
++        for (off_t sector = 16; sector < 32; sector++) {
++            ssize_t count;
++            if (details.st_size < sector * 2048 + (off_t)sizeof(descriptor))
++                break;
++            do {
++                count = pread(fd, descriptor, sizeof(descriptor), sector * 2048);
++            } while (count < 0 && errno == EINTR);
++            if (count != (ssize_t)sizeof(descriptor))
++                break;
++            if (memcmp(descriptor + 1, "CD001", 5) == 0 ||
++                memcmp(descriptor + 1, "NSR02", 5) == 0 ||
++                memcmp(descriptor + 1, "NSR03", 5) == 0) {
++                recognized = TRUE;
++                break;
++            }
++        }
++    }
++    close(fd);
++    if (!recognized)
++        g_set_error_literal(error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA,
++                            "The file has no ISO9660 or UDF volume descriptor");
++    return recognized;
++}
++
+ gboolean lufus_image_probe_iso(const char *path,
+                                LufusImageReport *report,
+                                GError **error)
+ {
++    char *seven_zip = g_find_program_in_path("7z");
+     const char *seven_zip_arguments[] = {
+-        "/usr/bin/7z", "l", "-ba", "-slt", "--", path, NULL
++        seven_zip != NULL ? seven_zip : "/usr/bin/7z", "l", "-ba", "-slt", "--", path, NULL
+     };
+     const char *xorriso_arguments[] = {
+         "/usr/bin/xorriso", "-report_about", "FAILURE", "-indev", path,
+@@ -216,6 +262,11 @@
+ 
+     g_return_val_if_fail(path != NULL, FALSE);
+     g_return_val_if_fail(report != NULL, FALSE);
++    memset(report, 0, sizeof(*report));
++    if (!has_optical_descriptor(path, error)) {
++        g_free(seven_zip);
++        return FALSE;
++    }
+ 
+     /* Microsoft's retail media commonly exposes its full tree only through
+      * UDF while retaining a one-file ISO9660 compatibility view. 7-Zip reads
+@@ -225,6 +276,7 @@
+                             &seven_zip_failure)) {
+         lufus_image_report_from_listing(listing, report);
+         g_free(listing);
++        g_free(seven_zip);
+         return TRUE;
+     }
+     if (run_listing_command(xorriso_arguments, &listing,
+@@ -232,6 +284,7 @@
+         lufus_image_report_from_listing(listing, report);
+         g_free(listing);
+         g_free(seven_zip_failure);
++        g_free(seven_zip);
+         return TRUE;
+     }
+     g_set_error(error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA,
+@@ -240,5 +293,6 @@
+                 xorriso_failure != NULL ? xorriso_failure : "failed");
+     g_free(seven_zip_failure);
+     g_free(xorriso_failure);
++    g_free(seven_zip);
+     return FALSE;
+ }
+--- supplied/linux/tests/test_image_probe.c
++++ integrated/linux/tests/test_image_probe.c
+@@ -6,6 +6,7 @@
+ #include "image_probe.h"
+ 
+ #include <glib/gstdio.h>
++#include <unistd.h>
+ 
+ static void test_windows_installer(void)
+ {
+@@ -108,6 +109,32 @@
+     g_assert_true(complete.has_windows);
+     g_assert_false(incomplete.has_winpe);
+     g_assert_false(incomplete.has_windows);
++}
++
++static void test_reject_non_optical_files(void)
++{
++    char *path = NULL;
++    GError *error = NULL;
++    LufusImageReport report;
++    int fd = g_file_open_tmp("lufus-invalid-iso-XXXXXX", &path, &error);
++    g_assert_no_error(error);
++    g_assert_cmpint(fd, >=, 0);
++    close(fd);
++    g_assert_true(g_file_set_contents(path, "abc", 3, &error));
++    g_assert_no_error(error);
++    g_assert_false(lufus_image_probe_iso(path, &report, &error));
++    g_assert_error(error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA);
++    g_assert_false(report.is_iso);
++    g_clear_error(&error);
++    char *blank = g_malloc0(65536);
++    g_assert_true(g_file_set_contents(path, blank, 65536, &error));
++    g_assert_no_error(error);
++    g_assert_false(lufus_image_probe_iso(path, &report, &error));
++    g_assert_error(error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA);
++    g_clear_error(&error);
++    g_free(blank);
++    g_unlink(path);
++    g_free(path);
+ }
+ 
+ static void write_marker(const char *root, const char *relative)
+@@ -211,5 +238,6 @@
+     g_test_add_func("/image-probe/reactos-not-persistence", test_reactos_is_not_persistent_linux);
+     g_test_add_func("/image-probe/winpe-markers", test_winpe_requires_complete_marker_set);
+     g_test_add_func("/image-probe/real-iso", test_real_iso_probe);
++    g_test_add_func("/image-probe/reject-non-optical-files", test_reject_non_optical_files);
+     return g_test_run();
+ }
+--- /dev/null
++++ integrated/linux/tests/test_checksums.c
+@@ -0,0 +1,64 @@
++/* SPDX-License-Identifier: GPL-3.0-or-later */
++#include "checksums.h"
++#include <glib/gstdio.h>
++#include <unistd.h>
++
++static void test_vectors(void)
++{
++    const char *data[] = {"", "abc", "The quick brown fox jumps over the lazy dog"};
++    const char *names[] = {"MD5", "SHA-1", "SHA-256", "SHA-512"};
++    const GChecksumType types[] = {G_CHECKSUM_MD5, G_CHECKSUM_SHA1,
++                                  G_CHECKSUM_SHA256, G_CHECKSUM_SHA512};
++    for (guint i = 0; i < G_N_ELEMENTS(data); i++) {
++        char *path = NULL;
++        GError *error = NULL;
++        int fd = g_file_open_tmp("lufus-checksum-XXXXXX", &path, &error);
++        g_assert_no_error(error);
++        g_assert_cmpint(fd, >=, 0);
++        close(fd);
++        g_assert_true(g_file_set_contents(path, data[i], -1, &error));
++        g_assert_no_error(error);
++        char *actual = lufus_checksums_file(path, NULL, &error);
++        g_assert_no_error(error);
++        GString *expected = g_string_new(NULL);
++        for (guint j = 0; j < G_N_ELEMENTS(types); j++) {
++            char *digest = g_compute_checksum_for_string(types[j], data[i], -1);
++            g_string_append_printf(expected, "%s  %s\n", names[j], digest);
++            g_free(digest);
++        }
++        g_assert_cmpstr(actual, ==, expected->str);
++        g_string_free(expected, TRUE);
++        g_free(actual);
++        g_unlink(path);
++        g_free(path);
++    }
++}
++
++static void test_cancellation_and_nonregular(void)
++{
++    char *path = NULL;
++    GError *error = NULL;
++    int fd = g_file_open_tmp("lufus-cancel-XXXXXX", &path, &error);
++    g_assert_no_error(error);
++    g_assert_cmpint(fd, >=, 0);
++    close(fd);
++    GCancellable *cancellable = g_cancellable_new();
++    g_cancellable_cancel(cancellable);
++    g_assert_null(lufus_checksums_file(path, cancellable, &error));
++    g_assert_error(error, G_IO_ERROR, G_IO_ERROR_CANCELLED);
++    g_clear_error(&error);
++    g_assert_null(lufus_checksums_file("/dev/null", NULL, &error));
++    g_assert_nonnull(error);
++    g_clear_error(&error);
++    g_object_unref(cancellable);
++    g_unlink(path);
++    g_free(path);
++}
++
++int main(int argc, char **argv)
++{
++    g_test_init(&argc, &argv, NULL);
++    g_test_add_func("/checksums/original-rufus-vectors", test_vectors);
++    g_test_add_func("/checksums/cancellation-and-nonregular", test_cancellation_and_nonregular);
++    return g_test_run();
++}
