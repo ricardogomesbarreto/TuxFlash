@@ -16,7 +16,7 @@ de desenvolvimento e ferramentas de mídia do sistema.
 ```sh
 sudo apt update
 sudo apt install build-essential pkg-config meson ninja-build gettext \
-  libgtk-4-dev libadwaita-1-dev libsoup-3.0-dev libjson-glib-dev libhivex-dev
+  libgtk-4-dev libadwaita-1-dev libsoup-3.0-dev libjson-glib-dev libhivex-dev xorriso
 make
 make check
 make check-sanitize

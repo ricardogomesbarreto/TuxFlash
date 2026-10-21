@@ -4,6 +4,7 @@
 #include <libintl.h>
 #include <locale.h>
 #include <sys/stat.h>
+#include <stdio.h>
 #include "language.h"
 
 static char *settings_file(void)
@@ -12,7 +13,8 @@ static void test_restart_translation(void)
 {
     if (g_test_subprocess()) {
         tuxflash_language_init(TUXFLASH_TEST_CATALOGS);
-        g_print("%s", gettext("READY"));
+        /* Compare catalog UTF-8 bytes, independent of terminal charset. */
+        fputs(gettext("READY"), stdout);
         return;
     }
     const char *expected[] = {"PRONTO", "READY", "就绪", "LISTO"};

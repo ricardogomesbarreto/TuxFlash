@@ -29,6 +29,6 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential pkg-config meson ninja-build gettext libgtk-4-dev libadwaita-1-dev libsoup-3.0-dev libjson-glib-dev libhivex-dev
+          sudo apt-get install -y build-essential pkg-config meson ninja-build gettext libgtk-4-dev libadwaita-1-dev libsoup-3.0-dev libjson-glib-dev libhivex-dev xorriso
       - name: Build and run Meson suites
         run: make
