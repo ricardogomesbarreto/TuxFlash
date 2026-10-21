@@ -156,8 +156,9 @@ Se a interface não abrir, execute o lançador pelo terminal para ler o erro, ro
 
 Windows 10 no pendrive: 906 arquivos (4,39 GB), WIM e BCD conferidos somente
 para leitura; GPT e FAT32 íntegros, com descarte do cache de blocos antes da
-nova comparação integral. Debian 13.7 e Ubuntu 26.04.1: gravação/conferência integral em
-VM e menus BIOS/UEFI; Debian chegou à seleção de idioma do instalador UEFI.
+nova comparação integral. O boot UEFI lendo esse USB físico em VM chegou à
+seleção de idioma do instalador Windows 10. Debian 13.7 e Ubuntu 26.04.1:
+gravação/conferência integral em VM e menus BIOS/UEFI; Debian chegou à seleção de idioma do instalador UEFI.
 Veja [evidências e limites](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).
 
 ### Desenvolvimento e histórico de versões
@@ -314,7 +315,8 @@ If the GUI does not open, launch it from a terminal to inspect the error, run `d
 
 Existing Windows 10 USB: 906 files (4.39 GB), WIM and BCD checked read-only;
 GPT and FAT32 checks passed, followed by a full comparison after block-cache
-invalidation.
+invalidation. UEFI VM boot reading this physical USB reached Windows 10
+Setup language selection.
 Debian 13.7 and Ubuntu 26.04.1: complete virtual-disk write/read-back and
 BIOS/UEFI menus; Debian reached UEFI installer language selection.
 See [evidence and limits](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).

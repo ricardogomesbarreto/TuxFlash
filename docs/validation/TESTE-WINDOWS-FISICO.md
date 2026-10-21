@@ -49,7 +49,12 @@ arquivo. A rotina administrativa posterior também passou: CRCs dos dois GPTs,
 igualdade das tabelas de partições, `fsck.vfat -n` com saída zero e nova
 comparação dos 906 arquivos depois de invalidar o cache de blocos com
 `BLKFLSBUF`. Metadados de particionamento e boot permaneceram iguais.
-Isso não constitui nova gravação física com o helper 0.3.5. O teste de boot
-direto desse USB em VM é registrado separadamente no
+Isso não constitui nova gravação física com o helper 0.3.5. O boot UEFI
+lendo diretamente esse USB físico em VM chegou à seleção de idioma, região e
+teclado do instalador Windows 10. O emulador executou sem root, com o USB
+somente leitura, sem discos internos ou rede; as regiões inicial e final de
+1 MiB permaneceram iguais. Ao encerrar, a partição foi remontada somente para
+leitura. Não foi iniciada instalação Windows nem realizado novo boot pelo
+firmware do computador. Captura e proteções verificadas estão no
 [relatório de 21/10](USB-E-NOVAS-ISOS-2026-10-21.md), junto às novas imagens
 Debian/Ubuntu.

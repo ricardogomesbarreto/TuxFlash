@@ -49,8 +49,9 @@ A ISO `Windows 10 PRO 2021.iso` foi testada: instalador UEFI/FAT32 com 906 arqui
 comparados e boot até a seleção de idioma em VM. Windows To Go Pro permanece
 parcial: iniciou e chegou a “Preparando-se”, sem comprovação de OOBE/desktop.
 O pendrive físico recebeu o instalador UEFI/FAT32 e passou na conferência dos
-906 arquivos após invalidar o cache. O usuário confirmou o boot físico do instalador; o boot depois da renomeação
-não foi repetido. Veja
+906 arquivos após invalidar o cache. O usuário confirmou o boot físico do
+instalador. O boot em hardware não foi repetido após a renomeação. Em 21/10, o boot UEFI em VM lendo diretamente
+o USB físico, já com rótulo WINDOWS 10, chegou à seleção de idioma. Veja
 [TESTE-WINDOWS-FISICO.md](TESTE-WINDOWS-FISICO.md) e
 [TESTE-WINDOWS.md](TESTE-WINDOWS.md).
 
@@ -86,5 +87,6 @@ Veja [evidências e critérios de estabilidade](REVISAO-0.3.5.md).
 906 arquivos do instalador existente, `boot.wim` e BCD conferidos somente para
 leitura. A rotina administrativa posterior validou os dois GPTs e o FAT32 e
 repetiu a comparação integral após invalidar o cache de blocos, sem alterar
-os metadados. Debian e Ubuntu validados em discos virtuais. Veja o
+os metadados. O boot UEFI em VM lendo diretamente esse USB chegou à seleção
+de idioma do instalador Windows 10. Debian e Ubuntu validados em discos virtuais. Veja o
 [relatório atualizado e seus limites](USB-E-NOVAS-ISOS-2026-10-21.md).

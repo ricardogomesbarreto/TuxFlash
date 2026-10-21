@@ -17,6 +17,7 @@ TuxFlash 0.3.5.** Esta revisão acrescenta evidência; não altera o código do 
 | `boot.wim` | Verificação interna pelo wimlib aprovada; cerca de 1017 MiB de dados descomprimidos conferidos |
 | `install.esd` | Metadados e catálogo de imagens lidos com sucesso |
 | BCD BIOS e UEFI | Dois hives lidos em modo somente leitura, nove objetos em cada um |
+| Boot UEFI do USB físico em VM | Instalador Windows 10 na seleção de idioma, região e teclado |
 | Gravação / apagamento do USB | Não realizados |
 
 A comparação inicial usou a montagem FAT32 **somente leitura**, autorizada pelo
@@ -26,7 +27,35 @@ blocos com `BLKFLSBUF`. A ISO de referência coincidiu novamente com o SHA-256
 histórico `1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768`.
 O manifesto vem da extração independente de 7-Zip registrada na validação anterior.
 
-A conferência administrativa também passou: GPT primário e de backup com CRC válido, tabelas de partições iguais, `fsck.vfat -n` com saída zero, cache de blocos invalidado e nova comparação dos 906 arquivos. Os metadados GPT/boot permaneceram iguais. A tentativa inicial de boot em VM encerrou ao selecionar o driver de disco do QEMU; a configuração foi corrigida e a retomada somente leitura está separada das verificações já aprovadas.
+A conferência administrativa também passou: GPT primário e de backup com CRC
+válido, tabelas de partições iguais, `fsck.vfat -n` com saída zero, cache de blocos
+invalidado e nova comparação dos 906 arquivos. Os metadados GPT/boot permaneceram iguais.
+
+#### Boot UEFI lendo o pendrive físico
+
+**O boot chegou à tela de seleção de idioma, região e teclado do instalador
+Windows 10; a estabilidade após essa etapa permanece pendente.** A captura foi
+inspecionada visualmente. O QEMU leu diretamente o USB existente por um descritor aberto somente para leitura e exclusivamente;
+o modo somente leitura também foi confirmado pela interface QMP do emulador.
+O processo do QEMU executou como usuário comum, sem capabilities e sem grupo de
+acesso a discos. Discos internos e rede não foram disponibilizados à VM. A VM usou 1536 MiB
+de RAM, duas vCPUs e emulação TCG.
+
+Depois de encerrar o emulador, as regiões inicial e final de 1 MiB do USB
+permaneceram idênticas e a partição voltou a ser montada somente para leitura.
+O rótulo continuou WINDOWS 10. Esta execução comprova o boot do USB físico em
+**firmware UEFI virtualizado**; não é uma nova inicialização pelo firmware do
+computador, nem uma instalação completa do Windows. Secure Boot estava desligado.
+
+A captura de 120 s mostra a seleção de idioma. Na captura posterior de 180 s,
+a janela do instalador não estava visível; havia apenas o fundo azul. Portanto,
+o resultado comprova que o boot chegou à interface, mas **não qualifica sua
+permanência estável nem o avanço da instalação**. A causa dessa mudança não foi
+determinada. As quatro capturas estão preservadas na pasta de evidências.
+
+![Windows 10: seleção de idioma lendo o USB físico em VM UEFI](evidence/linux/tuxflash/usb-and-isos-2026-10-21/windows-usb-uefi-installer-language.png)
+
+[Registro do boot e proteções verificadas](evidence/linux/tuxflash/usb-and-isos-2026-10-21/physical-usb-uefi-boot.json).
 
 A mídia física foi criada em uma versão anterior e seu boot físico já havia
 sido confirmado pelo usuário. Esta conferência valida o conteúdo existente;
@@ -78,7 +107,26 @@ stores passed. The volume label remains **WINDOWS 10**.
 
 The initial file comparison used a read-only desktop mount and per-file cache
 discard advisories; it does not by itself prove block-cache invalidation.
-Administrative checks also passed: primary/backup GPT CRCs and matching arrays, zero-exit read-only FAT check, block-cache invalidation and another complete 906-file comparison. GPT/boot metadata remained unchanged. The first VM boot attempt stopped at QEMU disk-driver selection; the configuration was corrected, and the read-only retry is tracked separately from completed checks.
+Administrative checks also passed: valid primary/backup GPT CRCs and matching
+arrays, a zero-exit read-only FAT check, block-cache invalidation and another
+complete 906-file comparison. GPT/boot metadata remained unchanged.
+
+**UEFI VM boot reading the physical USB reached Windows 10 Setup's language,
+region and keyboard selection screen**, confirmed by visual review.
+The USB was opened exclusively with a read-only descriptor; QMP independently
+confirmed read-only access. QEMU ran as an ordinary user with zero effective
+capabilities and no disk-access group. No host internal disks or network were
+attached. The VM used 1536 MiB of RAM, two vCPUs and TCG emulation. After shutdown,
+the first and last 1 MiB remained unchanged and the partition was remounted read-only with its WINDOWS 10 label preserved.
+The screenshot and structured boot record are linked above. This is virtualized
+UEFI boot from the real USB, not a new host-firmware boot or a complete Windows
+installation. Secure Boot was disabled.
+
+The 120 s capture shows the language-selection window. The later 180 s capture
+shows only a blue background without that window. This proves that boot reached
+the interface, but **does not qualify sustained installer readiness or further
+installation steps**. The cause of this change was not determined. All four
+captures are preserved in the evidence directory.
 
 Debian 13.7 netinst and Ubuntu 26.04.1 Desktop match their official HTTPS
 checksum lists. Both passed full RAW writing, helper read-back and independent
