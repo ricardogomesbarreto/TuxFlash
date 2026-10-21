@@ -1,397 +1,322 @@
 <p align="center">
-  <img src="linux/assets/icons/hicolor/512x512/apps/org.tuxflash.TuxFlash.png" width="190" alt="TuxFlash — pinguim com pendrive azul / penguin holding a blue USB drive">
+  <img src="linux/assets/icons/hicolor/512x512/apps/org.tuxflash.TuxFlash.png" alt="TuxFlash logo — Linux penguin and USB drive" width="170">
 </p>
 
-# TuxFlash
+<h1 align="center">TuxFlash</h1>
 
-**Criador de pendrives inicializáveis nativo para Linux**<br>
-**Native bootable USB creator for Linux**
+<p align="center">
+  <strong>Criador de pendrives inicializáveis para Linux · Bootable USB Creator for Linux</strong>
+</p>
 
-Versão / Version **0.3.4** · **GPL-3.0-or-later** · **Linux x86-64**
+<p align="center">
+  <a href="https://github.com/ricardogomesbarreto/TuxFlash/actions/workflows/ci.yml"><img alt="Build and tests" src="https://github.com/ricardogomesbarreto/TuxFlash/actions/workflows/ci.yml/badge.svg"></a>
+  <img alt="License GPL-3.0-or-later" src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue">
+  <img alt="Platform Linux x86-64" src="https://img.shields.io/badge/platform-Linux%20x86--64-informational">
+</p>
 
-[![Build and tests](https://github.com/ricardogomesbarreto/TuxFlash/actions/workflows/ci.yml/badge.svg)](https://github.com/ricardogomesbarreto/TuxFlash/actions/workflows/ci.yml)
+<p align="center">
+  <a href="#portugues-brasil">Português (Brasil)</a> ·
+  <a href="#english">English</a> ·
+  <a href="https://github.com/ricardogomesbarreto/TuxFlash/releases">Downloads / Releases</a> ·
+  <a href="docs/development/CONTRIBUTING.md">Contribuir / Contribute</a>
+</p>
 
-[GitHub](https://github.com/ricardogomesbarreto/TuxFlash) · [Downloads](https://github.com/ricardogomesbarreto/TuxFlash/releases) · [Contribuir / Contributing](docs/development/CONTRIBUTING.md)
+> **Release status / Estado das versões:** **0.3.3** é o lançamento público disponível para download. A versão **0.3.4** está no código de desenvolvimento e seu lançamento ainda é um rascunho. / **0.3.3** is the published downloadable release. Version **0.3.4** is present in the development source, but its release remains a draft.
 
-[Português (Brasil)](#portugues-brasil) · [English](#english) · [Estrutura / Layout](#layout)
-
-<a id="layout"></a>
-## Organização / Repository layout
-
-```text
-TuxFlash/
-├── README.md               # Documentação principal PT-BR / English
-├── LICENSE.txt             # Licença da aplicação / Application license
-├── SECURITY.md             # Relato de problemas / Reporting issues
-├── Makefile                # Compilação e testes / Build and checks
-├── tuxflash.sh             # Entrada principal / Main launcher
-├── scripts/                # Execução e atalho do menu / Run and menu helpers
-├── linux/                  # Aplicação nativa, recursos, testes e runtime
-│   ├── src/                # Interface, CLI e helper / GUI, CLI and helper
-│   ├── tests/              # Testes nativos e VM / Native and VM tests
-│   ├── assets/             # Ícone e identidade / Icon and branding
-│   ├── po/                 # Catálogos de tradução / Translation catalogs
-│   ├── packaging/          # Desktop, Polkit e metadados / Packaging metadata
-│   ├── runtime/            # Runtime local e componentes / Local runtime
-│   ├── third_party/        # Componentes e avisos preservados / Vendored components
-│   └── tools/              # Empacotamento e utilitários / Packaging tools
-├── upstream/rufus/         # Fontes e recursos herdados / Inherited source and resources
-├── tests/linux/            # Verificação independente de hashes / Hash-core checks
-├── tools/linux/            # Análise REA e ferramentas de desenvolvimento
-├── docs/                   # Guias, licenças, histórico e evidências
-│   ├── guides/             # Uso e configuração / Usage and configuration
-│   ├── development/        # Integração, idiomas e VM / Developer guides
-│   ├── legal/              # Licenças e proveniência / Licenses and provenance
-│   ├── releases/           # Notas da versão / Release notes
-│   ├── history/            # Relatórios históricos / Historical reports
-│   └── validation/         # Escopo, evidências e integridade / Validation evidence
-├── build/                  # Saídas locais de compilação / Local build outputs
-├── dist/                   # Pacote atual e portátil / Current archive and portable app
-└── archive/                # Backups e pacotes antigos / Backups and older packages
-```
-
-Os arquivos de componentes mantêm os avisos e conteúdos originais em documentos
-com nomes próprios. Há um único `README.md` do projeto. `build/`, `dist/` e
-`archive/` ficam separados dos fontes e são ignorados pelo Git.
-
-Component notices and original documentation are preserved under descriptive
-filenames. This is the project's single `README.md`. Generated outputs and
-local archives are separated from source and excluded from Git.
+---
 
 <a id="portugues-brasil"></a>
 ## Português (Brasil)
 
-Transforme imagens ISO em pendrives inicializáveis com simplicidade e segurança.
-Aplicação C/GTK 4/libadwaita e CLI, livre sob GPL-3.0-or-later.
-Desenvolvimento desta versão: [Ricardo Barreto](https://github.com/ricardogomesbarreto) e colaboradores.
+O **TuxFlash** é um aplicativo nativo em **C, GTK 4 e libadwaita**, com interface gráfica e linha de comando, para criar mídias USB inicializáveis no Linux. É um projeto independente construído a partir do [Lufus](https://github.com/openresearchtools/lufus), com recursos e código herdados do [Rufus](https://github.com/pbatard/rufus). Não é uma edição oficial do Rufus para Linux.
 
-### Instalação e código-fonte
+### Instalação rápida: baixar, extrair e executar
 
-Baixe o pacote **Linux x86-64** e seu SHA-256 na página de
-[lançamentos](https://github.com/ricardogomesbarreto/TuxFlash/releases).
-Na pasta do download:
+**Não é necessário compilar nem instalar o aplicativo no sistema para utilizar o pacote portátil.** Ele inclui executável, runtime e arquivos de apoio. É preciso **extrair a pasta inteira**: `tuxflash` é o arquivo de inicialização, mas **não funciona sozinho se for separado do diretório `runtime/`**.
 
-```sh
-sha256sum -c TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256
-tar -xf TuxFlash-0.3.4-linux-x86_64.tar.xz
+**1. Baixe os dois arquivos da versão publicada para Linux x86-64:**
+
+- [TuxFlash 0.3.3 — pacote portátil (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.3/TuxFlash-0.3.3-linux-x86_64.tar.xz)
+- [SHA-256 — arquivo de verificação](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.3/TuxFlash-0.3.3-linux-x86_64.tar.xz.sha256)
+
+Também estão disponíveis na página de [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases).
+
+**2. Abra um terminal na pasta em que os dois arquivos foram baixados** e execute:
+
+```bash
+# Confirme a integridade do pacote (recomendado).
+sha256sum -c TuxFlash-0.3.3-linux-x86_64.tar.xz.sha256
+
+# Extraia o pacote.
+tar -xf TuxFlash-0.3.3-linux-x86_64.tar.xz
+
+# Entre na pasta que foi criada.
+cd TuxFlash-0.3.3-linux-x86_64
+
+# Inicie a interface gráfica.
+./tuxflash
 ```
 
-Entre na pasta extraída e execute `./tuxflash`. O pacote inclui o runtime e o
-código correspondente; não é necessário compilar para usá-lo em x86-64 compatível.
+**Pronto:** para abrir novamente, entre na pasta extraída e execute `./tuxflash`. Em gerenciadores de arquivos que permitem executar scripts, também é possível abrir o arquivo `tuxflash` pelo modo gráfico, escolhendo **Executar** quando necessário. O comportamento do duplo clique varia de acordo com o ambiente de trabalho.
 
-Para desenvolver, clone o código e compile antes de executar:
+**3. (Opcional) Adicione o TuxFlash ao menu de aplicativos do Linux:**
 
-```sh
+```bash
+# Execute dentro da pasta extraída.
+python3 scripts/install-menu.py
+```
+
+Depois procure **TuxFlash** no menu de aplicativos. O script cria um atalho e instala o ícone **somente na sua conta**, sem instalar um pacote de sistema. **Não mova nem apague a pasta extraída depois de criar o atalho**, pois ele aponta para o executável naquele local. Para remover apenas o atalho:
+
+```bash
+python3 scripts/install-menu.py --remove
+```
+
+Não é necessário iniciar o aplicativo com `sudo`. Quando uma gravação exigir privilégios, o helper utilizará o **Polkit/pkexec do próprio sistema** para solicitar autorização. O sistema precisa oferecer esse serviço.
+
+### Como criar um pendrive inicializável
+
+1. Conecte um **pendrive que possa ser completamente apagado**. Faça backup antes de continuar.
+2. Abra o **TuxFlash** pelo menu ou usando `./tuxflash`.
+3. Selecione a imagem ISO/IMG e confira o tipo de gravação disponível para ela.
+4. Escolha **cuidadosamente o dispositivo USB de destino**, conferindo nome e capacidade. Nunca selecione seu disco interno.
+5. Ajuste apenas as opções compatíveis com a imagem selecionada; em modo RAW/DD, a estrutura da imagem é preservada.
+6. Inicie a gravação, leia as confirmações de perda de dados e autorize a operação somente se o dispositivo estiver correto.
+7. Espere a conclusão, a sincronização e a verificação, quando habilitada, antes de remover o pendrive.
+
+**Importante:** a gravação e o teste destrutivo de blocos **apagam dados do dispositivo selecionado**. Criar a mídia não garante que toda ISO seja inicializável em qualquer computador; isso depende da imagem, firmware, arquitetura e modo BIOS/UEFI.
+
+### Clonar o repositório e executar a versão de desenvolvimento
+
+**O repositório de código não é o mesmo que o pacote portátil:** um clone novo não inclui os executáveis e artefatos ignorados pelo Git. Para utilizar o código-fonte, é necessário compilar uma vez.
+
+No Ubuntu 24.04 ou ambiente de desenvolvimento compatível:
+
+```bash
+sudo apt update
+sudo apt install build-essential pkg-config meson ninja-build gettext \
+  libgtk-4-dev libadwaita-1-dev libsoup-3.0-dev \
+  libjson-glib-dev libhivex-dev xorriso
+
 git clone https://github.com/ricardogomesbarreto/TuxFlash.git
 cd TuxFlash
 make
 ./tuxflash.sh
 ```
 
-O clone não contém `dist/`, backups ou os executáveis gerados da aplicação.
-Dependências de compilação e mídia precisam estar instaladas: consulte
-[contribuição e ambiente de desenvolvimento](docs/development/CONTRIBUTING.md).
-O inventário local `docs/validation/integrity.json` cobre também artefatos
-ignorados e não integra o Git; o download publicado tem seu próprio SHA-256.
+Depois da compilação, **basta executar `./tuxflash.sh`** sempre que quiser abrir a interface. O arquivo delega a execução a `scripts/run.sh`, que usa `dist/portable/tuxflash` se estiver presente ou o executável de `linux/runtime/` caso contrário. Se aparecer uma mensagem de runtime ausente, execute `make` e verifique a saída de compilação. Dependências adicionais de mídia variam conforme a operação; veja o [guia de desenvolvimento](docs/development/CONTRIBUTING.md).
 
-### Executar
+Para criar o atalho de menu a partir do clone já compilado:
 
-Na pasta completa do projeto, depois da compilação:
-
-```sh
-./tuxflash.sh
-./tuxflash.sh --version
-./tuxflash.sh doctor
-./tuxflash.sh list
-./tuxflash.sh probe --image /caminho/imagem.iso
-./tuxflash.sh checksum --image /caminho/imagem.iso
+```bash
 python3 scripts/install-menu.py
 ```
 
-O ponto de entrada principal é `tuxflash.sh`. `scripts/run.sh` delega ao
-pacote portátil quando ele existe e usa o runtime local como alternativa.
-No pacote extraído de `dist/TuxFlash-0.3.4-linux-x86_64.tar.xz`, execute `./tuxflash`.
-Extraia o pacote inteiro: o executável depende dos arquivos que o acompanham.
-A janela já aberta usa o binário antigo; feche e reabra para atualizar.
+### Comandos úteis e diagnóstico
 
-No cabeçalho, escolha Português (Brasil), English, 中文（简体） ou Español,
-salve e reabra. Sobre contém créditos clicáveis, novidades e licenças.
-A frase da janela Sobre agora descreve a aplicação nativa para Linux.
+No **pacote extraído**, troque `./tuxflash.sh` por `./tuxflash`. No **repositório compilado**, use:
 
-### Rufus, Lufus e as mudanças do TuxFlash
+```bash
+./tuxflash.sh --version
+./tuxflash.sh --help
+./tuxflash.sh doctor
+./tuxflash.sh list
+./tuxflash.sh probe --image /caminho/arquivo.iso
+./tuxflash.sh checksum --image /caminho/arquivo.iso
+```
 
-| Projeto | Contribuição e escopo |
+Esses comandos permitem consultar a versão, descobrir opções, verificar ferramentas, listar dispositivos e inspecionar uma imagem sem iniciar uma gravação. A [referência completa da CLI](docs/guides/CLI.md) documenta gravação, captura, confirmação obrigatória de destino e modos destrutivos.
+
+### Recursos
+
+| Recurso | Descrição |
 | --- | --- |
-| [Rufus](https://github.com/pbatard/rufus) | Aplicação original Windows, algoritmos e recursos herdados. Os fontes Windows originais e suas atribuições permanecem preservados. |
-| [Lufus](https://github.com/openresearchtools/lufus) | Base nativa Linux C/GTK e helper separado. Gravação RAW, imagens comprimidas, VHD/VHDX, mídias Windows, persistência e F3 já pertenciam a essa base. |
-| TuxFlash | Integração do núcleo de hashes do Rufus, pacote portátil x86-64, rótulo Windows derivado do nome da ISO, correções de integração, identidade/ícone próprios, seletor de quatro idiomas, créditos e notas traduzidas. A versão 0.3.3 reforça a segurança e o tratamento de erros descritos abaixo. |
+| Interface e CLI | Aplicativo nativo GTK 4/libadwaita e linha de comando com backend compartilhado |
+| Imagens | Escrita RAW/DD de ISO/IMG/RAW/DD e formatos comprimidos suportados |
+| Discos virtuais | Conversão de VHD/VHDX para dispositivos físicos e captura em formatos suportados |
+| Integridade | MD5, SHA-1, SHA-256, SHA-512 e modos de leitura posterior |
+| Mídias de instalação | Modos específicos para instaladores e opções avançadas disponíveis conforme a imagem |
+| Linux Live | Persistência Ubuntu/Debian nos modos suportados |
+| Diagnóstico | Inspeção de imagens, seleção de dispositivos e teste F3 destrutivo |
+| Idiomas | Português (Brasil), English, 中文（简体） e Español |
 
-O Linux nativo é uma característica herdada do Lufus; não é uma novidade
-exclusiva do TuxFlash. Tampouco há evidência de superioridade geral em velocidade,
-compatibilidade ou número de recursos sobre o Rufus. As melhorias aqui são
-correções concretas e integração mais fácil de executar no ambiente validado.
-O projeto é independente e não é uma versão oficial Linux do Rufus.
+Os recursos são herdados e adaptados principalmente do Lufus; não há promessa de paridade completa com a versão Windows do Rufus. Algumas opções dependem da imagem e do firmware ou têm validação limitada. Consulte a [compatibilidade](docs/validation/COMPATIBILIDADE.md).
 
-### Correção e testes da versão 0.3.4
+### Requisitos e segurança
 
-A mídia persistente do Zorin OS 18.1 falhava nos links internos de
-`dists/stable` e `dists/unstable`. O helper agora materializa aliases internos
-como arquivos/diretórios, recusa saídas da árvore da ISO, ciclos e arquivos
-especiais, e verifica a árvore e seu tamanho expandido antes de criar partições.
-Há sete novos cenários de regressão e 17 suítes nativas.
+- **Pacote portátil:** Linux **x86-64**, kernel compatível, `/proc`, `/sys`, `/bin/sh` e sessão **X11/Wayland** para a interface. Não requer Wine nem FUSE.
+- **Autorização:** a interface permanece sem privilégios; operações restritas usam `pkexec` do sistema, quando disponível. Instalar o atalho **não** concede privilégios automáticos.
+- **Proteção do destino:** o helper revalida o dispositivo, capacidade e estado, identifica montagens protegidas, volumes dependentes e swap ativo, e recusa gravações inseguras conforme as verificações implementadas.
+- **Limitações:** nenhuma garantia de funcionamento em toda distribuição, ISO ou firmware; FFU não é suportado. Secure Boot, persistência real após reinicialização e Windows To Go completo não estão integralmente qualificados.
+- **Opções avançadas destrutivas:** mídias de instalação silenciosa podem apagar o **Disco 0 de outro computador quando iniciadas**. Consulte a [documentação da CLI](docs/guides/CLI.md) antes de usar esses modos.
 
-Os testes com SteamOS/Steam Deck, Kali Installer e Zorin OS estão no
-[relatório de imagens reais](docs/validation/IMAGENS-REAIS-2026-10-21.md).
-SteamOS recovery é `.img.bz2`, usa RAW/DD e precisa de espaço para os
-**8.120.172.544 bytes descomprimidos**; o tamanho de 3,36 GB é do arquivo comprimido.
-Os resultados diferenciam comparação de bytes, menus de firmware, persistência
-configurada e uma sessão real depois de reiniciar.
+Se a interface não abrir, execute o lançador pelo terminal para ler o erro, rode `doctor` e verifique se o pacote está **totalmente extraído**. Se o atalho parar de funcionar após mover a pasta, execute o instalador de menu novamente no novo local.
 
-### Melhorias técnicas da versão 0.3.3
+### Desenvolvimento e histórico de versões
 
-| Prioridade | Implementação e verificação |
-| --- | --- |
-| Crítica: disco do sistema | GUI e helper protegem também submontagens de `/boot`, `/usr`, `/var`, `/home`, `/etc`, `/root`, `/opt` e `/srv`. O helper percorre dependências sysfs de volumes LVM/RAID/device-mapper e verifica swap ativo; a listagem segue todos os vínculos do volume. Erros de inspeção e swap sem origem resolvível recusam a operação. |
-| Crítica: revalidar USB | Capacidade deve ser exatamente igual à confirmada. GUI guarda identidade/capacidade/`diskseq` na confirmação; jobs enviam a sequência quando o kernel a fornece. Helper repete verificações antes de ferramentas externas e confere o descritor de RAW/leitura posterior com `fstat`, capacidade e `BLKROGET`. |
-| Alta: integridade e cancelamento | Progresso continua associado a commits duráveis. Leitura posterior invalida cache e compara os bytes gravados. Esperas de filhos repetem `waitpid` quando interrompidas. A GUI só informa sucesso depois de ler a saída e confirmar término correto do helper, e a CLI trata saída por sinal. |
-| Alta: helper e Polkit | GUI permanece sem privilégios. As políticas atual e legada exigem `auth_admin` na sessão ativa e negam sessões inativas/remotas. O pacote portátil usa o `pkexec` do sistema; não instala políticas nem inclui executáveis setuid. |
-| Alta: portabilidade | Carregador e bibliotecas próprios; sem Wine ou FUSE. O empacotamento deixa de copiar ícones de aplicações instaladas no computador. BCD-SYS invoca os geradores com Bash e interrompe a preparação se eles falharem, evitando falso sucesso. |
-| Média: lançadores e erros | Entrada principal única, delegação preservada e mensagens explícitas para runtime ausente/incompleto. |
-| Média: idiomas | Textos novos, créditos Lufus, descrição e notas de versão em pt_BR, en, zh_CN e es; testes gráficos exercitam os quatro idiomas e a conclusão das operações. |
+- **0.3.3 — disponível publicamente:** endurecimento das verificações de destino e volumes do sistema, melhorias de cancelamento/relato de sucesso e documentação de execução.
+- **0.3.4 — desenvolvimento / release em rascunho:** correções de tratamento de links internos em mídias persistentes, cenários adicionais de regressão e relatórios com imagens reais. **Não considere o pacote 0.3.4 publicado até a página de Releases indicar publicação.**
 
-A sequência do disco depende do suporte do kernel. Sem ela, permanecem as
-verificações de dispositivo, capacidade, estado e montagens; não há a mesma
-capacidade de identificar uma reconexão no mesmo número de dispositivo.
-As ferramentas externas ainda abrem seus próprios caminhos: as revalidações
-reduzem a janela de troca, mas não constituem prova de ausência de todas as
-corridas em qualquer kernel, namespace ou configuração de armazenamento.
-Leitura de verificação e captura podem usar um dispositivo somente leitura;
-gravações são recusadas nesse estado.
+Na árvore do repositório, `tuxflash.sh` é o lançador de desenvolvimento; `scripts/` contém execução e instalação do atalho; `linux/` abriga código, runtime e recursos; `docs/` reúne os guias, a compatibilidade, licenças e evidências; `upstream/rufus/` conserva material herdado. `build/` e `dist/` são saídas locais e não fazem parte de um clone limpo.
 
-### Funcionalidades e limites
+Para compilar e executar os testes **sem usar mídia física**, consulte:
 
-O backend possui gravação RAW/DD, descompressão em fluxo, conversão VHD/VHDX,
-captura de dispositivo, hashes MD5/SHA-1/SHA-256/SHA-512, preparação de instalador
-Windows FAT32/NTFS, modos de persistência Ubuntu/Debian e teste destrutivo F3.
-A GUI e a CLI usam o mesmo modelo de job e helper. Consulte `./tuxflash.sh --help`
-e a [documentação técnica Linux](docs/guides/CLI.md).
-
-**Gravar ou testar blocos apaga os dados do destino.** A opção de instalação
-silenciosa também cria uma mídia que pode apagar o Disco 0 do computador onde
-ela for iniciada. Use apenas em um destino escolhido e confirmado conscientemente.
-
-O pacote pronto é **Linux x86-64**, requer `/bin/sh`, `/proc`, `/sys`, kernel
-compatível, acesso a dispositivos e sessão X11/Wayland para a GUI. A GUI usa
-Polkit/pkexec do sistema. A CLI pode ser executada por administrador. Outras
-arquiteturas precisam de compilação e validação separadas.
-
-Não há garantia para qualquer Linux ou ISO. DD preserva a estrutura da imagem:
-ISO apenas óptica pode não iniciar por USB. BIOS/UEFI, arquitetura e Secure Boot
-dependem da imagem e do firmware. FFU não é suportado. Windows To Go até o desktop,
-Secure Boot e persistência real entre reinicializações não têm validação completa.
-A janela GTK conserva a organização do Lufus, sem equivalência integral à Win32.
-
-### Testes e construção
-
-```sh
+```bash
 make
 make check
 make check-sanitize
 ```
 
-Compilação: Meson/Ninja, pkg-config, compilador C, GTK >= 4.14, libadwaita >= 1.5,
-GLib/GIO, libsoup >= 3.4, JSON-GLib >= 1.8, hivex e gettext. As ferramentas de mídia
-necessárias acompanham o portátil; na compilação sem pacote precisam estar instaladas.
-
-Veja [revisão e testes 0.3.3](docs/validation/REVISAO-0.3.3.md),
-[cenários em discos virtuais](docs/development/VM-TESTING.md),
-[compatibilidade](docs/validation/COMPATIBILIDADE.md) e [histórico Windows físico](docs/validation/TESTE-WINDOWS-FISICO.md).
-Os registros históricos mantêm o escopo e os binários de cada etapa; um teste
-sintético de firmware não equivale a iniciar Windows ou uma distribuição completa.
-
-
-#### Organização atualizada em 21/10/2026
-
-Este README reúne Português (Brasil) e English. Guias e relatórios estão em
-`docs/`; o código herdado, em `upstream/rufus/`; scripts, em `scripts/`;
-o aplicativo portátil, em `dist/portable/`. O lançamento continua por
-`./tuxflash.sh`. Consulte o [registro da reorganização](docs/validation/reorganization/validation.json).
+Documentação: [contribuição](docs/development/CONTRIBUTING.md) · [testes em VM](docs/development/VM-TESTING.md) · [CLI](docs/guides/CLI.md) · [notas de versão](docs/releases/NOTAS-DA-VERSAO.md).
 
 ### Créditos e licença
 
-[Pete Batard e colaboradores do Rufus](https://github.com/pbatard/rufus),
-[Open Research Tools e Lufus](https://github.com/openresearchtools/lufus),
-[Ricardo Barreto](https://github.com/ricardogomesbarreto) e demais colaboradores.
-O repositório Lufus tem uma entrada própria nos créditos da aplicação.
-
-Aplicação GPL-3.0-or-later, com código correspondente no pacote e no projeto.
-[LICENSE.txt](LICENSE.txt) e as licenças originais continuam preservados;
-dependências e ativos mantêm suas próprias condições. Consulte os
-[avisos de terceiros](docs/legal/THIRD_PARTY_NOTICES.md). Nenhum dado de hardware,
-conta ou caminho pessoal deve integrar os registros públicos de validação.
+Desenvolvimento TuxFlash: [Ricardo Barreto](https://github.com/ricardogomesbarreto) e colaboradores. Bases: [Rufus — Pete Batard e colaboradores](https://github.com/pbatard/rufus) e [Lufus — Open Research Tools e colaboradores](https://github.com/openresearchtools/lufus). Projeto independente, licenciado sob **GPL-3.0-or-later**, com avisos de terceiros mantidos em [THIRD_PARTY_NOTICES.md](docs/legal/THIRD_PARTY_NOTICES.md) e licença em [LICENSE.txt](LICENSE.txt).
 
 ---
 
 <a id="english"></a>
 ## English
 
-A native C/GTK 4/libadwaita application and CLI, developed by
-[Ricardo Barreto](https://github.com/ricardogomesbarreto) and contributors.
+**TuxFlash** is a native **C / GTK 4 / libadwaita** GUI and CLI for creating bootable USB media on Linux. It is an independent project based on [Lufus](https://github.com/openresearchtools/lufus), with inherited code and resources from [Rufus](https://github.com/pbatard/rufus). It is **not** an official Linux edition of Rufus.
 
-### Installation and source
+### Quick start: download, extract and run
 
-Download the **Linux x86-64** archive and its SHA-256 file from
-[Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases).
-In your download directory:
+**No compilation or system-wide installation is needed to use the portable release.** It includes the executable, runtime and supporting files. You **must extract the entire archive**: `tuxflash` is the launcher, but **it is not a standalone binary that works without `runtime/`**.
 
-```sh
-sha256sum -c TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256
-tar -xf TuxFlash-0.3.4-linux-x86_64.tar.xz
+**1. Download both files for the published Linux x86-64 release:**
+
+- [TuxFlash 0.3.3 — portable archive (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.3/TuxFlash-0.3.3-linux-x86_64.tar.xz)
+- [SHA-256 checksum file](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.3/TuxFlash-0.3.3-linux-x86_64.tar.xz.sha256)
+
+Or open the [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases) page.
+
+**2. Open a terminal in the download directory** and run:
+
+```bash
+# Verify the archive (recommended).
+sha256sum -c TuxFlash-0.3.3-linux-x86_64.tar.xz.sha256
+
+# Extract and enter its directory.
+tar -xf TuxFlash-0.3.3-linux-x86_64.tar.xz
+cd TuxFlash-0.3.3-linux-x86_64
+
+# Launch the graphical application.
+./tuxflash
 ```
 
-Enter the extracted directory and run `./tuxflash`. The archive includes its
-runtime and corresponding application source; compatible x86-64 users do not
-need to compile it.
+**That's it.** To launch it again, open the extracted folder and run `./tuxflash`. Some graphical file managers also allow you to launch the `tuxflash` file with **Run / Execute**; double-click behavior depends on the desktop environment.
 
-For development, clone and build before running:
+**3. (Optional) Add TuxFlash to your Linux application menu:**
 
-```sh
+```bash
+# Run from the extracted directory.
+python3 scripts/install-menu.py
+```
+
+Search for **TuxFlash** in your application menu. This registers a launcher and icon **for the current user only**, not a system package. **Do not move or delete the extracted folder** after installing the shortcut: it points to that location. To remove the shortcut:
+
+```bash
+python3 scripts/install-menu.py --remove
+```
+
+Do **not** run the application with `sudo`. When writing requires elevated privileges, the helper uses your Linux system's **Polkit/pkexec** authentication. The host must provide that service.
+
+### Create a bootable USB drive
+
+1. Connect a **USB drive whose contents can be fully erased**. Back up any files first.
+2. Open **TuxFlash** from the application menu or with `./tuxflash`.
+3. Select the ISO/IMG image and an available writing mode appropriate for it.
+4. Carefully select the **target USB device**, checking its name and capacity. Never select the system disk.
+5. Review supported options. RAW/DD mode preserves the source image's disk layout.
+6. Start writing, read the data-loss warnings and confirm only after verifying the target.
+7. Wait for completion, synchronization and enabled verification before removing the drive.
+
+**Warning:** writing or destructive block testing **erases the selected target**. Creating the media does not ensure every ISO will boot on every machine; firmware, architecture, image and BIOS/UEFI support matter.
+
+### Clone and run the development version
+
+**A Git clone is not the portable distribution.** Generated binaries and ignored artifacts are not included in a fresh clone. Build it once before running.
+
+On Ubuntu 24.04 or a compatible development environment:
+
+```bash
+sudo apt update
+sudo apt install build-essential pkg-config meson ninja-build gettext \
+  libgtk-4-dev libadwaita-1-dev libsoup-3.0-dev \
+  libjson-glib-dev libhivex-dev xorriso
+
 git clone https://github.com/ricardogomesbarreto/TuxFlash.git
 cd TuxFlash
 make
 ./tuxflash.sh
 ```
 
-The clone excludes `dist/`, backups and generated application executables.
-Install the build and media dependencies described in the
-[contribution guide](docs/development/CONTRIBUTING.md).
-The local `docs/validation/integrity.json` also inventories ignored delivery
-artifacts and is excluded from Git; release downloads have separate SHA-256 files.
+After building, launch again with **`./tuxflash.sh`**. This launcher delegates to `scripts/run.sh`, which prefers `dist/portable/tuxflash` if present and otherwise uses `linux/runtime/`. A missing-runtime error means the application has not yet been built or the expected files are absent. Media tools vary by operation; see [development setup](docs/development/CONTRIBUTING.md).
 
-### Run
+To add a menu shortcut from the built checkout:
 
-From the complete project directory, after building:
+```bash
+python3 scripts/install-menu.py
+```
 
-```sh
-./tuxflash.sh
+### Commands and troubleshooting
+
+From the **portable package**, replace `./tuxflash.sh` with `./tuxflash`. In a **built Git checkout**, use:
+
+```bash
 ./tuxflash.sh --version
+./tuxflash.sh --help
 ./tuxflash.sh doctor
 ./tuxflash.sh list
 ./tuxflash.sh probe --image /path/image.iso
 ./tuxflash.sh checksum --image /path/image.iso
-python3 scripts/install-menu.py
 ```
 
-`tuxflash.sh` is the main entry point. `scripts/run.sh` selects the portable
-bundle when present, with the local runtime as a fallback. When using
-`dist/TuxFlash-0.3.4-linux-x86_64.tar.xz`, extract the entire archive and run
-`./tuxflash`. Restart an already open application to load the updated binary.
+These commands show the version, options, tool diagnostics, devices and image properties **without starting a write**. See the [CLI reference](docs/guides/CLI.md) for media writing, capture, target confirmation and destructive modes.
 
-Choose Brazilian Portuguese, English, Simplified Chinese or Spanish from the
-header language button, save and restart. About provides credits, release notes
-and license summaries. Its new description identifies the native Linux application.
+### Features
 
-### Rufus, Lufus and TuxFlash
-
-| Project | Contribution |
+| Feature | Description |
 | --- | --- |
-| [Rufus](https://github.com/pbatard/rufus) | Original Windows application, inherited algorithms and resources. Original Windows sources and notices remain preserved. |
-| [Lufus](https://github.com/openresearchtools/lufus) | Native C/GTK Linux foundation and separate helper. RAW/compressed writing, VHD/VHDX, Windows media, persistence and F3 already existed in this base. |
-| TuxFlash | Rufus hash-core integration, relocatable x86-64 runtime, ISO-filename Windows labels, integration fixes, identity/icon, four-language selector, translated notes and credits. Version 0.3.3 adds the safety and error-handling changes below. |
+| GUI and CLI | Native GTK 4/libadwaita interface, shared job model and backend |
+| Images | RAW/DD writing of supported ISO/IMG/RAW/DD and compressed images |
+| Virtual disks | VHD/VHDX conversion to target devices and device capture |
+| Integrity | MD5, SHA-1, SHA-256, SHA-512 and read-back modes |
+| Installation media | Installer-specific layouts and advanced image-dependent options |
+| Linux live media | Supported Ubuntu/Debian persistence modes |
+| Diagnostics | Image inspection, device selection and destructive F3 capacity testing |
+| Languages | Português (Brasil), English, 中文（简体） and Español |
 
-Native Linux support is inherited from Lufus. There is no evidence of general
-speed, compatibility or feature superiority over Rufus. TuxFlash is an independent
-derivative, with concrete fixes and packaging for the validated environment.
+Most underlying capabilities originate in Lufus; full feature parity with Windows Rufus is **not** claimed. Some options depend on the source image and firmware, and some still have limited validation. See [compatibility details](docs/validation/COMPATIBILIDADE.md).
 
-### Fix and tests in 0.3.4
+### Requirements and safety
 
-Zorin OS 18.1 persistent-media creation failed on its internal `dists/stable`
-and `dists/unstable` links. The helper now materializes internal aliases as
-files/directories, rejects escapes, cycles and special files, and checks the
-tree and expanded size before partitioning. Seven regression scenarios were
-added, bringing the native suite count to 17.
+- **Portable release:** compatible **Linux x86-64**, `/proc`, `/sys`, `/bin/sh`, and **X11/Wayland** for the GUI. No Wine or FUSE is needed.
+- **Authentication:** GUI remains unprivileged; restricted operations use host `pkexec` when available. Installing a menu entry **does not** grant automatic privileges.
+- **Target safeguards:** helper rechecks device identity, capacity and state, protected mounts, stacked storage and active swap, rejecting unsafe targets under its implemented checks.
+- **Limitations:** no universal distribution, ISO or firmware guarantee; FFU is unsupported. Secure Boot, persistence after real reboots and a complete Windows To Go desktop have not been fully qualified.
+- **Advanced destructive modes:** unattended installation media can erase **Disk 0 on another PC when subsequently booted**. Read the [CLI guide](docs/guides/CLI.md) before using those modes.
 
-See the [real-image report](docs/validation/IMAGENS-REAIS-2026-10-21.md) for
-SteamOS/Steam Deck, Kali Installer and Zorin OS results. SteamOS recovery is an
-`.img.bz2` disk image for RAW/DD; the target must fit **8,120,172,544 decompressed
-bytes**, rather than just the 3.36 GB compressed file. The report distinguishes
-byte comparisons, firmware menus, persistence layout and a real session after reboot.
+If the GUI does not open, launch it from a terminal to inspect the error, run `doctor` and verify that the **complete archive** was extracted. If the menu shortcut breaks after relocating the directory, reinstall it from the new path.
 
-### Changes in 0.3.3
+### Development and versions
 
-| Priority | Implementation |
-| --- | --- |
-| Critical: system disks | Protect system submounts under `/boot`, `/usr`, `/var`, `/home`, `/etc`, `/root`, `/opt` and `/srv`; inspect sysfs dependencies for stacked LVM/RAID/device-mapper volumes and active swap. Device discovery follows all volume parents. Inspection errors and unresolvable swap backing fail closed. |
-| Critical: target revalidation | Exact capacity matching; confirmation snapshots retain identity, capacity and kernel `diskseq`. Jobs pass that sequence when available. The helper rechecks before external tools and validates the actual RAW/read-back descriptor, including `fstat`, capacity and `BLKROGET`. |
-| High: integrity and cancellation | Durable progress and cache-invalidated read-back remain available. Interrupted child waits are retried. GUI success requires both drained output and successful helper exit; CLI handles signal termination. |
-| High: helper/Polkit | Current and legacy policy sources require active-session `auth_admin` and deny inactive/remote sessions. The portable application uses host `pkexec`, installs no policy and bundles no setuid authentication programs. |
-| High: portability | Private loader/libraries, without Wine or FUSE. Packaging excludes unrelated installed application icons. BCD-SYS invokes generators through Bash and propagates generator failures. |
-| Medium: launchers/errors | One main entry point, existing delegation and explicit missing/incomplete-runtime errors. |
-| Medium: translations | New text, Lufus repository credit, native Linux description and notes in all four languages. GUI tests cover credits, languages and completion/error states. |
+- **0.3.3 — public release:** improved system-volume and target verification, cancellation/success reporting and runtime guidance.
+- **0.3.4 — development / draft release:** fixes for internal links in persistent-media images, additional regression cases and image-based validation reports. **Do not treat 0.3.4 as publicly released until it is published on the Releases page.**
 
-Disk sequence validation depends on kernel support. Without it, identity,
-capacity, read-only state and mount checks remain, but cannot identify every
-same-number reconnect. External tools still open their own paths: repeated
-checks reduce the replacement window and are not proof against every possible
-race or storage/namespace configuration. Read-only targets remain usable for
-capture and verification; writing to them is rejected.
+Repository layout: `tuxflash.sh` launches a built development checkout; `scripts/` provides runtime selection and menu integration; `linux/` contains source, runtime and resources; `docs/` holds manuals, compatibility, licensing and validation evidence; `upstream/rufus/` preserves inherited material. `build/` and `dist/` are generated locally and absent from a clean clone.
 
-### Capabilities and limits
+Build and run non-physical media checks:
 
-The backend implements RAW/DD, streaming decompression, VHD/VHDX conversion,
-device capture, MD5/SHA-1/SHA-256/SHA-512, Windows installer FAT32/NTFS layouts,
-Ubuntu/Debian persistence and destructive F3 testing. GUI and CLI share the job
-model and helper. See `./tuxflash.sh --help` and [Linux details](docs/guides/CLI.md).
-
-**Writing or block-testing erases the target.** Silent-install media can also
-erase Disk 0 on the computer where that USB is subsequently booted.
-
-The ready-to-run package targets **Linux x86-64**. It needs `/bin/sh`, `/proc`,
-`/sys`, a compatible kernel, device access and X11/Wayland for the GUI. GUI
-operations use host Polkit/pkexec; administrators can use the CLI. Other
-architectures require a separate build and validation.
-
-Compatibility with every Linux or ISO is not guaranteed. DD preserves the
-image's disk layout; an optical-only ISO may not boot from USB. Firmware,
-architecture and BIOS/UEFI/Secure Boot support remain image-dependent. FFU is
-unsupported. A full Windows To Go desktop, Secure Boot and real persistence
-across reboots remain unqualified. The GTK layout follows Lufus, without full
-Win32 Rufus feature parity.
-
-### Build and test
-
-```sh
+```bash
 make
 make check
 make check-sanitize
 ```
 
-Build dependencies include Meson/Ninja, pkg-config, C compiler, GTK >= 4.14,
-libadwaita >= 1.5, GLib/GIO, libsoup >= 3.4, JSON-GLib >= 1.8, hivex and gettext.
-The portable bundle contains media tools; unbundled builds require them locally.
-
-See [0.3.3 review](docs/validation/REVISAO-0.3.3.md), [virtual disk scenarios](docs/development/VM-TESTING.md),
-[compatibility](docs/validation/COMPATIBILIDADE.md) and [historical Windows USB validation](docs/validation/TESTE-WINDOWS-FISICO.md).
-Historical evidence remains tied to its own scope and binary; synthetic firmware
-tests do not qualify a complete operating-system boot.
-
-
-#### Repository organization updated on 2026-10-21
-
-This single README contains Brazilian Portuguese and English. Guides and
-reports live in `docs/`, inherited code in `upstream/rufus/`, helper scripts
-in `scripts/` and the portable application in `dist/portable/`. Launch with
-`./tuxflash.sh`. See the [organization checks](docs/validation/reorganization/validation.json).
+More: [contributing](docs/development/CONTRIBUTING.md) · [VM tests](docs/development/VM-TESTING.md) · [CLI](docs/guides/CLI.md) · [release notes](docs/releases/NOTAS-DA-VERSAO.md).
 
 ### Credits and license
 
-[Pete Batard and Rufus contributors](https://github.com/pbatard/rufus),
-[Open Research Tools and Lufus](https://github.com/openresearchtools/lufus),
-[Ricardo Barreto](https://github.com/ricardogomesbarreto) and contributors.
-The application includes a dedicated credit linking to the Lufus repository.
-
-GPL-3.0-or-later, with corresponding application source included in the bundle.
-[Original license](LICENSE.txt) and third-party notices remain preserved;
-dependencies and artwork retain their own conditions. See
-[component notices](docs/legal/THIRD_PARTY_NOTICES.md). Public validation records
-exclude local account names, private paths and hardware identifiers.
+TuxFlash development: [Ricardo Barreto](https://github.com/ricardogomesbarreto) and contributors. Foundations: [Rufus — Pete Batard and contributors](https://github.com/pbatard/rufus) and [Lufus — Open Research Tools and contributors](https://github.com/openresearchtools/lufus). Independent project licensed under **GPL-3.0-or-later**; original copyrights and component terms remain preserved in [THIRD_PARTY_NOTICES.md](docs/legal/THIRD_PARTY_NOTICES.md) and [LICENSE.txt](LICENSE.txt).
