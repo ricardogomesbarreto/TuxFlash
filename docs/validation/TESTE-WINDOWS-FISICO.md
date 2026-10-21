@@ -35,3 +35,16 @@ BIOS/NTFS, Secure Boot ou Windows To Go no USB físico.
 
 Comandos, manifesto por arquivo, logs, estado final e auditoria da interface:
 [`../analysis/linux/lufus/windows-physical-2026-10-20/`](evidence/linux/lufus/windows-physical-2026-10-20).
+
+## Nova conferência em 21/10/2026
+
+O conteúdo do pendrive existente foi novamente comparado: **906 arquivos e
+4.387.198.448 bytes**, sem ausências ou divergências de tamanho/SHA-256.
+O rótulo continua **WINDOWS 10**. Há um arquivo adicional de metadados de
+indexação do Windows; seu identificador não foi publicado. A verificação
+interna de `boot.wim` e a leitura dos dois BCD também passaram.
+
+Esta comparação usou montagem somente leitura e descarte de cache por arquivo;
+não implica `BLKFLSBUF` ou nova gravação física com o helper 0.3.5. Os detalhes
+da rotina administrativa adicional e das novas imagens Debian/Ubuntu estão no
+[relatório de 21/10](USB-E-NOVAS-ISOS-2026-10-21.md).

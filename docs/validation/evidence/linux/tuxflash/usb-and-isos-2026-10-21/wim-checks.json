@@ -1,0 +1,6 @@
+{
+  "boot_wim_info_passed": true,
+  "install_esd_info_passed": true,
+  "boot_wim_verify_exit": 0,
+  "read_only": true
+}

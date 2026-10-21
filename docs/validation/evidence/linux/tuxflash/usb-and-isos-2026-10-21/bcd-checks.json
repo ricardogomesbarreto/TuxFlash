@@ -1,0 +1,12 @@
+[
+  {
+    "file": "boot/bcd",
+    "read_only_parse_exit": 0,
+    "object_count": 9
+  },
+  {
+    "file": "efi/microsoft/boot/bcd",
+    "read_only_parse_exit": 0,
+    "object_count": 9
+  }
+]

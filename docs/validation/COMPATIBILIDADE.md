@@ -15,6 +15,8 @@ Também dependem da imagem a arquitetura, o suporte a BIOS/UEFI e Secure Boot.
 | Linux Mint 22.3 MATE x86-64 | Gravação física RAW e duas comparações integrais aprovadas; boot físico pendente |
 | Persistência casper e Debian-live | Partições, arquivos e configurações aprovados com ISOs sintéticas; sessão Linux real e persistência após reiniciar pendentes |
 | SteamOS recovery, Kali Installer e Zorin OS | Gravação/conferência e etapas de firmware em VM; Zorin persistente corrigido. Veja [imagens reais](IMAGENS-REAIS-2026-10-21.md). Sem recuperação física de Steam Deck ou sessão persistente entre boots |
+| Debian 13.7 netinst amd64 | RAW/leitura integral e SHA-256 independente em VM; menus BIOS/UEFI e instalador UEFI na seleção de idioma |
+| Ubuntu 26.04.1 Desktop amd64 | RAW/leitura integral e SHA-256 independente em VM; menus BIOS/UEFI, sem qualificação do desktop completo |
 | Outras distribuições e ISOs | Sem qualificação física local; detecção pelo probe não equivale a boot aprovado |
 | Secure Boot | Sem validação local; os boots registrados usaram Secure Boot desativado |
 
@@ -78,3 +80,9 @@ Conferência RAW/comprimida com tamanho exato, tráfego de progresso limitado e
 cancelamento de leituras bloqueadas. A revisão de regressão não transforma os
 resultados históricos de firmware em qualificação física desta versão.
 Veja [evidências e critérios de estabilidade](REVISAO-0.3.5.md).
+
+## Pendrive Windows e novas ISOs em 21/10/2026
+
+906 arquivos do instalador existente, `boot.wim` e BCD conferidos somente para
+leitura. Debian e Ubuntu validados em discos virtuais. Veja o
+[relatório atualizado e seus limites](USB-E-NOVAS-ISOS-2026-10-21.md).

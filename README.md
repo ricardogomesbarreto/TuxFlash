@@ -152,6 +152,13 @@ Os recursos são herdados e adaptados principalmente do Lufus; não há promessa
 
 Se a interface não abrir, execute o lançador pelo terminal para ler o erro, rode `doctor` e verifique se o pacote está **totalmente extraído**. Se o atalho parar de funcionar após mover a pasta, execute o instalador de menu novamente no novo local.
 
+### Testes adicionais com imagens reais
+
+Windows 10 no pendrive: 906 arquivos (4,39 GB), WIM e BCD conferidos somente
+para leitura. Debian 13.7 e Ubuntu 26.04.1: gravação/conferência integral em
+VM e menus BIOS/UEFI; Debian chegou à seleção de idioma do instalador UEFI.
+Veja [evidências e limites](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).
+
 ### Desenvolvimento e histórico de versões
 
 - **0.3.3 — disponível publicamente:** endurecimento das verificações de destino e volumes do sistema, melhorias de cancelamento/relato de sucesso e documentação de execução.
@@ -301,6 +308,13 @@ Most underlying capabilities originate in Lufus; full feature parity with Window
 - **Advanced destructive modes:** unattended installation media can erase **Disk 0 on another PC when subsequently booted**. Read the [CLI guide](docs/guides/CLI.md) before using those modes.
 
 If the GUI does not open, launch it from a terminal to inspect the error, run `doctor` and verify that the **complete archive** was extracted. If the menu shortcut breaks after relocating the directory, reinstall it from the new path.
+
+### Additional real-image tests
+
+Existing Windows 10 USB: 906 files (4.39 GB), WIM and BCD checked read-only.
+Debian 13.7 and Ubuntu 26.04.1: complete virtual-disk write/read-back and
+BIOS/UEFI menus; Debian reached UEFI installer language selection.
+See [evidence and limits](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).
 
 ### Development and versions
 

@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-21",
+  "application_version": "0.3.5",
+  "helper_sha256": "14462cdd3ec3c51ae9ff9c434c55965d719fe4ec8330a4b91f9b8f5a604edd92",
+  "physical_usb_files": {
+    "date": "2026-10-21",
+    "application_version": "0.3.5",
+    "operation": "existing Windows installer file verification through read-only desktop mount",
+    "files_expected": 906,
+    "files_compared": 906,
+    "bytes_compared": 4387198448,
+    "missing_count": 0,
+    "mismatch_count": 0,
+    "extra_file_count": 1,
+    "volume_label": "WINDOWS 10",
+    "filesystem": "FAT32",
+    "mounted_readonly": true,
+    "file_cache_dontneed_advisories": 906,
+    "block_cache_ioctl_performed": false,
+    "raw_gpt_read_performed": false,
+    "fsck_performed": false,
+    "usb_rewritten": false,
+    "existing_media_created_with_older_version": true,
+    "source_iso_sha256": "1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768",
+    "physical_host_firmware_boot_performed": false,
+    "passed": true,
+    "extra_file_class": "Windows System Volume Information/IndexerVolumeGuid metadata",
+    "extra_file_bytes": 76
+  },
+  "wim": {
+    "boot_wim_info_passed": true,
+    "install_esd_info_passed": true,
+    "boot_wim_verify_exit": 0,
+    "read_only": true
+  },
+  "bcd": [
+    {
+      "file": "boot/bcd",
+      "read_only_parse_exit": 0,
+      "object_count": 9
+    },
+    {
+      "file": "efi/microsoft/boot/bcd",
+      "read_only_parse_exit": 0,
+      "object_count": 9
+    }
+  ],
+  "physical_administrative_checks": null,
+  "physical_usb_uefi_vm": null,
+  "new_image_vm_tests": {
+    "debian": {
+      "case": "debian",
+      "file": "debian-13.7.0-amd64-netinst.iso",
+      "bytes": 792723456,
+      "sha256": "a7ef94ac2fb9a7fec454552abd629b7cc9d5155c886165a45649f5ce6167e355",
+      "production_helper_write_and_readback_passed": true,
+      "independent_target_sha256": "a7ef94ac2fb9a7fec454552abd629b7cc9d5155c886165a45649f5ce6167e355",
+      "independent_target_hash_matches": true,
+      "cache_invalidated": true,
+      "physical_usb_modified": false,
+      "helper_sha256": "14462cdd3ec3c51ae9ff9c434c55965d719fe4ec8330a4b91f9b8f5a604edd92",
+      "bios_menu_visually_confirmed": true,
+      "uefi_menu_visually_confirmed": true,
+      "installer_language_screen_confirmed": true,
+      "complete_installation_tested": false
+    },
+    "ubuntu": {
+      "case": "ubuntu",
+      "file": "ubuntu-26.04.1-desktop-amd64.iso",
+      "bytes": 6482409472,
+      "sha256": "601e30fbf5d97759367c632e2c33630665039b7e2158fd068403da3ccf1bda1f",
+      "production_helper_write_and_readback_passed": true,
+      "independent_target_sha256": "601e30fbf5d97759367c632e2c33630665039b7e2158fd068403da3ccf1bda1f",
+      "independent_target_hash_matches": true,
+      "cache_invalidated": true,
+      "physical_usb_modified": false,
+      "helper_sha256": "14462cdd3ec3c51ae9ff9c434c55965d719fe4ec8330a4b91f9b8f5a604edd92",
+      "bios_menu_visually_confirmed": true,
+      "uefi_menu_visually_confirmed": true,
+      "installer_language_screen_confirmed": false,
+      "complete_installation_tested": false
+    }
+  },
+  "source_signatures_verified": false,
+  "host_internal_disks_attached": false,
+  "usb_rewritten": false
+}
