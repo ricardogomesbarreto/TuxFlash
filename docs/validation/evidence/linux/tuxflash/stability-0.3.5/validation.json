@@ -1,0 +1,17 @@
+{
+  "version": "0.3.5",
+  "date": "2026-10-21",
+  "native_suites_passed": 18,
+  "verification_named_cases_passed": 15,
+  "helper_asan_ubsan_passed": true,
+  "hash_core_checks_passed": true,
+  "backend_vm_cases_passed": 40,
+  "backend_vm_cases_failed": 0,
+  "helper_sha256": "14462cdd3ec3c51ae9ff9c434c55965d719fe4ec8330a4b91f9b8f5a604edd92",
+  "target_kind": "regular virtual disk files only",
+  "physical_usb_modified": false,
+  "secure_boot_qualified": false,
+  "physical_steam_deck_qualified": false,
+  "persistent_live_session_across_reboots_qualified": false,
+  "full_size_steam_compressed_job_035_qualified": false
+}

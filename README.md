@@ -21,7 +21,7 @@
   <a href="docs/development/CONTRIBUTING.md">Contribuir / Contribute</a>
 </p>
 
-> **Release status / Estado das versões:** **[0.3.4](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.4)** é a versão pública atual, com pacote portátil Linux x86-64 e SHA-256. / **[0.3.4](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.4)** is the current public release, with a Linux x86-64 portable archive and SHA-256.
+> **Release status / Estado das versões:** **[0.3.5](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.5)** é a versão pública atual, com pacote portátil Linux x86-64 e SHA-256. / **[0.3.5](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.5)** is the current public release, with a Linux x86-64 portable archive and SHA-256.
 
 ---
 
@@ -36,8 +36,8 @@ O **TuxFlash** é um aplicativo nativo em **C, GTK 4 e libadwaita**, com interfa
 
 **1. Baixe os dois arquivos da versão publicada para Linux x86-64:**
 
-- [TuxFlash 0.3.4 — pacote portátil (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.4/TuxFlash-0.3.4-linux-x86_64.tar.xz)
-- [SHA-256 — arquivo de verificação](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.4/TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256)
+- [TuxFlash 0.3.5 — pacote portátil (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.5/TuxFlash-0.3.5-linux-x86_64.tar.xz)
+- [SHA-256 — arquivo de verificação](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.5/TuxFlash-0.3.5-linux-x86_64.tar.xz.sha256)
 
 Também estão disponíveis na página de [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases).
 
@@ -45,13 +45,13 @@ Também estão disponíveis na página de [Releases](https://github.com/ricardog
 
 ```bash
 # Confirme a integridade do pacote (recomendado).
-sha256sum -c TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256
+sha256sum -c TuxFlash-0.3.5-linux-x86_64.tar.xz.sha256
 
 # Extraia o pacote.
-tar -xf TuxFlash-0.3.4-linux-x86_64.tar.xz
+tar -xf TuxFlash-0.3.5-linux-x86_64.tar.xz
 
 # Entre na pasta que foi criada.
-cd TuxFlash-0.3.4-linux-x86_64
+cd TuxFlash-0.3.5-linux-x86_64
 
 # Inicie a interface gráfica.
 ./tuxflash
@@ -155,7 +155,8 @@ Se a interface não abrir, execute o lançador pelo terminal para ler o erro, ro
 ### Desenvolvimento e histórico de versões
 
 - **0.3.3 — disponível publicamente:** endurecimento das verificações de destino e volumes do sistema, melhorias de cancelamento/relato de sucesso e documentação de execução.
-- **0.3.4 — versão atual publicada:** corrigida a criação de mídia persistente do Zorin OS 18.1; 17 suítes nativas e 40 cenários de backend em VM aprovados. [Testes com SteamOS, Kali e Zorin](docs/validation/IMAGENS-REAIS-2026-10-21.md) registram resultados, capturas e limites da validação.
+- **0.3.5 — versão atual:** verificação com tamanho exato da origem, progresso limitado e cancelamento de leituras bloqueadas. Veja a [revisão de estabilidade](docs/validation/REVISAO-0.3.5.md) e seus limites.
+- **0.3.4:** correção de persistência do Zorin e [testes com SteamOS, Kali e Zorin](docs/validation/IMAGENS-REAIS-2026-10-21.md).
 
 Na árvore do repositório, `tuxflash.sh` é o lançador de desenvolvimento; `scripts/` contém execução e instalação do atalho; `linux/` abriga código, runtime e recursos; `docs/` reúne os guias, a compatibilidade, licenças e evidências; `upstream/rufus/` conserva material herdado. `build/` e `dist/` são saídas locais e não fazem parte de um clone limpo.
 
@@ -165,6 +166,7 @@ Para compilar e executar os testes **sem usar mídia física**, consulte:
 make
 make check
 make check-sanitize
+make check-helper-sanitize
 ```
 
 Documentação: [contribuição](docs/development/CONTRIBUTING.md) · [testes em VM](docs/development/VM-TESTING.md) · [CLI](docs/guides/CLI.md) · [notas de versão](docs/releases/NOTAS-DA-VERSAO.md).
@@ -186,8 +188,8 @@ Desenvolvimento TuxFlash: [Ricardo Barreto](https://github.com/ricardogomesbarre
 
 **1. Download both files for the published Linux x86-64 release:**
 
-- [TuxFlash 0.3.4 — portable archive (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.4/TuxFlash-0.3.4-linux-x86_64.tar.xz)
-- [SHA-256 checksum file](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.4/TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256)
+- [TuxFlash 0.3.5 — portable archive (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.5/TuxFlash-0.3.5-linux-x86_64.tar.xz)
+- [SHA-256 checksum file](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.5/TuxFlash-0.3.5-linux-x86_64.tar.xz.sha256)
 
 Or open the [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases) page.
 
@@ -195,11 +197,11 @@ Or open the [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases)
 
 ```bash
 # Verify the archive (recommended).
-sha256sum -c TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256
+sha256sum -c TuxFlash-0.3.5-linux-x86_64.tar.xz.sha256
 
 # Extract and enter its directory.
-tar -xf TuxFlash-0.3.4-linux-x86_64.tar.xz
-cd TuxFlash-0.3.4-linux-x86_64
+tar -xf TuxFlash-0.3.5-linux-x86_64.tar.xz
+cd TuxFlash-0.3.5-linux-x86_64
 
 # Launch the graphical application.
 ./tuxflash
@@ -303,7 +305,8 @@ If the GUI does not open, launch it from a terminal to inspect the error, run `d
 ### Development and versions
 
 - **0.3.3 — public release:** improved system-volume and target verification, cancellation/success reporting and runtime guidance.
-- **0.3.4 — current public release:** fixed Zorin OS 18.1 persistent-media creation; 17 native suites and 40 backend VM cases passed. [SteamOS, Kali and Zorin validation](docs/validation/IMAGENS-REAIS-2026-10-21.md) includes results, screenshots and test limits.
+- **0.3.5 — current version:** exact source-length verification, bounded progress and cancellation of blocked reads. See the [stability review](docs/validation/REVISAO-0.3.5.md) and its limits.
+- **0.3.4:** Zorin persistence fix and [SteamOS, Kali and Zorin validation](docs/validation/IMAGENS-REAIS-2026-10-21.md).
 
 Repository layout: `tuxflash.sh` launches a built development checkout; `scripts/` provides runtime selection and menu integration; `linux/` contains source, runtime and resources; `docs/` holds manuals, compatibility, licensing and validation evidence; `upstream/rufus/` preserves inherited material. `build/` and `dist/` are generated locally and absent from a clean clone.
 
@@ -313,6 +316,7 @@ Build and run non-physical media checks:
 make
 make check
 make check-sanitize
+make check-helper-sanitize
 ```
 
 More: [contributing](docs/development/CONTRIBUTING.md) · [VM tests](docs/development/VM-TESTING.md) · [CLI](docs/guides/CLI.md) · [release notes](docs/releases/NOTAS-DA-VERSAO.md).

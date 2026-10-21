@@ -816,3 +816,15 @@ msgstr "创建持久化分区之前会检查 ISO 目录树。容量检查包含�
 
 msgid "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
 msgstr "新增了 SteamOS 恢复镜像、Kali 安装镜像和 Zorin OS 实际镜像测试。验证报告分别说明镜像写入、固件启动阶段及仍存在的限制。"
+
+msgid "Updated in 0.3.5"
+msgstr "0.3.5 版更新"
+
+msgid "Raw and compressed read-back verification now requires the source to end at the exact written length. Changed sources and damaged compressed trailers cannot be reported as verified."
+msgstr "RAW 和压缩镜像的回读验证现在要求源数据恰好在已写入的长度处结束。源数据发生变化或压缩文件尾部损坏时，不会报告验证成功。"
+
+msgid "Verification progress is rate-limited, avoiding excessive events from small decompressor pipe reads."
+msgstr "限制验证进度事件的频率，避免解压管道的小块读取产生过多消息。"
+
+msgid "Cancellation interrupts source, target and end-of-stream reads. Regression tests cover gzip, xz, bzip2 and zstd, truncated and enlarged sources, target corruption and padding."
+msgstr "取消操作可中断源、目标和流末尾的读取。回归测试覆盖 gzip、xz、bzip2 和 zstd，以及源数据截断或增长、目标数据损坏和目标额外空间。"

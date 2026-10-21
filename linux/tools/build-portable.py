@@ -219,7 +219,7 @@ def package_link(value):
     if path=='README.md':return 'USAGE.md'+(sep+fragment if sep else '')
     return 'source/'+path+(sep+fragment if sep else '')
 readme=re.sub(r'(\]\()([^\n)]+)(\))',lambda m:m[1]+package_link(m[2])+m[3],readme)
-readme=re.sub(r'(src=")([^"]+)(")',lambda m:m[1]+package_link(m[2])+m[3],readme)
+readme=re.sub(r'((?:src|href)=")([^"]+)(")',lambda m:m[1]+package_link(m[2])+m[3],readme)
 readme=readme.replace('./tuxflash.sh','./tuxflash')
 (output/'USAGE.md').write_text(readme)
 shutil.copytree(project/'docs/legal',output/'docs/legal')

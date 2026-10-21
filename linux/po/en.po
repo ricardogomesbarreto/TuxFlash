@@ -816,3 +816,15 @@ msgstr "The ISO tree is checked before persistent-media partitions are created. 
 
 msgid "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
 msgstr "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
+
+msgid "Updated in 0.3.5"
+msgstr "Updated in 0.3.5"
+
+msgid "Raw and compressed read-back verification now requires the source to end at the exact written length. Changed sources and damaged compressed trailers cannot be reported as verified."
+msgstr "Raw and compressed read-back verification now requires the source to end at the exact written length. Changed sources and damaged compressed trailers cannot be reported as verified."
+
+msgid "Verification progress is rate-limited, avoiding excessive events from small decompressor pipe reads."
+msgstr "Verification progress is rate-limited, avoiding excessive events from small decompressor pipe reads."
+
+msgid "Cancellation interrupts source, target and end-of-stream reads. Regression tests cover gzip, xz, bzip2 and zstd, truncated and enlarged sources, target corruption and padding."
+msgstr "Cancellation interrupts source, target and end-of-stream reads. Regression tests cover gzip, xz, bzip2 and zstd, truncated and enlarged sources, target corruption and padding."

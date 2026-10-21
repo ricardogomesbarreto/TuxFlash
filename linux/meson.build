@@ -1,7 +1,7 @@
 project(
   'tuxflash',
   'c',
-  version: '0.3.4',
+  version: '0.3.5',
   license: 'GPL-3.0-or-later',
   meson_version: '>= 0.63.0',
   default_options: ['c_std=c11', 'warning_level=3'],
@@ -237,7 +237,7 @@ install_data('../docs/legal/THIRD_PARTY_NOTICES.md', '../docs/legal/UPSTREAM-LIC
 
 subdir('po')
 
-language_test = executable('test-language', 'tests/test_language.c', 'src/language.c',
+language_test = executable('test-language', 'tests/test_language.c', 'src/language.c', 'src/release_notes.c',
   include_directories: include_directories('src'),
   dependencies: [dependency('gio-2.0')],
   c_args: ['-DTUXFLASH_TEST_CATALOGS="' + meson.current_build_dir() / 'po' + '"'],
@@ -263,3 +263,12 @@ helper_tree_test = executable(
   dependencies: [dependency('gio-2.0'), json_glib],
 )
 test('helper-tree-internal-links', helper_tree_test)
+
+helper_verification_test = executable(
+  'test-helper-verification',
+  'tests/test_helper_verification.c',
+  'src/volume_label.c', 'src/progress.c', 'src/windows_options.c',
+  include_directories: include_directories('src'),
+  dependencies: [dependency('gio-2.0'), json_glib],
+)
+test('helper-verification-streams', helper_verification_test, timeout: 60)

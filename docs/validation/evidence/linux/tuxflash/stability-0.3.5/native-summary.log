@@ -1,0 +1,20 @@
+ 1/18 tuxflash:helper-help                       OK              0.05s
+ 2/18 tuxflash:windows-options                   OK              0.05s
+ 3/18 tuxflash:downloads                         OK              0.04s
+ 4/18 tuxflash:progress                          OK              0.04s
+ 5/18 tuxflash:helper-durability                 OK              0.03s
+ 6/18 tuxflash:licenses                          OK              0.02s
+ 7/18 tuxflash:job-policy                        OK              0.08s
+ 8/18 tuxflash:checksums-rufus-core              OK              0.06s
+ 9/18 tuxflash:volume-label                      OK              0.04s
+10/18 tuxflash:device-safety-topology            OK              0.04s
+11/18 tuxflash:helper-images                     OK              0.08s
+12/18 tuxflash:language-preferences-and-catalogs OK              0.06s
+13/18 tuxflash:helper-tree-internal-links        OK              0.03s
+14/18 tuxflash:helper-mount                      OK              0.09s
+15/18 tuxflash:image-probe                       OK              0.13s
+16/18 tuxflash:bcd-generator-failure             OK              0.09s
+17/18 tuxflash:launcher-delegation               OK              0.13s
+18/18 tuxflash:helper-verification-streams       OK              1.82s
+Ok:                18
+Fail:              0

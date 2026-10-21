@@ -1,3 +1,26 @@
+# TuxFlash 0.3.5 — integridade e cancelamento
+
+- A verificação exige que a origem termine exatamente no tamanho gravado; recusa imagens maiores ou menores e preserva o espaço extra legítimo no destino.
+- A conferência consome o fim do fluxo antes de aguardar o descompressor, evitando espera com o pipe cheio quando a origem cresce.
+- O progresso é emitido por intervalo de bytes/tempo; o evento final vem após o sucesso do descompressor, incluindo sua conferência de integridade.
+- Handlers sem `SA_RESTART` e tratamento de `EINTR` permitem cancelar leituras bloqueadas de origem, destino e fim do fluxo.
+- Novo teste com 15 casos nomeados, incluindo quatro codecs e quatro variações por codec; ASan/UBSan agora integra o CI do helper.
+- Notas traduzidas nos quatro idiomas. Leia [a revisão e os limites](../validation/REVISAO-0.3.5.md).
+
+## English
+
+Verification now requires the source to end exactly at the committed length,
+consumes EOF before waiting for a decoder, and checks its successful exit before
+the final progress event. This rejects changed lengths and damaged compressed
+streams while allowing unused target space. Progress traffic is bounded by byte
+and time intervals. Non-restarting signal handlers let cancellation interrupt
+source, target and EOF reads. Fifteen named regression tests cover four codecs,
+length changes, corruption, padding and cancellation; helper ASan/UBSan checks
+also run in CI. Release notes are translated into all four interface languages.
+See the linked review for evidence and remaining qualification work.
+
+---
+
 # TuxFlash 0.3.4 — imagens reais e persistência
 
 - Corrigida a cópia dos links internos da ISO do Zorin OS 18.1 para mídia persistente.

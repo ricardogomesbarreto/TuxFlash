@@ -1,7 +1,7 @@
 # Compatibilidade e interface — escopo comprovado
 
 Não foi atingida equivalência integral com o Rufus Windows. A aplicação é o
-TuxFlash 0.3.4 nativo (derivado do Lufus 0.2.2), integrado ao núcleo de hashes do Rufus e às correções locais.
+TuxFlash 0.3.5 nativo (derivado do Lufus 0.2.2), integrado ao núcleo de hashes do Rufus e às correções locais.
 
 ## ISOs Linux
 
@@ -71,3 +71,10 @@ desktops ou arquiteturas. Consulte [TUXFLASH.md](../history/TUXFLASH.md).
 Proteção de sistema/swap, identificação USB, conclusão/cancelamento e integração
 do pacote foram reforçadas. Consulte [revisão e evidências](REVISAO-0.3.3.md).
 Isso não altera os limites de boot, firmware e sistemas operacionais acima.
+
+## Revisão 0.3.5
+
+Conferência RAW/comprimida com tamanho exato, tráfego de progresso limitado e
+cancelamento de leituras bloqueadas. A revisão de regressão não transforma os
+resultados históricos de firmware em qualificação física desta versão.
+Veja [evidências e critérios de estabilidade](REVISAO-0.3.5.md).

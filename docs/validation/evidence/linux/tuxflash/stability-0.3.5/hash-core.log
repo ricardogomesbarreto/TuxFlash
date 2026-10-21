@@ -1,0 +1,37 @@
+make: Entering directory '<source>'
+mkdir -p "build/hash-core"
+cc -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -DRUFUS_HASH_CORE_ONLY -Iupstream/rufus/src -Iupstream/rufus/src/linux -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -pthread -fPIC -c upstream/rufus/src/hash.c -o "build/hash-core/hash-core.o"
+ar rcs "build/hash-core/librufus-hash.a" "build/hash-core/hash-core.o"
+cc -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -DRUFUS_HASH_CORE_ONLY -Iupstream/rufus/src -Iupstream/rufus/src/linux -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -pthread upstream/rufus/src/linux/probe.c upstream/rufus/src/linux/platform.c build/hash-core/librufus-hash.a  -o "build/hash-core/rufus-linux-probe"
+cc -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -DRUFUS_HASH_CORE_ONLY -Iupstream/rufus/src -Iupstream/rufus/src/linux -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -pthread tests/linux/test_platform.c upstream/rufus/src/linux/platform.c build/hash-core/librufus-hash.a  -o "build/hash-core/test-linux-platform"
+cc -shared -pthread  "build/hash-core/hash-core.o" -o "build/hash-core/libhash-core.so"
+"build/hash-core/test-linux-platform"
+C: cancellation and concurrent source modification checks passed
+python3 tests/linux/test_probe.py "build/hash-core/rufus-linux-probe"
+test_copy_is_exact_including_partial_last_chunk (__main__.LinuxProbeTests.test_copy_is_exact_including_partial_last_chunk) ... ok
+test_copy_refuses_existing_destination (__main__.LinuxProbeTests.test_copy_refuses_existing_destination) ... ok
+test_destination_symlinks_are_not_followed (__main__.LinuxProbeTests.test_destination_symlinks_are_not_followed) ... ok
+test_hashes_match_independent_implementation (__main__.LinuxProbeTests.test_hashes_match_independent_implementation) ... ok
+test_inventory_is_explicitly_read_only (__main__.LinuxProbeTests.test_inventory_is_explicitly_read_only) ... ok
+test_nonregular_sources_and_device_destinations_are_refused (__main__.LinuxProbeTests.test_nonregular_sources_and_device_destinations_are_refused) ... ok
+test_probe_reports_only_observed_signatures (__main__.LinuxProbeTests.test_probe_reports_only_observed_signatures) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.065s
+
+OK
+python3 tests/linux/test_hash_core.py "build/hash-core/libhash-core.so"
+test_concurrent_independent_contexts (__main__.HashCoreTests.test_concurrent_independent_contexts) ... ok
+test_invalid_arguments_do_not_write_output (__main__.HashCoreTests.test_invalid_arguments_do_not_write_output) ... ok
+test_known_vectors (__main__.HashCoreTests.test_known_vectors) ... ok
+test_padding_boundaries_and_unaligned_inputs (__main__.HashCoreTests.test_padding_boundaries_and_unaligned_inputs) ... ok
+test_streaming_tiny_and_random_chunks (__main__.HashCoreTests.test_streaming_tiny_and_random_chunks) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.201s
+
+OK
+CPU SHA acceleration detected: SHA1=1, SHA256=1
+cc -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -DRUFUS_HASH_CORE_ONLY -Iupstream/rufus/src -Iupstream/rufus/src/linux -O1 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -pthread -fsanitize=address,undefined -fno-omit-frame-pointer tests/linux/test_hash_memory.c upstream/rufus/src/hash.c  -o "build/hash-core/test-hash-memory"
+ASAN_OPTIONS=detect_leaks=0 "build/hash-core/test-hash-memory"
+make: Leaving directory '<source>'

@@ -182,6 +182,17 @@ static void handle_signal(int signal_number)
     errno = saved_errno;
 }
 
+static int install_signal_handlers(void)
+{
+    struct sigaction action = {0};
+    action.sa_handler = handle_signal;
+    sigemptyset(&action.sa_mask);
+    /* signal() may enable SA_RESTART: a cancellation would then resume a
+     * blocked read instead of returning EINTR to the verification loop. */
+    return sigaction(SIGINT, &action, NULL) == 0 &&
+           sigaction(SIGTERM, &action, NULL) == 0 ? 0 : -1;
+}
+
 static void event_message(const char *type, const char *message)
 {
     const unsigned char *cursor;
@@ -936,15 +947,87 @@ static int copy_image(int source_fd, int target_fd, uint64_t total, uint64_t cap
     return 0;
 }
 
+/* Compare only the image payload, and require the source to end exactly at
+ * its committed length. Target devices may legitimately have trailing space. */
+static int verify_stream(int source_fd, int target_fd, uint64_t expected_bytes,
+                         unsigned char *source_buffer, unsigned char *target_buffer)
+{
+    uint64_t checked = 0;
+    uint64_t reported = 0;
+    gint64 reported_at = g_get_monotonic_time();
+    if (expected_bytes == 0) {
+        errno = ENODATA;
+        return -1;
+    }
+    while (!cancelled && checked < expected_bytes) {
+        size_t wanted = (size_t)((expected_bytes - checked) < COPY_BUFFER_SIZE ?
+                                 (expected_bytes - checked) : COPY_BUFFER_SIZE);
+        ssize_t source_count;
+        size_t target_offset = 0;
+        do {
+            source_count = read(source_fd, source_buffer, wanted);
+        } while (source_count < 0 && errno == EINTR && !cancelled);
+        if (source_count <= 0) {
+            errno = cancelled ? ECANCELED : EIO;
+            return -1;
+        }
+        while (target_offset < (size_t)source_count) {
+            ssize_t target_count = read(target_fd, target_buffer + target_offset,
+                                        (size_t)source_count - target_offset);
+            if (target_count < 0 && errno == EINTR && !cancelled)
+                continue;
+            if (target_count <= 0) {
+                errno = cancelled ? ECANCELED : EIO;
+                return -1;
+            }
+            target_offset += (size_t)target_count;
+        }
+        if (memcmp(source_buffer, target_buffer, (size_t)source_count) != 0) {
+            errno = EILSEQ;
+            return -1;
+        }
+        checked += (uint64_t)source_count;
+        gint64 now = g_get_monotonic_time();
+        /* Pipe reads can be just a few KiB. Bound protocol traffic instead of
+         * flushing one progress event per pipe fragment (notably with bzip2). */
+        if (checked < expected_bytes &&
+            (checked - reported >= COPY_COMMIT_INTERVAL ||
+             now - reported_at >= 500000)) {
+            printf("VERIFY_PROGRESS %llu %llu\n",
+                   (unsigned long long)checked, (unsigned long long)expected_bytes);
+            fflush(stdout);
+            reported = checked;
+            reported_at = now;
+        }
+    }
+    if (cancelled) {
+        errno = ECANCELED;
+        return -1;
+    }
+    /* Read through EOF before waiting for a decoder. Otherwise a source
+     * that grew can block its decoder on a full pipe, or a raw prefix can be
+     * incorrectly reported as a complete match. Do not compare target padding. */
+    unsigned char extra;
+    ssize_t tail;
+    do {
+        tail = read(source_fd, &extra, 1);
+    } while (tail < 0 && errno == EINTR && !cancelled);
+    if (cancelled || tail != 0) {
+        errno = cancelled ? ECANCELED : EIO;
+        return -1;
+    }
+    return 0;
+}
+
 static int verify_image(const char *source, const char *target, uint64_t expected_bytes)
 {
     unsigned char *source_buffer = NULL;
     unsigned char *target_buffer = NULL;
     uint64_t source_total = 0;
-    uint64_t checked = 0;
     int source_fd = -1;
     int target_fd = -1;
     int result = -1;
+    int saved_errno;
 
     source_fd = open_source(source, &source_total);
     if (source_fd < 0)
@@ -962,49 +1045,24 @@ static int verify_image(const char *source, const char *target, uint64_t expecte
     if (source_buffer == NULL || target_buffer == NULL)
         goto out;
 
-    while (!cancelled && checked < expected_bytes) {
-        size_t wanted = (size_t)((expected_bytes - checked) < COPY_BUFFER_SIZE ?
-                                 (expected_bytes - checked) : COPY_BUFFER_SIZE);
-        ssize_t source_count;
-        size_t target_offset = 0;
-        do {
-            source_count = read(source_fd, source_buffer, wanted);
-        } while (source_count < 0 && errno == EINTR);
-        if (source_count <= 0) {
-            errno = EIO;
-            goto out;
-        }
-        while (target_offset < (size_t)source_count) {
-            ssize_t target_count = read(target_fd, target_buffer + target_offset,
-                                        (size_t)source_count - target_offset);
-            if (target_count < 0 && errno == EINTR)
-                continue;
-            if (target_count <= 0) {
-                errno = EIO;
-                goto out;
-            }
-            target_offset += (size_t)target_count;
-        }
-        if (memcmp(source_buffer, target_buffer, (size_t)source_count) != 0) {
-            errno = EILSEQ;
-            goto out;
-        }
-        checked += (uint64_t)source_count;
-        printf("VERIFY_PROGRESS %llu %llu\n",
-               (unsigned long long)checked, (unsigned long long)expected_bytes);
-        fflush(stdout);
+    if (verify_stream(source_fd, target_fd, expected_bytes,
+                      source_buffer, target_buffer) != 0)
+        goto out;
+    if (wait_for_decompressor() != 0) {
+        errno = cancelled ? ECANCELED : EIO;
+        goto out;
     }
     if (cancelled) {
         errno = ECANCELED;
         goto out;
     }
-    if (wait_for_decompressor() != 0) {
-        errno = EIO;
-        goto out;
-    }
+    printf("VERIFY_PROGRESS %llu %llu\n",
+           (unsigned long long)expected_bytes, (unsigned long long)expected_bytes);
+    fflush(stdout);
     result = 0;
 
 out:
+    saved_errno = errno;
     if (source_fd >= 0)
         close(source_fd);
     if (target_fd >= 0)
@@ -1015,6 +1073,7 @@ out:
         kill(decompressor_pid, SIGTERM);
         wait_for_decompressor();
     }
+    errno = saved_errno;
     return result;
 }
 
@@ -3749,8 +3808,10 @@ int main(int argc, char **argv)
         event_message("ERROR", "The TuxFlash helper must run as root");
         return 77;
     }
-    signal(SIGINT, handle_signal);
-    signal(SIGTERM, handle_signal);
+    if (install_signal_handlers() != 0) {
+        event_errno("Could not install cancellation handlers");
+        return 1;
+    }
     if (passes > 0 && strcmp(argv[1], "device-test") != 0) {
         operation_progress_start = 0;
         operation_progress_end = 200;

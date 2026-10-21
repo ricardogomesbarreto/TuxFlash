@@ -816,3 +816,15 @@ msgstr "El árbol de la ISO se comprueba antes de crear las particiones persiste
 
 msgid "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
 msgstr "Se añadieron pruebas con imágenes reales de recuperación de SteamOS, Kali Installer y Zorin OS. El informe distingue la escritura, las etapas de arranque del firmware y las limitaciones pendientes."
+
+msgid "Updated in 0.3.5"
+msgstr "Actualizado en la versión 0.3.5"
+
+msgid "Raw and compressed read-back verification now requires the source to end at the exact written length. Changed sources and damaged compressed trailers cannot be reported as verified."
+msgstr "La verificación de imágenes RAW y comprimidas exige que el origen termine exactamente en el tamaño escrito. Los orígenes modificados y los archivos comprimidos con un final dañado no se consideran verificados."
+
+msgid "Verification progress is rate-limited, avoiding excessive events from small decompressor pipe reads."
+msgstr "Se limita la frecuencia de los eventos de progreso para evitar mensajes excesivos durante las pequeñas lecturas del descompresor."
+
+msgid "Cancellation interrupts source, target and end-of-stream reads. Regression tests cover gzip, xz, bzip2 and zstd, truncated and enlarged sources, target corruption and padding."
+msgstr "La cancelación interrumpe las lecturas del origen, del destino y del final del flujo. Las pruebas de regresión cubren gzip, xz, bzip2 y zstd, orígenes truncados o ampliados, corrupción y espacio adicional en el destino."

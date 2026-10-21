@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #include "language.h"
+#include "release_notes.h"
 
 static char *settings_file(void)
 { return g_build_filename(g_get_user_config_dir(), "tuxflash", "settings.ini", NULL); }
@@ -24,6 +25,31 @@ static void test_restart_translation(void)
         g_setenv("LANGUAGE","de_DE",TRUE); /* Saved preference wins. */
         g_test_trap_subprocess(NULL,10*G_USEC_PER_SEC,0);
         g_test_trap_assert_passed();g_test_trap_assert_stdout(expected[i]);
+    }
+}
+static void test_translated_release_notes(void)
+{
+    if (g_test_subprocess()) {
+        tuxflash_language_init(TUXFLASH_TEST_CATALOGS);
+        g_autofree char *notes = tuxflash_release_notes();
+        g_autofree char *document = g_strconcat("<root>", notes, "</root>", NULL);
+        GMarkupParser parser = {0};
+        g_autoptr(GMarkupParseContext) context = g_markup_parse_context_new(&parser, 0, NULL, NULL);
+        GError *error = NULL;
+        g_assert_true(g_markup_parse_context_parse(context, document, -1, &error));
+        g_assert_true(g_markup_parse_context_end_parse(context, &error));
+        g_assert_no_error(error);
+        const char *title = gettext("Updated in 0.3.5");
+        g_assert_nonnull(strstr(notes, title));
+        fputs(title, stdout);
+        return;
+    }
+    const char *expected[] = {"Atualizado na versão 0.3.5", "Updated in 0.3.5", "0.3.5 版更新", "Actualizado en la versión 0.3.5"};
+    for (guint i = 0; i < 4; i++) {
+        g_assert_true(tuxflash_language_save(i, NULL));
+        g_test_trap_subprocess(NULL, 10 * G_USEC_PER_SEC, 0);
+        g_test_trap_assert_passed();
+        g_test_trap_assert_stdout(expected[i]);
     }
 }
 static void test_preserve_settings(void)
@@ -67,5 +93,6 @@ int main(int argc,char **argv)
     g_test_add_func("/language/1-invalid-corrupt",test_invalid_and_corrupt);
     g_test_add_func("/language/2-preserve-private-settings",test_preserve_settings);
     g_test_add_func("/language/3-preference-survives-restart",test_restart_translation);
+    g_test_add_func("/language/4-translated-release-notes", test_translated_release_notes);
     return g_test_run();
 }
