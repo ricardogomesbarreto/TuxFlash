@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.3\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.4\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -804,3 +804,15 @@ msgstr "所选设备已更改或变为只读状态"
 
 msgid "Target contains active swap or mount inspection failed"
 msgstr "目标设备包含活动交换空间，或挂载检查失败"
+
+msgid "Updated in 0.3.4"
+msgstr "0.3.4 版更新"
+
+msgid "Fixed persistent-media creation for Zorin OS images with internal directory links. Internal aliases are copied as files and directories; links outside the ISO tree and cycles are rejected."
+msgstr "修复了包含内部目录链接的 Zorin OS 镜像无法创建持久化介质的问题。内部别名会复制为文件和目录；指向 ISO 目录树之外的链接及循环链接会被拒绝。"
+
+msgid "The ISO tree is checked before persistent-media partitions are created. Capacity checks include the expanded aliases."
+msgstr "创建持久化分区之前会检查 ISO 目录树。容量检查包含展开后的别名内容。"
+
+msgid "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
+msgstr "新增了 SteamOS 恢复镜像、Kali 安装镜像和 Zorin OS 实际镜像测试。验证报告分别说明镜像写入、固件启动阶段及仍存在的限制。"

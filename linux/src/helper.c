@@ -1750,120 +1750,179 @@ static bool is_install_image(const char *name)
     return strcasecmp(name, "install.wim") == 0 || strcasecmp(name, "install.esd") == 0;
 }
 
-static int copy_tree_size(const char *source, bool skip_split_image, uint64_t *total,
-                          uint64_t *skipped_total)
+/* Materialize ISO directory/file aliases on filesystems whose firmware cannot
+ * follow Unix symlinks. Canonical paths must remain within the source mount;
+ * directory aliases may not revisit an ancestor. Never copy special files. */
+typedef struct {
+    const char *root;
+    GHashTable *ancestors;
+    bool skip_split_image;
+    uint64_t *total;
+    uint64_t *skipped_total;
+    char **split_source;
+    char **split_destination;
+    CopyProgress *progress;
+} ImageTreeContext;
+
+static char *image_tree_resolve(const char *root, const char *path,
+                                struct stat *details)
 {
-    DIR *directory = opendir(source);
-    struct dirent *entry;
-    if (directory == NULL)
+    char *resolved = realpath(path, NULL);
+    size_t length = strlen(root);
+    if (resolved == NULL)
+        return NULL;
+    if (strncmp(root, resolved, length) != 0 ||
+        (resolved[length] != '\0' && resolved[length] != '/')) {
+        free(resolved);
+        errno = EPERM;
+        return NULL;
+    }
+    if (lstat(resolved, details) != 0) {
+        free(resolved);
+        return NULL;
+    }
+    if (!S_ISDIR(details->st_mode) && !S_ISREG(details->st_mode)) {
+        free(resolved);
+        errno = EINVAL;
+        return NULL;
+    }
+    return resolved;
+}
+
+static int image_tree_walk(ImageTreeContext *context, const char *source,
+                            const char *destination, unsigned int depth)
+{
+    DIR *directory = NULL;
+    int result = -1;
+    if (depth >= 128 || g_hash_table_contains(context->ancestors, source)) {
+        errno = ELOOP;
         return -1;
-    while ((entry = readdir(directory)) != NULL) {
-        char *path;
+    }
+    g_hash_table_add(context->ancestors, g_strdup(source));
+    if (destination != NULL && mkdir(destination, 0755) != 0 && errno != EEXIST)
+        goto out;
+    directory = opendir(source);
+    if (directory == NULL)
+        goto out;
+    for (;;) {
+        struct dirent *entry;
         struct stat details;
-        int result = 0;
+        char *path;
+        char *resolved;
+        char *output = NULL;
+        int child_result = 0;
+        if (cancelled) {
+            errno = ECANCELED;
+            goto out;
+        }
+        errno = 0;
+        entry = readdir(directory);
+        if (entry == NULL) {
+            if (errno != 0)
+                goto out;
+            result = 0;
+            break;
+        }
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
             continue;
         path = g_build_filename(source, entry->d_name, NULL);
-        if (lstat(path, &details) != 0)
-            result = -1;
-        else if (S_ISDIR(details.st_mode))
-            result = copy_tree_size(path, skip_split_image, total, skipped_total);
-        else if (!S_ISREG(details.st_mode)) {
-            errno = EINVAL;
-            result = -1;
-        } else if (skip_split_image && is_install_image(entry->d_name) &&
-                   details.st_size > 4000000000LL) {
-            if (skipped_total != NULL) {
-                if ((uint64_t)details.st_size > UINT64_MAX - *skipped_total) {
+        resolved = image_tree_resolve(context->root, path, &details);
+        g_free(path);
+        if (resolved == NULL)
+            goto out;
+        if (destination != NULL)
+            output = g_build_filename(destination, entry->d_name, NULL);
+        if (S_ISDIR(details.st_mode)) {
+            child_result = image_tree_walk(context, resolved, output, depth + 1);
+        } else if (destination == NULL) {
+            bool skip = context->skip_split_image && is_install_image(entry->d_name) &&
+                        details.st_size > 4000000000LL;
+            uint64_t *total = skip ? context->skipped_total : context->total;
+            if (total != NULL) {
+                if ((uint64_t)details.st_size > UINT64_MAX - *total) {
                     errno = EOVERFLOW;
-                    result = -1;
+                    child_result = -1;
                 } else {
-                    *skipped_total += (uint64_t)details.st_size;
+                    *total += (uint64_t)details.st_size;
                 }
             }
-        } else {
-            if ((uint64_t)details.st_size > UINT64_MAX - *total) {
-                errno = EOVERFLOW;
-                result = -1;
+        } else if (context->split_source != NULL && context->split_destination != NULL &&
+                   is_install_image(entry->d_name) && details.st_size > 4000000000LL) {
+            if (*context->split_source != NULL) {
+                errno = EINVAL;
+                child_result = -1;
             } else {
-                *total += (uint64_t)details.st_size;
+                char *parent = g_path_get_dirname(output);
+                *context->split_source = g_strdup(resolved);
+                *context->split_destination = g_build_filename(parent, "install.swm", NULL);
+                g_free(parent);
             }
+        } else {
+            char log_message[512];
+            snprintf(log_message, sizeof(log_message), "Copying %.480s", entry->d_name);
+            event_message("LOG", log_message);
+            child_result = copy_regular_file(resolved, output, details.st_mode,
+                                             context->progress);
         }
-        g_free(path);
-        if (result != 0) {
-            closedir(directory);
-            return -1;
+        {
+            int saved = errno;
+            free(resolved);
+            g_free(output);
+            errno = saved;
         }
+        if (child_result != 0)
+            goto out;
     }
-    closedir(directory);
-    return 0;
+out:
+    {
+        int saved = errno;
+        if (directory != NULL)
+            closedir(directory);
+        g_hash_table_remove(context->ancestors, source);
+        errno = saved;
+    }
+    return result;
+}
+
+static int copy_tree_size(const char *source, bool skip_split_image, uint64_t *total,
+                          uint64_t *skipped_total)
+{
+    char *root = realpath(source, NULL);
+    int result;
+    if (root == NULL)
+        return -1;
+    ImageTreeContext context = {
+        .root = root,
+        .ancestors = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL),
+        .skip_split_image = skip_split_image,
+        .total = total,
+        .skipped_total = skipped_total,
+    };
+    result = image_tree_walk(&context, root, NULL, 0);
+    g_hash_table_destroy(context.ancestors);
+    free(root);
+    return result;
 }
 
 static int copy_tree(const char *source, const char *destination,
                      char **split_source, char **split_destination,
                      CopyProgress *progress)
 {
-    DIR *directory;
-    struct dirent *entry;
-    if (mkdir(destination, 0755) != 0 && errno != EEXIST)
+    char *root = realpath(source, NULL);
+    int result;
+    if (root == NULL)
         return -1;
-    directory = opendir(source);
-    if (directory == NULL)
-        return -1;
-    while (!cancelled && (entry = readdir(directory)) != NULL) {
-        char *source_path;
-        char *destination_path;
-        struct stat details;
-        int child_result = 0;
-        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-            continue;
-        source_path = g_build_filename(source, entry->d_name, NULL);
-        destination_path = g_build_filename(destination, entry->d_name, NULL);
-        if (lstat(source_path, &details) != 0) {
-            g_free(source_path);
-            g_free(destination_path);
-            closedir(directory);
-            return -1;
-        }
-        if (S_ISDIR(details.st_mode)) {
-            child_result = copy_tree(source_path, destination_path,
-                                     split_source, split_destination, progress);
-        } else if (S_ISREG(details.st_mode)) {
-            if (split_source != NULL && split_destination != NULL &&
-                is_install_image(entry->d_name) && details.st_size > 4000000000LL) {
-                if (*split_source != NULL) {
-                    errno = EINVAL;
-                    child_result = -1;
-                } else {
-                    char *directory_name = g_path_get_dirname(destination_path);
-                    *split_source = g_strdup(source_path);
-                    *split_destination = g_build_filename(directory_name, "install.swm", NULL);
-                    g_free(directory_name);
-                }
-            } else {
-                char log_message[512];
-                snprintf(log_message, sizeof(log_message), "Copying %.480s", entry->d_name);
-                event_message("LOG", log_message);
-                child_result = copy_regular_file(source_path, destination_path,
-                                                 details.st_mode, progress);
-            }
-        } else {
-            errno = EINVAL;
-            child_result = -1;
-        }
-        g_free(source_path);
-        g_free(destination_path);
-        if (child_result != 0) {
-            closedir(directory);
-            return -1;
-        }
-    }
-    closedir(directory);
-    if (cancelled) {
-        errno = ECANCELED;
-        return -1;
-    }
-    return 0;
+    ImageTreeContext context = {
+        .root = root,
+        .ancestors = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL),
+        .split_source = split_source,
+        .split_destination = split_destination,
+        .progress = progress,
+    };
+    result = image_tree_walk(&context, root, destination, 0);
+    g_hash_table_destroy(context.ancestors);
+    free(root);
+    return result;
 }
 
 static int install_windows_legacy_boot(const char *disk, const char *partition)
@@ -3171,6 +3230,10 @@ static int linux_persistent_command(const char *source, const char *target_argum
         g_free(casper);
         g_free(live);
     }
+    if (copy_tree_size(source_mount, false, &copy_progress.total, NULL) != 0) {
+        event_errno("Could not calculate Linux live-media size");
+        goto out;
+    }
     sectors = target.capacity / 512;
     persistence_sectors = ((persistence_size + 1048575) / 1048576) * 2048;
     loader_start = (sectors - 34 - 2048) & ~UINT64_C(2047);
@@ -3180,7 +3243,8 @@ static int linux_persistent_command(const char *source, const char *target_argum
     }
     persistence_start = (loader_start - persistence_sectors) & ~UINT64_C(2047);
     main_size = persistence_start - 2048;
-    if (main_size * 512 < (uint64_t)source_details.st_size + 256ULL * 1024ULL * 1024ULL) {
+    if (main_size * 512 < 256ULL * 1024ULL * 1024ULL ||
+        copy_progress.total > main_size * 512 - 256ULL * 1024ULL * 1024ULL) {
         event_message("ERROR", "Target is too small for the ISO and requested persistence size");
         goto out;
     }
@@ -3247,10 +3311,6 @@ static int linux_persistent_command(const char *source, const char *target_argum
             goto out;
         }
         target_mounted = true;
-    }
-    if (copy_tree_size(source_mount, false, &copy_progress.total, NULL) != 0) {
-        event_errno("Could not calculate Linux live-media size");
-        goto out;
     }
     event_stage(220, 820, "Copying Linux live-media files");
     if (copy_progress.total == 0)

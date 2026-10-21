@@ -1,0 +1,25 @@
+In file included from tests/test_helper_tree.c:3:
+tests/../src/helper.c:7:9: warning: ‘_GNU_SOURCE’ redefined
+    7 | #define _GNU_SOURCE
+      |         ^~~~~~~~~~~
+<command-line>: note: this is the location of the previous definition
+tests/../src/helper.c: In function ‘target_contains_active_swap’:
+tests/../src/helper.c:613:11: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  613 |     (void)fgets(line, sizeof(line), swaps); /* header */
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TAP version 14
+# random seed: R02Sca95d08f0341a2bf969a9f4504cd7e4b
+1..7
+# Start of helper-tree tests
+LOG Copying release-alias
+LOG Copying Release
+LOG Copying Release
+LOG Copying Release
+ok 1 /helper-tree/zorin-internal-aliases
+ok 2 /helper-tree/reject-sibling-prefix-escape
+ok 3 /helper-tree/reject-absolute-escape
+ok 4 /helper-tree/reject-directory-cycle
+ok 5 /helper-tree/reject-dangling-link
+ok 6 /helper-tree/reject-special-file
+ok 7 /helper-tree/windows-split-accounting
+# End of helper-tree tests

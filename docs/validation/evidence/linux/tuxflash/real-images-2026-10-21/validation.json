@@ -1,0 +1,210 @@
+{
+  "application": "TuxFlash",
+  "fixed_version": "0.3.4",
+  "date": "2026-10-21",
+  "raw_large_image_helper_sha256": "db42ced7c6c40c4668e787ece7b6e4fdfb78a4b716d0d945448a5640f0937314",
+  "fixed_helper_sha256": "204efdf83e9ee07ca8ac93a38b86cc1cf5d0b67598893e8f93972163cc628b1f",
+  "version_scope": "Large-image RAW writes used the released 0.3.3 helper. SteamOS automatic in-VM compressed verification was interrupted and is not counted as complete. The full target SHA-256 matched the fully decoded source. The production 0.3.4 verify command then compared all 8120172544 bytes against an independently native-expanded reference on a read-only virtual target. The 0.3.4 change is limited to extracted ISO trees and persistence preflight; its helper also passed 40 backend cases and real Zorin persistent-media creation.",
+  "physical_devices_written": false,
+  "source_images_redistributed": false,
+  "images": {
+    "steam": {
+      "source": {
+        "file": "steamdeck-oobe-repair-20260707.10-3.8.14.img.bz2",
+        "bytes": 3357999306,
+        "sha256": "4254ee02ec34ae8add9aceef1881a2ce675a9d0176171df92e0eaa1bf014c594",
+        "decompressed_bytes": 8120172544,
+        "decompressed_sha256": "f9aa0fa2dd618febf28a5e2a583d1e2b5a8ca3f1205be965da584602ac962f40",
+        "bzip2_full_stream_integrity": true,
+        "official_sha256_matches": false,
+        "official_reference": "https://steamdeck-images.steamos.cloud/recovery/"
+      },
+      "raw_write_and_readback": {
+        "case": "steam",
+        "file": "steamdeck-oobe-repair-20260707.10-3.8.14.img.bz2",
+        "readback_bytes": 8120172544,
+        "independent_target_sha256": "f9aa0fa2dd618febf28a5e2a583d1e2b5a8ca3f1205be965da584602ac962f40",
+        "independent_target_hash_matches": true,
+        "mbr_signature_present": true,
+        "gpt_header_crc_valid": true,
+        "gpt_partition_array_crc_valid": true,
+        "gpt_backup_header_crc_valid": true,
+        "partitions": [
+          {
+            "index": 1,
+            "first_lba": 34,
+            "last_lba": 131071,
+            "name": "esp"
+          },
+          {
+            "index": 2,
+            "first_lba": 131072,
+            "last_lba": 393215,
+            "name": "efi-A"
+          },
+          {
+            "index": 3,
+            "first_lba": 655360,
+            "last_lba": 11141119,
+            "name": "rootfs-A"
+          },
+          {
+            "index": 4,
+            "first_lba": 11141120,
+            "last_lba": 11665407,
+            "name": "var-A"
+          },
+          {
+            "index": 5,
+            "first_lba": 11665408,
+            "last_lba": 15859678,
+            "name": "home"
+          }
+        ],
+        "cache_invalidated": true,
+        "writer_committed_bytes": 8120172544,
+        "original_auto_verify_job_completed": false,
+        "original_reader_stopped_for_serial_console_overhead": true,
+        "full_compressed_readonly_function_verification": "not completed: VM interrupted at 2684424192 bytes; not counted as a pass",
+        "full_readonly_verification": "passed: production 0.3.4 verify command, native-expanded reference, 8120172544 bytes, read-only block target"
+      }
+    },
+    "kali": {
+      "source": {
+        "file": "kali-linux-2026.2-installer-amd64.iso",
+        "bytes": 4802531328,
+        "sha256": "6dbefacc95e3b556c19c48e8bae39b8b505e2d3a1aba0bfb7ab62b036c3d2ba3",
+        "official_sha256_matches": true,
+        "official_reference": "https://cdimage.kali.org/kali-2026.2/SHA256SUMS"
+      },
+      "raw_write_and_readback": {
+        "case": "kali",
+        "file": "kali-linux-2026.2-installer-amd64.iso",
+        "readback_bytes": 4802531328,
+        "independent_target_sha256": "6dbefacc95e3b556c19c48e8bae39b8b505e2d3a1aba0bfb7ab62b036c3d2ba3",
+        "independent_target_hash_matches": true,
+        "mbr_signature_present": true,
+        "gpt_header_crc_valid": true,
+        "gpt_partition_array_crc_valid": true,
+        "gpt_backup_header_crc_valid": true,
+        "partitions": [
+          {
+            "index": 1,
+            "first_lba": 0,
+            "last_lba": 9379887,
+            "name": "ISOHybrid"
+          },
+          {
+            "index": 2,
+            "first_lba": 21420,
+            "last_lba": 29067,
+            "name": "ISOHybrid1"
+          }
+        ],
+        "cache_invalidated": true,
+        "helper_complete_bytes": 4802531328
+      }
+    },
+    "zorin": {
+      "source": {
+        "file": "Zorin-OS-18.1-Core-64-bit.iso",
+        "bytes": 3909091328,
+        "sha256": "44649b97bd307fc4c8529205d098ebbf98575a1e1ba2ee7d7005b697af1721d5",
+        "official_sha256_matches": true,
+        "official_reference": "https://help.zorin.com/docs/getting-started/check-the-integrity-of-your-copy-of-zorin-os/"
+      },
+      "raw_write_and_readback": {
+        "case": "zorin",
+        "file": "Zorin-OS-18.1-Core-64-bit.iso",
+        "readback_bytes": 3909091328,
+        "independent_target_sha256": "44649b97bd307fc4c8529205d098ebbf98575a1e1ba2ee7d7005b697af1721d5",
+        "independent_target_hash_matches": true,
+        "mbr_signature_present": true,
+        "gpt_header_crc_valid": true,
+        "gpt_partition_array_crc_valid": true,
+        "gpt_backup_header_crc_valid": true,
+        "partitions": [
+          {
+            "index": 1,
+            "first_lba": 0,
+            "last_lba": 7634879,
+            "name": "ISOHybrid"
+          },
+          {
+            "index": 2,
+            "first_lba": 604,
+            "last_lba": 10843,
+            "name": "ISOHybrid1"
+          }
+        ],
+        "cache_invalidated": true,
+        "helper_complete_bytes": 3909091328
+      }
+    }
+  },
+  "firmware_visual_review": {
+    "kali": {
+      "uefi": {
+        "observed": true,
+        "stage": "Official Kali installer menu (UEFI).",
+        "screenshot": "kali-uefi-20s.png"
+      },
+      "bios": {
+        "observed": true,
+        "stage": "Official Kali installer menu (BIOS).",
+        "screenshot": "kali-bios-20s.png"
+      }
+    },
+    "zorin": {
+      "uefi": {
+        "observed": true,
+        "stage": "Zorin GRUB menu; subsequent frame also showed the OS splash.",
+        "screenshot": "zorin-uefi-8s.png"
+      },
+      "bios": {
+        "observed": true,
+        "stage": "Zorin GRUB menu; subsequent frame also showed the OS splash.",
+        "screenshot": "zorin-bios-8s.png"
+      }
+    },
+    "steam": {
+      "uefi": {
+        "observed": true,
+        "stage": "UEFI chainloader, Linux kernel and systemd initialization observed with virtio graphics. The VM later waited for /.rtests/shared/esp; recovery desktop and Steam Deck hardware recovery remain unqualified.",
+        "screenshot": "steam-virtio-uefi-60s.png"
+      }
+    },
+    "zorin-persistent-fixed": {
+      "uefi": {
+        "observed": true,
+        "stage": "NTFS UEFI loader, media validator (886 files, zero failed), then Zorin GRUB menu. Desktop and persistence after reboot not tested.",
+        "screenshot": "zorin-persistent-fixed-uefi-50s.png"
+      }
+    }
+  },
+  "firmware_scope": "Bootloader menus and stated splash/validation stages only. No complete installation, desktop qualification, Secure Boot or Steam Deck hardware recovery is claimed.",
+  "native_suites_passed": 17,
+  "native_suites_failed": 0,
+  "new_tree_regression_cases_passed": 7,
+  "new_tree_asan_ubsan_passed": true,
+  "backend_vm_cases_passed": 40,
+  "minimal_synthetic_firmware_boots_passed": 3,
+  "gui_languages_passed": [
+    "pt_BR",
+    "en",
+    "es",
+    "zh_CN"
+  ],
+  "gui_completion_cases_per_language": 4,
+  "real_image_gui_selection_cases_passed": 3,
+  "steam_readonly_probe_scope": "Production 0.3.4 verify command, no I/O mocks, full independently expanded reference, read-only whole virtual block target and summarized progress output.",
+  "zorin_persistence": {
+    "before_fix": "Failed on internal dists/stable and dists/unstable symbolic links.",
+    "after_fix": "NTFS payload, 1 GiB ext4 casper-rw, GRUB persistent argument, runtime validation manifest and clean e2fsck. UEFI loader and firmware validation completed before reaching Zorin GRUB.",
+    "helper_exit_success": true,
+    "firmware_md5_files_checked": 886,
+    "firmware_md5_files_failed": 0,
+    "full_live_session_and_persistence_across_reboot_tested": false
+  },
+  "source_privacy": "No host names, hardware identities, home-directory paths or credentials are included."
+}

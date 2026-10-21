@@ -1,3 +1,23 @@
+# TuxFlash 0.3.4 — imagens reais e persistência
+
+- Corrigida a cópia dos links internos da ISO do Zorin OS 18.1 para mídia persistente.
+- Aliases internos são materializados; caminhos externos, ciclos e arquivos especiais são recusados.
+- A árvore e o tamanho expandido são conferidos antes de particionar o destino de persistência.
+- Sete novos cenários de regressão, 17 suítes nativas e conferência com ASan/UBSan.
+- Notas traduzidas em Português (Brasil), English, 中文（简体） e Español.
+- Consulte o [relatório de imagens reais](../validation/IMAGENS-REAIS-2026-10-21.md) para os resultados exatos de SteamOS, Kali e Zorin. Configurar persistência não comprova uma sessão persistente depois de reiniciar.
+
+## English
+
+Fixed Zorin OS 18.1 persistent-media creation by materializing bounded internal
+ISO aliases. Escapes, cycles and special files remain rejected; preflight tree
+and expanded-capacity checks now precede persistent-media partitioning.
+Seven regression scenarios, 17 native suites, ASan/UBSan checks and four-language
+release notes accompany this fix. See the linked image report for the exact
+write, firmware and persistence validation scope.
+
+---
+
 # TuxFlash 0.3.3 — segurança e integração
 
 * Proteção de submontagens do sistema, volumes com múltiplos vínculos e swap ativo.

@@ -6,6 +6,23 @@ char *tuxflash_release_notes(void)
 {
     GString *xml=g_string_new(NULL);
     {
+        g_autofree char *title=g_markup_escape_text(g_dgettext("tuxflash",N_("Updated in 0.3.4")), -1);
+        g_string_append_printf(xml,"<p>%s</p><ul>",title);
+        {
+            g_autofree char *item=g_markup_escape_text(g_dgettext("tuxflash",N_("Fixed persistent-media creation for Zorin OS images with internal directory links. Internal aliases are copied as files and directories; links outside the ISO tree and cycles are rejected.")), -1);
+            g_string_append_printf(xml,"<li>%s</li>",item);
+        }
+        {
+            g_autofree char *item=g_markup_escape_text(g_dgettext("tuxflash",N_("The ISO tree is checked before persistent-media partitions are created. Capacity checks include the expanded aliases.")), -1);
+            g_string_append_printf(xml,"<li>%s</li>",item);
+        }
+        {
+            g_autofree char *item=g_markup_escape_text(g_dgettext("tuxflash",N_("Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits.")), -1);
+            g_string_append_printf(xml,"<li>%s</li>",item);
+        }
+        g_string_append(xml,"</ul>");
+    }
+    {
         g_autofree char *title=g_markup_escape_text(g_dgettext("tuxflash",N_("Updated in 0.3.3")), -1);
         g_string_append_printf(xml,"<p>%s</p><ul>",title);
         {

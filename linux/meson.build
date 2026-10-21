@@ -1,7 +1,7 @@
 project(
   'tuxflash',
   'c',
-  version: '0.3.3',
+  version: '0.3.4',
   license: 'GPL-3.0-or-later',
   meson_version: '>= 0.63.0',
   default_options: ['c_std=c11', 'warning_level=3'],
@@ -252,3 +252,14 @@ test('device-safety-topology', device_safety_test)
 test('bcd-generator-failure', find_program('python3'), args: files('tests/test_bcd_failure.py'))
 
 test('launcher-delegation', find_program('python3'), args: files('tests/test_launchers.py'))
+
+helper_tree_test = executable(
+  'test-helper-tree',
+  'tests/test_helper_tree.c',
+  'src/volume_label.c',
+  'src/progress.c',
+  'src/windows_options.c',
+  include_directories: include_directories('src'),
+  dependencies: [dependency('gio-2.0'), json_glib],
+)
+test('helper-tree-internal-links', helper_tree_test)

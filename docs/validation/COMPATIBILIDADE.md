@@ -1,7 +1,7 @@
 # Compatibilidade e interface — escopo comprovado
 
 Não foi atingida equivalência integral com o Rufus Windows. A aplicação é o
-TuxFlash 0.3.3 nativo (derivado do Lufus 0.2.2), integrado ao núcleo de hashes do Rufus e às correções locais.
+TuxFlash 0.3.4 nativo (derivado do Lufus 0.2.2), integrado ao núcleo de hashes do Rufus e às correções locais.
 
 ## ISOs Linux
 
@@ -14,6 +14,7 @@ Também dependem da imagem a arquitetura, o suporte a BIOS/UEFI e Secure Boot.
 | --- | --- |
 | Linux Mint 22.3 MATE x86-64 | Gravação física RAW e duas comparações integrais aprovadas; boot físico pendente |
 | Persistência casper e Debian-live | Partições, arquivos e configurações aprovados com ISOs sintéticas; sessão Linux real e persistência após reiniciar pendentes |
+| SteamOS recovery, Kali Installer e Zorin OS | Gravação/conferência e etapas de firmware em VM; Zorin persistente corrigido. Veja [imagens reais](IMAGENS-REAIS-2026-10-21.md). Sem recuperação física de Steam Deck ou sessão persistente entre boots |
 | Outras distribuições e ISOs | Sem qualificação física local; detecção pelo probe não equivale a boot aprovado |
 | Secure Boot | Sem validação local; os boots registrados usaram Secure Boot desativado |
 

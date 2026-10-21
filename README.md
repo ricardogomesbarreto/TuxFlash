@@ -7,7 +7,7 @@
 **Criador de pendrives inicializáveis nativo para Linux**<br>
 **Native bootable USB creator for Linux**
 
-Versão / Version **0.3.3** · **GPL-3.0-or-later** · **Linux x86-64**
+Versão / Version **0.3.4** · **GPL-3.0-or-later** · **Linux x86-64**
 
 [![Build and tests](https://github.com/ricardogomesbarreto/TuxFlash/actions/workflows/ci.yml/badge.svg)](https://github.com/ricardogomesbarreto/TuxFlash/actions/workflows/ci.yml)
 
@@ -72,8 +72,8 @@ Baixe o pacote **Linux x86-64** e seu SHA-256 na página de
 Na pasta do download:
 
 ```sh
-sha256sum -c TuxFlash-0.3.3-linux-x86_64.tar.xz.sha256
-tar -xf TuxFlash-0.3.3-linux-x86_64.tar.xz
+sha256sum -c TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256
+tar -xf TuxFlash-0.3.4-linux-x86_64.tar.xz
 ```
 
 Entre na pasta extraída e execute `./tuxflash`. O pacote inclui o runtime e o
@@ -110,7 +110,7 @@ python3 scripts/install-menu.py
 
 O ponto de entrada principal é `tuxflash.sh`. `scripts/run.sh` delega ao
 pacote portátil quando ele existe e usa o runtime local como alternativa.
-No pacote extraído de `dist/TuxFlash-0.3.3-linux-x86_64.tar.xz`, execute `./tuxflash`.
+No pacote extraído de `dist/TuxFlash-0.3.4-linux-x86_64.tar.xz`, execute `./tuxflash`.
 Extraia o pacote inteiro: o executável depende dos arquivos que o acompanham.
 A janela já aberta usa o binário antigo; feche e reabra para atualizar.
 
@@ -131,6 +131,21 @@ exclusiva do TuxFlash. Tampouco há evidência de superioridade geral em velocid
 compatibilidade ou número de recursos sobre o Rufus. As melhorias aqui são
 correções concretas e integração mais fácil de executar no ambiente validado.
 O projeto é independente e não é uma versão oficial Linux do Rufus.
+
+### Correção e testes da versão 0.3.4
+
+A mídia persistente do Zorin OS 18.1 falhava nos links internos de
+`dists/stable` e `dists/unstable`. O helper agora materializa aliases internos
+como arquivos/diretórios, recusa saídas da árvore da ISO, ciclos e arquivos
+especiais, e verifica a árvore e seu tamanho expandido antes de criar partições.
+Há sete novos cenários de regressão e 17 suítes nativas.
+
+Os testes com SteamOS/Steam Deck, Kali Installer e Zorin OS estão no
+[relatório de imagens reais](docs/validation/IMAGENS-REAIS-2026-10-21.md).
+SteamOS recovery é `.img.bz2`, usa RAW/DD e precisa de espaço para os
+**8.120.172.544 bytes descomprimidos**; o tamanho de 3,36 GB é do arquivo comprimido.
+Os resultados diferenciam comparação de bytes, menus de firmware, persistência
+configurada e uma sessão real depois de reiniciar.
 
 ### Melhorias técnicas da versão 0.3.3
 
@@ -230,8 +245,8 @@ Download the **Linux x86-64** archive and its SHA-256 file from
 In your download directory:
 
 ```sh
-sha256sum -c TuxFlash-0.3.3-linux-x86_64.tar.xz.sha256
-tar -xf TuxFlash-0.3.3-linux-x86_64.tar.xz
+sha256sum -c TuxFlash-0.3.4-linux-x86_64.tar.xz.sha256
+tar -xf TuxFlash-0.3.4-linux-x86_64.tar.xz
 ```
 
 Enter the extracted directory and run `./tuxflash`. The archive includes its
@@ -269,7 +284,7 @@ python3 scripts/install-menu.py
 
 `tuxflash.sh` is the main entry point. `scripts/run.sh` selects the portable
 bundle when present, with the local runtime as a fallback. When using
-`dist/TuxFlash-0.3.3-linux-x86_64.tar.xz`, extract the entire archive and run
+`dist/TuxFlash-0.3.4-linux-x86_64.tar.xz`, extract the entire archive and run
 `./tuxflash`. Restart an already open application to load the updated binary.
 
 Choose Brazilian Portuguese, English, Simplified Chinese or Spanish from the
@@ -287,6 +302,20 @@ and license summaries. Its new description identifies the native Linux applicati
 Native Linux support is inherited from Lufus. There is no evidence of general
 speed, compatibility or feature superiority over Rufus. TuxFlash is an independent
 derivative, with concrete fixes and packaging for the validated environment.
+
+### Fix and tests in 0.3.4
+
+Zorin OS 18.1 persistent-media creation failed on its internal `dists/stable`
+and `dists/unstable` links. The helper now materializes internal aliases as
+files/directories, rejects escapes, cycles and special files, and checks the
+tree and expanded size before partitioning. Seven regression scenarios were
+added, bringing the native suite count to 17.
+
+See the [real-image report](docs/validation/IMAGENS-REAIS-2026-10-21.md) for
+SteamOS/Steam Deck, Kali Installer and Zorin OS results. SteamOS recovery is an
+`.img.bz2` disk image for RAW/DD; the target must fit **8,120,172,544 decompressed
+bytes**, rather than just the 3.36 GB compressed file. The report distinguishes
+byte comparisons, firmware menus, persistence layout and a real session after reboot.
 
 ### Changes in 0.3.3
 

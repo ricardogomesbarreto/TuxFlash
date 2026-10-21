@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.3\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: es\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.4\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: es\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -804,3 +804,15 @@ msgstr "El dispositivo seleccionado cambió o pasó a ser de solo lectura"
 
 msgid "Target contains active swap or mount inspection failed"
 msgstr "El destino contiene swap activo o falló la inspección de los puntos de montaje"
+
+msgid "Updated in 0.3.4"
+msgstr "Actualizado en la versión 0.3.4"
+
+msgid "Fixed persistent-media creation for Zorin OS images with internal directory links. Internal aliases are copied as files and directories; links outside the ISO tree and cycles are rejected."
+msgstr "Corregida la creación de medios persistentes para imágenes de Zorin OS con enlaces internos de directorios. Los alias internos se copian como archivos y directorios; se rechazan los enlaces fuera del árbol de la ISO y los ciclos."
+
+msgid "The ISO tree is checked before persistent-media partitions are created. Capacity checks include the expanded aliases."
+msgstr "El árbol de la ISO se comprueba antes de crear las particiones persistentes. La comprobación de capacidad incluye los alias expandidos."
+
+msgid "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
+msgstr "Se añadieron pruebas con imágenes reales de recuperación de SteamOS, Kali Installer y Zorin OS. El informe distingue la escritura, las etapas de arranque del firmware y las limitaciones pendientes."
