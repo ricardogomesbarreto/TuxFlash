@@ -16,6 +16,54 @@ APP_ID = "org.tuxflash.TuxFlash"
 MANAGED_MARKER = "X-TuxFlash-Managed=true"
 
 
+def executable(path: Path) -> bool:
+    return path.is_file() and os.access(path, os.X_OK)
+
+
+def validate_runtime(root: Path, parser: argparse.ArgumentParser) -> None:
+    """Check the payload the shortcut will actually launch, without executing it.
+
+    A source checkout has a launcher before a native build; likewise, an
+    incompletely extracted portable archive can have its top-level launcher.
+    Neither case should create a menu entry that cannot start TuxFlash.
+    """
+    portable = root / "runtime"
+    if portable.exists():
+        if not (
+            (portable / ".tuxflash-portable").is_file()
+            and executable(portable / "bin/tuxflash")
+            and executable(portable / "run-elf")
+        ):
+            parser.error(
+                "Pacote portátil incompleto. Extraia novamente todos os arquivos "
+                "(incluindo runtime/) antes de instalar o atalho."
+            )
+        return
+
+    nested = root / "dist/portable"
+    if executable(nested / "tuxflash"):
+        if not (
+            (nested / "runtime/.tuxflash-portable").is_file()
+            and executable(nested / "runtime/bin/tuxflash")
+            and executable(nested / "runtime/run-elf")
+        ):
+            parser.error(
+                "Pacote em dist/portable incompleto. Refaça o empacotamento "
+                "ou remova o pacote incompleto antes de instalar o atalho."
+            )
+        return
+
+    staged = root / "linux/runtime"
+    if not (
+        executable(staged / "bin/tuxflash")
+        and executable(staged / "libexec/tuxflash-helper")
+    ):
+        parser.error(
+            "Aplicativo ainda não compilado. Execute 'make' na raiz do projeto "
+            "antes de instalar o atalho; ou use o pacote portátil completo."
+        )
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Instalar ou remover o TuxFlash do menu do usuário"
@@ -103,6 +151,8 @@ StartupNotify=true
 StartupWMClass=org.tuxflash.TuxFlash
 X-TuxFlash-Managed=true
 """.replace("@EXEC@", value)
+
+    validate_runtime(root, parser)
 
     desktop.parent.mkdir(parents=True, exist_ok=True)
     icon.parent.mkdir(parents=True, exist_ok=True)
