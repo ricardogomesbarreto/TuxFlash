@@ -5,9 +5,9 @@ import shutil,subprocess,tempfile
 root=Path(__file__).resolve().parents[2]
 with tempfile.TemporaryDirectory(prefix='tuxflash-launchers-') as d:
  project=Path(d)/'project with spaces';project.mkdir()
- for name in ['tuxflash.sh','scripts/run.sh']:
+ for name in ['tuxflash','tuxflash.sh','scripts/run.sh']:
   (project/name).parent.mkdir(parents=True,exist_ok=True);shutil.copy2(root/name,project/name)
- launch=project/'tuxflash.sh'
+ launch=project/'tuxflash'
  r=subprocess.run([str(launch)],capture_output=True,text=True)
  assert r.returncode==127 and 'runtime not found' in r.stderr
  local=project/'linux/runtime/bin/tuxflash';local.parent.mkdir(parents=True)

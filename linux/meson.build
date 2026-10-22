@@ -253,6 +253,8 @@ test('bcd-generator-failure', find_program('python3'), args: files('tests/test_b
 
 test('launcher-delegation', find_program('python3'), args: files('tests/test_launchers.py'))
 
+test('menu-shortcut-safety', find_program('python3'), args: files('tests/test_menu_installer.py'))
+
 helper_tree_test = executable(
   'test-helper-tree',
   'tests/test_helper_tree.c',
