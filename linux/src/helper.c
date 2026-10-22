@@ -815,9 +815,11 @@ static int open_decompressor(const char *program, int source_fd)
     }
     if (decompressor_pid == 0) {
         if (dup2(source_fd, STDIN_FILENO) < 0 ||
-            dup2(pipe_fds[1], STDOUT_FILENO) < 0)
+            dup2(pipe_fds[1], STDOUT_FILENO) < 0 ||
+            fcntl(STDIN_FILENO, F_SETFD, 0) < 0)
             _exit(127);
-        close(source_fd);
+        if (source_fd != STDIN_FILENO)
+            close(source_fd);
         close(pipe_fds[0]);
         close(pipe_fds[1]);
         char *arguments[] = {(char *)program, "-dc", NULL};
