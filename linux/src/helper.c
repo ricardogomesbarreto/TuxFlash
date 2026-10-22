@@ -877,9 +877,17 @@ static int write_all(int target_fd, const unsigned char *buffer, size_t length)
 {
     size_t offset = 0;
     while (offset < length) {
+        if (cancelled) {
+            errno = ECANCELED;
+            return -1;
+        }
         ssize_t result = write(target_fd, buffer + offset, length - offset);
-        if (result < 0 && errno == EINTR)
+        if (result < 0 && errno == EINTR && !cancelled)
             continue;
+        if (cancelled) {
+            errno = ECANCELED;
+            return -1;
+        }
         if (result <= 0)
             return -1;
         offset += (size_t)result;
