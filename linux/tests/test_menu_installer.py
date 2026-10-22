@@ -56,6 +56,10 @@ with tempfile.TemporaryDirectory(prefix="tuxflash-menu-") as temp:
     # Portable archives use the icon inside runtime/share, not linux/assets.
     desktop.unlink()
     asset.unlink()
+    # An unmanaged orphan icon must not be overwritten either.
+    assert run(root / "scripts/install-menu.py", home).returncode != 0
+    assert icon.read_bytes() == b"OTHERICON"
+    icon.unlink()
     portable_icon = root / "runtime/share/icons/hicolor/512x512/apps/org.tuxflash.TuxFlash.png"
     portable_icon.parent.mkdir(parents=True)
     portable_icon.write_bytes(b"PORTABLEICON")
