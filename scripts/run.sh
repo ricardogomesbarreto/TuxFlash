@@ -7,7 +7,7 @@ if [ -x "$project_dir/dist/portable/tuxflash" ]; then
 fi
 runtime_dir="$project_dir/linux/runtime"
 if [ ! -x "$runtime_dir/bin/tuxflash" ]; then
-    printf '%s\n' "TuxFlash runtime not found. Restore dist/portable or build it with linux/build-local.sh." >&2
+    printf '%s\n' "TuxFlash runtime not found. In a source checkout, run 'make' in the project root first. For ready-to-run use, extract the complete portable release." >&2
     exit 127
 fi
 # Do not load the IDE's GTK 3/GIO modules or Snap locale tree into this GTK 4 app.
