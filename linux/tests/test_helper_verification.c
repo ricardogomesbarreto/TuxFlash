@@ -149,6 +149,32 @@ static void compressed_path_safety(void)
     alarm(0);
 }
 
+static void capture_output_exclusive(void)
+{
+    g_autofree char *dir = g_dir_make_tmp("tuxflash-capture-output-XXXXXX", NULL);
+    g_autofree char *existing = g_build_filename(dir, "existing.vhdx", NULL);
+    g_autofree char *link = g_build_filename(dir, "linked.vhdx", NULL);
+    g_autofree char *fresh = g_build_filename(dir, "fresh.vhdx", NULL);
+    const char sentinel[] = "DO NOT OVERWRITE";
+    g_assert_true(g_file_set_contents(existing, sentinel, sizeof(sentinel), NULL));
+    int out = reserve_capture_output(existing);
+    g_assert_cmpint(out, ==, -1);
+    g_assert_cmpint(errno, ==, EEXIST);
+    g_autofree char *after = NULL;
+    gsize length = 0;
+    g_assert_true(g_file_get_contents(existing, &after, &length, NULL));
+    g_assert_cmpmem(after, length, sentinel, sizeof(sentinel));
+    g_assert_cmpint(symlink(existing, link), ==, 0);
+    g_assert_cmpint(reserve_capture_output(link), ==, -1);
+    out = reserve_capture_output(fresh);
+    g_assert_cmpint(out, >=, 0);
+    struct stat details;
+    g_assert_cmpint(fstat(out, &details), ==, 0);
+    g_assert_cmpint(details.st_mode & 0777, ==, 0600);
+    close(out);
+    unlink(fresh); unlink(link); unlink(existing); rmdir(dir);
+}
+
 static void interrupted_read(gconstpointer data)
 {
     int mode = GPOINTER_TO_INT(data);
@@ -221,6 +247,7 @@ int main(int argc, char **argv)
         g_test_add_data_func(name, &codecs[i], compressed_case);
     }
     g_test_add_func("/verify/compressed/path-safety", compressed_path_safety);
+    g_test_add_func("/capture/exclusive-output", capture_output_exclusive);
     g_test_add_data_func("/verify/cancel-source-read", GINT_TO_POINTER(0), interrupted_read);
     g_test_add_data_func("/verify/cancel-target-read", GINT_TO_POINTER(1), interrupted_read);
     g_test_add_data_func("/verify/cancel-eof-read", GINT_TO_POINTER(2), interrupted_read);
