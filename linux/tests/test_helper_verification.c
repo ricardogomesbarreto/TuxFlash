@@ -175,6 +175,42 @@ static void capture_output_exclusive(void)
     unlink(fresh); unlink(link); unlink(existing); rmdir(dir);
 }
 
+/* Cancellation must abort a blocked write instead of re-entering write()
+ * after EINTR and hanging forever on a full pipe. */
+static void interrupted_write(void)
+{
+    alarm(5);
+    int pipe_fds[2];
+    g_assert_cmpint(pipe(pipe_fds), ==, 0);
+    struct sigaction previous_int, previous_term;
+    g_assert_cmpint(sigaction(SIGINT, NULL, &previous_int), ==, 0);
+    g_assert_cmpint(sigaction(SIGTERM, NULL, &previous_term), ==, 0);
+    g_assert_cmpint(install_signal_handlers(), ==, 0);
+    cancelled = 0;
+    pid_t child = fork();
+    g_assert_cmpint(child, >=, 0);
+    if (child == 0) {
+        close(pipe_fds[0]);
+        close(pipe_fds[1]);
+        usleep(50000);
+        kill(getppid(), SIGTERM);
+        _exit(0);
+    }
+    unsigned char *buffer = g_malloc0(4U * 1024U * 1024U);
+    int result = write_all(pipe_fds[1], buffer, 4U * 1024U * 1024U);
+    int saved = errno;
+    g_assert_cmpint(result, ==, -1);
+    g_assert_cmpint(saved, ==, ECANCELED);
+    int status = 0;
+    g_assert_cmpint(wait_child(child, &status), ==, child);
+    g_assert_cmpint(sigaction(SIGINT, &previous_int, NULL), ==, 0);
+    g_assert_cmpint(sigaction(SIGTERM, &previous_term, NULL), ==, 0);
+    close(pipe_fds[0]); close(pipe_fds[1]);
+    g_free(buffer);
+    cancelled = 0;
+    alarm(0);
+}
+
 static void interrupted_read(gconstpointer data)
 {
     int mode = GPOINTER_TO_INT(data);
@@ -248,6 +284,7 @@ int main(int argc, char **argv)
     }
     g_test_add_func("/verify/compressed/path-safety", compressed_path_safety);
     g_test_add_func("/capture/exclusive-output", capture_output_exclusive);
+    g_test_add_func("/write/cancel-blocked-write", interrupted_write);
     g_test_add_data_func("/verify/cancel-source-read", GINT_TO_POINTER(0), interrupted_read);
     g_test_add_data_func("/verify/cancel-target-read", GINT_TO_POINTER(1), interrupted_read);
     g_test_add_data_func("/verify/cancel-eof-read", GINT_TO_POINTER(2), interrupted_read);
