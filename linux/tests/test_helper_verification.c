@@ -98,6 +98,57 @@ static void compressed_case(gconstpointer data)
     alarm(0);
 }
 
+/* A compressed file must be opened once: not through a symlink or an
+ * untrusted pathname reopened later by a privileged decompressor. */
+static void compressed_path_safety(void)
+{
+    alarm(10);
+    g_autofree char *dir = g_dir_make_tmp("tuxflash-input-XXXXXX", NULL);
+    g_autofree char *raw = g_build_filename(dir, "raw.img", NULL);
+    g_autofree char *source = g_build_filename(dir, "original.img.gz", NULL);
+    g_autofree char *swapped = g_build_filename(dir, "replacement.img.gz", NULL);
+    g_autofree char *saved = g_build_filename(dir, "saved.img.gz", NULL);
+    g_autofree char *link = g_build_filename(dir, "link.img.gz", NULL);
+    const char expected[] = "TuxFlash source anchored to file descriptor";
+    g_assert_true(g_file_set_contents(raw, expected, sizeof(expected), NULL));
+    char *args[] = {"gzip", "-c", "--", raw, NULL};
+    GSubprocess *process = g_subprocess_newv((const gchar *const *)args,
+                                             G_SUBPROCESS_FLAGS_STDOUT_PIPE, NULL);
+    g_assert_nonnull(process);
+    GBytes *encoded = NULL;
+    g_assert_true(g_subprocess_communicate(process, NULL, NULL, &encoded, NULL, NULL));
+    g_assert_true(g_subprocess_get_successful(process));
+    g_object_unref(process);
+    gsize length = 0;
+    gconstpointer payload = g_bytes_get_data(encoded, &length);
+    g_assert_true(g_file_set_contents(source, payload, length, NULL));
+    g_assert_true(g_file_set_contents(swapped, "not compressed", -1, NULL));
+    uint64_t total = 0;
+    g_assert_cmpint(symlink(source, link), ==, 0);
+    errno = 0;
+    g_assert_cmpint(open_source(link, &total), ==, -1);
+    g_assert_cmpint(errno, ==, ELOOP);
+    int stream = open_source(source, &total);
+    g_assert_cmpint(stream, >=, 0);
+    g_assert_cmpuint(total, ==, 0);
+    g_assert_cmpint(rename(source, saved), ==, 0);
+    g_assert_cmpint(rename(swapped, source), ==, 0);
+    char actual[sizeof(expected) + 64] = {0};
+    size_t offset = 0;
+    ssize_t amount;
+    while ((amount = read(stream, actual + offset, sizeof(actual) - offset)) > 0)
+        offset += (size_t)amount;
+    g_assert_cmpint(amount, ==, 0);
+    g_assert_cmpuint(offset, ==, sizeof(expected));
+    g_assert_cmpmem(actual, offset, expected, sizeof(expected));
+    close(stream);
+    g_assert_cmpint(wait_for_decompressor(), ==, 0);
+    g_assert_cmpint(decompressor_pid, ==, -1);
+    g_bytes_unref(encoded);
+    unlink(link); unlink(source); unlink(saved); unlink(raw); rmdir(dir);
+    alarm(0);
+}
+
 static void interrupted_read(gconstpointer data)
 {
     int mode = GPOINTER_TO_INT(data);
@@ -169,6 +220,7 @@ int main(int argc, char **argv)
         g_autofree char *name = g_strdup_printf("/verify/compressed/%s", codecs[i].extension);
         g_test_add_data_func(name, &codecs[i], compressed_case);
     }
+    g_test_add_func("/verify/compressed/path-safety", compressed_path_safety);
     g_test_add_data_func("/verify/cancel-source-read", GINT_TO_POINTER(0), interrupted_read);
     g_test_add_data_func("/verify/cancel-target-read", GINT_TO_POINTER(1), interrupted_read);
     g_test_add_data_func("/verify/cancel-eof-read", GINT_TO_POINTER(2), interrupted_read);
