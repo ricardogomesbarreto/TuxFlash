@@ -50,6 +50,8 @@ def main():
 
     if desktop.exists() and not managed:
         parser.error("Já existe um atalho não gerenciado nesse local; ele foi preservado.")
+    if icon.exists() and not managed:
+        parser.error("Já existe um ícone não gerenciado nesse local; ele foi preservado.")
 
     launcher = next(
         (
