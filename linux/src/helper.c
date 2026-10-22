@@ -797,27 +797,34 @@ static int mount_target_partition(const char *partition, const char *mountpoint,
     return mount_partition_once(partition, mountpoint, ntfs);
 }
 
-static int open_decompressor(const char *program, const char *source)
+/* The decompressor consumes the already-open regular file over stdin.
+ * Never reopen an attacker-replaceable pathname inside the child. */
+static int open_decompressor(const char *program, int source_fd)
 {
     int pipe_fds[2];
-    if (pipe(pipe_fds) != 0)
+    if (pipe(pipe_fds) != 0) {
+        close(source_fd);
         return -1;
+    }
     decompressor_pid = fork();
     if (decompressor_pid < 0) {
+        close(source_fd);
         close(pipe_fds[0]);
         close(pipe_fds[1]);
         return -1;
     }
     if (decompressor_pid == 0) {
-        dup2(pipe_fds[1], STDOUT_FILENO);
+        if (dup2(source_fd, STDIN_FILENO) < 0 ||
+            dup2(pipe_fds[1], STDOUT_FILENO) < 0)
+            _exit(127);
+        close(source_fd);
         close(pipe_fds[0]);
         close(pipe_fds[1]);
-        {
-            char *arguments[] = {(char *)program, "-dc", "--", (char *)source, NULL};
-            exec_tool(arguments);
-        }
+        char *arguments[] = {(char *)program, "-dc", NULL};
+        exec_tool(arguments);
         _exit(127);
     }
+    close(source_fd);
     close(pipe_fds[1]);
     return pipe_fds[0];
 }
@@ -825,28 +832,30 @@ static int open_decompressor(const char *program, const char *source)
 static int open_source(const char *source, uint64_t *total)
 {
     struct stat source_stat;
-    if (stat(source, &source_stat) != 0 || !S_ISREG(source_stat.st_mode)) {
+    const char *decoder = NULL;
+    int descriptor = open(source, O_RDONLY | O_CLOEXEC | O_NOFOLLOW);
+    if (descriptor < 0)
+        return -1;
+    if (fstat(descriptor, &source_stat) != 0 ||
+        !S_ISREG(source_stat.st_mode)) {
+        close(descriptor);
         errno = EINVAL;
         return -1;
     }
     *total = (uint64_t)source_stat.st_size;
-    if (has_suffix(source, ".gz")) {
+    if (has_suffix(source, ".gz"))
+        decoder = "gzip";
+    else if (has_suffix(source, ".xz"))
+        decoder = "xz";
+    else if (has_suffix(source, ".bz2"))
+        decoder = "bzip2";
+    else if (has_suffix(source, ".zst") || has_suffix(source, ".zstd"))
+        decoder = "zstd";
+    if (decoder != NULL) {
         *total = 0;
-        return open_decompressor("gzip", source);
+        return open_decompressor(decoder, descriptor);
     }
-    if (has_suffix(source, ".xz")) {
-        *total = 0;
-        return open_decompressor("xz", source);
-    }
-    if (has_suffix(source, ".bz2")) {
-        *total = 0;
-        return open_decompressor("bzip2", source);
-    }
-    if (has_suffix(source, ".zst") || has_suffix(source, ".zstd")) {
-        *total = 0;
-        return open_decompressor("zstd", source);
-    }
-    return open(source, O_RDONLY | O_CLOEXEC | O_NOFOLLOW);
+    return descriptor;
 }
 
 static int wait_for_decompressor(void)
