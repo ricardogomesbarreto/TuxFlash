@@ -3517,6 +3517,13 @@ out:
     return result;
 }
 
+/* Reserve the capture name atomically before launching qemu-img. An
+ * lstat() preflight alone cannot protect the gap between validation and create. */
+static int reserve_capture_output(const char *output)
+{
+    return open(output, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC | O_NOFOLLOW, 0600);
+}
+
 static int capture_command(const char *output, const char *target_argument,
                            const char *expected_identity, uint64_t expected_capacity,
                            const char *format)
@@ -3567,6 +3574,14 @@ static int capture_command(const char *output, const char *target_argument,
                           (char *)output, size, NULL};
         char *convert[] = {"qemu-img", "convert", "-p", "-n", "-f", "raw", "-O",
                            output_format, target.path, (char *)output, NULL};
+        /* The already-created pathname belongs to this capture, not to an
+         * existing user file. qemu-img initializes this reserved container. */
+        output_fd = reserve_capture_output(output);
+        if (output_fd < 0) {
+            g_free(size);
+            event_errno("Could not exclusively reserve capture output");
+            goto out;
+        }
         event_stage(0, 40, "Creating virtual disk container");
         event_indeterminate_progress();
         if (run_command_input(create, NULL) != 0) {
