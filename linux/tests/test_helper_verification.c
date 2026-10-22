@@ -177,6 +177,47 @@ static void capture_output_exclusive(void)
 
 /* Cancellation must abort a blocked write instead of re-entering write()
  * after EINTR and hanging forever on a full pipe. */
+/* Validate that qemu-img can initialize a file whose name was exclusively
+ * reserved by TuxFlash, without opening any actual block device. */
+static void capture_reserved_qemu_container(void)
+{
+    g_autofree char *qemu = g_find_program_in_path("qemu-img");
+    if (qemu == NULL) {
+        g_test_skip("qemu-img not installed (installed in native GitHub CI)");
+        return;
+    }
+    g_autofree char *dir = g_dir_make_tmp("tuxflash-qemu-reserved-XXXXXX", NULL);
+    for (unsigned int index = 0; index < 2; index++) {
+        const char *name = index == 0 ? "capture.vhd" : "capture.vhdx";
+        const char *format = index == 0 ? "vpc" : "vhdx";
+        const char *options = index == 0 ? "subformat=fixed,force_size=on" :
+                                            "subformat=dynamic";
+        g_autofree char *path = g_build_filename(dir, name, NULL);
+        int descriptor = reserve_capture_output(path);
+        g_assert_cmpint(descriptor, >=, 0);
+        close(descriptor);
+        const char *arguments[] = {
+            qemu, "create", "-f", format, "-o", options,
+            path, "67108864", NULL
+        };
+        GError *error = NULL;
+        GSubprocess *process = g_subprocess_newv(arguments,
+                                                G_SUBPROCESS_FLAGS_STDOUT_SILENCE,
+                                                &error);
+        g_assert_no_error(error);
+        g_assert_nonnull(process);
+        g_assert_true(g_subprocess_wait_check(process, NULL, &error));
+        g_assert_no_error(error);
+        g_object_unref(process);
+        struct stat info;
+        g_assert_cmpint(stat(path, &info), ==, 0);
+        g_assert_true(S_ISREG(info.st_mode));
+        g_assert_cmpint(info.st_size, >, 0);
+        unlink(path);
+    }
+    rmdir(dir);
+}
+
 static void interrupted_write(void)
 {
     alarm(5);
@@ -284,6 +325,7 @@ int main(int argc, char **argv)
     }
     g_test_add_func("/verify/compressed/path-safety", compressed_path_safety);
     g_test_add_func("/capture/exclusive-output", capture_output_exclusive);
+    g_test_add_func("/capture/qemu-reserved-container", capture_reserved_qemu_container);
     g_test_add_func("/write/cancel-blocked-write", interrupted_write);
     g_test_add_data_func("/verify/cancel-source-read", GINT_TO_POINTER(0), interrupted_read);
     g_test_add_data_func("/verify/cancel-target-read", GINT_TO_POINTER(1), interrupted_read);
