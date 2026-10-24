@@ -1816,6 +1816,9 @@ static GtkWidget *build_status(AppState *state)
     append_heading(GTK_BOX(box), _("Status"));
     state->status_label = GTK_LABEL(gtk_label_new(_("READY")));
     gtk_widget_add_css_class(GTK_WIDGET(state->status_label), "caption");
+    gtk_label_set_ellipsize(state->status_label, PANGO_ELLIPSIZE_END);
+    gtk_label_set_single_line_mode(state->status_label, TRUE);
+    gtk_widget_set_hexpand(GTK_WIDGET(state->status_label), TRUE);
     gtk_box_append(GTK_BOX(box), GTK_WIDGET(state->status_label));
     state->progress = GTK_PROGRESS_BAR(gtk_progress_bar_new());
     gtk_box_append(GTK_BOX(box), GTK_WIDGET(state->progress));
@@ -1896,8 +1899,10 @@ static AppState *create_window(AdwApplication *application)
     gtk_window_set_default_icon_name(APP_ID);
     gtk_window_set_icon_name(GTK_WINDOW(state->window), APP_ID);
     gtk_window_set_title(GTK_WINDOW(state->window), "TuxFlash " LUFUS_VERSION);
-    gtk_window_set_default_size(GTK_WINDOW(state->window), 600, 760);
-    gtk_widget_set_size_request(GTK_WIDGET(state->window), 500, 560);
+    /* Use the available horizontal space to keep the collapsed form compact.
+     * Smaller desktops can still scroll the form; destructive actions do not. */
+    gtk_window_set_default_size(GTK_WINDOW(state->window), 920, 690);
+    gtk_widget_set_size_request(GTK_WIDGET(state->window), 600, 520);
     state->toast_overlay = ADW_TOAST_OVERLAY(adw_toast_overlay_new());
     adw_application_window_set_content(state->window, GTK_WIDGET(state->toast_overlay));
     adw_toast_overlay_set_child(state->toast_overlay, GTK_WIDGET(toolbar));
@@ -1916,21 +1921,40 @@ static AppState *create_window(AdwApplication *application)
     adw_header_bar_pack_end(header, language_button);
     adw_toolbar_view_add_top_bar(toolbar, GTK_WIDGET(header));
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scroller), content);
-    gtk_scrolled_window_set_propagate_natural_height(GTK_SCROLLED_WINDOW(scroller), TRUE);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroller),
+                                   GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+    gtk_widget_set_vexpand(scroller, TRUE);
     adw_toolbar_view_set_content(toolbar, scroller);
-    gtk_widget_set_margin_top(content, 14);
-    gtk_widget_set_margin_bottom(content, 14);
-    gtk_widget_set_margin_start(content, 18);
-    gtk_widget_set_margin_end(content, 18);
+    gtk_widget_set_margin_top(content, 8);
+    gtk_widget_set_margin_bottom(content, 8);
+    gtk_widget_set_margin_start(content, 12);
+    gtk_widget_set_margin_end(content, 12);
     GtkWidget *intro = gtk_label_new(_("Turn ISO images into bootable USB drives simply and safely."));
     gtk_label_set_wrap(GTK_LABEL(intro), TRUE);
     gtk_label_set_xalign(GTK_LABEL(intro), 0.0);
     gtk_widget_add_css_class(intro, "dim-label");
     gtk_widget_set_margin_bottom(intro, 6);
     gtk_box_append(GTK_BOX(content), intro);
-    gtk_box_append(GTK_BOX(content), build_drive_properties(state));
-    gtk_box_append(GTK_BOX(content), build_format_options(state));
-    gtk_box_append(GTK_BOX(content), build_status(state));
+    /* GtkFlowBox wraps the two form groups into one column only when needed.
+     * At desktop width it avoids unnecessary vertical scrolling. */
+    GtkWidget *groups = gtk_flow_box_new();
+    gtk_flow_box_set_selection_mode(GTK_FLOW_BOX(groups), GTK_SELECTION_NONE);
+    gtk_flow_box_set_min_children_per_line(GTK_FLOW_BOX(groups), 1);
+    gtk_flow_box_set_max_children_per_line(GTK_FLOW_BOX(groups), 2);
+    gtk_flow_box_set_column_spacing(GTK_FLOW_BOX(groups), 16);
+    gtk_flow_box_set_row_spacing(GTK_FLOW_BOX(groups), 8);
+    gtk_widget_set_hexpand(groups, TRUE);
+    gtk_flow_box_insert(GTK_FLOW_BOX(groups), build_drive_properties(state), -1);
+    gtk_flow_box_insert(GTK_FLOW_BOX(groups), build_format_options(state), -1);
+    gtk_box_append(GTK_BOX(content), groups);
+    /* The status, progress and action buttons must remain visible even if an
+     * expanded advanced section or an unusually small screen requires scroll. */
+    GtkWidget *footer = build_status(state);
+    gtk_widget_set_margin_top(footer, 6);
+    gtk_widget_set_margin_bottom(footer, 8);
+    gtk_widget_set_margin_start(footer, 12);
+    gtk_widget_set_margin_end(footer, 12);
+    adw_toolbar_view_add_bottom_bar(toolbar, footer);
     on_image_option_selected(G_OBJECT(state->image_option), NULL, state);
     g_signal_connect(state->window, "close-request", G_CALLBACK(on_close_request), state);
     g_object_set_data_full(G_OBJECT(state->window), "lufus-state", state, (GDestroyNotify)state_free);
