@@ -1,3 +1,23 @@
+# TuxFlash 0.3.6-rc.1 — candidata de segurança e integridade
+
+> **Versão candidata em desenvolvimento, ainda não publicada.** Último lançamento público: **0.3.5**.
+
+- Imagens comprimidas são abertas com `O_NOFOLLOW` e `fstat`, e o descompressor consome o mesmo descritor, sem reabrir o caminho.
+- Capturas VHD/VHDX reservam arquivos de saída com `O_CREAT | O_EXCL | O_NOFOLLOW` e permissões 0600, preservando arquivos existentes.
+- Escritas bloqueadas respeitam o cancelamento após `EINTR`; testes de regressão utilizam arquivos temporários e pipes, sem pendrives físicos.
+- Rodapé GTK fixo para status/progresso e botões Iniciar/Fechar; o formulário se organiza em duas colunas quando há espaço e não usa rolagem horizontal. Uma rolagem vertical continua possível em janelas pequenas ou opções avançadas expandidas.
+- Smoke test gráfico em Xvfb a 1024×768 aprovado no CI, comprovando abertura e dimensões da janela sem acesso à mídia física (não comprova todos os controles em todas as resoluções).
+- Regressões incluem substituição de caminho, links simbólicos, colisão de saída e contêineres reais com `qemu-img`.
+- A janela sem rolagem, o cancelamento do helper privilegiado e os 43 cenários VM relatados pelo Codex local **ainda exigem integração e validação no mesmo commit** antes da publicação final.
+
+Veja [critérios de aprovação](../validation/REVISAO-0.3.6.md).
+
+## English
+
+**0.3.6-rc.1 is a development release candidate, not a published stable package.** This candidate anchors compressed input to a previously opened descriptor, reserves VHD/VHDX output paths exclusively, and honors cancellation during blocked writes. Non-destructive tests cover pathname replacement, symlink rejection, output collisions and `qemu-img` container creation. Local Codex UI and privileged-helper work must be reconciled and retested before publishing 0.3.6. The latest public version remains 0.3.5.
+
+---
+
 # TuxFlash 0.3.5 — integridade e cancelamento
 
 - A verificação exige que a origem termine exatamente no tamanho gravado; recusa imagens maiores ou menores e preserva o espaço extra legítimo no destino.

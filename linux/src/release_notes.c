@@ -6,6 +6,23 @@ char *tuxflash_release_notes(void)
 {
     GString *xml=g_string_new(NULL);
     {
+        g_autofree char *title = g_markup_escape_text(g_dgettext("tuxflash", N_("Updated in 0.3.6-rc.1")), -1);
+        g_string_append_printf(xml, "<p>%s</p><ul>", title);
+        {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", N_("Compressed images are read through their already-open file descriptors. Symbolic-link input and pathname replacement are rejected.")), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", N_("VHD and VHDX capture reserves new output files exclusively, preventing accidental overwrite of existing files.")), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", N_("Cancelling a blocked write stops the operation instead of repeating the write after an interrupted system call.")), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        g_string_append(xml, "</ul>");
+    }
+    {
         g_autofree char *title = g_markup_escape_text(g_dgettext("tuxflash", N_("Updated in 0.3.5")), -1);
         g_string_append_printf(xml, "<p>%s</p><ul>", title);
         {

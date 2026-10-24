@@ -84,6 +84,19 @@ int main(int argc,char **argv)
  g_assert_cmpstr(gtk_label_get_text(state->status_label),==,ready[selected]);
  g_assert_true(has_label(GTK_WIDGET(state->window),device[selected]));
  g_assert_true(has_label(GTK_WIDGET(state->window),_("Turn ISO images into bootable USB drives simply and safely.")));
+ /* Regression: main form may scroll on a small monitor, but the footer's
+  * START/CLOSE controls must always remain outside that scrollable area. */
+ GtkWidget *main_scroller=GTK_WIDGET(state->device_dropdown);
+ while(main_scroller && !GTK_IS_SCROLLED_WINDOW(main_scroller))
+  main_scroller=gtk_widget_get_parent(main_scroller);
+ g_assert_nonnull(main_scroller);
+ g_assert_true(gtk_widget_is_ancestor(GTK_WIDGET(state->device_dropdown),main_scroller));
+ g_assert_false(gtk_widget_is_ancestor(GTK_WIDGET(state->start_button),main_scroller));
+ GtkPolicyType horizontal=GTK_POLICY_AUTOMATIC,vertical=GTK_POLICY_NEVER;
+ gtk_scrolled_window_get_policy(GTK_SCROLLED_WINDOW(main_scroller),&horizontal,&vertical);
+ g_assert_cmpint(horizontal,==,GTK_POLICY_NEVER);
+ g_assert_cmpint(vertical,==,GTK_POLICY_AUTOMATIC);
+ g_assert_cmpint(gtk_label_get_ellipsize(state->status_label),==,PANGO_ELLIPSIZE_END);
  PangoLayout *layout=gtk_widget_create_pango_layout(GTK_WIDGET(state->window),"中文（简体）设备启动镜像");
  g_assert_cmpint(pango_layout_get_unknown_glyphs_count(layout),==,0);g_object_unref(layout);
  check_writer_result(state,"printf 'COMPLETE done\\n'; exit 0",TRUE);

@@ -39,12 +39,12 @@ static void test_translated_release_notes(void)
         g_assert_true(g_markup_parse_context_parse(context, document, -1, &error));
         g_assert_true(g_markup_parse_context_end_parse(context, &error));
         g_assert_no_error(error);
-        const char *title = gettext("Updated in 0.3.5");
+        const char *title = gettext("Updated in 0.3.6-rc.1");
         g_assert_nonnull(strstr(notes, title));
         fputs(title, stdout);
         return;
     }
-    const char *expected[] = {"Atualizado na versão 0.3.5", "Updated in 0.3.5", "0.3.5 版更新", "Actualizado en la versión 0.3.5"};
+    const char *expected[] = {"Atualizado na versão 0.3.6-rc.1", "Updated in 0.3.6-rc.1", "0.3.6-rc.1 版更新", "Actualizado en la versión 0.3.6-rc.1"};
     for (guint i = 0; i < 4; i++) {
         g_assert_true(tuxflash_language_save(i, NULL));
         g_test_trap_subprocess(NULL, 10 * G_USEC_PER_SEC, 0);

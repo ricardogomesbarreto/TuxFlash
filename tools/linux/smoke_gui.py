@@ -19,6 +19,13 @@ project = Path(sys.argv[1]).resolve()
 xvfb = sys.argv[2]
 output = Path(sys.argv[3]).resolve()
 output.mkdir(parents=True, exist_ok=True)
+screen = os.environ.get('TUXFLASH_SMOKE_SCREEN', '1024x768')
+try:
+    screen_width, screen_height = (int(item) for item in screen.split('x'))
+    if not 640 <= screen_width <= 8192 or not 480 <= screen_height <= 8192:
+        raise ValueError('screen dimensions out of range')
+except ValueError as exc:
+    raise SystemExit(f'Invalid TUXFLASH_SMOKE_SCREEN: {screen}') from exc
 server = None
 app = None
 display = None
@@ -54,7 +61,7 @@ x.XCloseDisplay.argtypes = [c.c_void_p]
 try:
     with (output / 'xvfb.log').open('w') as server_log, (output / 'gui.log').open('w') as app_log:
         server = subprocess.Popen([xvfb, '-displayfd', '1', '-screen', '0',
-            '1100x1000x24', '-nolisten', 'tcp', '-ac'], stdout=subprocess.PIPE,
+            f'{screen_width}x{screen_height}x24', '-nolisten', 'tcp', '-ac'], stdout=subprocess.PIPE,
             stderr=server_log, start_new_session=True)
         selector = selectors.DefaultSelector()
         selector.register(server.stdout, selectors.EVENT_READ)
@@ -91,7 +98,7 @@ try:
                 if x.XFetchName(display, children[index], c.byref(name)) and name.value:
                     title = c.string_at(name).decode(errors='replace')
                     x.XFree(name)
-                    if title.startswith('Lufus '):
+                    if title.startswith('TuxFlash '):
                         selected = (children[index], title)
                         break
             if children:
@@ -100,7 +107,7 @@ try:
                 break
             time.sleep(0.2)
         if not selected:
-            raise RuntimeError('No Lufus application window appeared')
+            raise RuntimeError('No TuxFlash application window appeared')
         time.sleep(1)
         window, title = selected
         window_root, wx, wy = c.c_ulong(), c.c_int(), c.c_int()
@@ -120,7 +127,10 @@ try:
                 'raw', 'BGRX', info.bytes_per_line).save(output / 'gui.png')
         finally:
             x.XDestroyImage(capture)
+        if width.value > screen_width or height.value > screen_height:
+            raise RuntimeError(f'TuxFlash {width.value}x{height.value} exceeds virtual screen {screen}')
         report = {'window_title': title, 'width': width.value, 'height': height.value,
+                  'screen': screen,
                   'running_at_capture': app.poll() is None, 'usb_write_tested': False}
         (output / 'gui.json').write_text(json.dumps(report, indent=2) + '\n')
         print(json.dumps(report))

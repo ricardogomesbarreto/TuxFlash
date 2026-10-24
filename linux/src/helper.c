@@ -797,27 +797,36 @@ static int mount_target_partition(const char *partition, const char *mountpoint,
     return mount_partition_once(partition, mountpoint, ntfs);
 }
 
-static int open_decompressor(const char *program, const char *source)
+/* The decompressor consumes the already-open regular file over stdin.
+ * Never reopen an attacker-replaceable pathname inside the child. */
+static int open_decompressor(const char *program, int source_fd)
 {
     int pipe_fds[2];
-    if (pipe(pipe_fds) != 0)
+    if (pipe(pipe_fds) != 0) {
+        close(source_fd);
         return -1;
+    }
     decompressor_pid = fork();
     if (decompressor_pid < 0) {
+        close(source_fd);
         close(pipe_fds[0]);
         close(pipe_fds[1]);
         return -1;
     }
     if (decompressor_pid == 0) {
-        dup2(pipe_fds[1], STDOUT_FILENO);
+        if (dup2(source_fd, STDIN_FILENO) < 0 ||
+            dup2(pipe_fds[1], STDOUT_FILENO) < 0 ||
+            fcntl(STDIN_FILENO, F_SETFD, 0) < 0)
+            _exit(127);
+        if (source_fd != STDIN_FILENO)
+            close(source_fd);
         close(pipe_fds[0]);
         close(pipe_fds[1]);
-        {
-            char *arguments[] = {(char *)program, "-dc", "--", (char *)source, NULL};
-            exec_tool(arguments);
-        }
+        char *arguments[] = {(char *)program, "-dc", NULL};
+        exec_tool(arguments);
         _exit(127);
     }
+    close(source_fd);
     close(pipe_fds[1]);
     return pipe_fds[0];
 }
@@ -825,28 +834,30 @@ static int open_decompressor(const char *program, const char *source)
 static int open_source(const char *source, uint64_t *total)
 {
     struct stat source_stat;
-    if (stat(source, &source_stat) != 0 || !S_ISREG(source_stat.st_mode)) {
+    const char *decoder = NULL;
+    int descriptor = open(source, O_RDONLY | O_CLOEXEC | O_NOFOLLOW);
+    if (descriptor < 0)
+        return -1;
+    if (fstat(descriptor, &source_stat) != 0 ||
+        !S_ISREG(source_stat.st_mode)) {
+        close(descriptor);
         errno = EINVAL;
         return -1;
     }
     *total = (uint64_t)source_stat.st_size;
-    if (has_suffix(source, ".gz")) {
+    if (has_suffix(source, ".gz"))
+        decoder = "gzip";
+    else if (has_suffix(source, ".xz"))
+        decoder = "xz";
+    else if (has_suffix(source, ".bz2"))
+        decoder = "bzip2";
+    else if (has_suffix(source, ".zst") || has_suffix(source, ".zstd"))
+        decoder = "zstd";
+    if (decoder != NULL) {
         *total = 0;
-        return open_decompressor("gzip", source);
+        return open_decompressor(decoder, descriptor);
     }
-    if (has_suffix(source, ".xz")) {
-        *total = 0;
-        return open_decompressor("xz", source);
-    }
-    if (has_suffix(source, ".bz2")) {
-        *total = 0;
-        return open_decompressor("bzip2", source);
-    }
-    if (has_suffix(source, ".zst") || has_suffix(source, ".zstd")) {
-        *total = 0;
-        return open_decompressor("zstd", source);
-    }
-    return open(source, O_RDONLY | O_CLOEXEC | O_NOFOLLOW);
+    return descriptor;
 }
 
 static int wait_for_decompressor(void)
@@ -866,9 +877,17 @@ static int write_all(int target_fd, const unsigned char *buffer, size_t length)
 {
     size_t offset = 0;
     while (offset < length) {
+        if (cancelled) {
+            errno = ECANCELED;
+            return -1;
+        }
         ssize_t result = write(target_fd, buffer + offset, length - offset);
-        if (result < 0 && errno == EINTR)
+        if (result < 0 && errno == EINTR && !cancelled)
             continue;
+        if (cancelled) {
+            errno = ECANCELED;
+            return -1;
+        }
         if (result <= 0)
             return -1;
         offset += (size_t)result;
@@ -3506,6 +3525,13 @@ out:
     return result;
 }
 
+/* Reserve the capture name atomically before launching qemu-img. An
+ * lstat() preflight alone cannot protect the gap between validation and create. */
+static int reserve_capture_output(const char *output)
+{
+    return open(output, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC | O_NOFOLLOW, 0600);
+}
+
 static int capture_command(const char *output, const char *target_argument,
                            const char *expected_identity, uint64_t expected_capacity,
                            const char *format)
@@ -3556,6 +3582,14 @@ static int capture_command(const char *output, const char *target_argument,
                           (char *)output, size, NULL};
         char *convert[] = {"qemu-img", "convert", "-p", "-n", "-f", "raw", "-O",
                            output_format, target.path, (char *)output, NULL};
+        /* The already-created pathname belongs to this capture, not to an
+         * existing user file. qemu-img initializes this reserved container. */
+        output_fd = reserve_capture_output(output);
+        if (output_fd < 0) {
+            g_free(size);
+            event_errno("Could not exclusively reserve capture output");
+            goto out;
+        }
         event_stage(0, 40, "Creating virtual disk container");
         event_indeterminate_progress();
         if (run_command_input(create, NULL) != 0) {

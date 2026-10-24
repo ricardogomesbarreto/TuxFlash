@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.4\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: pt_BR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.6-rc.1\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: pt_BR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -816,6 +816,18 @@ msgstr "A árvore da ISO é verificada antes da criação das partições persis
 
 msgid "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
 msgstr "Adicionados testes com imagens reais de recuperação do SteamOS, Kali Installer e Zorin OS. O relatório distingue gravação, etapas de boot do firmware e limites restantes."
+
+msgid "Updated in 0.3.6-rc.1"
+msgstr "Atualizado na versão 0.3.6-rc.1"
+
+msgid "Compressed images are read through their already-open file descriptors. Symbolic-link input and pathname replacement are rejected."
+msgstr "As imagens comprimidas são lidas por descritores de arquivo já abertos. Entradas por links simbólicos e substituições de caminho são recusadas."
+
+msgid "VHD and VHDX capture reserves new output files exclusively, preventing accidental overwrite of existing files."
+msgstr "A captura VHD e VHDX reserva novos arquivos de saída de forma exclusiva, evitando sobrescrever arquivos existentes."
+
+msgid "Cancelling a blocked write stops the operation instead of repeating the write after an interrupted system call."
+msgstr "O cancelamento de uma escrita bloqueada encerra a operação sem repetir a escrita após uma chamada de sistema interrompida."
 
 msgid "Updated in 0.3.5"
 msgstr "Atualizado na versão 0.3.5"

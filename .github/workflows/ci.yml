@@ -29,8 +29,12 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential pkg-config meson ninja-build gettext libgtk-4-dev libadwaita-1-dev libsoup-3.0-dev libjson-glib-dev libhivex-dev xorriso gzip xz-utils bzip2 zstd
+          sudo apt-get install -y build-essential pkg-config meson ninja-build gettext libgtk-4-dev libadwaita-1-dev libsoup-3.0-dev libjson-glib-dev libhivex-dev xorriso gzip xz-utils bzip2 zstd qemu-utils xvfb python3-pil dbus-x11
       - name: Build and run Meson suites
         run: make
       - name: Helper corruption and cancellation sanitizers
         run: make check-helper-sanitize
+      - name: Non-destructive graphical launch at 1024x768
+        run: |
+          python3 tools/linux/smoke_gui.py "$PWD" "$(command -v Xvfb)" "$RUNNER_TEMP/tuxflash-gui-smoke"
+          cat "$RUNNER_TEMP/tuxflash-gui-smoke/gui.json"

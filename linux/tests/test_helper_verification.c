@@ -98,6 +98,160 @@ static void compressed_case(gconstpointer data)
     alarm(0);
 }
 
+/* A compressed file must be opened once: not through a symlink or an
+ * untrusted pathname reopened later by a privileged decompressor. */
+static void compressed_path_safety(void)
+{
+    alarm(10);
+    g_autofree char *dir = g_dir_make_tmp("tuxflash-input-XXXXXX", NULL);
+    g_autofree char *raw = g_build_filename(dir, "raw.img", NULL);
+    g_autofree char *source = g_build_filename(dir, "original.img.gz", NULL);
+    g_autofree char *swapped = g_build_filename(dir, "replacement.img.gz", NULL);
+    g_autofree char *saved = g_build_filename(dir, "saved.img.gz", NULL);
+    g_autofree char *link = g_build_filename(dir, "link.img.gz", NULL);
+    const char expected[] = "TuxFlash source anchored to file descriptor";
+    g_assert_true(g_file_set_contents(raw, expected, sizeof(expected), NULL));
+    char *args[] = {"gzip", "-c", "--", raw, NULL};
+    GSubprocess *process = g_subprocess_newv((const gchar *const *)args,
+                                             G_SUBPROCESS_FLAGS_STDOUT_PIPE, NULL);
+    g_assert_nonnull(process);
+    GBytes *encoded = NULL;
+    g_assert_true(g_subprocess_communicate(process, NULL, NULL, &encoded, NULL, NULL));
+    g_assert_true(g_subprocess_get_successful(process));
+    g_object_unref(process);
+    gsize length = 0;
+    gconstpointer payload = g_bytes_get_data(encoded, &length);
+    g_assert_true(g_file_set_contents(source, payload, length, NULL));
+    g_assert_true(g_file_set_contents(swapped, "not compressed", -1, NULL));
+    uint64_t total = 0;
+    g_assert_cmpint(symlink(source, link), ==, 0);
+    errno = 0;
+    g_assert_cmpint(open_source(link, &total), ==, -1);
+    g_assert_cmpint(errno, ==, ELOOP);
+    int stream = open_source(source, &total);
+    g_assert_cmpint(stream, >=, 0);
+    g_assert_cmpuint(total, ==, 0);
+    g_assert_cmpint(rename(source, saved), ==, 0);
+    g_assert_cmpint(rename(swapped, source), ==, 0);
+    char actual[sizeof(expected) + 64] = {0};
+    size_t offset = 0;
+    ssize_t amount;
+    while ((amount = read(stream, actual + offset, sizeof(actual) - offset)) > 0)
+        offset += (size_t)amount;
+    g_assert_cmpint(amount, ==, 0);
+    g_assert_cmpuint(offset, ==, sizeof(expected));
+    g_assert_cmpmem(actual, offset, expected, sizeof(expected));
+    close(stream);
+    g_assert_cmpint(wait_for_decompressor(), ==, 0);
+    g_assert_cmpint(decompressor_pid, ==, -1);
+    g_bytes_unref(encoded);
+    unlink(link); unlink(source); unlink(saved); unlink(raw); rmdir(dir);
+    alarm(0);
+}
+
+static void capture_output_exclusive(void)
+{
+    g_autofree char *dir = g_dir_make_tmp("tuxflash-capture-output-XXXXXX", NULL);
+    g_autofree char *existing = g_build_filename(dir, "existing.vhdx", NULL);
+    g_autofree char *link = g_build_filename(dir, "linked.vhdx", NULL);
+    g_autofree char *fresh = g_build_filename(dir, "fresh.vhdx", NULL);
+    const char sentinel[] = "DO NOT OVERWRITE";
+    g_assert_true(g_file_set_contents(existing, sentinel, sizeof(sentinel), NULL));
+    int out = reserve_capture_output(existing);
+    g_assert_cmpint(out, ==, -1);
+    g_assert_cmpint(errno, ==, EEXIST);
+    g_autofree char *after = NULL;
+    gsize length = 0;
+    g_assert_true(g_file_get_contents(existing, &after, &length, NULL));
+    g_assert_cmpmem(after, length, sentinel, sizeof(sentinel));
+    g_assert_cmpint(symlink(existing, link), ==, 0);
+    g_assert_cmpint(reserve_capture_output(link), ==, -1);
+    out = reserve_capture_output(fresh);
+    g_assert_cmpint(out, >=, 0);
+    struct stat details;
+    g_assert_cmpint(fstat(out, &details), ==, 0);
+    g_assert_cmpint(details.st_mode & 0777, ==, 0600);
+    close(out);
+    unlink(fresh); unlink(link); unlink(existing); rmdir(dir);
+}
+
+/* Cancellation must abort a blocked write instead of re-entering write()
+ * after EINTR and hanging forever on a full pipe. */
+/* Validate that qemu-img can initialize a file whose name was exclusively
+ * reserved by TuxFlash, without opening any actual block device. */
+static void capture_reserved_qemu_container(void)
+{
+    g_autofree char *qemu = g_find_program_in_path("qemu-img");
+    if (qemu == NULL) {
+        g_test_skip("qemu-img not installed (installed in native GitHub CI)");
+        return;
+    }
+    g_autofree char *dir = g_dir_make_tmp("tuxflash-qemu-reserved-XXXXXX", NULL);
+    for (unsigned int index = 0; index < 2; index++) {
+        const char *name = index == 0 ? "capture.vhd" : "capture.vhdx";
+        const char *format = index == 0 ? "vpc" : "vhdx";
+        const char *options = index == 0 ? "subformat=fixed,force_size=on" :
+                                            "subformat=dynamic";
+        g_autofree char *path = g_build_filename(dir, name, NULL);
+        int descriptor = reserve_capture_output(path);
+        g_assert_cmpint(descriptor, >=, 0);
+        close(descriptor);
+        const char *arguments[] = {
+            qemu, "create", "-f", format, "-o", options,
+            path, "67108864", NULL
+        };
+        GError *error = NULL;
+        GSubprocess *process = g_subprocess_newv(arguments,
+                                                G_SUBPROCESS_FLAGS_STDOUT_SILENCE,
+                                                &error);
+        g_assert_no_error(error);
+        g_assert_nonnull(process);
+        g_assert_true(g_subprocess_wait_check(process, NULL, &error));
+        g_assert_no_error(error);
+        g_object_unref(process);
+        struct stat info;
+        g_assert_cmpint(stat(path, &info), ==, 0);
+        g_assert_true(S_ISREG(info.st_mode));
+        g_assert_cmpint(info.st_size, >, 0);
+        unlink(path);
+    }
+    rmdir(dir);
+}
+
+static void interrupted_write(void)
+{
+    alarm(5);
+    int pipe_fds[2];
+    g_assert_cmpint(pipe(pipe_fds), ==, 0);
+    struct sigaction previous_int, previous_term;
+    g_assert_cmpint(sigaction(SIGINT, NULL, &previous_int), ==, 0);
+    g_assert_cmpint(sigaction(SIGTERM, NULL, &previous_term), ==, 0);
+    g_assert_cmpint(install_signal_handlers(), ==, 0);
+    cancelled = 0;
+    pid_t child = fork();
+    g_assert_cmpint(child, >=, 0);
+    if (child == 0) {
+        close(pipe_fds[0]);
+        close(pipe_fds[1]);
+        usleep(50000);
+        kill(getppid(), SIGTERM);
+        _exit(0);
+    }
+    unsigned char *buffer = g_malloc0(4U * 1024U * 1024U);
+    int result = write_all(pipe_fds[1], buffer, 4U * 1024U * 1024U);
+    int saved = errno;
+    g_assert_cmpint(result, ==, -1);
+    g_assert_cmpint(saved, ==, ECANCELED);
+    int status = 0;
+    g_assert_cmpint(wait_child(child, &status), ==, child);
+    g_assert_cmpint(sigaction(SIGINT, &previous_int, NULL), ==, 0);
+    g_assert_cmpint(sigaction(SIGTERM, &previous_term, NULL), ==, 0);
+    close(pipe_fds[0]); close(pipe_fds[1]);
+    g_free(buffer);
+    cancelled = 0;
+    alarm(0);
+}
+
 static void interrupted_read(gconstpointer data)
 {
     int mode = GPOINTER_TO_INT(data);
@@ -169,6 +323,10 @@ int main(int argc, char **argv)
         g_autofree char *name = g_strdup_printf("/verify/compressed/%s", codecs[i].extension);
         g_test_add_data_func(name, &codecs[i], compressed_case);
     }
+    g_test_add_func("/verify/compressed/path-safety", compressed_path_safety);
+    g_test_add_func("/capture/exclusive-output", capture_output_exclusive);
+    g_test_add_func("/capture/qemu-reserved-container", capture_reserved_qemu_container);
+    g_test_add_func("/write/cancel-blocked-write", interrupted_write);
     g_test_add_data_func("/verify/cancel-source-read", GINT_TO_POINTER(0), interrupted_read);
     g_test_add_data_func("/verify/cancel-target-read", GINT_TO_POINTER(1), interrupted_read);
     g_test_add_data_func("/verify/cancel-eof-read", GINT_TO_POINTER(2), interrupted_read);
