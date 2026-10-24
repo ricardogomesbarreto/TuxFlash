@@ -1,6 +1,6 @@
 # TuxFlash 0.3.6 — critérios de validação / Release readiness
 
-> **Status em 22/10/2026:** candidata em preparação, **não publicada**. A versão pública permanece **0.3.5**. / **Status as of 2026-10-22:** release candidate under preparation, **not published**. Latest public version: **0.3.5**.
+> **Status em 24/10/2026:** candidata **0.3.6-rc.1** preparada no código, **não publicada**. A versão pública permanece **0.3.5**. / **Status as of 2026-10-24:** development candidate **0.3.6-rc.1**, **not released**. Latest public version: **0.3.5**.
 
 ## Português (Brasil)
 
@@ -22,13 +22,13 @@ O histórico do Codex fornecido pelo desenvolvedor relata **19 suítes nativas**
 3. Reexecutar as suítes de I/O com troca de arquivo comprimido e saída VHD/VHDX, inclusive sucesso e cancelamento, ASan/UBSan e os **43 cenários em VM** com discos descartáveis.
 4. Confirmar que as opções principais cabem em 1024×768 sem rolagem horizontal, com botões Iniciar/Fechar visíveis e mensagens longas nos quatro idiomas, além das outras resoluções do histórico.
 5. Investigar o fundo azul observado no teste em VM; registrar causa e conclusão sem inventar compatibilidade de boot físico.
-6. Atualizar versão Meson, notas da versão nos quatro idiomas, README PT-BR/EN, manifesto de hashes, artefato portátil, licença e proveniência, somente após gates aprovados.
+6. Confirmar as traduções e o build da candidata 0.3.6-rc.1; atualizar para a versão 0.3.6 final, README de downloads, manifesto SHA-256, artefato portátil e proveniência apenas quando todos os gates estiverem aprovados.
 7. Publicar o release com SHA-256 e repetir um smoke test não destrutivo do pacote **efetivamente gerado**.
 
 Nenhuma operação destrutiva deve ter como destino um disco físico durante a validação automática. Nenhum documento público deve afirmar testes adicionais de ISO Windows 10 em pendrive físico.
 
 ## English
 
-The GitHub candidate adds fd-anchored compressed decoding, exclusive VHD/VHDX capture filename reservation and blocked-write cancellation handling with nonphysical regression tests. Local Codex work reporting 19 native suites, 43 VM scenarios and responsive GUI tests has **not been transferred or reproduced on this candidate**. Do not tag, package, or publish 0.3.6 until the complete local code is reconciled and all gates above pass on the integrated commit. The current public release remains 0.3.5.
+The GitHub development candidate 0.3.6-rc.1 adds fd-anchored compressed decoding, exclusive VHD/VHDX capture filename reservation and blocked-write cancellation handling with nonphysical regression tests. Local Codex work reporting 19 native suites, 43 VM scenarios and responsive GUI tests has **not been transferred or reproduced on this candidate**. Do not tag, package, or publish 0.3.6 until the complete local code is reconciled and all gates above pass on the integrated commit. The current public release remains 0.3.5.
 
 [PR #3](https://github.com/ricardogomesbarreto/TuxFlash/pull/3) · [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases)
