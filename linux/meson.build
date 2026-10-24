@@ -1,7 +1,7 @@
 project(
   'tuxflash',
   'c',
-  version: '0.3.5',
+  version: '0.3.6-rc.1',
   license: 'GPL-3.0-or-later',
   meson_version: '>= 0.63.0',
   default_options: ['c_std=c11', 'warning_level=3'],
