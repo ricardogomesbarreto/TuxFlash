@@ -375,6 +375,9 @@ GSubprocess *lufus_job_spawn(const LufusJob *job,
         direct_arguments[argument++] = pkexec_path;
     }
     direct_arguments[argument++] = helper_path;
+    /* Cancellation travels through a dedicated stdin pipe, even when pkexec
+     * runs the helper under a different UID. It never requires kill(root_pid). */
+    direct_arguments[argument++] = "--cancel-stdin";
     direct_arguments[argument++] = job->type == LUFUS_JOB_RAW_WRITE ? "write" :
                                    job->type == LUFUS_JOB_WINDOWS_INSTALLER ? "windows-installer" :
                                    job->type == LUFUS_JOB_WINDOWS_TO_GO ? "windows-to-go" :
@@ -438,7 +441,8 @@ GSubprocess *lufus_job_spawn(const LufusJob *job,
     direct_arguments[argument] = NULL;
 
     GSubprocessLauncher *launcher = g_subprocess_launcher_new(
-        G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_MERGE);
+        G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_MERGE |
+        G_SUBPROCESS_FLAGS_STDIN_PIPE);
     if (elevate) {
         /* The host authentication program must use the host's own libraries. */
         const char *private_variables[] = {"LD_LIBRARY_PATH", "LD_PRELOAD", "LD_AUDIT",
