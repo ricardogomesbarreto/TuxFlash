@@ -91,7 +91,7 @@ try:
                 if x.XFetchName(display, children[index], c.byref(name)) and name.value:
                     title = c.string_at(name).decode(errors='replace')
                     x.XFree(name)
-                    if title.startswith('Lufus '):
+                    if title.startswith('TuxFlash '):
                         selected = (children[index], title)
                         break
             if children:
@@ -100,7 +100,7 @@ try:
                 break
             time.sleep(0.2)
         if not selected:
-            raise RuntimeError('No Lufus application window appeared')
+            raise RuntimeError('No TuxFlash application window appeared')
         time.sleep(1)
         window, title = selected
         window_root, wx, wy = c.c_ulong(), c.c_int(), c.c_int()
