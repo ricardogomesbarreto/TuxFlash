@@ -5,6 +5,8 @@
 - Imagens comprimidas são abertas com `O_NOFOLLOW` e `fstat`, e o descompressor consome o mesmo descritor, sem reabrir o caminho.
 - Capturas VHD/VHDX reservam arquivos de saída com `O_CREAT | O_EXCL | O_NOFOLLOW` e permissões 0600, preservando arquivos existentes.
 - Escritas bloqueadas respeitam o cancelamento após `EINTR`; testes de regressão utilizam arquivos temporários e pipes, sem pendrives físicos.
+- Rodapé GTK fixo para status/progresso e botões Iniciar/Fechar; o formulário se organiza em duas colunas quando há espaço e não usa rolagem horizontal. Uma rolagem vertical continua possível em janelas pequenas ou opções avançadas expandidas.
+- Smoke test gráfico em Xvfb a 1024×768 aprovado no CI, comprovando abertura e dimensões da janela sem acesso à mídia física (não comprova todos os controles em todas as resoluções).
 - Regressões incluem substituição de caminho, links simbólicos, colisão de saída e contêineres reais com `qemu-img`.
 - A janela sem rolagem, o cancelamento do helper privilegiado e os 43 cenários VM relatados pelo Codex local **ainda exigem integração e validação no mesmo commit** antes da publicação final.
 
