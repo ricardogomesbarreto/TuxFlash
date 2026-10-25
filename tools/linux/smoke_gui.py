@@ -19,6 +19,13 @@ project = Path(sys.argv[1]).resolve()
 xvfb = sys.argv[2]
 output = Path(sys.argv[3]).resolve()
 output.mkdir(parents=True, exist_ok=True)
+language = os.environ.get('TUXFLASH_SMOKE_LANGUAGE', 'pt_BR')
+if language not in ('pt_BR', 'en', 'zh_CN', 'es'):
+    raise SystemExit(f'Unsupported smoke-test language: {language}')
+config_root = output / 'config'
+settings = config_root / 'tuxflash' / 'settings.ini'
+settings.parent.mkdir(parents=True, exist_ok=True)
+settings.write_text(f'[Interface]\\nLanguage={language}\\n'.replace('\\n', '\n'))
 screen = os.environ.get('TUXFLASH_SMOKE_SCREEN', '1024x768')
 try:
     screen_width, screen_height = (int(item) for item in screen.split('x'))
@@ -76,7 +83,8 @@ try:
                      'GSETTINGS_SCHEMA_DIR', 'GDK_PIXBUF_MODULE_FILE', 'GDK_PIXBUF_MODULEDIR'):
             env.pop(name, None)
         env.update(DISPLAY=':' + number, GDK_BACKEND='x11', GSK_RENDERER='cairo',
-                   GTK_A11Y='none', LC_ALL='pt_BR.UTF-8', LANGUAGE='pt_BR',
+                   GTK_A11Y='none', LC_ALL='pt_BR.UTF-8', LANGUAGE=language,
+                   XDG_CONFIG_HOME=str(config_root),
                    LD_LIBRARY_PATH=str(project / 'linux/runtime/lib'),
                    XDG_DATA_DIRS=str(project / 'linux/runtime/share') + ':/usr/local/share:/usr/share')
         app = subprocess.Popen(['dbus-run-session', '--', str(project / 'tuxflash.sh')],
@@ -130,7 +138,7 @@ try:
         if width.value > screen_width or height.value > screen_height:
             raise RuntimeError(f'TuxFlash {width.value}x{height.value} exceeds virtual screen {screen}')
         report = {'window_title': title, 'width': width.value, 'height': height.value,
-                  'screen': screen,
+                  'language': language, 'screen': screen,
                   'running_at_capture': app.poll() is None, 'usb_write_tested': False}
         (output / 'gui.json').write_text(json.dumps(report, indent=2) + '\n')
         print(json.dumps(report))
