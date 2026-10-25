@@ -375,14 +375,14 @@ GSubprocess *lufus_job_spawn(const LufusJob *job,
         direct_arguments[argument++] = pkexec_path;
     }
     direct_arguments[argument++] = helper_path;
-    /* Cancellation travels through a dedicated stdin pipe, even when pkexec
-     * runs the helper under a different UID. It never requires kill(root_pid). */
-    direct_arguments[argument++] = "--cancel-stdin";
     direct_arguments[argument++] = job->type == LUFUS_JOB_RAW_WRITE ? "write" :
                                    job->type == LUFUS_JOB_WINDOWS_INSTALLER ? "windows-installer" :
                                    job->type == LUFUS_JOB_WINDOWS_TO_GO ? "windows-to-go" :
                                    job->type == LUFUS_JOB_LINUX_PERSISTENT ? "linux-persistent" :
                                    job->type == LUFUS_JOB_DEVICE_TEST ? "device-test" : "capture";
+    /* Cancellation travels through a dedicated stdin pipe, even when pkexec
+     * runs the helper under a different UID. */
+    direct_arguments[argument++] = "--cancel-stdin";
     if (job->image_path != NULL) {
         direct_arguments[argument++] = job->type == LUFUS_JOB_CAPTURE ? "--output" : "--source";
         direct_arguments[argument++] = job->image_path;
