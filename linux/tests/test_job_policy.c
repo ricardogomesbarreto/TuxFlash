@@ -64,12 +64,14 @@ static void assert_spawn_validation_flag(LufusJobType type,
     process = lufus_job_spawn(&job, "/bin/echo", FALSE, &error);
     g_assert_no_error(error);
     g_assert_nonnull(process);
+    g_assert_nonnull(g_subprocess_get_stdin_pipe(process));
     g_assert_true(g_subprocess_communicate_utf8(process, NULL, NULL,
                                                 &standard_output, NULL,
                                                 &error));
     g_assert_no_error(error);
     g_assert_true(g_subprocess_get_successful(process));
     g_assert_nonnull(strstr(standard_output, "--disk-seq 12345"));
+    g_assert_nonnull(strstr(standard_output, "--cancel-stdin"));
     g_strchomp(standard_output);
     arguments = g_strsplit(standard_output, " ", -1);
     g_assert_cmpint(strv_contains(arguments, "--runtime-validation"), ==,
