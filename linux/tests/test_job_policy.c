@@ -192,16 +192,16 @@ static void test_privileged_cancel_pipe_transport(void)
     g_assert_no_error(error);
     g_autofree char *pkexec = g_build_filename(dir, "pkexec", NULL);
     g_autofree char *helper = g_build_filename(dir, "helper", NULL);
-    g_assert_true(g_file_set_contents(pkexec, "#!/bin/sh\\nexec \\"$@\\"\\n", -1, &error));
+    g_assert_true(g_file_set_contents(pkexec, "#!/bin/sh\nexec \"$@\"\n", -1, &error));
     g_assert_no_error(error);
     const char *helper_script =
-        "#!/bin/sh\\n"
-        "found=0\\n"
-        "for arg in \\"$@\\"; do [ \\"$arg\\" = --cancel-stdin ] && found=1; done\\n"
-        "[ \\"$found\\" -eq 1 ] || exit 70\\n"
-        "IFS= read -r request || exit 71\\n"
-        "[ \\"$request\\" = C ] || exit 72\\n"
-        "printf 'CANCELLED_BY_PIPE'\\n";
+        "#!/bin/sh\n"
+        "found=0\n"
+        "for arg in \"$@\"; do [ \"$arg\" = --cancel-stdin ] && found=1; done\n"
+        "[ \"$found\" -eq 1 ] || exit 70\n"
+        "IFS= read -r request || exit 71\n"
+        "[ \"$request\" = C ] || exit 72\n"
+        "printf 'CANCELLED_BY_PIPE'\n";
     g_assert_true(g_file_set_contents(helper, helper_script, -1, &error));
     g_assert_no_error(error);
     g_assert_cmpint(g_chmod(pkexec, 0700), ==, 0);
@@ -218,7 +218,7 @@ static void test_privileged_cancel_pipe_transport(void)
     g_assert_nonnull(process);
     g_assert_nonnull(g_subprocess_get_stdin_pipe(process));
     g_autofree char *output = NULL;
-    g_assert_true(g_subprocess_communicate_utf8(process, "C\\n", NULL, &output, NULL, &error));
+    g_assert_true(g_subprocess_communicate_utf8(process, "C\n", NULL, &output, NULL, &error));
     g_assert_no_error(error);
     g_assert_true(g_subprocess_get_successful(process));
     g_assert_cmpstr(output, ==, "CANCELLED_BY_PIPE");
