@@ -6,6 +6,23 @@ char *tuxflash_release_notes(void)
 {
     GString *xml=g_string_new(NULL);
     {
+        g_autofree char *title = g_markup_escape_text(g_dgettext("tuxflash", N_("Updated in 0.3.6-rc.2")), -1);
+        g_string_append_printf(xml, "<p>%s</p><ul>", title);
+        {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", N_("GUI cancellation now reaches the helper through an explicit input channel, including operations started with Polkit authentication.")), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", N_("The privileged helper stops when it receives a cancellation command or when the controlling GUI exits.")), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", N_("Regression tests cover the cancellation input pipe and process launch arguments without accessing physical USB devices.")), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        g_string_append(xml, "</ul>");
+    }
+    {
         g_autofree char *title = g_markup_escape_text(g_dgettext("tuxflash", N_("Updated in 0.3.6-rc.1")), -1);
         g_string_append_printf(xml, "<p>%s</p><ul>", title);
         {
