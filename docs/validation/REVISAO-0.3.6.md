@@ -13,7 +13,9 @@
 
 ### Cancelamento com mudança de privilégios (rc.2)
 
-O GUI agora envia um pedido de cancelamento ao helper por `stdin` e o helper instala um observador dedicado quando recebe `--cancel-stdin`. A nova suíte testa o byte de cancelamento e EOF usando pipes locais. **Ainda é necessária uma validação real com pkexec/Polkit em VM antes de considerar esse fluxo aprovado para produção**.
+O GUI agora envia um pedido de cancelamento ao helper por `stdin` e o helper instala um observador dedicado quando recebe `--cancel-stdin`. A suíte testa o byte de cancelamento, EOF e o encaminhamento do pipe por um **pkexec simulado**, sem acesso root. **Ainda é necessária uma validação real com pkexec/Polkit em VM antes de considerar esse fluxo aprovado para produção**.
+
+A matriz de abertura gráfica em Xvfb passou em **12 combinações**: pt_BR, en, zh_CN e es × 1024×768, 1280×800 e 1366×768. Em todas, a janela ficou em 920×690 e a aplicação permaneceu aberta; esses testes não acionaram gravação USB. A matriz não prova, sozinha, a ausência de rolagem interna com opções avançadas expandidas.
 
 ### Testes relatados pelo Codex local, ainda não transferidos ao GitHub
 
