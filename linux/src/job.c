@@ -380,6 +380,9 @@ GSubprocess *lufus_job_spawn(const LufusJob *job,
                                    job->type == LUFUS_JOB_WINDOWS_TO_GO ? "windows-to-go" :
                                    job->type == LUFUS_JOB_LINUX_PERSISTENT ? "linux-persistent" :
                                    job->type == LUFUS_JOB_DEVICE_TEST ? "device-test" : "capture";
+    /* Cancellation travels through a dedicated stdin pipe, even when pkexec
+     * runs the helper under a different UID. */
+    direct_arguments[argument++] = "--cancel-stdin";
     if (job->image_path != NULL) {
         direct_arguments[argument++] = job->type == LUFUS_JOB_CAPTURE ? "--output" : "--source";
         direct_arguments[argument++] = job->image_path;
@@ -438,7 +441,8 @@ GSubprocess *lufus_job_spawn(const LufusJob *job,
     direct_arguments[argument] = NULL;
 
     GSubprocessLauncher *launcher = g_subprocess_launcher_new(
-        G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_MERGE);
+        G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_MERGE |
+        G_SUBPROCESS_FLAGS_STDIN_PIPE);
     if (elevate) {
         /* The host authentication program must use the host's own libraries. */
         const char *private_variables[] = {"LD_LIBRARY_PATH", "LD_PRELOAD", "LD_AUDIT",

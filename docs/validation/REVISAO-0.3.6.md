@@ -1,6 +1,6 @@
 # TuxFlash 0.3.6 — critérios de validação / Release readiness
 
-> **Status em 24/10/2026:** candidata **0.3.6-rc.1** preparada no código, **não publicada**. A versão pública permanece **0.3.5**. / **Status as of 2026-10-24:** development candidate **0.3.6-rc.1**, **not released**. Latest public version: **0.3.5**.
+> **Estado em 24/10/2026:** candidata **0.3.6-rc.2** no código de desenvolvimento; ainda não publicada. A última versão pública é **0.3.5**. / **Status as of 2026-10-24:** development candidate **0.3.6-rc.2**, not released. Public version remains **0.3.5**.
 
 ## Português (Brasil)
 
@@ -10,6 +10,12 @@
 - Captura VHD/VHDX: reserva exclusiva do caminho de saída com `O_CREAT | O_EXCL | O_NOFOLLOW` e permissões 0600 antes da criação do contêiner. Teste protege arquivo anterior e rejeita saída simbólica.
 - Cancelamento: `write_all()` verifica cancelamento após sinais `EINTR`, sem repetir indefinidamente uma escrita bloqueada. Novo teste usa somente um pipe temporário.
 - O PR #2, de verificação de runtime antes da instalação de atalhos, foi incorporado ao `main` após CI verde.
+
+### Cancelamento com mudança de privilégios (rc.2)
+
+O GUI agora envia um pedido de cancelamento ao helper por `stdin` e o helper instala um observador dedicado quando recebe `--cancel-stdin`. A suíte testa o byte de cancelamento, EOF e o encaminhamento do pipe por um **pkexec simulado**, sem acesso root. **Ainda é necessária uma validação real com pkexec/Polkit em VM antes de considerar esse fluxo aprovado para produção**.
+
+A matriz de abertura gráfica em Xvfb passou em **12 combinações**: pt_BR, en, zh_CN e es × 1024×768, 1280×800 e 1366×768. Em todas, a janela ficou em 920×690 e a aplicação permaneceu aberta; esses testes não acionaram gravação USB. A matriz não prova, sozinha, a ausência de rolagem interna com opções avançadas expandidas.
 
 ### Testes relatados pelo Codex local, ainda não transferidos ao GitHub
 
@@ -22,13 +28,13 @@ O histórico do Codex fornecido pelo desenvolvedor relata **19 suítes nativas**
 3. Os testes de I/O do GitHub e o smoke test gráfico não destrutivo em Xvfb a 1024×768 passaram no CI; ainda é obrigatório reexecutar as suítes completas de I/O e os **43 cenários em VM** relatados no Codex local sobre o commit reconciliado.
 4. O código mantém botões Iniciar/Fechar num rodapé fixo e desabilita rolagem horizontal; o smoke gráfico confirma que a janela cabe em 1024×768. Ainda falta validar visualmente ausência de rolagem vertical no formulário principal, opções avançadas e mensagens longas nos quatro idiomas e nas demais resoluções.
 5. Investigar o fundo azul observado no teste em VM; registrar causa e conclusão sem inventar compatibilidade de boot físico.
-6. Confirmar as traduções e o build da candidata 0.3.6-rc.1; atualizar para a versão 0.3.6 final, README de downloads, manifesto SHA-256, artefato portátil e proveniência apenas quando todos os gates estiverem aprovados.
+6. Confirmar traduções e build da candidata 0.3.6-rc.2 e o cancelamento Polkit real; atualizar para a versão 0.3.6 final, README de downloads, manifesto SHA-256, artefato portátil e proveniência apenas quando todos os gates estiverem aprovados.
 7. Publicar o release com SHA-256 e repetir um smoke test não destrutivo do pacote **efetivamente gerado**.
 
 Nenhuma operação destrutiva deve ter como destino um disco físico durante a validação automática. Nenhum documento público deve afirmar testes adicionais de ISO Windows 10 em pendrive físico.
 
 ## English
 
-The GitHub development candidate 0.3.6-rc.1 adds fd-anchored compressed decoding, exclusive VHD/VHDX capture filename reservation and blocked-write cancellation handling with nonphysical regression tests. Local Codex work reporting 19 native suites, 43 VM scenarios and responsive GUI tests has **not been transferred or reproduced on this candidate**. Do not tag, package, or publish 0.3.6 until the complete local code is reconciled and all gates above pass on the integrated commit. The current public release remains 0.3.5.
+The GitHub development candidate 0.3.6-rc.2 adds fd-anchored compressed decoding, exclusive VHD/VHDX capture filename reservation and blocked-write cancellation handling with nonphysical regression tests. Local Codex work reporting 19 native suites, 43 VM scenarios and responsive GUI tests has **not been transferred or reproduced on this candidate**. Do not tag, package, or publish 0.3.6 until the complete local code is reconciled and all gates above pass on the integrated commit. The current public release remains 0.3.5.
 
 [PR #3](https://github.com/ricardogomesbarreto/TuxFlash/pull/3) · [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases)

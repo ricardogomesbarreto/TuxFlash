@@ -34,7 +34,13 @@ jobs:
         run: make
       - name: Helper corruption and cancellation sanitizers
         run: make check-helper-sanitize
-      - name: Non-destructive graphical launch at 1024x768
+      - name: Non-destructive graphical matrix (4 languages x 3 resolutions)
         run: |
-          python3 tools/linux/smoke_gui.py "$PWD" "$(command -v Xvfb)" "$RUNNER_TEMP/tuxflash-gui-smoke"
-          cat "$RUNNER_TEMP/tuxflash-gui-smoke/gui.json"
+          for language in pt_BR en zh_CN es; do
+            for resolution in 1024x768 1280x800 1366x768; do
+              export TUXFLASH_SMOKE_LANGUAGE="$language" TUXFLASH_SMOKE_SCREEN="$resolution"
+              out="$RUNNER_TEMP/tuxflash-gui-${language}-${resolution}"
+              python3 tools/linux/smoke_gui.py "$PWD" "$(command -v Xvfb)" "$out"
+              cat "$out/gui.json"
+            done
+          done

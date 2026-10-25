@@ -23,7 +23,7 @@
 
 > **Release status / Estado das versões:** **[0.3.5](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.5)** é a versão pública atual, com pacote portátil Linux x86-64 e SHA-256. / **[0.3.5](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.5)** is the current public release, with a Linux x86-64 portable archive and SHA-256.
 
-> **Em desenvolvimento / In development:** **0.3.6-rc.1** — melhorias de segurança em imagens comprimidas, capturas VHD/VHDX e cancelamento, ainda **sem publicação**. Consulte [os critérios de validação](docs/validation/REVISAO-0.3.6.md). / **0.3.6-rc.1** is being validated and **has not been published**.
+> **Em desenvolvimento / In development:** **0.3.6-rc.2** — imagens comprimidas, VHD/VHDX, interface adaptável e canal de cancelamento para o helper. **Ainda não publicada.** Confira [os critérios de validação](docs/validation/REVISAO-0.3.6.md). / **0.3.6-rc.2** is under validation and **not released**. The final release still requires real Polkit cancellation tests and local Codex work reconciliation.
 
 ---
 

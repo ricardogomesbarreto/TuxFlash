@@ -218,6 +218,36 @@ static void capture_reserved_qemu_container(void)
     rmdir(dir);
 }
 
+/* Exercise the cancellation channel without root, Polkit or a real USB.
+ * A worker reading GUI stdin must interrupt the helper's main thread. */
+static void stdin_control_cancellation(gconstpointer data)
+{
+    const gboolean end_of_stream = GPOINTER_TO_INT(data) != 0;
+    int channel[2];
+    g_assert_cmpint(pipe(channel), ==, 0);
+    int saved_stdin = dup(STDIN_FILENO);
+    g_assert_cmpint(saved_stdin, >=, 0);
+    g_assert_cmpint(dup2(channel[0], STDIN_FILENO), ==, STDIN_FILENO);
+    close(channel[0]);
+    struct sigaction original;
+    g_assert_cmpint(sigaction(SIGTERM, NULL, &original), ==, 0);
+    g_assert_cmpint(install_signal_handlers(), ==, 0);
+    cancelled = 0;
+    pthread_t main_thread = pthread_self();
+    GThread *thread = g_thread_new("cancel-regression", watch_stdin_cancellation,
+                                    &main_thread);
+    g_assert_nonnull(thread);
+    if (!end_of_stream)
+        g_assert_cmpint(write(channel[1], "C", 1), ==, 1);
+    close(channel[1]);
+    g_thread_join(thread);
+    g_assert_cmpint(cancelled, ==, 1);
+    g_assert_cmpint(dup2(saved_stdin, STDIN_FILENO), ==, STDIN_FILENO);
+    close(saved_stdin);
+    g_assert_cmpint(sigaction(SIGTERM, &original, NULL), ==, 0);
+    cancelled = 0;
+}
+
 static void interrupted_write(void)
 {
     alarm(5);
@@ -327,6 +357,8 @@ int main(int argc, char **argv)
     g_test_add_func("/capture/exclusive-output", capture_output_exclusive);
     g_test_add_func("/capture/qemu-reserved-container", capture_reserved_qemu_container);
     g_test_add_func("/write/cancel-blocked-write", interrupted_write);
+    g_test_add_data_func("/control/cancel-byte", GINT_TO_POINTER(0), stdin_control_cancellation);
+    g_test_add_data_func("/control/parent-exit-eof", GINT_TO_POINTER(1), stdin_control_cancellation);
     g_test_add_data_func("/verify/cancel-source-read", GINT_TO_POINTER(0), interrupted_read);
     g_test_add_data_func("/verify/cancel-target-read", GINT_TO_POINTER(1), interrupted_read);
     g_test_add_data_func("/verify/cancel-eof-read", GINT_TO_POINTER(2), interrupted_read);

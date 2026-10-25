@@ -18,6 +18,7 @@
 #include <linux/fs.h>
 #include <limits.h>
 #include <poll.h>
+#include <pthread.h>
 #include <signal.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -191,6 +192,22 @@ static int install_signal_handlers(void)
      * blocked read instead of returning EINTR to the verification loop. */
     return sigaction(SIGINT, &action, NULL) == 0 &&
            sigaction(SIGTERM, &action, NULL) == 0 ? 0 : -1;
+}
+
+/* CLI remains unaffected unless the GUI explicitly supplies --cancel-stdin.
+ * The watcher receives one cancel byte (or EOF if the GUI dies) and signals
+ * the actual helper's main thread, interrupting a blocked read/write. */
+static gpointer watch_stdin_cancellation(gpointer user_data)
+{
+    pthread_t main_thread = *(pthread_t *)user_data;
+    unsigned char byte = 0;
+    ssize_t count;
+    do {
+        count = read(STDIN_FILENO, &byte, 1);
+    } while (count < 0 && errno == EINTR);
+    if (count <= 0 || byte == 'C')
+        pthread_kill(main_thread, SIGTERM);
+    return NULL;
 }
 
 static void event_message(const char *type, const char *message)
@@ -3647,7 +3664,8 @@ static void print_usage(FILE *stream)
             "       tuxflash-helper device-test --target DEVICE --major-minor N:N "
             "--size BYTES --passes 1..4\n"
             "       tuxflash-helper capture --target DEVICE --major-minor N:N "
-            "--size BYTES --output PATH --capture-format raw|vhd|vhdx\n");
+            "--size BYTES --output PATH --capture-format raw|vhd|vhdx\n"
+            "       GUI jobs may add --cancel-stdin to monitor standard input.\n");
 }
 
 int main(int argc, char **argv)
@@ -3667,6 +3685,7 @@ int main(int argc, char **argv)
     guint passes = 0;
     const char *target_system = "uefi";
     const char *capture_format = NULL;
+    bool watch_stdin = false;
     int index;
 
     configure_bundled_environment();
@@ -3689,6 +3708,11 @@ int main(int argc, char **argv)
     }
     read_only_operation = strcmp(argv[1], "verify") == 0 || strcmp(argv[1], "capture") == 0;
     for (index = 2; index < argc;) {
+        if (strcmp(argv[index], "--cancel-stdin") == 0) {
+            watch_stdin = true;
+            index++;
+            continue;
+        }
         if (strcmp(argv[index], "--verify") == 0) {
             verify = true;
             index++;
@@ -3845,6 +3869,17 @@ int main(int argc, char **argv)
     if (install_signal_handlers() != 0) {
         event_errno("Could not install cancellation handlers");
         return 1;
+    }
+    /* Use a copied pthread_t: watcher lifetime ends with the helper process. */
+    pthread_t main_thread = pthread_self();
+    if (watch_stdin) {
+        GThread *thread = g_thread_new("tuxflash-cancel", watch_stdin_cancellation,
+                                       &main_thread);
+        if (thread == NULL) {
+            event_message("ERROR", "Could not start cancellation monitoring");
+            return 1;
+        }
+        g_thread_unref(thread);
     }
     if (passes > 0 && strcmp(argv[1], "device-test") != 0) {
         operation_progress_start = 0;

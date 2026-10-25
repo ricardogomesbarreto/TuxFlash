@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.6-rc.1\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.6-rc.2\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -816,6 +816,18 @@ msgstr "The ISO tree is checked before persistent-media partitions are created. 
 
 msgid "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
 msgstr "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
+
+msgid "Updated in 0.3.6-rc.2"
+msgstr "Updated in 0.3.6-rc.2"
+
+msgid "GUI cancellation now reaches the helper through an explicit input channel, including operations started with Polkit authentication."
+msgstr "GUI cancellation now reaches the helper through an explicit input channel, including operations started with Polkit authentication."
+
+msgid "The privileged helper stops when it receives a cancellation command or when the controlling GUI exits."
+msgstr "The privileged helper stops when it receives a cancellation command or when the controlling GUI exits."
+
+msgid "Regression tests cover the cancellation input pipe and process launch arguments without accessing physical USB devices."
+msgstr "Regression tests cover the cancellation input pipe and process launch arguments without accessing physical USB devices."
 
 msgid "Updated in 0.3.6-rc.1"
 msgstr "Updated in 0.3.6-rc.1"

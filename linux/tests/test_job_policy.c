@@ -64,12 +64,14 @@ static void assert_spawn_validation_flag(LufusJobType type,
     process = lufus_job_spawn(&job, "/bin/echo", FALSE, &error);
     g_assert_no_error(error);
     g_assert_nonnull(process);
+    g_assert_nonnull(g_subprocess_get_stdin_pipe(process));
     g_assert_true(g_subprocess_communicate_utf8(process, NULL, NULL,
                                                 &standard_output, NULL,
                                                 &error));
     g_assert_no_error(error);
     g_assert_true(g_subprocess_get_successful(process));
     g_assert_nonnull(strstr(standard_output, "--disk-seq 12345"));
+    g_assert_nonnull(strstr(standard_output, "--cancel-stdin"));
     g_strchomp(standard_output);
     arguments = g_strsplit(standard_output, " ", -1);
     g_assert_cmpint(strv_contains(arguments, "--runtime-validation"), ==,
@@ -181,10 +183,55 @@ static void test_host_authentication_environment(void)
     g_free(output); g_free(old_path); g_free(old_gio); g_free(old_ld); g_free(program); g_free(dir);
 }
 
+/* Test stdin through a fake pkexec (no privilege escalation or USB I/O).
+ * This verifies the exact process tree created by lufus_job_spawn(). */
+static void test_privileged_cancel_pipe_transport(void)
+{
+    GError *error = NULL;
+    g_autofree char *dir = g_dir_make_tmp("tuxflash-cancel-pkexec-XXXXXX", &error);
+    g_assert_no_error(error);
+    g_autofree char *pkexec = g_build_filename(dir, "pkexec", NULL);
+    g_autofree char *helper = g_build_filename(dir, "helper", NULL);
+    g_assert_true(g_file_set_contents(pkexec, "#!/bin/sh\nexec \"$@\"\n", -1, &error));
+    g_assert_no_error(error);
+    const char *helper_script =
+        "#!/bin/sh\n"
+        "found=0\n"
+        "for arg in \"$@\"; do [ \"$arg\" = --cancel-stdin ] && found=1; done\n"
+        "[ \"$found\" -eq 1 ] || exit 70\n"
+        "IFS= read -r request || exit 71\n"
+        "[ \"$request\" = C ] || exit 72\n"
+        "printf 'CANCELLED_BY_PIPE'\n";
+    g_assert_true(g_file_set_contents(helper, helper_script, -1, &error));
+    g_assert_no_error(error);
+    g_assert_cmpint(g_chmod(pkexec, 0700), ==, 0);
+    g_assert_cmpint(g_chmod(helper, 0700), ==, 0);
+    g_autofree char *old_path = g_strdup(g_getenv("PATH"));
+    g_setenv("PATH", dir, TRUE);
+    LufusJob job = {0};
+    job.type = LUFUS_JOB_RAW_WRITE;
+    job.device_path = "/dev/nonexistent-test-target";
+    job.major_minor = "240:1";
+    job.device_size = 4096;
+    GSubprocess *process = lufus_job_spawn(&job, helper, TRUE, &error);
+    g_assert_no_error(error);
+    g_assert_nonnull(process);
+    g_assert_nonnull(g_subprocess_get_stdin_pipe(process));
+    g_autofree char *output = NULL;
+    g_assert_true(g_subprocess_communicate_utf8(process, "C\n", NULL, &output, NULL, &error));
+    g_assert_no_error(error);
+    g_assert_true(g_subprocess_get_successful(process));
+    g_assert_cmpstr(output, ==, "CANCELLED_BY_PIPE");
+    g_object_unref(process);
+    if (old_path) g_setenv("PATH", old_path, TRUE); else g_unsetenv("PATH");
+    g_unlink(pkexec); g_unlink(helper); g_rmdir(dir);
+}
+
 int main(int argc, char **argv)
 {
     g_test_init(&argc, &argv, NULL);
     g_test_add_func("/job/host-authentication-environment", test_host_authentication_environment);
+    g_test_add_func("/job/privileged-cancel-pipe-mock", test_privileged_cancel_pipe_transport);
     g_test_add_func("/job/runtime-validation-policy",
                     test_runtime_validation_policy);
     g_test_add_func("/job/runtime-validation-helper-argument",

@@ -1,3 +1,18 @@
+# TuxFlash 0.3.6-rc.2 — cancelamento e preparação do lançamento
+
+> **Candidata em desenvolvimento, ainda não publicada como versão estável.** A última versão pública continua 0.3.5.
+
+- O botão Cancelar envia um pedido por pipe ao helper, inclusive quando iniciado com `pkexec`, sem tentar enviar sinais a um processo root com privilégios de usuário comum.
+- O helper monitora `stdin` apenas quando recebe `--cancel-stdin`, preservando o comportamento do CLI sem essa opção; um byte de cancelamento ou EOF sinaliza a thread principal para interromper I/O bloqueada.
+- Os testes automatizados cobrem canal de cancelamento, perda da interface e parâmetros do processo sem tocar em dispositivos físicos.
+- **Pendente:** validação de ponta a ponta com `pkexec` real e autorização Polkit em VM; conciliação do checkout local do Codex e reprodução das 43 operações em VM. O cancelamento de operações root ainda não deve ser considerado certificado no ambiente real.
+
+## English
+
+**0.3.6-rc.2 is a development candidate, not a stable release.** The GUI sends cancellation through a stdin control pipe and the helper listens only with `--cancel-stdin`; cancellation or EOF interrupts blocked I/O. Non-destructive tests cover this protocol. **Real Polkit authorization and privileged cancellation in a VM are still pending**, as are the local Codex changes and the full 43-scenario backend regression. Current published version: 0.3.5.
+
+---
+
 # TuxFlash 0.3.6-rc.1 — candidata de segurança e integridade
 
 > **Versão candidata em desenvolvimento, ainda não publicada.** Último lançamento público: **0.3.5**.
