@@ -1958,7 +1958,7 @@ static void set_initial_window_size(GtkWindow *window)
         GdkRectangle geometry;
         gdk_monitor_get_geometry(monitor, &geometry);
         width = MIN(width, MAX(320, geometry.width - 48));
-        height = MIN(height, MAX(320, geometry.height - 72));
+        height = MIN(height, MAX(320, geometry.height - 48));
         g_object_unref(monitor);
     }
     gtk_window_set_default_size(window, width, height);
