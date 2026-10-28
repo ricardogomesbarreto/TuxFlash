@@ -6,22 +6,22 @@
       {
         "stage": "basic",
         "width": 710,
-        "height": 518,
+        "height": 542,
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 122.0,
+        "vertical_range": 98.0,
         "footer_visible": true,
         "scrollbars_visible": false
       },
       {
         "stage": "expanded",
         "width": 710,
-        "height": 518,
+        "height": 542,
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 580.0,
+        "vertical_range": 556.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -35,22 +35,22 @@
       {
         "stage": "basic",
         "width": 710,
-        "height": 518,
+        "height": 542,
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 122.0,
+        "vertical_range": 98.0,
         "footer_visible": true,
         "scrollbars_visible": false
       },
       {
         "stage": "expanded",
         "width": 710,
-        "height": 518,
+        "height": 542,
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 580.0,
+        "vertical_range": 556.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -64,22 +64,22 @@
       {
         "stage": "basic",
         "width": 710,
-        "height": 518,
+        "height": 542,
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 162.0,
+        "vertical_range": 138.0,
         "footer_visible": true,
         "scrollbars_visible": false
       },
       {
         "stage": "expanded",
         "width": 710,
-        "height": 518,
+        "height": 542,
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 624.0,
+        "vertical_range": 600.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -93,22 +93,22 @@
       {
         "stage": "basic",
         "width": 710,
-        "height": 518,
+        "height": 542,
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 122.0,
+        "vertical_range": 98.0,
         "footer_visible": true,
         "scrollbars_visible": false
       },
       {
         "stage": "expanded",
         "width": 710,
-        "height": 518,
+        "height": 542,
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 580.0,
+        "vertical_range": 556.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -122,7 +122,7 @@
       {
         "stage": "basic",
         "width": 710,
-        "height": 686,
+        "height": 710,
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
@@ -133,11 +133,11 @@
       {
         "stage": "expanded",
         "width": 710,
-        "height": 686,
+        "height": 710,
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
-        "vertical_range": 412.0,
+        "vertical_range": 388.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -151,7 +151,7 @@
       {
         "stage": "basic",
         "width": 710,
-        "height": 686,
+        "height": 710,
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
@@ -162,11 +162,11 @@
       {
         "stage": "expanded",
         "width": 710,
-        "height": 686,
+        "height": 710,
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
-        "vertical_range": 412.0,
+        "vertical_range": 388.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -180,7 +180,7 @@
       {
         "stage": "basic",
         "width": 710,
-        "height": 686,
+        "height": 710,
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
@@ -191,11 +191,11 @@
       {
         "stage": "expanded",
         "width": 710,
-        "height": 686,
+        "height": 710,
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
-        "vertical_range": 456.0,
+        "vertical_range": 432.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -209,7 +209,7 @@
       {
         "stage": "basic",
         "width": 710,
-        "height": 686,
+        "height": 710,
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
@@ -220,11 +220,11 @@
       {
         "stage": "expanded",
         "width": 710,
-        "height": 686,
+        "height": 710,
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
-        "vertical_range": 412.0,
+        "vertical_range": 388.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }

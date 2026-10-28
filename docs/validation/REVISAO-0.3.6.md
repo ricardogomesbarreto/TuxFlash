@@ -19,6 +19,8 @@ o ícone e os quatro idiomas do projeto, sob GPL-3.0-or-later.
 
 O código publicado entre as candidatas foi conciliado antes do lançamento: lançador único, instalação do atalho com pré-validação, estado de cancelamento da interface e regressões adicionais foram preservados. O teste entre UIDs comprova o transporte até root; uma nova autenticação Polkit completa nesta revisão permanece fora do alcance desse ensaio.
 
+A validação no Ubuntu 24.04 identificou e corrigiu o argumento de caminho do Xvfb para o Meson 1.3 e uma falta de nove pixels no formulário chinês. A janela aproveita mais altura do monitor; o teste de encaixe foi mantido.
+
 ### Resultados reproduzíveis
 
 | Verificação | Resultado e alcance |
@@ -92,6 +94,8 @@ output synchronization and identity. Interrupted writes honor cancellation.
 Existing shared-backend target and system-disk protections remain in place.
 
 The intervening candidate changes were reconciled before release, preserving the unified launcher, safe shortcut preflight, cancellation-state UI and extra regressions. Cross-UID tests prove transport to root; a fresh complete Polkit authentication in this revision remains outside that test scope.
+
+Ubuntu 24.04 validation also identified and fixed the Xvfb path argument for Meson 1.3 and a nine-pixel Chinese-form overflow by allowing more monitor height, retaining the fit assertion.
 
 All **21 native suites**, **45 disposable-VM backend cases** and **24 GUI
 configurations** passed. Each GUI configuration covers basic and expanded forms:
