@@ -1,6 +1,6 @@
 # TuxFlash 0.3.6 — revisão e validação / review and validation
 
-Publicação / Release: **2026-10-28**. Evidências de execução / Test evidence: **2026-10-21**.
+Publicação / Release: **2026-10-28**. Evidências de execução / Test evidence: **2026-10-21**, com recompilação e regressões da integração em **2026-10-28**.
 
 ## Português Brasil
 
@@ -17,13 +17,15 @@ o ícone e os quatro idiomas do projeto, sob GPL-3.0-or-later.
 - A captura reserva a saída exclusivamente após validar e abrir a origem. VHD/VHDX usam descritores fixados; substituições do caminho não redirecionam a gravação para outro arquivo. A conclusão verifica sincronização e identidade da saída.
 - Escritas interrompidas respeitam o cancelamento, em vez de reiniciar indefinidamente. As verificações existentes de disco do sistema, capacidade, identidade e montagem protegida permanecem no backend compartilhado.
 
+O código publicado entre as candidatas foi conciliado antes do lançamento: lançador único, instalação do atalho com pré-validação, estado de cancelamento da interface e regressões adicionais foram preservados. O teste entre UIDs comprova o transporte até root; uma nova autenticação Polkit completa nesta revisão permanece fora do alcance desse ensaio.
+
 ### Resultados reproduzíveis
 
 | Verificação | Resultado e alcance |
 | --- | --- |
-| Meson nativo | 20 suítes aprovadas, nenhuma falha |
+| Meson nativo | 21 suítes aprovadas, nenhuma falha |
 | Interface GTK | 12 configurações com bibliotecas nativas e 12 com as bibliotecas privadas do portátil; quatro idiomas × 800×600, 1024×768 e 1920×1080; formulário básico e avançado em cada configuração |
-| ASan/UBSan do helper | 25 casos sem privilégios aprovados: 15 de verificação e 10 de E/S; um caso entre UIDs é omitido no host e executado na VM |
+| ASan/UBSan do helper | 31 casos sem privilégios aprovados: 21 de verificação e 10 de E/S; um caso entre UIDs é omitido no host e executado na VM |
 | Backend em VM descartável | 45 casos aprovados, nenhuma falha; inclui cancelamento de root por emissor UID 1000, proteções de destino, imagens comprimidas, captura e provisionamento Windows sintético |
 | Núcleo de hashes | Verificações independentes de plataforma/hash e sanitização concluídas |
 
@@ -89,10 +91,12 @@ after source validation; VHD/VHDX tools use pinned descriptors, and completion c
 output synchronization and identity. Interrupted writes honor cancellation.
 Existing shared-backend target and system-disk protections remain in place.
 
-All **20 native suites**, **45 disposable-VM backend cases** and **24 GUI
+The intervening candidate changes were reconciled before release, preserving the unified launcher, safe shortcut preflight, cancellation-state UI and extra regressions. Cross-UID tests prove transport to root; a fresh complete Polkit authentication in this revision remains outside that test scope.
+
+All **21 native suites**, **45 disposable-VM backend cases** and **24 GUI
 configurations** passed. Each GUI configuration covers basic and expanded forms:
 four languages at 800×600, 1024×768 and 1920×1080, with native and portable private
-libraries. ASan/UBSan passed **25 nonprivileged helper cases** (15 verification,
+libraries. ASan/UBSan passed **31 nonprivileged helper cases** (21 verification,
 10 I/O); the root-only cross-UID case was skipped on the host and passed in the VM.
 Independent hash/platform checks and hash sanitization also completed.
 The final helper fingerprint and sanitized evidence are linked above. No physical

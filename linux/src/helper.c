@@ -3596,6 +3596,11 @@ static int capture_output_matches(const char *path, int descriptor)
     return 0;
 }
 
+static int reserve_capture_output(const char *output)
+{
+    return open(output, O_RDWR | O_CREAT | O_EXCL | O_CLOEXEC | O_NOFOLLOW, 0600);
+}
+
 static int capture_command(const char *output, const char *target_argument,
                            const char *expected_identity, uint64_t expected_capacity,
                            const char *format)
@@ -3623,7 +3628,7 @@ static int capture_command(const char *output, const char *target_argument,
         event_errno("Could not open capture source");
         goto out;
     }
-    output_fd = open(output, O_RDWR | O_CREAT | O_EXCL | O_CLOEXEC | O_NOFOLLOW, 0600);
+    output_fd = reserve_capture_output(output);
     if (output_fd < 0) {
         event_errno("Capture output already exists or cannot be created");
         goto out;

@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.4\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: es\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.6\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: es\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -816,6 +816,30 @@ msgstr "El árbol de la ISO se comprueba antes de crear las particiones persiste
 
 msgid "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
 msgstr "Se añadieron pruebas con imágenes reales de recuperación de SteamOS, Kali Installer y Zorin OS. El informe distingue la escritura, las etapas de arranque del firmware y las limitaciones pendientes."
+
+msgid "Updated in 0.3.6-rc.2"
+msgstr "Actualizado en la versión 0.3.6-rc.2"
+
+msgid "GUI cancellation now reaches the helper through an explicit input channel, including operations started with Polkit authentication."
+msgstr "La interfaz envía la cancelación al proceso auxiliar por un canal de entrada explícito, incluso cuando se utiliza la autenticación Polkit."
+
+msgid "The privileged helper stops when it receives a cancellation command or when the controlling GUI exits."
+msgstr "El proceso auxiliar privilegiado detiene la operación al recibir un comando de cancelación o cuando se cierra la interfaz de control."
+
+msgid "Regression tests cover the cancellation input pipe and process launch arguments without accessing physical USB devices."
+msgstr "Las pruebas de regresión cubren el canal de cancelación y los argumentos de inicio sin acceder a dispositivos USB físicos."
+
+msgid "Updated in 0.3.6-rc.1"
+msgstr "Actualizado en la versión 0.3.6-rc.1"
+
+msgid "Compressed images are read through their already-open file descriptors. Symbolic-link input and pathname replacement are rejected."
+msgstr "Las imágenes comprimidas se leen mediante descriptores ya abiertos. Se rechazan las entradas con enlaces simbólicos y la sustitución de rutas."
+
+msgid "VHD and VHDX capture reserves new output files exclusively, preventing accidental overwrite of existing files."
+msgstr "La captura VHD y VHDX reserva exclusivamente nuevos archivos de salida para evitar sobrescribir archivos existentes."
+
+msgid "Cancelling a blocked write stops the operation instead of repeating the write after an interrupted system call."
+msgstr "La cancelación de una escritura bloqueada detiene la operación sin repetirla después de una llamada de sistema interrumpida."
 
 msgid "Updated in 0.3.5"
 msgstr "Actualizado en la versión 0.3.5"

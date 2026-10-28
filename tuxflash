@@ -1,0 +1,6 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-3.0-or-later
+# One entry point in source checkouts; portable releases ship their own runner.
+set -eu
+project_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+exec "$project_dir/tuxflash.sh" "$@"

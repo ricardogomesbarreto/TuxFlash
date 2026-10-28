@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.4\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.6\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -816,6 +816,30 @@ msgstr "创建持久化分区之前会检查 ISO 目录树。容量检查包含�
 
 msgid "Added real-image tests for SteamOS recovery, Kali Installer and Zorin OS. The validation report distinguishes image writing, firmware boot stages and remaining limits."
 msgstr "新增了 SteamOS 恢复镜像、Kali 安装镜像和 Zorin OS 实际镜像测试。验证报告分别说明镜像写入、固件启动阶段及仍存在的限制。"
+
+msgid "Updated in 0.3.6-rc.2"
+msgstr "0.3.6-rc.2 版更新"
+
+msgid "GUI cancellation now reaches the helper through an explicit input channel, including operations started with Polkit authentication."
+msgstr "图形界面通过明确的输入通道向辅助程序发出取消请求，包括使用 Polkit 身份验证启动的操作。"
+
+msgid "The privileged helper stops when it receives a cancellation command or when the controlling GUI exits."
+msgstr "特权辅助程序在收到取消命令或控制图形界面退出时停止操作。"
+
+msgid "Regression tests cover the cancellation input pipe and process launch arguments without accessing physical USB devices."
+msgstr "回归测试覆盖取消输入管道和进程启动参数，不访问真实 USB 设备。"
+
+msgid "Updated in 0.3.6-rc.1"
+msgstr "0.3.6-rc.1 版更新"
+
+msgid "Compressed images are read through their already-open file descriptors. Symbolic-link input and pathname replacement are rejected."
+msgstr "压缩镜像通过已经打开的文件描述符读取。拒绝符号链接输入及路径替换。"
+
+msgid "VHD and VHDX capture reserves new output files exclusively, preventing accidental overwrite of existing files."
+msgstr "VHD 和 VHDX 捕获采用独占方式预留新的输出文件，避免覆盖现有文件。"
+
+msgid "Cancelling a blocked write stops the operation instead of repeating the write after an interrupted system call."
+msgstr "取消阻塞的写入操作后立即停止，不会在系统调用中断后重新尝试写入。"
 
 msgid "Updated in 0.3.5"
 msgstr "0.3.5 版更新"

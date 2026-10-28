@@ -1,4 +1,4 @@
-1..15
+1..21
 ok 1 /verify/cancel-source-read
 ok 2 /verify/cancel-target-read
 ok 3 /verify/cancel-eof-read
@@ -14,6 +14,12 @@ ok 12 /verify/compressed/gz
 ok 13 /verify/compressed/xz
 ok 14 /verify/compressed/bz2
 ok 15 /verify/compressed/zst
+ok 16 /verify/compressed/path-safety
+ok 17 /capture/exclusive-output
+ok 18 /capture/qemu-reserved-container
+ok 19 /write/cancel-blocked-write
+ok 20 /control/cancel-byte
+ok 21 /control/parent-exit-eof
 1..11
 ok 1 /io/source-rejections
 ok 2 /io/cancel-blocked-write

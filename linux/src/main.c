@@ -95,6 +95,7 @@ typedef struct {
     gboolean hashing;
     GSubprocess *writer;
     GDataInputStream *writer_output;
+    gboolean writer_cancel_requested;
     GCancellable *download_cancellable;
     gboolean write_completed;
     gboolean writer_exited;
@@ -1089,12 +1090,15 @@ static void finish_writer_if_ready(AppState *state)
         gtk_progress_bar_set_text(state->progress, _("READY"));
         gtk_label_set_text(state->status_label, _("READY"));
         show_toast(state, _("Operation completed successfully"));
+    } else if (state->writer_cancel_requested) {
+        gtk_label_set_text(state->status_label, _("CANCELLED"));
     } else if (g_strcmp0(gtk_label_get_text(state->status_label), _("CANCELLED")) != 0) {
         gtk_label_set_text(state->status_label, _("ERROR"));
         show_toast(state, _("Write failed or authorization was cancelled"));
     }
     g_clear_object(&state->writer_output);
     g_clear_object(&state->writer);
+    state->writer_cancel_requested = FALSE;
     gtk_button_set_label(state->start_button, _("START"));
     gtk_widget_remove_css_class(GTK_WIDGET(state->start_button), "destructive-action");
     gtk_widget_add_css_class(GTK_WIDGET(state->start_button), "suggested-action");
@@ -1174,6 +1178,7 @@ static void begin_write(PendingWrite *pending)
     state->writer_succeeded = FALSE;
     state->writer_eof = FALSE;
     state->writer_read_failed = FALSE;
+    state->writer_cancel_requested = FALSE;
     state->writer = lufus_job_spawn(job, helper, geteuid() != 0, &error);
     lufus_job_free(job);
     if (state->writer == NULL) {
@@ -1299,15 +1304,20 @@ static void on_start_clicked(GtkButton *button, gpointer user_data)
     AdwMessageDialog *dialog;
     (void)button;
     if (state->writer != NULL) {
+        if (state->writer_cancel_requested) return;
         GError *error = NULL;
-        if (lufus_job_cancel(state->writer, &error))
-            gtk_label_set_text(state->status_label, _("CANCELLING"));
-        else {
-            show_toast(state, error->message);
+        if (!lufus_job_cancel(state->writer, &error)) {
+            append_log(state, error != NULL ? error->message : _("Could not request cancellation"));
             g_clear_error(&error);
+            show_toast(state, _("Could not request cancellation"));
+            return;
         }
+        state->writer_cancel_requested = TRUE;
+        gtk_label_set_text(state->status_label, _("CANCELLING"));
+        gtk_widget_set_sensitive(GTK_WIDGET(state->start_button), FALSE);
         return;
     }
+
     device = selected_device(state);
     if (state->image_path == NULL || device == NULL)
         return;
@@ -1862,6 +1872,9 @@ static GtkWidget *build_status(AppState *state)
     gtk_label_set_wrap(state->status_label, TRUE);
     gtk_label_set_wrap_mode(state->status_label, PANGO_WRAP_WORD_CHAR);
     gtk_widget_add_css_class(GTK_WIDGET(state->status_label), "caption");
+    gtk_label_set_ellipsize(state->status_label, PANGO_ELLIPSIZE_END);
+    gtk_label_set_single_line_mode(state->status_label, TRUE);
+    gtk_widget_set_hexpand(GTK_WIDGET(state->status_label), TRUE);
     gtk_box_append(GTK_BOX(box), GTK_WIDGET(state->status_label));
     state->progress = GTK_PROGRESS_BAR(gtk_progress_bar_new());
     gtk_box_append(GTK_BOX(box), GTK_WIDGET(state->progress));

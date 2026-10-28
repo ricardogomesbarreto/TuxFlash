@@ -101,10 +101,10 @@ sudo apt install build-essential pkg-config meson ninja-build gettext \
 git clone https://github.com/ricardogomesbarreto/TuxFlash.git
 cd TuxFlash
 make
-./tuxflash.sh
+./tuxflash
 ```
 
-Depois da compilação, **basta executar `./tuxflash.sh`** sempre que quiser abrir a interface. O arquivo delega a execução a `scripts/run.sh`, que usa `dist/portable/tuxflash` se estiver presente ou o executável de `linux/runtime/` caso contrário. Se aparecer uma mensagem de runtime ausente, execute `make` e verifique a saída de compilação. Dependências adicionais de mídia variam conforme a operação; veja o [guia de desenvolvimento](docs/development/CONTRIBUTING.md).
+Depois da compilação, **basta executar `./tuxflash`** para abrir a interface (o comando antigo `./tuxflash.sh` continua funcionando). O arquivo delega a execução a `scripts/run.sh`, que usa `dist/portable/tuxflash` se estiver presente ou o executável de `linux/runtime/` caso contrário. Se aparecer uma mensagem de runtime ausente, execute `make` e verifique a saída de compilação. Dependências adicionais de mídia variam conforme a operação; veja o [guia de desenvolvimento](docs/development/CONTRIBUTING.md).
 
 Para criar o atalho de menu a partir do clone já compilado:
 
@@ -114,7 +114,7 @@ python3 scripts/install-menu.py
 
 ### Comandos úteis e diagnóstico
 
-No **pacote extraído**, troque `./tuxflash.sh` por `./tuxflash`. No **repositório compilado**, use:
+No **pacote extraído** e no **repositório compilado**, use `./tuxflash`. O alias `./tuxflash.sh` também funciona no clone:
 
 ```bash
 ./tuxflash.sh --version
@@ -154,12 +154,11 @@ Se a interface não abrir, execute o lançador pelo terminal para ler o erro, ro
 
 ### Testes adicionais com imagens reais
 
-Windows 10 no pendrive: 906 arquivos (4,39 GB), WIM e BCD conferidos somente
-para leitura; GPT e FAT32 íntegros, com descarte do cache de blocos antes da
-nova comparação integral. O boot UEFI lendo esse USB físico em VM chegou à
-seleção de idioma do instalador Windows 10. Debian 13.7 e Ubuntu 26.04.1:
-gravação/conferência integral em VM e menus BIOS/UEFI; Debian chegou à seleção de idioma do instalador UEFI.
-Veja [evidências e limites](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).
+Debian 13.7 e Ubuntu 26.04.1 tiveram gravação e comparação de imagens
+em discos virtuais, com verificações de menus BIOS/UEFI. O instalador Debian
+chegou à seleção de idioma em UEFI. Esses resultados não demonstram boot
+completo em hardware físico. Veja o
+[relatório de validação e seus limites](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).
 
 ### Desenvolvimento e histórico de versões
 
@@ -168,7 +167,7 @@ Veja [evidências e limites](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).
 - **0.3.5:** conferência com tamanho exato da origem, progresso limitado e cancelamento de leituras bloqueadas; [validação anterior](docs/validation/REVISAO-0.3.5.md).
 - **0.3.4:** correção de persistência do Zorin e [testes com SteamOS, Kali e Zorin](docs/validation/IMAGENS-REAIS-2026-10-21.md).
 
-Na árvore do repositório, `tuxflash.sh` é o lançador de desenvolvimento; `scripts/` contém execução e instalação do atalho; `linux/` abriga código, runtime e recursos; `docs/` reúne os guias, a compatibilidade, licenças e evidências; `upstream/rufus/` conserva material herdado. `build/` e `dist/` são saídas locais e não fazem parte de um clone limpo.
+Na árvore do repositório, `tuxflash` (ou `tuxflash.sh`) é o lançador de desenvolvimento; `scripts/` contém execução e instalação do atalho; `linux/` abriga código, runtime e recursos; `docs/` reúne os guias, a compatibilidade, licenças e evidências; `upstream/rufus/` conserva material herdado. `build/` e `dist/` são saídas locais e não fazem parte de um clone limpo.
 
 Para compilar e executar os testes **sem usar mídia física**, consulte:
 
@@ -261,10 +260,10 @@ sudo apt install build-essential pkg-config meson ninja-build gettext \
 git clone https://github.com/ricardogomesbarreto/TuxFlash.git
 cd TuxFlash
 make
-./tuxflash.sh
+./tuxflash
 ```
 
-After building, launch again with **`./tuxflash.sh`**. This launcher delegates to `scripts/run.sh`, which prefers `dist/portable/tuxflash` if present and otherwise uses `linux/runtime/`. A missing-runtime error means the application has not yet been built or the expected files are absent. Media tools vary by operation; see [development setup](docs/development/CONTRIBUTING.md).
+After building, launch again with **`./tuxflash`** (the existing `./tuxflash.sh` command also works). This launcher delegates to `scripts/run.sh`, which prefers `dist/portable/tuxflash` if present and otherwise uses `linux/runtime/`. A missing-runtime error means the application has not yet been built or the expected files are absent. Media tools vary by operation; see [development setup](docs/development/CONTRIBUTING.md).
 
 To add a menu shortcut from the built checkout:
 
@@ -274,7 +273,7 @@ python3 scripts/install-menu.py
 
 ### Commands and troubleshooting
 
-From the **portable package**, replace `./tuxflash.sh` with `./tuxflash`. In a **built Git checkout**, use:
+Use `./tuxflash` in both the **extracted portable package** and the **built Git checkout**. The `./tuxflash.sh` alias remains available in a checkout:
 
 ```bash
 ./tuxflash.sh --version
@@ -314,13 +313,11 @@ If the GUI does not open, launch it from a terminal to inspect the error, run `d
 
 ### Additional real-image tests
 
-Existing Windows 10 USB: 906 files (4.39 GB), WIM and BCD checked read-only;
-GPT and FAT32 checks passed, followed by a full comparison after block-cache
-invalidation. UEFI VM boot reading this physical USB reached Windows 10
-Setup language selection.
-Debian 13.7 and Ubuntu 26.04.1: complete virtual-disk write/read-back and
-BIOS/UEFI menus; Debian reached UEFI installer language selection.
-See [evidence and limits](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).
+Debian 13.7 and Ubuntu 26.04.1 completed image writing and read-back
+in disposable virtual disks, with BIOS/UEFI firmware-menu checks. Debian
+reached its UEFI installer language screen. These results do not establish
+a complete physical-hardware boot. See the
+[validation report and its limits](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).
 
 ### Development and versions
 
@@ -329,7 +326,7 @@ See [evidence and limits](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).
 - **0.3.5:** exact source-length verification, bounded progress and cancellation of blocked reads; [previous validation](docs/validation/REVISAO-0.3.5.md).
 - **0.3.4:** Zorin persistence fix and [SteamOS, Kali and Zorin validation](docs/validation/IMAGENS-REAIS-2026-10-21.md).
 
-Repository layout: `tuxflash.sh` launches a built development checkout; `scripts/` provides runtime selection and menu integration; `linux/` contains source, runtime and resources; `docs/` holds manuals, compatibility, licensing and validation evidence; `upstream/rufus/` preserves inherited material. `build/` and `dist/` are generated locally and absent from a clean clone.
+Repository layout: `tuxflash` (or `tuxflash.sh`) launches a built development checkout; `scripts/` provides runtime selection and menu integration; `linux/` contains source, runtime and resources; `docs/` holds manuals, compatibility, licensing and validation evidence; `upstream/rufus/` preserves inherited material. `build/` and `dist/` are generated locally and absent from a clean clone.
 
 Build and run non-physical media checks:
 

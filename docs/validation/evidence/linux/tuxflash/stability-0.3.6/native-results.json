@@ -50,11 +50,6 @@
     "exit_code": 0
   },
   {
-    "name": "tuxflash:helper-images",
-    "result": "OK",
-    "exit_code": 0
-  },
-  {
     "name": "tuxflash:language-preferences-and-catalogs",
     "result": "OK",
     "exit_code": 0
@@ -70,12 +65,17 @@
     "exit_code": 0
   },
   {
-    "name": "tuxflash:bcd-generator-failure",
+    "name": "tuxflash:helper-images",
     "result": "OK",
     "exit_code": 0
   },
   {
     "name": "tuxflash:image-probe",
+    "result": "OK",
+    "exit_code": 0
+  },
+  {
+    "name": "tuxflash:bcd-generator-failure",
     "result": "OK",
     "exit_code": 0
   },
@@ -86,6 +86,11 @@
   },
   {
     "name": "tuxflash:helper-io",
+    "result": "OK",
+    "exit_code": 0
+  },
+  {
+    "name": "tuxflash:menu-shortcut-safety",
     "result": "OK",
     "exit_code": 0
   },
