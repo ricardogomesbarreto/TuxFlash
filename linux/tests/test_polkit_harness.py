@@ -23,7 +23,16 @@ with tempfile.TemporaryDirectory(prefix="tuxflash-polkit-guard-", dir="/tmp") as
         assert not (work / "root.img").exists()
         assert not (work / "usb.img").exists()
 
+    # Guest scripts must refuse the host before any log, service or poweroff.
+    for program in (["bash", str(runner.parent / "guest-setup.sh")],
+                    ["bash", str(runner.parent / "guest-user.sh")],
+                    [sys.executable, "-O", str(runner.parent / "guest-controller.py")]):
+        result = subprocess.run(program, env=env, capture_output=True, text=True, timeout=5)
+        assert result.returncode == 64, (program, result.stderr)
+        assert "disposable guest" in result.stderr, result.stderr
+
     reject(Path("/dev/null"), "below /tmp")
+    reject(root / "qa,file=/dev/null,serial=ignored", "QEMU option separators")
     if os.geteuid() == 0:
         reject(root / "root-caller", "without sudo")
         print("PASS: root caller and outside-/tmp input refused")

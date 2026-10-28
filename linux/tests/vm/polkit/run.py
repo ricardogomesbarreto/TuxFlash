@@ -102,6 +102,7 @@ def prepare(a):
     image = a.work / 'root.img'
     with image.open('xb') as out:
         out.truncate(3 * 1024**3)
+    image.chmod(0o600)
     subprocess.run(['mke2fs', '-q', '-F', '-t', 'ext4', '-d', str(root), str(image)], check=True)
 
 
@@ -113,6 +114,8 @@ def main():
     tmp = Path("/tmp").resolve()
     if tmp not in a.work.parents:
         raise RuntimeError('Use a new work directory below /tmp')
+    if any(c in str(path) for path in (a.work, a.qemu_root) for c in (',', '\n', '\r')):
+        raise RuntimeError('QEMU option separators are not allowed in work/firmware paths')
     if a.prepare_child:
         if not (a.work / '.tuxflash-disposable-polkit-qa').is_file():
             raise RuntimeError('Missing private work marker')
@@ -144,9 +147,12 @@ def main():
             command += ['--' + name.replace('_', '-'), str(value)]
     subprocess.run(command + ['--prepare-child'], check=True)
     subprocess.run(['e2fsck', '-fn', str(a.work / 'root.img')], check=True)
+    # The image contains an independent copy; do not retain duplicate host trees.
+    shutil.rmtree(a.work / 'rootfs')
     usb = a.work / 'usb.img'
     with usb.open('xb') as out:
         out.truncate(64 * 1024**2)
+    usb.chmod(0o600)
     for image in (a.work / 'root.img', usb):
         if not stat.S_ISREG(image.lstat().st_mode) or image.resolve().parent != a.work:
             raise RuntimeError('Only private regular image files may be attached')

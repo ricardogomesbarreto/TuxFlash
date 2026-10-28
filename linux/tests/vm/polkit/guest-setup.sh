@@ -1,9 +1,12 @@
 #!/bin/bash
+if [[ ! -f /etc/tuxflash-disposable-qa ]] || [[ $(cat /proc/cmdline) != *tuxflash_qa=1* ]]; then
+    echo "This script requires the disposable guest" >&2
+    exit 64
+fi
 set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
 exec >> /var/log/tuxflash-qa-setup.log 2>&1
 trap 'code=$?; echo "POLKIT SETUP FAIL line=$LINENO code=$code"; systemctl poweroff' ERR
-[[ $(cat /proc/cmdline) == *tuxflash_qa=1* ]]
 echo 'POLKIT SETUP starting' > /dev/ttyS0
 depmod -a || true
 modprobe xhci-pci || true

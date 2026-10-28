@@ -162,7 +162,7 @@ completo em hardware físico. Veja o
 
 ### Desenvolvimento e histórico de versões
 
-O [roteiro para a 1.0](docs/development/ROADMAP-1.0.md) define os critérios ainda pendentes: Polkit real, instalação Windows completa, persistência entre boots, Windows To Go e matriz de execução Linux. A versão pública permanece 0.3.6.
+O [roteiro para a 1.0](docs/development/ROADMAP-1.0.md) define os critérios ainda pendentes: validação em mais ambientes de autorização, instalação Windows completa, persistência entre boots, Windows To Go e matriz de execução Linux. O [ensaio Polkit em VM](docs/validation/POLKIT-2026-10-28.md) passou em 11 casos GUI e na recusa sem sessão. A versão pública permanece 0.3.6.
 
 - **0.3.3 — disponível publicamente:** endurecimento das verificações de destino e volumes do sistema, melhorias de cancelamento/relato de sucesso e documentação de execução.
 - **0.3.6 — versão atual:** janela adaptável sem barras de rolagem visíveis, rodapé com botões fixos, canal privado de cancelamento, origem comprimida fixada por descritor e saída de captura exclusiva. Veja a [revisão e os testes](docs/validation/REVISAO-0.3.6.md).
@@ -323,7 +323,7 @@ a complete physical-hardware boot. See the
 
 ### Development and versions
 
-The [road to 1.0](docs/development/ROADMAP-1.0.md) defines the remaining gates: real Polkit, complete Windows installation, persistent reboots, Windows To Go and a Linux execution matrix. The public release remains 0.3.6.
+The [road to 1.0](docs/development/ROADMAP-1.0.md) defines the remaining gates: broader authorization environments, complete Windows installation, persistent reboots, Windows To Go and a Linux execution matrix. The [real Polkit VM test](docs/validation/POLKIT-2026-10-28.md) passed 11 GUI cases and sessionless denial. The public release remains 0.3.6.
 
 - **0.3.3 — public release:** improved system-volume and target verification, cancellation/success reporting and runtime guidance.
 - **0.3.6 — current version:** responsive window without visible scrollbars, fixed action footer, private cancellation channel, pinned compressed input and exclusive capture output. See the [review and tests](docs/validation/REVISAO-0.3.6.md).

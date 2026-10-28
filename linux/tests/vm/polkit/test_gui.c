@@ -169,10 +169,14 @@ static void run_case(int number, const char *device)
 int main(int argc, char **argv)
 {
     (void)argc; (void)argv;
-    g_assert_true(g_file_test("/etc/tuxflash-disposable-qa", G_FILE_TEST_IS_REGULAR));
-    char *cmdline = NULL; g_assert_true(g_file_get_contents("/proc/cmdline", &cmdline, NULL, NULL));
-    g_assert_nonnull(strstr(cmdline, "tuxflash_qa=1")); g_free(cmdline);
-    g_assert_cmpint(getuid(), ==, 1000);
+    char *cmdline = NULL;
+    if (!g_file_test("/etc/tuxflash-disposable-qa", G_FILE_TEST_IS_REGULAR) ||
+        !g_file_get_contents("/proc/cmdline", &cmdline, NULL, NULL) ||
+        strstr(cmdline, "tuxflash_qa=1") == NULL || getuid() != 1000) {
+        g_printerr("This fixture requires the disposable guest user\n");
+        g_free(cmdline); return 64;
+    }
+    g_free(cmdline);
     g_assert_true(g_file_get_contents("/home/tuxqa/.qa-secret", &guest_secret, NULL, NULL));
     g_strchomp(guest_secret);
     setlocale(LC_ALL, ""); gtk_disable_setlocale();

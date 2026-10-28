@@ -1,4 +1,8 @@
 #!/bin/bash
+if [[ ! -f /etc/tuxflash-disposable-qa ]] || [[ $(cat /proc/cmdline) != *tuxflash_qa=1* ]]; then
+    echo "This script requires the disposable guest" >&2
+    exit 64
+fi
 set -u
 ulimit -c 0
 export DISPLAY=:55 GDK_BACKEND=x11 GTK_A11Y=none GSETTINGS_BACKEND=memory LANGUAGE=en LANG=C.UTF-8 LC_ALL=C.UTF-8

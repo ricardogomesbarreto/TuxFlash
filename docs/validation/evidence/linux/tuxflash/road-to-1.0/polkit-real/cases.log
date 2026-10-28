@@ -1,0 +1,22 @@
+POLKIT CASE START 1
+POLKIT CASE PASS 1 {"case": 1, "passed": true, "auth_challenges": 1, "pam_authenticated": 1, "credential_requests": 1, "root_observed": true, "cancelled": false, "completed": true, "target_unchanged": false}
+POLKIT CASE START 2
+POLKIT CASE PASS 2 {"case": 2, "passed": true, "auth_challenges": 1, "pam_authenticated": 0, "credential_requests": 0, "root_observed": false, "cancelled": false, "completed": false, "target_unchanged": true}
+POLKIT CASE START 3
+POLKIT CASE PASS 3 {"case": 3, "passed": true, "auth_challenges": 1, "pam_authenticated": 0, "credential_requests": 1, "root_observed": false, "cancelled": false, "completed": false, "target_unchanged": true}
+POLKIT CASE START 4
+POLKIT CASE PASS 4 {"case": 4, "passed": true, "auth_challenges": 1, "pam_authenticated": 1, "credential_requests": 1, "root_observed": false, "cancelled": true, "completed": false, "target_unchanged": true}
+POLKIT CASE START 5
+POLKIT CASE PASS 5 {"case": 5, "passed": true, "auth_challenges": 1, "pam_authenticated": 1, "credential_requests": 1, "root_observed": true, "cancelled": true, "completed": false, "target_unchanged": false}
+POLKIT CASE START 11
+POLKIT CASE PASS 11 {"case": 11, "passed": true, "auth_challenges": 0, "pam_authenticated": 0, "credential_requests": 0, "root_observed": false, "cancelled": false, "completed": false, "target_unchanged": true}
+POLKIT CASE START 6
+POLKIT CASE PASS 6 {"case": 6, "passed": true, "auth_challenges": 1, "pam_authenticated": 1, "credential_requests": 1, "root_observed": true, "cancelled": false, "completed": true, "target_unchanged": false}
+POLKIT CASE START 7
+POLKIT CASE PASS 7 {"case": 7, "passed": true, "auth_challenges": 1, "pam_authenticated": 0, "credential_requests": 0, "root_observed": false, "cancelled": false, "completed": false, "target_unchanged": true}
+POLKIT CASE START 8
+POLKIT CASE PASS 8 {"case": 8, "passed": true, "auth_challenges": 1, "pam_authenticated": 0, "credential_requests": 1, "root_observed": false, "cancelled": false, "completed": false, "target_unchanged": true}
+POLKIT CASE START 9
+POLKIT CASE PASS 9 {"case": 9, "passed": true, "auth_challenges": 1, "pam_authenticated": 1, "credential_requests": 1, "root_observed": false, "cancelled": true, "completed": false, "target_unchanged": true}
+POLKIT CASE START 10
+POLKIT CASE PASS 10 {"case": 10, "passed": true, "auth_challenges": 1, "pam_authenticated": 1, "credential_requests": 1, "root_observed": true, "cancelled": true, "completed": false, "target_unchanged": false}

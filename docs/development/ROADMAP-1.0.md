@@ -14,10 +14,10 @@ Esses resultados não comprovam instalação completa, todos os firmwares ou tod
 
 ### Critérios que ainda faltam
 
-| Prioridade | Frente | Critério de aprovação para a 1.0 | Estado na 0.3.6 |
+| Prioridade | Frente | Critério de aprovação para a 1.0 | Estado comprovado |
 | --- | --- | --- | --- |
 | Crítica | Segurança de destino | Repetir as proteções com o pacote candidato: disco do sistema, swap, volumes dependentes, dispositivo trocado/desconectado e montagem alterada após confirmação. Nenhuma escrita no alvo errado; nenhuma falha reportada como sucesso. | Proteções e regressões existentes; falta ampliar cenários e qualificar o pacote final. |
-| Crítica | Helper e Polkit | Executar GUI → pkexec → helper real em VM com usuário comum; aprovar, negar e cancelar autenticação, cancelar I/O bloqueada e encerrar a interface. Confirmar que a política não autoriza sessões indevidas. | Pipe entre UIDs aprovado em VM; autenticação Polkit completa da nova rotina ainda pendente. |
+| Crítica | Helper e Polkit | Executar GUI → pkexec → helper real em VM com usuário comum; aprovar, negar e cancelar autenticação, cancelar I/O bloqueada e encerrar a interface. Confirmar que a política não autoriza sessões indevidas. | Fluxo automatizado real aprovado em 11 casos GUI e recusa sem sessão; agentes visuais e encerramento abrupto ainda pendentes. Veja [Polkit](../validation/POLKIT-2026-10-28.md). |
 | Alta | Falhas e recuperação | Simular falta de espaço, erros de leitura/escrita, imagem alterada/truncada, retirada do USB e falha no commit final. Saída sem falso sucesso, limpeza de recursos e próximo trabalho possível. | Vários casos unitários já cobertos; falta matriz integrada GUI/CLI e pacote candidato. |
 | Alta | Imagens Linux reais | Gravar e comparar as imagens completas suportadas com o binário final; iniciar o sistema/instalador além do menu em BIOS/UEFI conforme a imagem. Repetir SteamOS comprimido completo. | Evidências reais históricas; falta qualificação completa da candidata final. |
 | Alta | Instalador Windows | Recriar a mídia com o binário final e concluir uma instalação em disco virtual descartável. Qualificar os modos FAT32/WIM dividido, UEFI:NTFS e BIOS/UEFI anunciados, incluindo seleção de edição e instalação não assistida em VM com discos extras preservados. Investigar a captura azul anterior com logs e reprodução controlada. | Boot até escolha de idioma; instalação completa pendente. Controle virtual não comprovou correção da captura física. |
@@ -93,7 +93,7 @@ These results do not establish complete installations or universal firmware/dist
 | Priority | Area | Required evidence |
 | --- | --- | --- |
 | Critical | Target safety | Candidate-package tests for system/swap/dependent volumes, device replacement/removal and mount changes after confirmation. No wrong-target writes or false success. |
-| Critical | Helper/Polkit | Real GUI → pkexec → helper authorization in a VM as an ordinary user: approval, denial, auth cancellation, blocked-I/O cancellation and frontend exit. Cross-UID pipe tests already pass; complete new-path Polkit qualification remains open. |
+| Critical | Helper/Polkit | Real GUI → pkexec → helper authorization in a VM as an ordinary user: approval, denial, auth cancellation, blocked-I/O cancellation and frontend exit. Cross-UID and real automated Polkit/PAM tests pass; human desktop agents and abrupt-exit qualification remain open. See the [Polkit report](../validation/POLKIT-2026-10-28.md). |
 | High | Failure recovery | Integrated GUI/CLI faults: ENOSPC, read/write errors, modified/truncated input, USB removal and final commit failure. Cleanup and a subsequent operation must work. |
 | High | Real Linux images | Full write/read-back with the final binary, including compressed SteamOS; boot beyond menus to the advertised installer/session in the applicable BIOS/UEFI modes. |
 | High | Windows installer | Recreate media with the final binary and finish installation on a disposable virtual disk. Qualify FAT32/split WIM, UEFI:NTFS and advertised BIOS/UEFI paths, including edition selection and unattended installation with extra VM disks left intact. Investigate the earlier physical-USB blue capture with reproducible evidence/logs. |
@@ -138,3 +138,9 @@ passed with native libraries and the same 12 with the portable runtime. Children
 are pipe-only mocks; the real helper, Polkit and physical targets are not exercised.
 See the [sanitized evidence](../validation/evidence/linux/tuxflash/road-to-1.0/gui-writer-lifecycle.json).
 The public release remains 0.3.6; this is development test progress.
+
+### Atualização Polkit / Polkit update — 2026-10-28
+
+A bateria real em VM passou nos 11 casos GUI e na recusa sem sessão. Ela cobre autorização/recusa, senha incorreta, cancelamento antes/depois de autorizar e sessão instalada inativa. Agentes visuais GNOME/KDE, encerramento abrupto e demais ambientes continuam abertos. [Relatório e limites](../validation/POLKIT-2026-10-28.md).
+
+The real VM battery passed 11 GUI cases and sessionless denial. Human GNOME/KDE agents, abrupt exit and other environments remain open. See the linked report and limits.

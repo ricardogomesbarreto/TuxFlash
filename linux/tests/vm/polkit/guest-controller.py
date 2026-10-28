@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 from pathlib import Path
 import subprocess,os,time,json,hashlib,traceback
-assert 'tuxflash_qa=1' in Path('/proc/cmdline').read_text()
+if not Path('/etc/tuxflash-disposable-qa').is_file() or 'tuxflash_qa=1' not in Path('/proc/cmdline').read_text():
+ print('This script requires the disposable guest', file=__import__('sys').stderr)
+ raise SystemExit(64)
 w=Path('/var/lib/tuxflash-qa');deadline=time.monotonic()+900
 while not (w/'target').exists():time.sleep(.1)
 dev=(w/'target').read_text().strip();assert dev.startswith('/dev/sd')
