@@ -6,6 +6,23 @@ char *tuxflash_release_notes(void)
 {
     GString *xml=g_string_new(NULL);
     {
+        const char *items[] = {
+            N_("Updated in 0.3.6"),
+            N_("Cancellation uses a private channel from the GUI or CLI to the administrative helper, preserving privilege separation."),
+            N_("The window fits the screen and keeps status and action buttons visible. Long text adapts to the available width without visible scrollbars; expanded options remain accessible by mouse, touch and keyboard."),
+            N_("Compressed images are opened once and decoded from the validated file descriptor. Symbolic links, empty files and non-regular sources are rejected."),
+            N_("RAW, VHD and VHDX captures reserve the output exclusively. Virtual-disk tools and ownership changes use the reserved file descriptor, preserving existing files if a path is replaced."),
+            N_("Cancellation now interrupts blocked writes instead of restarting them. New regression tests cover all four decoders, file replacement and VHD/VHDX output integrity."),
+        };
+        g_autofree char *title = g_markup_escape_text(g_dgettext("tuxflash", items[0]), -1);
+        g_string_append_printf(xml, "<p>%s</p><ul>", title);
+        for (guint i = 1; i < G_N_ELEMENTS(items); i++) {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", items[i]), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        g_string_append(xml, "</ul>");
+    }
+    {
         g_autofree char *title = g_markup_escape_text(g_dgettext("tuxflash", N_("Updated in 0.3.5")), -1);
         g_string_append_printf(xml, "<p>%s</p><ul>", title);
         {

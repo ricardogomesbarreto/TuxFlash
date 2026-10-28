@@ -828,3 +828,22 @@ msgstr "Os eventos de progresso da verificação são limitados para evitar exce
 
 msgid "Cancellation interrupts source, target and end-of-stream reads. Regression tests cover gzip, xz, bzip2 and zstd, truncated and enlarged sources, target corruption and padding."
 msgstr "O cancelamento interrompe leituras da origem, do destino e do fim do fluxo. Os testes de regressão abrangem gzip, xz, bzip2 e zstd, origens truncadas ou aumentadas, corrupção e espaço adicional no destino."
+
+
+msgid "Updated in 0.3.6"
+msgstr "Atualizado na versão 0.3.6"
+
+msgid "Compressed images are opened once and decoded from the validated file descriptor. Symbolic links, empty files and non-regular sources are rejected."
+msgstr "As imagens comprimidas são abertas uma única vez e descomprimidas pelo descritor de arquivo validado. Links simbólicos, arquivos vazios e origens que não sejam arquivos regulares são recusados."
+
+msgid "RAW, VHD and VHDX captures reserve the output exclusively. Virtual-disk tools and ownership changes use the reserved file descriptor, preserving existing files if a path is replaced."
+msgstr "As capturas RAW, VHD e VHDX reservam a saída de forma exclusiva. As ferramentas de disco virtual e a alteração de proprietário usam o descritor reservado, preservando arquivos existentes se um caminho for substituído."
+
+msgid "Cancellation now interrupts blocked writes instead of restarting them. New regression tests cover all four decoders, file replacement and VHD/VHDX output integrity."
+msgstr "O cancelamento agora interrompe escritas bloqueadas em vez de reiniciá-las. Os novos testes abrangem os quatro descompressores, substituição de arquivos e integridade da saída VHD/VHDX."
+
+msgid "Cancellation uses a private channel from the GUI or CLI to the administrative helper, preserving privilege separation."
+msgstr "O cancelamento usa um canal privado da interface gráfica ou CLI para o helper administrativo, preservando a separação de privilégios."
+
+msgid "The window fits the screen and keeps status and action buttons visible. Long text adapts to the available width without visible scrollbars; expanded options remain accessible by mouse, touch and keyboard."
+msgstr "A janela se ajusta à tela e mantém o estado e os botões de ação visíveis. Textos longos se adaptam à largura disponível sem barras de rolagem visíveis; as opções expandidas continuam acessíveis por mouse, toque e teclado."

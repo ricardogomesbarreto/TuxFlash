@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+#define _GNU_SOURCE
 #include "cli.h"
 
 #include "checksums.h"
@@ -13,6 +14,8 @@
 #include "job.h"
 
 #include <gio/gio.h>
+#include <gio/gunixoutputstream.h>
+#include <fcntl.h>
 #include <glib/gstdio.h>
 #include <errno.h>
 #include <signal.h>
@@ -374,11 +377,17 @@ static gboolean confirm_capture(const LufusJob *job)
 }
 
 static volatile sig_atomic_t cli_child_pid = -1;
+static volatile sig_atomic_t cli_cancel_fd = -1;
+static volatile sig_atomic_t cli_uses_cancel_pipe;
 
 static void forward_cli_signal(int signal_number)
 {
     int saved_errno = errno;
-    if (cli_child_pid > 0)
+    if (cli_uses_cancel_pipe) {
+        int descriptor = cli_cancel_fd;
+        cli_cancel_fd = -1;
+        if (descriptor >= 0) close(descriptor);
+    } else if (cli_child_pid > 0)
         kill((pid_t)cli_child_pid, signal_number);
     errno = saved_errno;
 }
@@ -403,6 +412,13 @@ static int stream_process(GSubprocess *process)
     struct sigaction old_terminate;
     if (identifier != NULL)
         cli_child_pid = (sig_atomic_t)g_ascii_strtoll(identifier, NULL, 10);
+    GOutputStream *control = g_subprocess_get_stdin_pipe(process);
+    cli_uses_cancel_pipe = control != NULL;
+    if (control != NULL) {
+        cli_cancel_fd = fcntl(g_unix_output_stream_get_fd(G_UNIX_OUTPUT_STREAM(control)), F_DUPFD_CLOEXEC, 3);
+        /* Keep the duplicate as the only writer. close(2) is signal-safe. */
+        g_output_stream_close(control, NULL, NULL);
+    }
     action.sa_handler = forward_cli_signal;
     sigemptyset(&action.sa_mask);
     sigaction(SIGINT, &action, &old_interrupt);
@@ -494,6 +510,9 @@ static int stream_process(GSubprocess *process)
     cli_child_pid = -1;
     sigaction(SIGINT, &old_interrupt, NULL);
     sigaction(SIGTERM, &old_terminate, NULL);
+    if (cli_cancel_fd >= 0) close(cli_cancel_fd);
+    cli_cancel_fd = -1;
+    cli_uses_cancel_pipe = 0;
     g_free(stage_message);
     g_object_unref(output);
     return status;

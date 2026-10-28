@@ -1,0 +1,28 @@
+1..15
+ok 1 /verify/cancel-source-read
+ok 2 /verify/cancel-target-read
+ok 3 /verify/cancel-eof-read
+ok 4 /verify/bounded-progress
+ok 5 /verify/raw/exact
+ok 6 /verify/raw/target-padding
+ok 7 /verify/raw/source-short
+ok 8 /verify/raw/source-grown
+ok 9 /verify/raw/target-short
+ok 10 /verify/raw/last-byte-corrupt
+ok 11 /verify/raw/empty
+ok 12 /verify/compressed/gz
+ok 13 /verify/compressed/xz
+ok 14 /verify/compressed/bz2
+ok 15 /verify/compressed/zst
+1..11
+ok 1 /io/source-rejections
+ok 2 /io/cancel-blocked-write
+ok 3 /io/cancel-control-eof
+ok 4 /io/cancel-control-unprivileged-sender # SKIP Cross-UID case runs inside the isolated root VM
+ok 5 /io/cancel-control-argument-parser
+ok 6 /io/pinned-decoder/gz
+ok 7 /io/pinned-decoder/xz
+ok 8 /io/pinned-decoder/bz2
+ok 9 /io/pinned-decoder/zst
+ok 10 /io/capture-pinned-output/vhd
+ok 11 /io/capture-pinned-output/vhdx

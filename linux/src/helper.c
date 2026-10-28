@@ -18,6 +18,7 @@
 #include <linux/fs.h>
 #include <limits.h>
 #include <poll.h>
+#include <pthread.h>
 #include <signal.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -191,6 +192,48 @@ static int install_signal_handlers(void)
      * blocked read instead of returning EINTR to the verification loop. */
     return sigaction(SIGINT, &action, NULL) == 0 &&
            sigaction(SIGTERM, &action, NULL) == 0 ? 0 : -1;
+}
+
+/* The desktop cannot signal a root-owned pkexec child. Its private stdin pipe
+ * is the cancellation capability; EOF also cancels if the frontend exits. */
+static int cancellation_input = -1;
+static pthread_t operation_thread;
+static void *watch_cancellation(void *unused)
+{
+    unsigned char token;
+    ssize_t count;
+    (void)unused;
+    do { count = read(cancellation_input, &token, 1); } while (count < 0 && errno == EINTR);
+    /* Interrupt the operation thread, including a blocked read/write. This
+     * thread uses no allocator or application locks while tools are forked. */
+    pthread_kill(operation_thread, SIGTERM);
+    for (;;) pause();
+    return NULL;
+}
+
+static int start_cancellation_channel(int input)
+{
+    struct stat details;
+    if (fstat(input, &details) != 0) return -1;
+    if (!S_ISFIFO(details.st_mode)) { errno = EINVAL; return -1; }
+    cancellation_input = fcntl(input, F_DUPFD_CLOEXEC, 3);
+    if (cancellation_input < 0) return -1;
+    /* External tools must not consume control bytes or keep the channel alive. */
+    int null_input = open("/dev/null", O_RDONLY | O_CLOEXEC);
+    if (null_input < 0 || dup2(null_input, STDIN_FILENO) < 0) {
+        int saved = errno;
+        if (null_input >= 0) close(null_input);
+        close(cancellation_input); cancellation_input = -1; errno = saved; return -1;
+    }
+    if (null_input != STDIN_FILENO) close(null_input);
+    operation_thread = pthread_self();
+    pthread_t watcher;
+    int error = pthread_create(&watcher, NULL, watch_cancellation, NULL);
+    if (error != 0) {
+        close(cancellation_input); cancellation_input = -1; errno = error; return -1;
+    }
+    pthread_detach(watcher);
+    return 0;
 }
 
 static void event_message(const char *type, const char *message)
@@ -797,10 +840,10 @@ static int mount_target_partition(const char *partition, const char *mountpoint,
     return mount_partition_once(partition, mountpoint, ntfs);
 }
 
-static int open_decompressor(const char *program, const char *source)
+static int open_decompressor(const char *program, int source_fd)
 {
     int pipe_fds[2];
-    if (pipe(pipe_fds) != 0)
+    if (pipe2(pipe_fds, O_CLOEXEC) != 0)
         return -1;
     decompressor_pid = fork();
     if (decompressor_pid < 0) {
@@ -809,11 +852,16 @@ static int open_decompressor(const char *program, const char *source)
         return -1;
     }
     if (decompressor_pid == 0) {
-        dup2(pipe_fds[1], STDOUT_FILENO);
-        close(pipe_fds[0]);
-        close(pipe_fds[1]);
+        if (dup2(source_fd, STDIN_FILENO) < 0 ||
+            dup2(pipe_fds[1], STDOUT_FILENO) < 0)
+            _exit(126);
+        /* dup2(fd, fd) retains CLOEXEC when standard input was closed. */
+        if (fcntl(STDIN_FILENO, F_SETFD, 0) < 0) _exit(126);
+        if (source_fd != STDIN_FILENO && source_fd != STDOUT_FILENO) close(source_fd);
+        if (pipe_fds[0] != STDIN_FILENO && pipe_fds[0] != STDOUT_FILENO) close(pipe_fds[0]);
+        if (pipe_fds[1] != STDIN_FILENO && pipe_fds[1] != STDOUT_FILENO) close(pipe_fds[1]);
         {
-            char *arguments[] = {(char *)program, "-dc", "--", (char *)source, NULL};
+            char *arguments[] = {(char *)program, "-dc", NULL};
             exec_tool(arguments);
         }
         _exit(127);
@@ -822,31 +870,32 @@ static int open_decompressor(const char *program, const char *source)
     return pipe_fds[0];
 }
 
+/* Open once before inspecting the inode. A compressed decoder reads this
+ * descriptor through stdin, never a path that may be replaced after validation. */
 static int open_source(const char *source, uint64_t *total)
 {
-    struct stat source_stat;
-    if (stat(source, &source_stat) != 0 || !S_ISREG(source_stat.st_mode)) {
-        errno = EINVAL;
-        return -1;
+    struct stat details;
+    int descriptor = open(source, O_RDONLY | O_CLOEXEC | O_NOFOLLOW |
+                                  O_NONBLOCK | O_NOCTTY);
+    if (descriptor < 0) return -1;
+    if (fstat(descriptor, &details) != 0) {
+        int saved = errno; close(descriptor); errno = saved; return -1;
     }
-    *total = (uint64_t)source_stat.st_size;
-    if (has_suffix(source, ".gz")) {
-        *total = 0;
-        return open_decompressor("gzip", source);
+    if (!S_ISREG(details.st_mode) || details.st_size <= 0) {
+        close(descriptor); errno = EINVAL; return -1;
     }
-    if (has_suffix(source, ".xz")) {
-        *total = 0;
-        return open_decompressor("xz", source);
-    }
-    if (has_suffix(source, ".bz2")) {
-        *total = 0;
-        return open_decompressor("bzip2", source);
-    }
-    if (has_suffix(source, ".zst") || has_suffix(source, ".zstd")) {
-        *total = 0;
-        return open_decompressor("zstd", source);
-    }
-    return open(source, O_RDONLY | O_CLOEXEC | O_NOFOLLOW);
+    const char *program = has_suffix(source, ".gz") ? "gzip" :
+                          has_suffix(source, ".xz") ? "xz" :
+                          has_suffix(source, ".bz2") ? "bzip2" :
+                          (has_suffix(source, ".zst") || has_suffix(source, ".zstd")) ? "zstd" : NULL;
+    *total = (uint64_t)details.st_size;
+    if (program == NULL) return descriptor;
+    *total = 0;
+    int stream = open_decompressor(program, descriptor);
+    int saved = errno;
+    close(descriptor);
+    errno = saved;
+    return stream;
 }
 
 static int wait_for_decompressor(void)
@@ -866,13 +915,17 @@ static int write_all(int target_fd, const unsigned char *buffer, size_t length)
 {
     size_t offset = 0;
     while (offset < length) {
+        if (cancelled) { errno = ECANCELED; return -1; }
         ssize_t result = write(target_fd, buffer + offset, length - offset);
-        if (result < 0 && errno == EINTR)
-            continue;
-        if (result <= 0)
+        if (result < 0 && errno == EINTR && !cancelled) continue;
+        if (result <= 0) {
+            if (cancelled) errno = ECANCELED;
+            else if (result == 0) errno = EIO;
             return -1;
+        }
         offset += (size_t)result;
     }
+    if (cancelled) { errno = ECANCELED; return -1; }
     return 0;
 }
 
@@ -3506,12 +3559,48 @@ out:
     return result;
 }
 
+/* qemu-img reopens these paths in a child. /proc/<parent>/fd pins both
+ * validated descriptors even when an output-directory entry is replaced. */
+static int capture_virtual_image(int source_fd, int output_fd, uint64_t capacity,
+                                 const char *format)
+{
+    struct stat details;
+    if (fstat(source_fd, &details) != 0) return -1;
+    if (!S_ISBLK(details.st_mode) && !S_ISREG(details.st_mode)) { errno = EINVAL; return -1; }
+    g_autofree char *source = g_strdup_printf("driver=raw,file.driver=%s,file.filename=/proc/%ld/fd/%d",
+                                             S_ISBLK(details.st_mode) ? "host_device" : "file",
+                                             (long)getpid(), source_fd);
+    g_autofree char *output = g_strdup_printf("/proc/%ld/fd/%d", (long)getpid(), output_fd);
+    g_autofree char *size = g_strdup_printf("%llu", (unsigned long long)capacity);
+    char *output_format = strcmp(format, "vhd") == 0 ? "vpc" : "vhdx";
+    char *options = strcmp(format, "vhd") == 0 ? "subformat=fixed,force_size=on" : "subformat=dynamic";
+    char *create[] = {"qemu-img", "create", "-f", output_format, "-o", options, output, size, NULL};
+    char *convert[] = {"qemu-img", "convert", "-p", "-n", "--image-opts", "-O", output_format,
+                       source, output, NULL};
+    event_stage(0, 40, "Creating virtual disk container");
+    event_indeterminate_progress();
+    if (run_command_input(create, NULL) != 0) return -1;
+    event_stage(40, 1000, "Capturing device into virtual disk");
+    if (run_command_progress(convert) != 0) return -1;
+    return commit_descriptor(output_fd, false);
+}
+
+static int capture_output_matches(const char *path, int descriptor)
+{
+    struct stat entry, opened;
+    if (lstat(path, &entry) != 0 || fstat(descriptor, &opened) != 0) return -1;
+    if (!S_ISREG(entry.st_mode) || entry.st_dev != opened.st_dev || entry.st_ino != opened.st_ino) {
+        errno = ESTALE;
+        return -1;
+    }
+    return 0;
+}
+
 static int capture_command(const char *output, const char *target_argument,
                            const char *expected_identity, uint64_t expected_capacity,
                            const char *format)
 {
     TargetInfo target = {0};
-    struct stat output_details;
     int source_fd = -1;
     int output_fd = -1;
     int result = 1;
@@ -3522,23 +3611,27 @@ static int capture_command(const char *output, const char *target_argument,
         event_message("ERROR", "Invalid capture output or format");
         return 1;
     }
-    if (lstat(output, &output_details) == 0 || errno != ENOENT) {
-        event_message("ERROR", "Capture output already exists or cannot be inspected");
-        return 1;
-    }
     if (validate_target(target_argument, expected_identity, expected_capacity, &target) != 0)
         return 1;
     if (unmount_children(target.path) != 0) {
         event_errno("Could not unmount source filesystems for a consistent capture");
         goto out;
     }
+    if (cancelled || revalidate_active_target() != 0) goto out;
+    source_fd = open(target.path, O_RDONLY | O_CLOEXEC | O_EXCL | O_NOFOLLOW);
+    if (source_fd < 0 || target_descriptor_matches(&target, source_fd) != 0) {
+        event_errno("Could not open capture source");
+        goto out;
+    }
+    output_fd = open(output, O_RDWR | O_CREAT | O_EXCL | O_CLOEXEC | O_NOFOLLOW, 0600);
+    if (output_fd < 0) {
+        event_errno("Capture output already exists or cannot be created");
+        goto out;
+    }
     event_message("STARTED", "Capturing device image");
     if (strcmp(format, "raw") == 0) {
         event_stage(0, 930, "Reading source device");
-        source_fd = open(target.path, O_RDONLY | O_CLOEXEC | O_EXCL);
-        output_fd = open(output, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC | O_NOFOLLOW, 0600);
-        if (source_fd < 0 || output_fd < 0 ||
-            copy_image(source_fd, output_fd, target.capacity, target.capacity, &written) != 0) {
+        if (copy_image(source_fd, output_fd, target.capacity, target.capacity, &written) != 0) {
             event_errno("Could not capture raw device image");
             goto out;
         }
@@ -3549,27 +3642,16 @@ static int capture_command(const char *output, const char *target_argument,
             goto out;
         }
     } else {
-        char *size = g_strdup_printf("%llu", (unsigned long long)target.capacity);
-        char *output_format = strcmp(format, "vhd") == 0 ? "vpc" : "vhdx";
-        char *options = strcmp(format, "vhd") == 0 ? "subformat=fixed,force_size=on" : "subformat=dynamic";
-        char *create[] = {"qemu-img", "create", "-f", output_format, "-o", options,
-                          (char *)output, size, NULL};
-        char *convert[] = {"qemu-img", "convert", "-p", "-n", "-f", "raw", "-O",
-                           output_format, target.path, (char *)output, NULL};
-        event_stage(0, 40, "Creating virtual disk container");
-        event_indeterminate_progress();
-        if (run_command_input(create, NULL) != 0) {
-            g_free(size);
-            event_message("ERROR", "Could not create virtual disk container");
-            goto out;
-        }
-        event_stage(40, 1000, "Capturing device into virtual disk");
-        if (run_command_progress(convert) != 0) {
-            g_free(size);
+        if (capture_virtual_image(source_fd, output_fd, target.capacity, format) != 0) {
             event_message("ERROR", "Could not capture virtual disk image");
             goto out;
         }
-        g_free(size);
+    }
+    if (cancelled) { errno = ECANCELED; event_errno("Device capture cancelled"); goto out; }
+
+    if (capture_output_matches(output, output_fd) != 0) {
+        event_errno("Capture output changed while the operation was running");
+        goto out;
     }
     {
         const char *uid_text = g_getenv("PKEXEC_UID");
@@ -3577,7 +3659,7 @@ static int capture_command(const char *output, const char *target_argument,
             char *end = NULL;
             unsigned long uid = strtoul(uid_text, &end, 10);
             if (end != uid_text && *end == '\0' && uid <= UINT_MAX)
-                if (chown(output, (uid_t)uid, (gid_t)-1) != 0)
+                if (fchown(output_fd, (uid_t)uid, (gid_t)-1) != 0)
                     event_errno("Could not transfer capture ownership to the invoking user");
         }
     }
@@ -3623,6 +3705,7 @@ int main(int argc, char **argv)
     const char *identity = NULL;
     uint64_t capacity = 0;
     bool verify = false;
+    bool cancel_stdin = false;
     bool uefi_ntfs = false;
     bool runtime_validation = false;
     guint windows_flags = 0;
@@ -3655,6 +3738,11 @@ int main(int argc, char **argv)
     }
     read_only_operation = strcmp(argv[1], "verify") == 0 || strcmp(argv[1], "capture") == 0;
     for (index = 2; index < argc;) {
+        if (strcmp(argv[index], "--cancel-stdin") == 0) {
+            cancel_stdin = true;
+            index++;
+            continue;
+        }
         if (strcmp(argv[index], "--verify") == 0) {
             verify = true;
             index++;
@@ -3810,6 +3898,10 @@ int main(int argc, char **argv)
     }
     if (install_signal_handlers() != 0) {
         event_errno("Could not install cancellation handlers");
+        return 1;
+    }
+    if (cancel_stdin && start_cancellation_channel(STDIN_FILENO) != 0) {
+        event_errno("Could not open cancellation channel");
         return 1;
     }
     if (passes > 0 && strcmp(argv[1], "device-test") != 0) {

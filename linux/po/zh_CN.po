@@ -828,3 +828,22 @@ msgstr "限制验证进度事件的频率，避免解压管道的小块读取产
 
 msgid "Cancellation interrupts source, target and end-of-stream reads. Regression tests cover gzip, xz, bzip2 and zstd, truncated and enlarged sources, target corruption and padding."
 msgstr "取消操作可中断源、目标和流末尾的读取。回归测试覆盖 gzip、xz、bzip2 和 zstd，以及源数据截断或增长、目标数据损坏和目标额外空间。"
+
+
+msgid "Updated in 0.3.6"
+msgstr "0.3.6 版更新"
+
+msgid "Compressed images are opened once and decoded from the validated file descriptor. Symbolic links, empty files and non-regular sources are rejected."
+msgstr "压缩镜像仅打开一次，并从已验证的文件描述符解压。拒绝符号链接、空文件以及非普通文件来源。"
+
+msgid "RAW, VHD and VHDX captures reserve the output exclusively. Virtual-disk tools and ownership changes use the reserved file descriptor, preserving existing files if a path is replaced."
+msgstr "RAW、VHD 和 VHDX 备份以独占方式预留输出文件。虚拟磁盘工具和所有权更改使用预留的文件描述符，即使路径被替换，也不会覆盖已有文件。"
+
+msgid "Cancellation now interrupts blocked writes instead of restarting them. New regression tests cover all four decoders, file replacement and VHD/VHDX output integrity."
+msgstr "取消操作现在会中断阻塞的写入，而不会重新开始写入。新增回归测试覆盖四种解压器、文件替换以及 VHD/VHDX 输出完整性。"
+
+msgid "Cancellation uses a private channel from the GUI or CLI to the administrative helper, preserving privilege separation."
+msgstr "取消操作通过图形界面或命令行与管理员辅助程序之间的专用通道传递，保留权限分离。"
+
+msgid "The window fits the screen and keeps status and action buttons visible. Long text adapts to the available width without visible scrollbars; expanded options remain accessible by mouse, touch and keyboard."
+msgstr "窗口适应屏幕大小，并保持状态和操作按钮可见。长文本适应可用宽度，不显示滚动条；展开的选项仍可通过鼠标、触摸和键盘访问。"

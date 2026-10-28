@@ -6,6 +6,7 @@
 
 #define _GNU_SOURCE
 #include "job.h"
+#include <signal.h>
 #include "device_safety.h"
 
 #include <errno.h>
@@ -380,6 +381,7 @@ GSubprocess *lufus_job_spawn(const LufusJob *job,
                                    job->type == LUFUS_JOB_WINDOWS_TO_GO ? "windows-to-go" :
                                    job->type == LUFUS_JOB_LINUX_PERSISTENT ? "linux-persistent" :
                                    job->type == LUFUS_JOB_DEVICE_TEST ? "device-test" : "capture";
+    direct_arguments[argument++] = "--cancel-stdin";
     if (job->image_path != NULL) {
         direct_arguments[argument++] = job->type == LUFUS_JOB_CAPTURE ? "--output" : "--source";
         direct_arguments[argument++] = job->image_path;
@@ -438,7 +440,7 @@ GSubprocess *lufus_job_spawn(const LufusJob *job,
     direct_arguments[argument] = NULL;
 
     GSubprocessLauncher *launcher = g_subprocess_launcher_new(
-        G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_MERGE);
+        G_SUBPROCESS_FLAGS_STDIN_PIPE | G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_MERGE);
     if (elevate) {
         /* The host authentication program must use the host's own libraries. */
         const char *private_variables[] = {"LD_LIBRARY_PATH", "LD_PRELOAD", "LD_AUDIT",
@@ -458,4 +460,15 @@ GSubprocess *lufus_job_spawn(const LufusJob *job,
     g_free(persistence_size);
     g_free(test_passes);
     return process;
+}
+
+/* Closing our private writer is sufficient even when pkexec changed UID. */
+gboolean lufus_job_cancel(GSubprocess *process, GError **error)
+{
+    g_return_val_if_fail(G_IS_SUBPROCESS(process), FALSE);
+    GOutputStream *control = g_subprocess_get_stdin_pipe(process);
+    if (control != NULL) return g_output_stream_close(control, NULL, error);
+    /* Compatibility with same-user test processes and older direct callers. */
+    g_subprocess_send_signal(process, SIGTERM);
+    return TRUE;
 }

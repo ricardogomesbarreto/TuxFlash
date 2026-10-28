@@ -828,3 +828,22 @@ msgstr "Se limita la frecuencia de los eventos de progreso para evitar mensajes 
 
 msgid "Cancellation interrupts source, target and end-of-stream reads. Regression tests cover gzip, xz, bzip2 and zstd, truncated and enlarged sources, target corruption and padding."
 msgstr "La cancelación interrumpe las lecturas del origen, del destino y del final del flujo. Las pruebas de regresión cubren gzip, xz, bzip2 y zstd, orígenes truncados o ampliados, corrupción y espacio adicional en el destino."
+
+
+msgid "Updated in 0.3.6"
+msgstr "Actualizado en la versión 0.3.6"
+
+msgid "Compressed images are opened once and decoded from the validated file descriptor. Symbolic links, empty files and non-regular sources are rejected."
+msgstr "Las imágenes comprimidas se abren una sola vez y se descomprimen desde el descriptor de archivo validado. Se rechazan enlaces simbólicos, archivos vacíos y fuentes que no sean archivos normales."
+
+msgid "RAW, VHD and VHDX captures reserve the output exclusively. Virtual-disk tools and ownership changes use the reserved file descriptor, preserving existing files if a path is replaced."
+msgstr "Las capturas RAW, VHD y VHDX reservan la salida de forma exclusiva. Las herramientas de disco virtual y los cambios de propietario usan el descriptor reservado, preservando los archivos existentes si se sustituye una ruta."
+
+msgid "Cancellation now interrupts blocked writes instead of restarting them. New regression tests cover all four decoders, file replacement and VHD/VHDX output integrity."
+msgstr "La cancelación ahora interrumpe las escrituras bloqueadas en lugar de reiniciarlas. Las nuevas pruebas cubren los cuatro descompresores, la sustitución de archivos y la integridad de la salida VHD/VHDX."
+
+msgid "Cancellation uses a private channel from the GUI or CLI to the administrative helper, preserving privilege separation."
+msgstr "La cancelación usa un canal privado desde la interfaz gráfica o la CLI hasta el asistente administrativo, preservando la separación de privilegios."
+
+msgid "The window fits the screen and keeps status and action buttons visible. Long text adapts to the available width without visible scrollbars; expanded options remain accessible by mouse, touch and keyboard."
+msgstr "La ventana se adapta a la pantalla y mantiene visibles el estado y los botones de acción. Los textos largos se ajustan al ancho disponible sin barras de desplazamiento visibles; las opciones ampliadas siguen accesibles con ratón, pantalla táctil y teclado."

@@ -181,6 +181,28 @@ static void test_host_authentication_environment(void)
     g_free(output); g_free(old_path); g_free(old_gio); g_free(old_ld); g_free(program); g_free(dir);
 }
 
+static void test_private_cancellation_pipe(void)
+{
+    g_autofree char *dir = g_dir_make_tmp("tuxflash-control-XXXXXX", NULL);
+    g_autofree char *helper = g_build_filename(dir, "helper", NULL);
+    g_assert_true(g_file_set_contents(helper, "#!/bin/sh\nread -r command\nprintf CONTROL_EOF\nexit 7\n", -1, NULL));
+    g_assert_cmpint(g_chmod(helper, 0700), ==, 0);
+    LufusJob job = {.type=LUFUS_JOB_RAW_WRITE, .image_path="/test/image.img",
+                    .device_path="/dev/test", .major_minor="1:1", .device_size=4096};
+    GError *error = NULL;
+    GSubprocess *process = lufus_job_spawn(&job, helper, FALSE, &error);
+    g_assert_no_error(error); g_assert_nonnull(process);
+    g_assert_nonnull(g_subprocess_get_stdin_pipe(process));
+    g_assert_true(lufus_job_cancel(process, &error)); g_assert_no_error(error);
+    char output[64] = {0}; gsize count = 0;
+    g_assert_true(g_input_stream_read_all(g_subprocess_get_stdout_pipe(process), output,
+                                        sizeof(output) - 1, &count, NULL, &error));
+    g_assert_no_error(error); g_assert_cmpstr(output, ==, "CONTROL_EOF");
+    g_assert_true(g_subprocess_wait(process, NULL, &error)); g_assert_no_error(error);
+    g_assert_cmpint(g_subprocess_get_exit_status(process), ==, 7);
+    g_object_unref(process); g_unlink(helper); g_rmdir(dir);
+}
+
 int main(int argc, char **argv)
 {
     g_test_init(&argc, &argv, NULL);
@@ -193,5 +215,6 @@ int main(int argc, char **argv)
                     test_silent_install_helper_arguments);
     g_test_add_func("/job/silent-install-mode-policy",
                     test_silent_install_mode_policy);
+    g_test_add_func("/job/private-cancellation-pipe", test_private_cancellation_pipe);
     return g_test_run();
 }

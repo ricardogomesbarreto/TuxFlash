@@ -828,3 +828,22 @@ msgstr "Verification progress is rate-limited, avoiding excessive events from sm
 
 msgid "Cancellation interrupts source, target and end-of-stream reads. Regression tests cover gzip, xz, bzip2 and zstd, truncated and enlarged sources, target corruption and padding."
 msgstr "Cancellation interrupts source, target and end-of-stream reads. Regression tests cover gzip, xz, bzip2 and zstd, truncated and enlarged sources, target corruption and padding."
+
+
+msgid "Updated in 0.3.6"
+msgstr "Updated in 0.3.6"
+
+msgid "Compressed images are opened once and decoded from the validated file descriptor. Symbolic links, empty files and non-regular sources are rejected."
+msgstr "Compressed images are opened once and decoded from the validated file descriptor. Symbolic links, empty files and non-regular sources are rejected."
+
+msgid "RAW, VHD and VHDX captures reserve the output exclusively. Virtual-disk tools and ownership changes use the reserved file descriptor, preserving existing files if a path is replaced."
+msgstr "RAW, VHD and VHDX captures reserve the output exclusively. Virtual-disk tools and ownership changes use the reserved file descriptor, preserving existing files if a path is replaced."
+
+msgid "Cancellation now interrupts blocked writes instead of restarting them. New regression tests cover all four decoders, file replacement and VHD/VHDX output integrity."
+msgstr "Cancellation now interrupts blocked writes instead of restarting them. New regression tests cover all four decoders, file replacement and VHD/VHDX output integrity."
+
+msgid "Cancellation uses a private channel from the GUI or CLI to the administrative helper, preserving privilege separation."
+msgstr "Cancellation uses a private channel from the GUI or CLI to the administrative helper, preserving privilege separation."
+
+msgid "The window fits the screen and keeps status and action buttons visible. Long text adapts to the available width without visible scrollbars; expanded options remain accessible by mouse, touch and keyboard."
+msgstr "The window fits the screen and keeps status and action buttons visible. Long text adapts to the available width without visible scrollbars; expanded options remain accessible by mouse, touch and keyboard."

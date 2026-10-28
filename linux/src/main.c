@@ -217,11 +217,48 @@ static void reset_progress_range(AppState *state)
     state->progress_stage_text = FALSE;
 }
 
+static void dropdown_item_setup(GtkSignalListItemFactory *factory, GtkListItem *item,
+                                gpointer popup)
+{
+    (void)factory;
+    GtkWidget *label = gtk_label_new(NULL);
+    gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
+    gtk_widget_set_hexpand(label, TRUE);
+    if (popup) {
+        gtk_label_set_wrap(GTK_LABEL(label), TRUE);
+        gtk_label_set_wrap_mode(GTK_LABEL(label), PANGO_WRAP_WORD_CHAR);
+        gtk_label_set_max_width_chars(GTK_LABEL(label), 52);
+    } else {
+        gtk_label_set_ellipsize(GTK_LABEL(label), PANGO_ELLIPSIZE_END);
+        gtk_label_set_width_chars(GTK_LABEL(label), 1);
+        gtk_label_set_max_width_chars(GTK_LABEL(label), 32);
+    }
+    gtk_list_item_set_child(item, label);
+}
+
+static void dropdown_item_bind(GtkSignalListItemFactory *factory, GtkListItem *item,
+                               gpointer unused)
+{
+    (void)factory; (void)unused;
+    GtkStringObject *value = GTK_STRING_OBJECT(gtk_list_item_get_item(item));
+    GtkWidget *label = gtk_list_item_get_child(item);
+    const char *text = gtk_string_object_get_string(value);
+    gtk_label_set_text(GTK_LABEL(label), text);
+    gtk_widget_set_tooltip_text(label, text);
+}
+
 static GtkWidget *new_dropdown(const char *const *values)
 {
     GtkStringList *model = gtk_string_list_new(values);
     GtkWidget *dropdown = gtk_drop_down_new(G_LIST_MODEL(model), NULL);
-    /* gtk_drop_down_new() takes full ownership of both constructor arguments. */
+    for (int popup = 0; popup < 2; popup++) {
+        GtkListItemFactory *factory = gtk_signal_list_item_factory_new();
+        g_signal_connect(factory, "setup", G_CALLBACK(dropdown_item_setup), GINT_TO_POINTER(popup));
+        g_signal_connect(factory, "bind", G_CALLBACK(dropdown_item_bind), NULL);
+        if (popup) gtk_drop_down_set_list_factory(GTK_DROP_DOWN(dropdown), factory);
+        else gtk_drop_down_set_factory(GTK_DROP_DOWN(dropdown), factory);
+        g_object_unref(factory);
+    }
     gtk_widget_set_hexpand(dropdown, TRUE);
     return dropdown;
 }
@@ -238,12 +275,14 @@ static GtkWidget *new_label(const char *text)
     GtkWidget *label = gtk_label_new(text);
     gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
     gtk_widget_add_css_class(label, "dim-label");
+    gtk_label_set_wrap(GTK_LABEL(label), TRUE);
+    gtk_label_set_wrap_mode(GTK_LABEL(label), PANGO_WRAP_WORD_CHAR);
     return label;
 }
 
 static GtkWidget *new_field(const char *title, GtkWidget *control)
 {
-    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
+    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 2);
     gtk_widget_set_hexpand(box, TRUE);
     gtk_box_append(GTK_BOX(box), new_label(title));
     gtk_box_append(GTK_BOX(box), control);
@@ -255,7 +294,7 @@ static void append_heading(GtkBox *box, const char *title)
     GtkWidget *label = gtk_label_new(title);
     gtk_label_set_xalign(GTK_LABEL(label), 0.0f);
     gtk_widget_add_css_class(label, "heading");
-    gtk_widget_set_margin_top(label, 7);
+    gtk_widget_set_margin_top(label, 3);
     gtk_box_append(box, label);
     gtk_box_append(box, gtk_separator_new(GTK_ORIENTATION_HORIZONTAL));
 }
@@ -1260,8 +1299,13 @@ static void on_start_clicked(GtkButton *button, gpointer user_data)
     AdwMessageDialog *dialog;
     (void)button;
     if (state->writer != NULL) {
-        gtk_label_set_text(state->status_label, _("CANCELLING"));
-        g_subprocess_send_signal(state->writer, SIGTERM);
+        GError *error = NULL;
+        if (lufus_job_cancel(state->writer, &error))
+            gtk_label_set_text(state->status_label, _("CANCELLING"));
+        else {
+            show_toast(state, error->message);
+            g_clear_error(&error);
+        }
         return;
     }
     device = selected_device(state);
@@ -1590,7 +1634,7 @@ static GtkWidget *build_drive_properties(AppState *state)
     const char *partition_values[] = {"MBR", "GPT", _("From image"), NULL};
     const char *target_values[] = {_("BIOS (or UEFI-CSM)"), _("UEFI (non CSM)"),
                                     _("BIOS or UEFI"), _("From image"), NULL};
-    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
+    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
     GtkWidget *device_row = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
     GtkWidget *boot_row = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
     GtkWidget *scheme_row = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 18);
@@ -1763,7 +1807,7 @@ static GtkWidget *build_format_options(AppState *state)
     const char *filesystems[] = {"FAT32", "NTFS", "exFAT", "UDF", "ext2", "ext3", _("From image"), NULL};
     const char *clusters[] = {_("Default"), _("4096 bytes"), _("8192 bytes"), _("16 kilobytes"), _("32 kilobytes"), NULL};
     const char *passes[] = {_("1 pass"), _("2 passes"), _("3 passes"), _("4 passes"), NULL};
-    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
+    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
     GtkWidget *label = gtk_entry_new();
     GtkWidget *file_system = new_dropdown(filesystems);
     state->filesystem = GTK_DROP_DOWN(file_system);
@@ -1810,11 +1854,13 @@ static GtkWidget *build_format_options(AppState *state)
 
 static GtkWidget *build_status(AppState *state)
 {
-    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
+    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
     GtkWidget *buttons = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 8);
     GtkWidget *close = gtk_button_new_with_label(_("CLOSE"));
     append_heading(GTK_BOX(box), _("Status"));
     state->status_label = GTK_LABEL(gtk_label_new(_("READY")));
+    gtk_label_set_wrap(state->status_label, TRUE);
+    gtk_label_set_wrap_mode(state->status_label, PANGO_WRAP_WORD_CHAR);
     gtk_widget_add_css_class(GTK_WIDGET(state->status_label), "caption");
     gtk_box_append(GTK_BOX(box), GTK_WIDGET(state->status_label));
     state->progress = GTK_PROGRESS_BAR(gtk_progress_bar_new());
@@ -1877,6 +1923,35 @@ static void on_language_clicked(GtkButton *button, gpointer user_data)
     gtk_window_present(GTK_WINDOW(dialog));
 }
 
+static void adapt_check_labels(GtkWidget *widget)
+{
+    if (GTK_IS_CHECK_BUTTON(widget)) {
+        GtkWidget *label = gtk_check_button_get_child(GTK_CHECK_BUTTON(widget));
+        if (GTK_IS_LABEL(label)) {
+            gtk_label_set_wrap(GTK_LABEL(label), TRUE);
+            gtk_label_set_wrap_mode(GTK_LABEL(label), PANGO_WRAP_WORD_CHAR);
+        }
+    }
+    for (GtkWidget *child = gtk_widget_get_first_child(widget); child;
+         child = gtk_widget_get_next_sibling(child)) adapt_check_labels(child);
+}
+
+static void set_initial_window_size(GtkWindow *window)
+{
+    int width = 720, height = 760;
+    GListModel *monitors = gdk_display_get_monitors(gtk_widget_get_display(GTK_WIDGET(window)));
+    if (g_list_model_get_n_items(monitors)) {
+        GdkMonitor *monitor = g_list_model_get_item(monitors, 0);
+        GdkRectangle geometry;
+        gdk_monitor_get_geometry(monitor, &geometry);
+        width = MIN(width, MAX(320, geometry.width - 48));
+        height = MIN(height, MAX(320, geometry.height - 72));
+        g_object_unref(monitor);
+    }
+    gtk_window_set_default_size(window, width, height);
+    gtk_widget_set_size_request(GTK_WIDGET(window), MIN(480, width), MIN(420, height));
+}
+
 static AppState *create_window(AdwApplication *application)
 {
     AppState *state = g_new0(AppState, 1);
@@ -1887,7 +1962,7 @@ static AppState *create_window(AdwApplication *application)
     GtkWidget *about_button = gtk_button_new_from_icon_name("help-about-symbolic");
     GtkWidget *language_button = gtk_button_new_from_icon_name("preferences-desktop-locale-symbolic");
     GtkWidget *scroller = gtk_scrolled_window_new();
-    GtkWidget *content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
+    GtkWidget *content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
     state->log = g_string_new(NULL);
     state->window = ADW_APPLICATION_WINDOW(
         adw_application_window_new(GTK_APPLICATION(application)));
@@ -1896,8 +1971,7 @@ static AppState *create_window(AdwApplication *application)
     gtk_window_set_default_icon_name(APP_ID);
     gtk_window_set_icon_name(GTK_WINDOW(state->window), APP_ID);
     gtk_window_set_title(GTK_WINDOW(state->window), "TuxFlash " LUFUS_VERSION);
-    gtk_window_set_default_size(GTK_WINDOW(state->window), 600, 760);
-    gtk_widget_set_size_request(GTK_WIDGET(state->window), 500, 560);
+    set_initial_window_size(GTK_WINDOW(state->window));
     state->toast_overlay = ADW_TOAST_OVERLAY(adw_toast_overlay_new());
     adw_application_window_set_content(state->window, GTK_WIDGET(state->toast_overlay));
     adw_toast_overlay_set_child(state->toast_overlay, GTK_WIDGET(toolbar));
@@ -1916,21 +1990,30 @@ static AppState *create_window(AdwApplication *application)
     adw_header_bar_pack_end(header, language_button);
     adw_toolbar_view_add_top_bar(toolbar, GTK_WIDGET(header));
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scroller), content);
-    gtk_scrolled_window_set_propagate_natural_height(GTK_SCROLLED_WINDOW(scroller), TRUE);
+    /* The form adapts horizontally. Advanced sections remain reachable by
+     * wheel, touch and keyboard on short screens, without visible scrollbars. */
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroller), GTK_POLICY_NEVER, GTK_POLICY_EXTERNAL);
+    gtk_widget_set_focusable(scroller, TRUE);
+    gtk_widget_set_vexpand(scroller, TRUE);
     adw_toolbar_view_set_content(toolbar, scroller);
-    gtk_widget_set_margin_top(content, 14);
-    gtk_widget_set_margin_bottom(content, 14);
+    gtk_widget_set_margin_top(content, 4);
+    gtk_widget_set_margin_bottom(content, 4);
     gtk_widget_set_margin_start(content, 18);
     gtk_widget_set_margin_end(content, 18);
     GtkWidget *intro = gtk_label_new(_("Turn ISO images into bootable USB drives simply and safely."));
     gtk_label_set_wrap(GTK_LABEL(intro), TRUE);
     gtk_label_set_xalign(GTK_LABEL(intro), 0.0);
     gtk_widget_add_css_class(intro, "dim-label");
-    gtk_widget_set_margin_bottom(intro, 6);
+    gtk_widget_set_margin_bottom(intro, 4);
     gtk_box_append(GTK_BOX(content), intro);
     gtk_box_append(GTK_BOX(content), build_drive_properties(state));
     gtk_box_append(GTK_BOX(content), build_format_options(state));
-    gtk_box_append(GTK_BOX(content), build_status(state));
+    adapt_check_labels(content);
+    GtkWidget *status = build_status(state);
+    gtk_widget_set_margin_start(status, 18);
+    gtk_widget_set_margin_end(status, 18);
+    gtk_widget_set_margin_bottom(status, 8);
+    adw_toolbar_view_add_bottom_bar(toolbar, status);
     on_image_option_selected(G_OBJECT(state->image_option), NULL, state);
     g_signal_connect(state->window, "close-request", G_CALLBACK(on_close_request), state);
     g_object_set_data_full(G_OBJECT(state->window), "lufus-state", state, (GDestroyNotify)state_free);

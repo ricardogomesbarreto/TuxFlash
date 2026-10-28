@@ -83,3 +83,5 @@ GSubprocess *lufus_job_spawn(const LufusJob *job,
                              const char *helper_path,
                              gboolean elevate,
                              GError **error);
+
+gboolean lufus_job_cancel(GSubprocess *process, GError **error);

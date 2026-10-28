@@ -1,7 +1,7 @@
 project(
   'tuxflash',
   'c',
-  version: '0.3.5',
+  version: '0.3.6',
   license: 'GPL-3.0-or-later',
   meson_version: '>= 0.63.0',
   default_options: ['c_std=c11', 'warning_level=3'],
@@ -13,6 +13,7 @@ soup = dependency('libsoup-3.0', version: '>= 3.4')
 json_glib = dependency('json-glib-1.0', version: '>= 1.8')
 hivex = dependency('hivex')
 threads = dependency('threads')
+gio_unix = dependency('gio-unix-2.0')
 
 
 add_project_arguments(
@@ -57,7 +58,7 @@ lufus = executable(
   'src/image_probe.c',
   'src/licenses.c',
   'src/release_notes.c',
-  dependencies: [gtk, adwaita, soup, json_glib],
+  dependencies: [gtk, adwaita, soup, json_glib, gio_unix],
   include_directories: rufus_includes,
   link_with: rufus_hash,
   link_args: ['-pthread'],
@@ -272,3 +273,37 @@ helper_verification_test = executable(
   dependencies: [dependency('gio-2.0'), json_glib],
 )
 test('helper-verification-streams', helper_verification_test, timeout: 60)
+
+helper_io_test = executable(
+  'test-helper-io',
+  'tests/test_helper_io.c',
+  'src/volume_label.c',
+  'src/progress.c',
+  'src/windows_options.c',
+  include_directories: include_directories('src'),
+  dependencies: [dependency('gio-2.0'), json_glib],
+)
+test('helper-io', helper_io_test, timeout: 90)
+
+# Headless GTK allocation regression; enabled when the visual test tools exist.
+layout_xvfb = find_program('Xvfb', required: false)
+layout_python = find_program('python3')
+layout_pillow = run_command(layout_python, '-c', 'import PIL', check: false)
+if layout_xvfb.found() and layout_pillow.returncode() == 0
+  gui_layout_test = executable(
+    'test-gui-layout', brand_resources, 'tests/test_gui_layout.c',
+    'src/language.c', 'src/volume_label.c', 'src/cli.c', 'src/job.c',
+    'src/checksums.c', 'src/windows_options.c', 'src/devices.c', 'src/downloads.c',
+    'src/image_probe.c', 'src/licenses.c', 'src/release_notes.c',
+    dependencies: [gtk, adwaita, soup, json_glib, gio_unix],
+    include_directories: rufus_includes, link_with: rufus_hash,
+    link_args: ['-pthread', '-Wl,--wrap=lufus_devices_enumerate'],
+    c_args: ['-DLUFUS_VERSION="' + meson.project_version() + '"'],
+  )
+  test('gui-responsive-layout', layout_python,
+    args: [files('tests/test_gui_layout.py'), '--binary', gui_layout_test,
+           '--catalogs', meson.current_build_dir() / 'po',
+           '--output', meson.current_build_dir() / 'gui-layout-evidence',
+           '--xvfb', layout_xvfb], timeout: 180,
+    is_parallel: false)
+endif

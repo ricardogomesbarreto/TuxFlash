@@ -178,6 +178,40 @@ active_swap_guard() {
  set -e
  [ "$status" -ne 0 ] && [ "$before" = "$(sha256sum "$d")" ]
 }
+unprivileged_cancellation() {
+ /opt/lufus/run-elf qa-io /opt/lufus/bin/.tuxflash-io-test.bin -p /io/cancel-control-unprivileged-sender
+}
+invalid_cancel_channel() {
+ before=$(sha256sum "$d")
+ reject "$h" write --source /work/source.img --target "$d" --major-minor "$ident" --size "$size" --cancel-stdin < /dev/null
+ [ "$before" = "$(sha256sum "$d")" ]
+}
+capture_link_guard() {
+ before=$(sha256sum "$d")
+ for fmt in raw vhd vhdx; do
+  echo keep > /tmp/capture-victim
+  ln -s /tmp/capture-victim /tmp/capture-link
+  reject "$h" capture --target "$d" --major-minor "$ident" --size "$size" --output /tmp/capture-link --capture-format "$fmt"
+  [ "$(cat /tmp/capture-victim)" = keep ]
+  rm /tmp/capture-link /tmp/capture-victim
+ done
+ [ "$before" = "$(sha256sum "$d")" ]
+}
+capture_owner() {
+ PKEXEC_UID=1000 "$h" capture --target "$d" --major-minor "$ident" --size "$size" --output /tmp/capture-owned --capture-format raw
+ [ "$(stat -c %u /tmp/capture-owned)" = 1000 ]
+ cmp -n "$size" /tmp/capture-owned "$d"
+ rm /tmp/capture-owned
+}
+source_link_guard() {
+ before=$(sha256sum "$d")
+ for codec in gz xz bz2 zst; do
+  ln -s "/work/source.img.$codec" "/tmp/source-link.$codec"
+  reject write_image "/tmp/source-link.$codec"
+  rm "/tmp/source-link.$codec"
+ done
+ [ "$before" = "$(sha256sum "$d")" ]
+}
 run_case exact-capacity-guard near_capacity
 run_case disk-sequence-guard wrong_sequence
 run_case disk-sequence-valid correct_sequence
@@ -199,6 +233,11 @@ run_case reject-truncated-gzip reject write_image /work/truncated.img.gz
 run_case reject-oversize oversized
 run_case reject-ffu reject write_image /work/fake.ffu
 run_case capture-existing-guard existing_capture
+run_case capture-symlink-output-guard capture_link_guard
+run_case unprivileged-cancellation-channel unprivileged_cancellation
+run_case invalid-cancellation-channel-guard invalid_cancel_channel
+run_case capture-user-ownership capture_owner
+run_case compressed-source-link-guard source_link_guard
 cancel_write() {
  cp /work/source.img /tmp/cancel.img
  truncate -s 64M /tmp/cancel.img

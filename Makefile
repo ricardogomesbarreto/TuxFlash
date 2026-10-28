@@ -62,5 +62,9 @@ test: native check
 $(BUILD_DIR)/test-helper-verification-sanitize: linux/tests/test_helper_verification.c linux/src/helper.c linux/src/device_safety.h linux/src/volume_label.c linux/src/progress.c linux/src/windows_options.c | $(BUILD_DIR)
 	$(CC) -D_FILE_OFFSET_BITS=64 -std=c11 -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined linux/tests/test_helper_verification.c linux/src/volume_label.c linux/src/progress.c linux/src/windows_options.c $$(pkg-config --cflags --libs gio-2.0 json-glib-1.0) -o "$@"
 
-check-helper-sanitize: $(BUILD_DIR)/test-helper-verification-sanitize
+check-helper-sanitize: $(BUILD_DIR)/test-helper-verification-sanitize $(BUILD_DIR)/test-helper-io-sanitize
 	ASAN_OPTIONS=detect_leaks=0 UBSAN_OPTIONS=halt_on_error=1 "$(BUILD_DIR)/test-helper-verification-sanitize"
+	ASAN_OPTIONS=detect_leaks=0 UBSAN_OPTIONS=halt_on_error=1 "$(BUILD_DIR)/test-helper-io-sanitize"
+
+$(BUILD_DIR)/test-helper-io-sanitize: linux/tests/test_helper_io.c linux/src/helper.c linux/src/device_safety.h linux/src/volume_label.c linux/src/progress.c linux/src/windows_options.c | $(BUILD_DIR)
+	$(CC) -D_FILE_OFFSET_BITS=64 -std=c11 -O1 -g -fno-omit-frame-pointer -fsanitize=address,undefined linux/tests/test_helper_io.c linux/src/volume_label.c linux/src/progress.c linux/src/windows_options.c $$(pkg-config --cflags --libs gio-2.0 json-glib-1.0) -o "$@"

@@ -1,7 +1,7 @@
 # Compatibilidade e interface — escopo comprovado
 
 Não foi atingida equivalência integral com o Rufus Windows. A aplicação é o
-TuxFlash 0.3.5 nativo (derivado do Lufus 0.2.2), integrado ao núcleo de hashes do Rufus e às correções locais.
+TuxFlash 0.3.6 nativo (derivado do Lufus 0.2.2), integrado ao núcleo de hashes do Rufus e às correções locais.
 
 ## ISOs Linux
 
@@ -90,3 +90,17 @@ repetiu a comparação integral após invalidar o cache de blocos, sem alterar
 os metadados. O boot UEFI em VM lendo diretamente esse USB chegou à seleção
 de idioma do instalador Windows 10. Debian e Ubuntu validados em discos virtuais. Veja o
 [relatório atualizado e seus limites](USB-E-NOVAS-ISOS-2026-10-21.md).
+
+## Revisão 0.3.6
+
+A origem comprimida é aberta e conferida pelo mesmo descritor usado pelo
+descompressor. Capturas RAW/VHD/VHDX reservam um arquivo novo de forma
+exclusiva e mantêm esse descritor nas ferramentas e na troca de proprietário.
+O cancelamento também interrompe escritas bloqueadas e utiliza um canal privado
+entre a interface/CLI e o helper administrativo. A janela se adapta ao monitor,
+com textos ajustáveis, sem barras de rolagem visíveis e com estado/botões fixos
+no rodapé. Em telas curtas ou com opções avançadas abertas, o formulário
+continua navegável por roda do mouse, toque e teclado.
+Veja a [revisão de estabilidade](REVISAO-0.3.6.md). Os limites de firmware,
+desktop, persistência e compatibilidade universal continuam separados dessas
+correções de I/O.

@@ -1,0 +1,13 @@
+{
+  "version": "0.3.6",
+  "source_iso_sha256": "1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768",
+  "helper_sha256": "c4e4a7e8444732bb779dec50d832bf6ff2be37bbb2e2a1e89f466831e996caa9",
+  "virtual_disk_only": true,
+  "physical_usb_modified": false,
+  "files_compared": 906,
+  "guest_cache_invalidated": true,
+  "fat_check_passed": true,
+  "passed": true,
+  "scope": "Intermediate 0.3.6 helper before cancellation-channel and GUI changes; not final-binary qualification",
+  "visual_review": "Windows Setup language/keyboard screen visible at 180 and 300 seconds; no full installation tested"
+}

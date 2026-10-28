@@ -1,0 +1,18 @@
+{
+  "version": "0.3.6",
+  "release_date": "2026-10-28",
+  "test_evidence_date": "2026-10-21",
+  "final_helper_sha256": "d0482e84a284898fc04cc11d5d0955a3019df4e5c19c95184893cc8775959d50",
+  "native_suites_passed": 20,
+  "gui_configurations_native": 12,
+  "gui_configurations_portable": 12,
+  "gui_stages_per_configuration": 2,
+  "helper_sanitizer_cases_passed_nonprivileged": 25,
+  "helper_sanitizer_cases_skipped_host": 1,
+  "cross_uid_case_passed_in_vm": true,
+  "backend_vm_passed": 45,
+  "backend_vm_failed": 0,
+  "physical_usb_modified": false,
+  "vm_network_enabled": false,
+  "windows_control_final_binary": false
+}
