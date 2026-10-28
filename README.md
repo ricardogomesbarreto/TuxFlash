@@ -162,6 +162,8 @@ completo em hardware físico. Veja o
 
 ### Desenvolvimento e histórico de versões
 
+O [roteiro para a 1.0](docs/development/ROADMAP-1.0.md) define os critérios ainda pendentes: Polkit real, instalação Windows completa, persistência entre boots, Windows To Go e matriz de execução Linux. A versão pública permanece 0.3.6.
+
 - **0.3.3 — disponível publicamente:** endurecimento das verificações de destino e volumes do sistema, melhorias de cancelamento/relato de sucesso e documentação de execução.
 - **0.3.6 — versão atual:** janela adaptável sem barras de rolagem visíveis, rodapé com botões fixos, canal privado de cancelamento, origem comprimida fixada por descritor e saída de captura exclusiva. Veja a [revisão e os testes](docs/validation/REVISAO-0.3.6.md).
 - **0.3.5:** conferência com tamanho exato da origem, progresso limitado e cancelamento de leituras bloqueadas; [validação anterior](docs/validation/REVISAO-0.3.5.md).
@@ -320,6 +322,8 @@ a complete physical-hardware boot. See the
 [validation report and its limits](docs/validation/USB-E-NOVAS-ISOS-2026-10-21.md).
 
 ### Development and versions
+
+The [road to 1.0](docs/development/ROADMAP-1.0.md) defines the remaining gates: real Polkit, complete Windows installation, persistent reboots, Windows To Go and a Linux execution matrix. The public release remains 0.3.6.
 
 - **0.3.3 — public release:** improved system-volume and target verification, cancellation/success reporting and runtime guidance.
 - **0.3.6 — current version:** responsive window without visible scrollbars, fixed action footer, private cancellation channel, pinned compressed input and exclusive capture output. See the [review and tests](docs/validation/REVISAO-0.3.6.md).

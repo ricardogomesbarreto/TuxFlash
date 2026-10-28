@@ -73,7 +73,7 @@ def main():
     for size in sizes:
         for language in languages:
             prefix = (args.output / f'{language}-{size}').resolve()
-            for suffix in ('-basic.json', '-expanded.json', '-advance', '-done'):
+            for suffix in ('-basic.json', '-expanded.json', '-advance', '-done', '-writer.json'):
                 Path(str(prefix) + suffix).unlink(missing_ok=True)
             read_fd, write_fd = os.pipe()
             server = process = None
@@ -110,7 +110,10 @@ def main():
                     Path(str(prefix) + '-' + marker).touch()
                     stages.append(data)
                 assert process.wait(timeout=10) == 0, log_path.read_text(errors='replace')
-                results.append({'language': language, 'screen': size, 'stages': stages, 'passed': True})
+                writer = json.loads(Path(str(prefix) + '-writer.json').read_text())
+                assert writer == {'cases_passed': 6, 'physical_io': False, 'polkit': False}
+                results.append({'language': language, 'screen': size, 'stages': stages,
+                                'writer_lifecycle': writer, 'passed': True})
                 print('LAYOUT PASS', language, size, flush=True)
             finally:
                 os.close(read_fd)

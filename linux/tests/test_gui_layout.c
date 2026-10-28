@@ -83,6 +83,68 @@ static void record(AppState *state, GtkScrolledWindow *scroller, const char *pre
     g_assert_true(g_file_set_contents(path, json, -1, NULL));
 }
 
+/* Exercise the GUI protocol and real async callbacks using pipe-only child
+ * processes. Enumeration is mocked; no Polkit request or physical I/O occurs. */
+static void writer_lifecycle_case(AppState *state, const char *script,
+                                  gboolean request_cancel, const char *expected)
+{
+    g_assert_null(state->writer);
+    GError *error = NULL;
+    state->write_completed = FALSE;
+    state->writer_exited = FALSE;
+    state->writer_succeeded = FALSE;
+    state->writer_eof = FALSE;
+    state->writer_read_failed = FALSE;
+    state->writer_cancel_requested = FALSE;
+    state->writer = g_subprocess_new(G_SUBPROCESS_FLAGS_STDIN_PIPE |
+        G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_MERGE,
+        &error, "/bin/sh", "-c", script, NULL);
+    g_assert_no_error(error); g_assert_nonnull(state->writer);
+    state->writer_output = g_data_input_stream_new(g_subprocess_get_stdout_pipe(state->writer));
+    gtk_button_set_label(state->start_button, _("CANCEL"));
+    gtk_widget_set_sensitive(GTK_WIDGET(state->start_button), TRUE);
+    gtk_widget_add_css_class(GTK_WIDGET(state->start_button), "destructive-action");
+    gtk_label_set_text(state->status_label, _("REQUESTING AUTHORIZATION"));
+    reset_progress_range(state);
+    read_writer_line(state);
+    g_subprocess_wait_async(state->writer, NULL, writer_wait_finished, state);
+    if (request_cancel) {
+        g_signal_emit_by_name(state->start_button, "clicked");
+        g_assert_true(state->writer_cancel_requested);
+        g_assert_false(gtk_widget_get_sensitive(GTK_WIDGET(state->start_button)));
+        g_assert_cmpstr(gtk_label_get_text(state->status_label), ==, _("CANCELLING"));
+        /* Repeated activation must not re-open or write a closed control pipe. */
+        g_signal_emit_by_name(state->start_button, "clicked");
+    }
+    gint64 deadline = g_get_monotonic_time() + 5 * G_USEC_PER_SEC;
+    while (state->writer != NULL && g_get_monotonic_time() < deadline) {
+        while (g_main_context_iteration(NULL, FALSE)) {}
+        g_usleep(1000);
+    }
+    g_assert_null(state->writer);
+    g_assert_null(state->writer_output);
+    g_assert_false(state->writer_cancel_requested);
+    g_assert_cmpstr(gtk_label_get_text(state->status_label), ==, expected);
+    g_assert_cmpstr(gtk_button_get_label(state->start_button), ==, _("START"));
+    g_assert_false(gtk_widget_has_css_class(GTK_WIDGET(state->start_button), "destructive-action"));
+    /* The fake enumeration contains no target: completion cannot enable Start. */
+    g_assert_false(gtk_widget_get_sensitive(GTK_WIDGET(state->start_button)));
+    if (state->refresh_source) { g_source_remove(state->refresh_source); state->refresh_source = 0; }
+}
+
+static void writer_lifecycle(AppState *state, const char *prefix)
+{
+    writer_lifecycle_case(state, "while IFS= read -r line; do :; done; exit 1", TRUE, _("CANCELLED"));
+    writer_lifecycle_case(state, "printf 'ERROR Device changed\\n'; exit 1", FALSE, _("ERROR"));
+    writer_lifecycle_case(state, "printf 'COMPLETE 64\\n'; exit 1", FALSE, _("ERROR"));
+    writer_lifecycle_case(state, "exit 0", FALSE, _("ERROR"));
+    writer_lifecycle_case(state, "printf 'COMPLETE 64\\n'; exit 0", FALSE, _("READY"));
+    writer_lifecycle_case(state, "while IFS= read -r line; do :; done; printf 'COMPLETE 64\\n'; exit 0", TRUE, _("READY"));
+    g_autofree char *path = g_strdup_printf("%s-writer.json", prefix);
+    g_assert_true(g_file_set_contents(path,
+        "{\"cases_passed\":6,\"physical_io\":false,\"polkit\":false}\n", -1, NULL));
+}
+
 static void wait_marker(const char *prefix, const char *name)
 {
     g_autofree char *path = g_strdup_printf("%s-%s", prefix, name);
@@ -120,6 +182,7 @@ int main(int argc, char **argv)
     g_assert_cmpfloat(gtk_adjustment_get_upper(v), >, gtk_adjustment_get_page_size(v));
     gtk_adjustment_set_value(v, gtk_adjustment_get_upper(v) - gtk_adjustment_get_page_size(v));
     settle(); record(state, scroller, argv[2], "expanded"); wait_marker(argv[2], "done");
+    writer_lifecycle(state, argv[2]);
     gtk_window_destroy(GTK_WINDOW(state->window)); g_object_unref(app);
     puts("PASS responsive layout, hidden scrollbars, reachable advanced fields and visible footer");
     return 0;

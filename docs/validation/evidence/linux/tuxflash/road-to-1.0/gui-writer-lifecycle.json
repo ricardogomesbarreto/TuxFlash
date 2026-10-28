@@ -1,0 +1,845 @@
+{
+  "date": "2026-10-28",
+  "status": "development tests after 0.3.6; not a new released binary",
+  "application_code_base_commit": "18a992021c5424beb36477ab59b77064a12c7845",
+  "scope": "GTK UI async writer protocol using mock enumeration and pipe-only child processes; no real helper, authorization or target writes",
+  "scenario_names": [
+    "cancel and unsuccessful child exit -> CANCELLED",
+    "helper error and unsuccessful exit -> ERROR",
+    "COMPLETE followed by unsuccessful exit -> ERROR",
+    "successful exit without COMPLETE -> ERROR",
+    "COMPLETE and successful exit -> READY",
+    "cancel request followed by confirmed completion and successful exit -> READY"
+  ],
+  "scenarios_per_configuration": 6,
+  "configurations_per_library_set": 12,
+  "physical_io": false,
+  "polkit_executed": false,
+  "test_source_sha256": {
+    "linux/tests/test_gui_layout.c": "5f1ca305a4feb50c9e412dcf6999829b76cdbf8fb84627a6bedccb311cd21103",
+    "linux/tests/test_gui_layout.py": "9ef11afdd0db630c3bc0570d481460a32c5ddbd03af98844e683356c2c66c729"
+  },
+  "test_binary_sha256": "7c9c19e7fc221191634b1a17380e34a7866a660b46e66bd5096171c238d7eb9f",
+  "results": {
+    "native": [
+      {
+        "language": "pt_BR",
+        "screen": "800x600",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 128.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 589.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "en",
+        "screen": "800x600",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 128.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 589.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "zh_CN",
+        "screen": "800x600",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 142.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 612.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "es",
+        "screen": "800x600",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 128.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 589.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "pt_BR",
+        "screen": "1024x768",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 421.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "en",
+        "screen": "1024x768",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 421.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "zh_CN",
+        "screen": "1024x768",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 444.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "es",
+        "screen": "1024x768",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 421.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "pt_BR",
+        "screen": "1920x1080",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 381.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "en",
+        "screen": "1920x1080",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 381.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "zh_CN",
+        "screen": "1920x1080",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 404.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "es",
+        "screen": "1920x1080",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 381.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      }
+    ],
+    "portable": [
+      {
+        "language": "pt_BR",
+        "screen": "800x600",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 98.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 556.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "en",
+        "screen": "800x600",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 98.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 556.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "zh_CN",
+        "screen": "800x600",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 138.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 600.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "es",
+        "screen": "800x600",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 98.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 542,
+            "monitor_width": 800,
+            "monitor_height": 600,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 556.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "pt_BR",
+        "screen": "1024x768",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 388.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "en",
+        "screen": "1024x768",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 388.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "zh_CN",
+        "screen": "1024x768",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 432.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "es",
+        "screen": "1024x768",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 710,
+            "monitor_width": 1024,
+            "monitor_height": 768,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 388.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "pt_BR",
+        "screen": "1920x1080",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 348.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "en",
+        "screen": "1920x1080",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 348.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "zh_CN",
+        "screen": "1920x1080",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 392.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      },
+      {
+        "language": "es",
+        "screen": "1920x1080",
+        "stages": [
+          {
+            "stage": "basic",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 0.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          },
+          {
+            "stage": "expanded",
+            "width": 710,
+            "height": 750,
+            "monitor_width": 1920,
+            "monitor_height": 1080,
+            "horizontal_overflow": 0.0,
+            "vertical_range": 348.0,
+            "footer_visible": true,
+            "scrollbars_visible": false
+          }
+        ],
+        "writer_lifecycle": {
+          "cases_passed": 6,
+          "physical_io": false,
+          "polkit": false
+        },
+        "passed": true
+      }
+    ]
+  }
+}
