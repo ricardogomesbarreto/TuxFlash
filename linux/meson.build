@@ -309,3 +309,22 @@ if layout_xvfb.found() and layout_pillow.returncode() == 0
            '--xvfb', layout_xvfb.full_path()], timeout: 180,
     is_parallel: false)
 endif
+
+# VM-only fixture: compile when optional development headers exist; never run
+# on the host. Guest interpreter and kernel marker guard accidental execution.
+polkit_agent = dependency('polkit-agent-1', required: false)
+if polkit_agent.found()
+  executable(
+    'test-gui-polkit-vm', brand_resources, 'tests/vm/polkit/test_gui.c',
+    'src/language.c', 'src/volume_label.c', 'src/cli.c', 'src/job.c',
+    'src/checksums.c', 'src/windows_options.c', 'src/devices.c', 'src/downloads.c',
+    'src/image_probe.c', 'src/licenses.c', 'src/release_notes.c',
+    dependencies: [gtk, adwaita, soup, json_glib, gio_unix, polkit_agent],
+    include_directories: [rufus_includes, include_directories('src')],
+    link_with: rufus_hash,
+    link_args: ['-pthread', '-Wl,--dynamic-linker=/opt/tuxflash/runtime/lib/ld-linux-x86-64.so.2'],
+    c_args: ['-DLUFUS_VERSION="' + meson.project_version() + '"'],
+  )
+endif
+
+test('polkit-vm-harness-guards', find_program('python3'), args: files('tests/test_polkit_harness.py'))
