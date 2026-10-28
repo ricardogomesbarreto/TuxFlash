@@ -306,6 +306,6 @@ if layout_xvfb.found() and layout_pillow.returncode() == 0
     args: [files('tests/test_gui_layout.py'), '--binary', gui_layout_test,
            '--catalogs', meson.current_build_dir() / 'po',
            '--output', meson.current_build_dir() / 'gui-layout-evidence',
-           '--xvfb', layout_xvfb], timeout: 180,
+           '--xvfb', layout_xvfb.full_path()], timeout: 180,
     is_parallel: false)
 endif

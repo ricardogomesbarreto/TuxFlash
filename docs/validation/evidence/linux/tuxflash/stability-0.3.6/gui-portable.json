@@ -21,7 +21,7 @@
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 595.0,
+        "vertical_range": 580.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -50,7 +50,7 @@
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 595.0,
+        "vertical_range": 580.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -79,7 +79,7 @@
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 639.0,
+        "vertical_range": 624.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -108,7 +108,7 @@
         "monitor_width": 800,
         "monitor_height": 600,
         "horizontal_overflow": 0.0,
-        "vertical_range": 595.0,
+        "vertical_range": 580.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -137,7 +137,7 @@
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
-        "vertical_range": 427.0,
+        "vertical_range": 412.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -166,7 +166,7 @@
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
-        "vertical_range": 427.0,
+        "vertical_range": 412.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -195,7 +195,7 @@
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
-        "vertical_range": 471.0,
+        "vertical_range": 456.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -224,7 +224,7 @@
         "monitor_width": 1024,
         "monitor_height": 768,
         "horizontal_overflow": 0.0,
-        "vertical_range": 427.0,
+        "vertical_range": 412.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -253,7 +253,7 @@
         "monitor_width": 1920,
         "monitor_height": 1080,
         "horizontal_overflow": 0.0,
-        "vertical_range": 363.0,
+        "vertical_range": 348.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -282,7 +282,7 @@
         "monitor_width": 1920,
         "monitor_height": 1080,
         "horizontal_overflow": 0.0,
-        "vertical_range": 363.0,
+        "vertical_range": 348.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -311,7 +311,7 @@
         "monitor_width": 1920,
         "monitor_height": 1080,
         "horizontal_overflow": 0.0,
-        "vertical_range": 407.0,
+        "vertical_range": 392.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
@@ -340,7 +340,7 @@
         "monitor_width": 1920,
         "monitor_height": 1080,
         "horizontal_overflow": 0.0,
-        "vertical_range": 363.0,
+        "vertical_range": 348.0,
         "footer_visible": true,
         "scrollbars_visible": false
       }
