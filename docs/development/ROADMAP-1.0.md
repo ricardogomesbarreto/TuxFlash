@@ -1,15 +1,15 @@
 # Caminho para a versão 1.0 / Road to version 1.0
 
-Revisão / Review: **2026-10-28**. Versão pública / Public release: **0.3.6**.
+Revisão / Review: **2026-10-29**. Versão pública / Public release: **0.3.7**.
 Este documento define critérios de aprovação; não declara recursos pendentes como concluídos.
 This document defines acceptance criteria; it does not mark pending features complete.
 
 ## Português Brasil
 
 A base atual tem GUI e CLI nativas, backend compartilhado, proteção de discos do
-sistema, verificação de gravação e pacote portátil x86-64. A 0.3.6 passou em
-21 suítes nativas, 45 casos de backend em VM, 31 casos do helper com ASan/UBSan
-e 24 configurações de interface. Veja a [revisão da 0.3.6](../validation/REVISAO-0.3.6.md).
+sistema, verificação de gravação e pacote portátil x86-64. A 0.3.7 passou em
+23 suítes nativas, 48 casos de backend em VM, 34 casos do helper com ASan/UBSan
+e 24 configurações de interface. Veja a [revisão da 0.3.7](../validation/REVISAO-0.3.7.md).
 Esses resultados não comprovam instalação completa, todos os firmwares ou todas as distribuições.
 
 ### Critérios que ainda faltam
@@ -17,7 +17,7 @@ Esses resultados não comprovam instalação completa, todos os firmwares ou tod
 | Prioridade | Frente | Critério de aprovação para a 1.0 | Estado comprovado |
 | --- | --- | --- | --- |
 | Crítica | Segurança de destino | Repetir as proteções com o pacote candidato: disco do sistema, swap, volumes dependentes, dispositivo trocado/desconectado e montagem alterada após confirmação. Nenhuma escrita no alvo errado; nenhuma falha reportada como sucesso. | Proteções e regressões existentes; falta ampliar cenários e qualificar o pacote final. |
-| Crítica | Helper e Polkit | Executar GUI → pkexec → helper real em VM com usuário comum; aprovar, negar e cancelar autenticação, cancelar I/O bloqueada e encerrar a interface. Confirmar que a política não autoriza sessões indevidas. | Fluxo automatizado real aprovado em 11 casos GUI e recusa sem sessão; agentes visuais e encerramento abrupto ainda pendentes. Veja [Polkit](../validation/POLKIT-2026-10-28.md). |
+| Crítica | Helper e Polkit | Executar GUI → pkexec → helper real em VM com usuário comum; aprovar, negar e cancelar autenticação, cancelar I/O bloqueada e encerrar a interface. Confirmar que a política não autoriza sessões indevidas. | Fluxo real aprovado em 13 casos GUI e recusa sem sessão; perda abrupta durante RAW aprovada nos dois layouts. Agentes visuais, árvores arbitrárias de processos e outros modos de escrita ainda pendentes. Veja [0.3.7](../validation/REVISAO-0.3.7.md). |
 | Alta | Falhas e recuperação | Simular falta de espaço, erros de leitura/escrita, imagem alterada/truncada, retirada do USB e falha no commit final. Saída sem falso sucesso, limpeza de recursos e próximo trabalho possível. | Vários casos unitários já cobertos; falta matriz integrada GUI/CLI e pacote candidato. |
 | Alta | Imagens Linux reais | Gravar e comparar as imagens completas suportadas com o binário final; iniciar o sistema/instalador além do menu em BIOS/UEFI conforme a imagem. Repetir SteamOS comprimido completo. | Evidências reais históricas; falta qualificação completa da candidata final. |
 | Alta | Instalador Windows | Recriar a mídia com o binário final e concluir uma instalação em disco virtual descartável. Qualificar os modos FAT32/WIM dividido, UEFI:NTFS e BIOS/UEFI anunciados, incluindo seleção de edição e instalação não assistida em VM com discos extras preservados. Investigar a captura azul anterior com logs e reprodução controlada. | Boot até escolha de idioma; instalação completa pendente. Controle virtual não comprovou correção da captura física. |
@@ -48,7 +48,7 @@ com o Rufus Windows não são critérios verificáveis para este lançamento.
 
 Os marcos abaixo são planejamento; não são versões já publicadas nem um calendário.
 
-1. **0.3.7 — falhas e cancelamento:** ampliar regressões da GUI/CLI, testar Polkit real em VM e cenários de troca/desconexão do destino.
+1. **0.3.7 — entregue nesta revisão:** SIGPIPE, entrega de entrada, regressões e perda da GUI durante RAW com Polkit real; troca/desconexão e demais falhas continuam na próxima etapa.
 2. **0.4 — mídias completas:** qualificar imagens reais com o pacote exato e completar uma instalação Windows; investigar divergências com evidências.
 3. **0.5 — recursos avançados:** concluir persistência entre boots e Windows To Go até o desktop; recuperação física Steam Deck quando houver hardware disponível para esse ensaio.
 4. **0.6–0.8 — portabilidade e entrega:** executar a matriz de distribuições, consolidar empacotamento e revisar os quatro idiomas e acessibilidade.
@@ -65,7 +65,7 @@ dos controles. Passaram nas 12 combinações de idioma/resolução com bibliotec
 nativas e nas mesmas 12 com o runtime portátil. São processos simulados usando
 pipes; não executam o helper real, Polkit ou gravação em dispositivo.
 [Evidência sanitizada](../validation/evidence/linux/tuxflash/road-to-1.0/gui-writer-lifecycle.json).
-A versão pública continua 0.3.6; isso é avanço dos testes no desenvolvimento.
+Essas regressões integram a versão pública 0.3.7.
 
 ### Como registrar um resultado
 
@@ -83,9 +83,9 @@ ser substituída por uma porcentagem estimada de progresso.
 ## English
 
 The current foundation provides native GUI/CLI, a shared backend, system-disk
-protection, write verification and an x86-64 portable package. Version 0.3.6 passed
-21 native suites, 45 VM backend cases, 31 nonprivileged helper sanitizer cases and
-24 GUI configurations. See the [0.3.6 review](../validation/REVISAO-0.3.6.md).
+protection, write verification and an x86-64 portable package. Version 0.3.7 passed
+23 native suites, 48 VM backend cases, 34 nonprivileged helper sanitizer cases and
+24 GUI configurations. See the [0.3.7 review](../validation/REVISAO-0.3.7.md).
 These results do not establish complete installations or universal firmware/distribution support.
 
 ### Remaining acceptance criteria
@@ -93,7 +93,7 @@ These results do not establish complete installations or universal firmware/dist
 | Priority | Area | Required evidence |
 | --- | --- | --- |
 | Critical | Target safety | Candidate-package tests for system/swap/dependent volumes, device replacement/removal and mount changes after confirmation. No wrong-target writes or false success. |
-| Critical | Helper/Polkit | Real GUI → pkexec → helper authorization in a VM as an ordinary user: approval, denial, auth cancellation, blocked-I/O cancellation and frontend exit. Cross-UID and real automated Polkit/PAM tests pass; human desktop agents and abrupt-exit qualification remain open. See the [Polkit report](../validation/POLKIT-2026-10-28.md). |
+| Critical | Helper/Polkit | Real GUI → pkexec → helper authorization in a VM as an ordinary user: approval, denial, auth cancellation, blocked-I/O cancellation and frontend exit. Cross-UID and real automated Polkit/PAM tests pass; abrupt RAW frontend exit passes in both layouts; visual desktop agents, arbitrary subprocess trees and other write modes remain open. See the [0.3.7 report](../validation/REVISAO-0.3.7.md). |
 | High | Failure recovery | Integrated GUI/CLI faults: ENOSPC, read/write errors, modified/truncated input, USB removal and final commit failure. Cleanup and a subsequent operation must work. |
 | High | Real Linux images | Full write/read-back with the final binary, including compressed SteamOS; boot beyond menus to the advertised installer/session in the applicable BIOS/UEFI modes. |
 | High | Windows installer | Recreate media with the final binary and finish installation on a disposable virtual disk. Qualify FAT32/split WIM, UEFI:NTFS and advertised BIOS/UEFI paths, including edition selection and unattended installation with extra VM disks left intact. Investigate the earlier physical-USB blue capture with reproducible evidence/logs. |
@@ -114,8 +114,7 @@ Secure Boot requires its own image/firmware qualification. FFU remains outside
 the current Linux backend. Neither universal compatibility nor complete Windows
 Rufus parity is an established release claim.
 
-Planned milestones, without promised dates: **0.3.7** failure/cancellation and real
-Polkit tests; **0.4** full media/Windows installation; **0.5** persistent reboots
+Delivered **0.3.7** covers SIGPIPE, input delivery and abrupt RAW frontend exit with real Polkit. Further fault/removal scenarios remain open. Planned milestones, without promised dates: **0.4** full media/Windows installation; **0.5** persistent reboots
 and Windows To Go desktop; **0.6–0.8** portability, delivery and UI/language review;
 **0.9 / 1.0-rc** scope freeze and exact-artifact regression; **1.0** only after all
 mandatory stable-scope gates pass. Physical Steam Deck recovery additionally
@@ -137,10 +136,16 @@ and control recovery between cases. All 12 language/resolution configurations
 passed with native libraries and the same 12 with the portable runtime. Children
 are pipe-only mocks; the real helper, Polkit and physical targets are not exercised.
 See the [sanitized evidence](../validation/evidence/linux/tuxflash/road-to-1.0/gui-writer-lifecycle.json).
-The public release remains 0.3.6; this is development test progress.
+These regressions are included in the public 0.3.7 release.
 
-### Atualização Polkit / Polkit update — 2026-10-28
+### Histórico Polkit / Polkit history — 2026-10-28
 
-A bateria real em VM passou nos 11 casos GUI e na recusa sem sessão. Ela cobre autorização/recusa, senha incorreta, cancelamento antes/depois de autorizar e sessão instalada inativa. Agentes visuais GNOME/KDE, encerramento abrupto e demais ambientes continuam abertos. [Relatório e limites](../validation/POLKIT-2026-10-28.md).
+A bateria real em VM passou nos 11 casos GUI e na recusa sem sessão. Ela cobre autorização/recusa, senha incorreta, cancelamento antes/depois de autorizar e sessão instalada inativa. Naquela revisão, agentes visuais GNOME/KDE, encerramento abrupto e demais ambientes continuavam abertos; veja a atualização 0.3.7 abaixo. [Relatório e limites](../validation/POLKIT-2026-10-28.md).
 
-The real VM battery passed 11 GUI cases and sessionless denial. Human GNOME/KDE agents, abrupt exit and other environments remain open. See the linked report and limits.
+The real VM battery passed 11 GUI cases and sessionless denial. At that date, human GNOME/KDE agents, abrupt exit and other environments remained open; see the 0.3.7 update below and the linked historical report.
+
+### Atualização 0.3.7 / 0.3.7 update — 2026-10-29
+
+Treze casos GUI com Polkit real e recusa sem sessão passaram. A GUI encerrou abruptamente durante RAW e o helper terminou por cancelamento normal em ambos os layouts. A base anterior falha nas três novas regressões de SIGPIPE/entrada; a candidata passa. As demais linhas da matriz continuam abertas. [Relatório](../validation/REVISAO-0.3.7.md).
+
+Thirteen real-Polkit GUI cases plus sessionless denial passed. Abrupt frontend exit during RAW produced normal helper cancellation in both layouts. The baseline fails all three new SIGPIPE/input regressions and the candidate passes. Other acceptance gates remain open; see the linked report.

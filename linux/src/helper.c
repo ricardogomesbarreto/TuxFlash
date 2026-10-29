@@ -186,11 +186,17 @@ static void handle_signal(int signal_number)
 static int install_signal_handlers(void)
 {
     struct sigaction action = {0};
+    struct sigaction broken_pipe = {0};
+    broken_pipe.sa_handler = SIG_IGN;
+    sigemptyset(&broken_pipe.sa_mask);
     action.sa_handler = handle_signal;
     sigemptyset(&action.sa_mask);
     /* signal() may enable SA_RESTART: a cancellation would then resume a
      * blocked read instead of returning EINTR to the verification loop. */
-    return sigaction(SIGINT, &action, NULL) == 0 &&
+    /* A disappeared frontend also closes stdout. Never let SIGPIPE skip
+     * cancellation handling, child reaping or filesystem cleanup. */
+    return sigaction(SIGPIPE, &broken_pipe, NULL) == 0 &&
+           sigaction(SIGINT, &action, NULL) == 0 &&
            sigaction(SIGTERM, &action, NULL) == 0 ? 0 : -1;
 }
 
@@ -1383,48 +1389,45 @@ static int run_command_input(char *const arguments[], const char *input)
     int pipe_fds[2] = {-1, -1};
     pid_t child;
     int status;
-    if (strcmp(arguments[0], "umount") != 0 &&
-        (cancelled || revalidate_active_target() != 0)) { errno = cancelled ? ECANCELED : errno; return -1; }
-    if (input != NULL && pipe(pipe_fds) != 0)
-        return -1;
+    int input_error = 0;
+    bool cleanup = strcmp(arguments[0], "umount") == 0;
+    if (!cleanup && (cancelled || revalidate_active_target() != 0)) {
+        errno = cancelled ? ECANCELED : errno; return -1;
+    }
+    if (input != NULL && pipe2(pipe_fds, O_CLOEXEC) != 0) return -1;
     child = fork();
     if (child < 0) {
-        if (pipe_fds[0] >= 0) {
-            close(pipe_fds[0]);
-            close(pipe_fds[1]);
-        }
+        if (pipe_fds[0] >= 0) { close(pipe_fds[0]); close(pipe_fds[1]); }
         return -1;
     }
     if (child == 0) {
         if (input != NULL) {
-            dup2(pipe_fds[0], STDIN_FILENO);
-            close(pipe_fds[0]);
-            close(pipe_fds[1]);
+            if (dup2(pipe_fds[0], STDIN_FILENO) < 0 ||
+                fcntl(STDIN_FILENO, F_SETFD, 0) < 0) _exit(126);
+            if (pipe_fds[0] != STDIN_FILENO) close(pipe_fds[0]);
+            if (pipe_fds[1] != STDIN_FILENO) close(pipe_fds[1]);
         }
         exec_tool(arguments);
         _exit(127);
     }
     decompressor_pid = child;
+    if (cancelled && !cleanup) kill(child, SIGTERM);
     if (input != NULL) {
-        size_t offset = 0;
-        size_t length = strlen(input);
         close(pipe_fds[0]);
-        while (offset < length) {
-            ssize_t count = write(pipe_fds[1], input + offset, length - offset);
-            if (count < 0 && errno == EINTR)
-                continue;
-            if (count <= 0)
-                break;
-            offset += (size_t)count;
+        if (write_all(pipe_fds[1], (const unsigned char *)input, strlen(input)) != 0) {
+            input_error = errno;
+            kill(child, SIGTERM);
         }
         close(pipe_fds[1]);
     }
-    if (wait_child(child, &status) < 0) {
-        decompressor_pid = -1;
-        return -1;
-    }
+    pid_t waited = wait_child(child, &status);
+    int wait_error = errno;
     decompressor_pid = -1;
-    return WIFEXITED(status) && WEXITSTATUS(status) == 0 ? 0 : -1;
+    if (waited < 0) { errno = wait_error; return -1; }
+    if (cancelled && !cleanup) { errno = ECANCELED; return -1; }
+    if (input_error != 0) { errno = input_error; return -1; }
+    if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) { errno = EIO; return -1; }
+    return 0;
 }
 
 static char *windows_image_default_language(const char *image_path,

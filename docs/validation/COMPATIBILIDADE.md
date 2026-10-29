@@ -1,7 +1,7 @@
 # Compatibilidade e interface — escopo comprovado
 
 Não foi atingida equivalência integral com o Rufus Windows. A aplicação é o
-TuxFlash 0.3.6 nativo (derivado do Lufus 0.2.2), integrado ao núcleo de hashes do Rufus e às correções locais.
+TuxFlash 0.3.7 nativo (derivado do Lufus 0.2.2), integrado ao núcleo de hashes do Rufus e às correções locais.
 
 ## ISOs Linux
 
@@ -104,3 +104,7 @@ continua navegável por roda do mouse, toque e teclado.
 Veja a [revisão de estabilidade](REVISAO-0.3.6.md). Os limites de firmware,
 desktop, persistência e compatibilidade universal continuam separados dessas
 correções de I/O.
+
+## Revisão 0.3.7
+
+O helper preserva o caminho de cancelamento/limpeza ao perder o canal de logs. Falhas na entrega da entrada de comandos e cancelamento impedem sucesso indevido, preservando o comando de desmontagem na limpeza. Veja a [revisão e qualificação](REVISAO-0.3.7.md); os limites de instalação completa, firmware e sistemas operacionais permanecem explícitos.

@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.6\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.7\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -871,3 +871,15 @@ msgstr "Cancellation uses a private channel from the GUI or CLI to the administr
 
 msgid "The window fits the screen and keeps status and action buttons visible. Long text adapts to the available width without visible scrollbars; expanded options remain accessible by mouse, touch and keyboard."
 msgstr "The window fits the screen and keeps status and action buttons visible. Long text adapts to the available width without visible scrollbars; expanded options remain accessible by mouse, touch and keyboard."
+
+msgid "Updated in 0.3.7"
+msgstr "Updated in 0.3.7"
+
+msgid "Protects the administrative helper from premature termination when the frontend log pipe is closed."
+msgstr "Protects the administrative helper from premature termination when the frontend log pipe is closed."
+
+msgid "Media-creation commands no longer count as successful if input delivery fails or cancellation was requested."
+msgstr "Media-creation commands no longer count as successful if input delivery fails or cancellation was requested."
+
+msgid "Expanded regression and VM tests cover log-pipe loss and abrupt frontend exit without accessing physical disks."
+msgstr "Expanded regression and VM tests cover log-pipe loss and abrupt frontend exit without accessing physical disks."

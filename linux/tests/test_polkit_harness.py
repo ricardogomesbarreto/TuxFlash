@@ -26,7 +26,8 @@ with tempfile.TemporaryDirectory(prefix="tuxflash-polkit-guard-", dir="/tmp") as
     # Guest scripts must refuse the host before any log, service or poweroff.
     for program in (["bash", str(runner.parent / "guest-setup.sh")],
                     ["bash", str(runner.parent / "guest-user.sh")],
-                    [sys.executable, "-O", str(runner.parent / "guest-controller.py")]):
+                    [sys.executable, "-O", str(runner.parent / "guest-controller.py")],
+                    [sys.executable, "-O", str(runner.parent / "guest-supervise.py"), "installed"]):
         result = subprocess.run(program, env=env, capture_output=True, text=True, timeout=5)
         assert result.returncode == 64, (program, result.stderr)
         assert "disposable guest" in result.stderr, result.stderr

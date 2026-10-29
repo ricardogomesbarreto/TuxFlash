@@ -212,6 +212,10 @@ source_link_guard() {
  done
  [ "$before" = "$(sha256sum "$d")" ]
 }
+# Direct ELF execution keeps this fake-tool lifecycle test separate from the runtime.
+run_case frontend-exit-cleanup /test-only/libexec/helper-lifecycle -p /lifecycle/frontend-exit-cleanup
+run_case input-pipe-short /test-only/libexec/helper-lifecycle -p /lifecycle/input-pipe-short
+run_case cancel-input-zero-exit /test-only/libexec/helper-lifecycle -p /lifecycle/cancel-input-zero-exit
 run_case exact-capacity-guard near_capacity
 run_case disk-sequence-guard wrong_sequence
 run_case disk-sequence-valid correct_sequence

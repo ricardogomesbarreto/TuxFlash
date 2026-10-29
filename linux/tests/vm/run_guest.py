@@ -22,4 +22,4 @@ data=(b/'serial.log').read_text(errors='replace')
 print('\n'.join(line for line in data.splitlines() if line.startswith('QA ')))
 import re,sys
 summary=re.search(r'QA SUMMARY passed=(\d+) failed=(\d+)',data)
-sys.exit(0 if r.returncode==0 and summary and int(summary[1])==45 and int(summary[2])==0 else 1)
+sys.exit(0 if r.returncode==0 and summary and int(summary[1])==48 and int(summary[2])==0 else 1)

@@ -8,9 +8,10 @@ agente automatizado implementa a API oficial do Polkit e responde com uma senha
 aleatória criada apenas na VM; não altera a política para permitir acesso sem
 autenticação. O helper e suas bibliotecas vêm do pacote portátil fornecido.
 
-São **11 casos GUI**: autorização, recusa do agente, senha incorreta,
+São **13 casos GUI**: autorização, recusa do agente, senha incorreta,
 cancelamento durante autenticação e durante escrita em cada um dos layouts
-instalado/portátil, mais recusa em sessão local inativa no layout instalado.
+instalado/portátil, mais recusa em sessão local inativa no layout instalado e encerramento abrupto
+da GUI durante RAW nos dois layouts.
 Há ainda recusa de um chamador sem sessão local. A GUI usa os métodos reais de
 início, leitura de eventos, espera e cancelamento; a seleção/confirmação inicial
 do trabalho é preparada pelo fixture, sem automatizar um clique humano no diálogo.
@@ -24,7 +25,7 @@ pacote Debian/RPM nem teste de um agente visual GNOME/KDE.
 
 Apenas dois arquivos novos são conectados ao QEMU: raiz ext4 de 3 GiB e USB
 virtual de 64 MiB. Não são aceitos destinos físicos. O USB tem limite de escrita
-de 1 MiB/s para tornar o cancelamento reproduzível. O controlador root compara
+de 8 MiB/s para tornar o cancelamento reproduzível. O controlador root compara
 SHA-256 do dispositivo completo nas recusas e no cancelamento antes da escrita;
 a autorização positiva exige comparação dos bytes efetivamente gravados. A rede
 existe para instalar pacotes no primeiro boot e os links são desativados antes
@@ -77,8 +78,13 @@ O resultado é `results.json`, acompanhado por `provenance.json` e `serial.log`.
 A pasta e a imagem contêm uma credencial descartável; mantenha-as privadas.
 Publique somente o resumo sanitizado, nunca a imagem, senha, logs sem revisão
 ou uma alegação de compatibilidade além do ambiente efetivamente executado.
+Um supervisor sem privilégios usa `PR_SET_CHILD_SUBREAPER` e espera o helper
+real após a GUI chamar `_exit(0)`: exige saída normal 1, sem SIGPIPE. Isso cobre
+a perda abrupta da interface durante RAW; não comprova rollback nem limpeza de
+árvores arbitrárias de subprocessos. O teste unitário separado usa uma ferramenta
+cooperante e um `umount` falso para verificar a passagem pela limpeza.
 Este ensaio não cobre ISO Windows completa, persistência, Secure Boot, retirada
-física de USB, encerramento abrupto da GUI ou todos os agentes/desktops Linux.
+física de USB ou todos os agentes/desktops Linux.
 
 ## English
 
@@ -88,9 +94,10 @@ UID 1000. An automated official-API agent answers with a random guest-only
 credential; no rule bypasses authentication. Initial job selection/confirmation
 is prepared by the fixture rather than a human clicking the confirmation dialog.
 
-Eleven GUI cases cover approval, agent dismissal, wrong password, cancellation
+Thirteen GUI cases cover approval, agent dismissal, wrong password, cancellation
 during authentication and during writing for installed and portable layouts,
-plus inactive-local-session rejection for the installed layout. A separate
+plus inactive-local-session rejection for the installed layout and abrupt GUI
+exit during RAW in both layouts. A separate
 sessionless caller must also be rejected. The installed wrapper uses the original
 application policy; the portable helper uses Polkit's generic exec action.
 Temporary grants are revoked between cases. GNOME/KDE visual agents and native
@@ -113,8 +120,12 @@ prevent ordinary host execution.
 
 Review `results.json`, `provenance.json` and private `serial.log`. Images contain
 an ephemeral credential and must stay private; publish only sanitized evidence.
+An ordinary-user subreaper waits for the real root helper after the GUI calls
+`_exit(0)`: normal exit 1 is required, without SIGPIPE. This qualifies abrupt
+frontend loss during RAW, not rollback or arbitrary subprocess-tree cleanup.
+A separate unit test uses a cooperating tool and fake umount to check cleanup.
 This test does not qualify full Windows installation, persistent reboots, Secure
-Boot, physical removal, abrupt frontend exit or every desktop authentication agent.
+Boot, physical removal or every desktop authentication agent.
 
 ## Fontes / Sources
 

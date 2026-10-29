@@ -103,7 +103,7 @@ static void inspect_root(void)
 }
 static void run_case(int number, const char *device)
 {
-    case_number = number; mode = number == 11 ? 11 : (number - 1) % 5 + 1; challenges = authentications = requests = 0;
+    case_number = number; mode = number >= 11 ? number : (number - 1) % 5 + 1; challenges = authentications = requests = 0;
     cancellation_sent = root_observed = FALSE;
     g_string_truncate(gui->log, 0);
     g_autofree char *source = g_strdup_printf("/home/tuxqa/source-%02d.img", case_number);
@@ -111,7 +111,7 @@ static void run_case(int number, const char *device)
     g_assert_cmpint(fd, >=, 0);
     unsigned char block[65536]; memset(block, 0x40 + mode, sizeof(block));
     for (int i=0;i<16;i++) g_assert_cmpint(write(fd, block, sizeof(block)), ==, sizeof(block));
-    if (mode == 5) g_assert_cmpint(ftruncate(fd, 64 * 1024 * 1024), ==, 0);
+    if (mode == 5 || mode >= 12) g_assert_cmpint(ftruncate(fd, 64 * 1024 * 1024), ==, 0);
     close(fd);
     g_free(gui->image_path); gui->image_path = g_strdup(source);
     g_autofree char *ack = g_strdup_printf("%02d-before.ready", case_number);
@@ -124,7 +124,7 @@ static void run_case(int number, const char *device)
     pending->device_size = snapshot->device_size; pending->disk_sequence = snapshot->disk_sequence;
     pending->type = LUFUS_JOB_RAW_WRITE; pending->runtime_validation = TRUE;
     lufus_job_free(snapshot);
-    gui->image_size = mode == 5 ? 64 * 1024 * 1024 : 1024 * 1024;
+    gui->image_size = (mode == 5 || mode >= 12) ? 64 * 1024 * 1024 : 1024 * 1024;
     gtk_widget_set_sensitive(GTK_WIDGET(gui->start_button), TRUE);
     begin_write(pending);
     g_assert_true(gtk_widget_get_sensitive(GTK_WIDGET(gui->start_button)));
@@ -133,6 +133,14 @@ static void run_case(int number, const char *device)
     while (gui->writer != NULL && g_get_monotonic_time() < deadline) {
         while (g_main_context_iteration(NULL, FALSE)) {}
         inspect_root();
+        if (mode >= 12 && authentications > 0 && strstr(gui->log->str, "Writing image") != NULL) {
+            g_autofree char *path = g_strdup_printf("%s/%02d-detached.json", work, case_number);
+            const char *pid = g_subprocess_get_identifier(gui->writer);
+            g_autofree char *data = g_strdup_printf("{\"case\":%d,\"helper_pid\":%s,\"auth_challenges\":%d,\"pam_authenticated\":%d}\n", case_number, pid, challenges, authentications);
+            g_assert_true(g_file_set_contents(path, data, -1, NULL));
+            /* Simulate an abrupt frontend death, not the Cancel callback. */
+            _exit(0);
+        }
         if (mode == 5 && !cancellation_sent && strstr(gui->log->str, "Writing image") != NULL) {
             g_signal_emit_by_name(gui->start_button, "clicked"); cancellation_sent = TRUE;
             g_assert_true(gui->writer_cancel_requested);
@@ -200,6 +208,7 @@ int main(int argc, char **argv)
     g_assert_true(g_file_set_contents("/var/lib/tuxflash-qa/session-id", session_id, -1, NULL));
     for (int i=first;i<first+5;i++) run_case(i, device);
     if (first == 1) run_case(11, device);
+    run_case(first == 1 ? 12 : 13, device);
     polkit_agent_listener_unregister(registration); g_object_unref(listener); g_object_unref(subject);
     gtk_window_destroy(GTK_WINDOW(gui->window)); g_object_unref(app);
     g_free(device); memset(guest_secret, 0, strlen(guest_secret)); g_free(guest_secret);

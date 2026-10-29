@@ -71,7 +71,7 @@ def prepare(a):
     write('/etc/cloud/cloud-init.disabled', 'TuxFlash QA uses explicit setup\n')
     write('/etc/systemd/network/10-qa.network', '[Match]\nName=en* eth*\n[Network]\nDHCP=yes\n')
     write('/root/.qa-secret', secrets.token_urlsafe(24) + '\n', 0o600)
-    for src, dst in [('guest-setup.sh', 'qa-setup.sh'), ('guest-user.sh', 'qa-user-runner'), ('guest-controller.py', 'qa-controller.py')]:
+    for src, dst in [('guest-setup.sh', 'qa-setup.sh'), ('guest-user.sh', 'qa-user-runner'), ('guest-controller.py', 'qa-controller.py'), ('guest-supervise.py', 'qa-supervise.py')]:
         out = root / 'usr/local/libexec' / dst
         out.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(HERE / src, out)
@@ -164,7 +164,7 @@ def main():
            '-display', 'none', '-serial', 'stdio', '-monitor', 'none', '-no-reboot',
            '-kernel', str(a.kernel), '-append', 'console=ttyS0 root=/dev/vda rw rootfstype=ext4 panic=-1 tuxflash_qa=1',
            '-drive', f'if=virtio,file={a.work}/root.img,format=raw', '-device', 'qemu-xhci,id=xhci',
-           '-drive', f'if=none,file={usb},format=raw,id=usb,bps_wr=1048576',
+           '-drive', f'if=none,file={usb},format=raw,id=usb,bps_wr=8388608',
            '-device', 'usb-storage,bus=xhci.0,drive=usb,removable=on', '-netdev', 'user,id=n1,ipv6=off',
            '-device', 'virtio-net-pci,netdev=n1', '-rtc', 'base=utc,clock=host']
     env = dict(os.environ)
@@ -185,9 +185,9 @@ def main():
         raise RuntimeError('VM failed or produced no result; inspect private serial.log')
     summary = json.loads(summaries[-1])
     (a.work / 'results.json').write_text(json.dumps({'provenance': provenance, **summary}, indent=2) + '\n')
-    if not summary['passed'] or summary['gui_cases_passed'] != 11:
+    if not summary['passed'] or summary['gui_cases_passed'] != 13:
         raise RuntimeError('Integration case failed; inspect private serial.log')
-    print('POLKIT VM PASS: 11 GUI cases and sessionless denial', flush=True)
+    print('POLKIT VM PASS: 13 GUI cases and sessionless denial', flush=True)
 
 
 if __name__ == '__main__':

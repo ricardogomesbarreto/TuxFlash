@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.6\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.7\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -871,3 +871,15 @@ msgstr "取消操作通过图形界面或命令行与管理员辅助程序之间
 
 msgid "The window fits the screen and keeps status and action buttons visible. Long text adapts to the available width without visible scrollbars; expanded options remain accessible by mouse, touch and keyboard."
 msgstr "窗口适应屏幕大小，并保持状态和操作按钮可见。长文本适应可用宽度，不显示滚动条；展开的选项仍可通过鼠标、触摸和键盘访问。"
+
+msgid "Updated in 0.3.7"
+msgstr "0.3.7 版更新"
+
+msgid "Protects the administrative helper from premature termination when the frontend log pipe is closed."
+msgstr "前端日志管道关闭时，可防止管理辅助程序过早终止。"
+
+msgid "Media-creation commands no longer count as successful if input delivery fails or cancellation was requested."
+msgstr "如果输入传输失败或已请求取消，介质创建命令将不再被视为成功。"
+
+msgid "Expanded regression and VM tests cover log-pipe loss and abrupt frontend exit without accessing physical disks."
+msgstr "扩展的回归测试和虚拟机测试涵盖日志管道丢失及前端突然退出，且不会访问物理磁盘。"

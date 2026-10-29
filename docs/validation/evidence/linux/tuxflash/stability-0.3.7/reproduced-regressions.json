@@ -1,0 +1,21 @@
+{
+  "baseline_commit": "b8ae3597eecf0f79ce28358c2e712a13e29444d3",
+  "cases": [
+    {
+      "test": "/lifecycle/frontend-exit-cleanup",
+      "baseline_process_exit": 134,
+      "candidate_process_exit": 0
+    },
+    {
+      "test": "/lifecycle/input-pipe-short",
+      "baseline_process_exit": 134,
+      "candidate_process_exit": 0
+    },
+    {
+      "test": "/lifecycle/cancel-input-zero-exit",
+      "baseline_process_exit": 134,
+      "candidate_process_exit": 0
+    }
+  ],
+  "physical_io": false
+}

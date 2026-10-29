@@ -35,6 +35,12 @@ for name in ('lufus-helper','bcd-sys/set-windows-san-policy','bcd-sys/lufus-reg-
 for name in ('qemu-img','wimlib-imagex','hivexsh','f3probe','fatattr','setfattr'):
  p=PROJECT/'linux/runtime/bin'/name
  if p.exists():add_binary(p,'/opt/lufus/bin/'+name)
+# Dedicated fixtures are compiled by the normal native build, not shipped as tools.
+build = Path(os.environ.get('TUXFLASH_BUILD_DIR', str(PROJECT/'build/native')))
+add_binary(build/'test-helper-io', '/opt/lufus/bin/.tuxflash-io-test.bin')
+# Execute this ELF directly: runtime/run-elf would change /proc/self/exe and
+# resolve the lifecycle test's fake umount to the bundled production tool.
+add_binary(build/'test-helper-lifecycle', '/test-only/libexec/helper-lifecycle')
 # Kernel modules are copied together with dependencies and decompressed.
 kver=KVER
 for mod in ('usb-storage','isofs','udf','ntfs3','nls_cp437','nls_iso8859-1','fuse'):

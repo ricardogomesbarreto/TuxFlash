@@ -14,8 +14,10 @@ modprobe usb-storage
 sleep 2
 find /var/lib/tuxflash-qa -maxdepth 1 -type f ! -name setup.done -delete
 if [ ! -e /var/lib/tuxflash-qa/setup.done ]; then
- apt-get update -qq
- apt-get install -y --no-install-recommends kbd dbus dbus-user-session polkitd pkexec policykit-1 libpam-systemd xvfb xauth python3
+ # Official mirrors over HTTPS also work on networks that reject plain HTTP.
+ sed -i -e 's|http://|https://|g' -e 's|https://archive.ubuntu.com/ubuntu|https://us.archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
+ apt-get -o Acquire::ForceIPv4=true -o Acquire::Languages=none -o Acquire::Retries=1 -o Acquire::https::Timeout=20 -o APT::Update::Error-Mode=any update -qq
+ apt-get -o Acquire::ForceIPv4=true -o Acquire::Languages=none -o Acquire::Retries=1 -o Acquire::https::Timeout=20 install -y --no-install-recommends kbd dbus dbus-user-session polkitd pkexec policykit-1 libpam-systemd xvfb xauth python3
  useradd -m -u 1000 -U -G sudo -s /bin/bash tuxqa
  python3 - <<'PY'
 from pathlib import Path

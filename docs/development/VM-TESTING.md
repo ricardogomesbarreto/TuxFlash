@@ -6,9 +6,9 @@ arquivos regulares sob `/tmp`: 64 MiB, 1 GiB e 8 GiB. Não aceita um dispositivo
 físico como argumento e desabilita a rede do guest. Execute os scripts do host
 como usuário normal, sem `sudo`.
 
-São 45 verificações de gravação, leitura, captura, restauração, recusas de
+São 48 verificações de gravação, leitura, captura, restauração, recusas de
 segurança, cancelamento, teste de blocos, layouts de persistência e preparação
-de instaladores. O teste Windows To Go usa um WIM sintético com arquivos EFI e
+de instaladores, incluindo três regressões de perda da interface/entrada de comandos. O teste Windows To Go usa um WIM sintético com arquivos EFI e
 hives mínimos; **não contém Windows nem demonstra uma instalação Windows**.
 Os testes de firmware executam pequenos programas criados para retornar uma
 marca serial, sem iniciar um sistema operacional. Secure Boot fica desativado.
@@ -24,7 +24,8 @@ SCSI, ext4, vfat e controladores USB integrados.
 O runtime preparado do aplicativo deve existir e `linux/build-local.sh` deve
 ter produzido `build/native/lufus-reg-import`, usado para gerar hives
 sintéticos. Bibliotecas adicionais do desenvolvimento podem ser fornecidas
-via `LUFUS_VM_DEVROOT`.
+via `LUFUS_VM_DEVROOT`. Os fixtures `test-helper-io` e `test-helper-lifecycle`
+são copiados de `build/native`; use `TUXFLASH_BUILD_DIR` para outro build.
 
 ## Repetir
 

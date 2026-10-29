@@ -7,6 +7,21 @@ char *tuxflash_release_notes(void)
     GString *xml=g_string_new(NULL);
     {
         const char *items[] = {
+            N_("Updated in 0.3.7"),
+            N_("Protects the administrative helper from premature termination when the frontend log pipe is closed."),
+            N_("Media-creation commands no longer count as successful if input delivery fails or cancellation was requested."),
+            N_("Expanded regression and VM tests cover log-pipe loss and abrupt frontend exit without accessing physical disks."),
+        };
+        g_autofree char *title = g_markup_escape_text(g_dgettext("tuxflash", items[0]), -1);
+        g_string_append_printf(xml, "<p>%s</p><ul>", title);
+        for (guint i = 1; i < G_N_ELEMENTS(items); i++) {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", items[i]), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        g_string_append(xml, "</ul>");
+    }
+    {
+        const char *items[] = {
             N_("Updated in 0.3.6"),
             N_("Cancellation uses a private channel from the GUI or CLI to the administrative helper, preserving privilege separation."),
             N_("The window fits the screen and keeps status and action buttons visible. Long text adapts to the available width without visible scrollbars; expanded options remain accessible by mouse, touch and keyboard."),

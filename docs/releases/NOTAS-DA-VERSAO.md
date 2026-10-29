@@ -1,3 +1,16 @@
+# TuxFlash 0.3.7 — 2026-10-29
+
+- O helper administrativo ignora SIGPIPE para poder tratar o cancelamento e passar pela limpeza quando a interface desaparece.
+- Comandos auxiliares recusam sucesso quando falha a entrega da entrada ou há cancelamento, inclusive se a ferramenta termina com código zero.
+- Três regressões reproduzem os problemas da base anterior; testes ampliados de GUI, memória e VM acompanham a correção.
+- Notas na aplicação traduzidas para Português (Brasil), English, 中文（简体） e Español. Créditos e GPL-3.0-or-later preservados.
+
+Veja [resultados e limites da 0.3.7](../validation/REVISAO-0.3.7.md).
+
+The administrative helper ignores SIGPIPE so frontend loss can be handled through cancellation and cleanup. Auxiliary commands cannot report success after failed input delivery or cancellation, even when a tool exits zero. Three regressions reproduce the earlier defects; GUI, sanitizer and VM coverage accompanies the fix. In-app notes are translated into all four supported languages. Credits and GPL-3.0-or-later are preserved. See the linked review for the exact results and limits.
+
+---
+
 # TuxFlash 0.3.6 — 2026-10-28
 
 Janela adaptável sem barras visíveis, ações fixas, canal privado de cancelamento e captura VHD/VHDX com descritores fixados. Integra o lançador único e a instalação segura do atalho. Veja [alterações, validação e limites](../validation/REVISAO-0.3.6.md).
