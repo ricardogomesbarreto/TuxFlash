@@ -70,7 +70,7 @@ static void check_element(GMarkupParseContext *context,const gchar *name,
 static void test_release_notes_markup(void)
 {
     g_autofree char *notes=tuxflash_release_notes();
-    g_assert_nonnull(strstr(notes,"0.3.7"));
+    g_assert_nonnull(strstr(notes,"0.3.8"));
     g_assert_nonnull(strstr(notes,"0.3.2"));
     g_assert_nonnull(strstr(notes,"Rufus"));
     g_assert_nonnull(strstr(notes,"Lufus"));

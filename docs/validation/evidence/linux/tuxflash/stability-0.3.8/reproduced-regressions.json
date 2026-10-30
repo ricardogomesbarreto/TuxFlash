@@ -1,0 +1,48 @@
+{
+  "baseline_commit": "243bf4af1586de7bd1ef1ac30390362dcd4c7eb1",
+  "cases": [
+    {
+      "test": "/lifecycle/stubborn-progress",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/lifecycle/stubborn-input",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/lifecycle/stubborn-decoder",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/lifecycle/cancel-process-group",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/lifecycle/failed-tool-errno",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/lifecycle/stop-failed-service",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/lifecycle/stop-failed-progress",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/lifecycle/inherited-sigchld-ignore",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    }
+  ],
+  "baseline_exit_meaning": "Regression assertions or watchdog fail; not a claim that every ordinary app invocation aborts",
+  "successful_service_control_passed_on_both": true,
+  "physical_io": false
+}

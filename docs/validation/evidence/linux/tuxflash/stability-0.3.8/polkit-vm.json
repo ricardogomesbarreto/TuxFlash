@@ -1,0 +1,172 @@
+{
+  "provenance": {
+    "source_url": "https://cloud-images.ubuntu.com/minimal/releases/noble/release-20261027/",
+    "rootfs_sha256": "17900e3d6ae98e1b518e1f8914259ec7474da7f0c707456c0004f0b835fe0ed4",
+    "kernel_sha256": "9f55ef7253055a9cf68f8a04323c93dead2fca617386d842fbde9ca7b178b27e",
+    "fixture_sha256": "98881af9c8274e013f062117c7fb3cb5c4d5d75482b66775833d50259b794d2d",
+    "helper_sha256": "d2a58d75577dd1b0c2fc0988a2e29578fa8fd45f378eed1d77dea5f7170267c6",
+    "policy_sha256": "36f5640810784618f09cfe8dbafa94bbf6d1a662a4cef2414bf296ae19df5360",
+    "memory_mib": 1408,
+    "vcpus": 2,
+    "secure_boot": false,
+    "acceleration": "TCG"
+  },
+  "packages": [
+    "libpam-systemd 255.4-1ubuntu8.18",
+    "pkexec 124-2ubuntu1.24.04.4",
+    "polkitd 124-2ubuntu1.24.04.4",
+    "systemd 255.4-1ubuntu8.18",
+    "xvfb 2:21.1.12-1ubuntu1.9"
+  ],
+  "kernel": "7.0.0-38-generic",
+  "passed": true,
+  "gui_cases_passed": 13,
+  "sessionless_denied": true,
+  "physical_devices_attached": false,
+  "network_link_disabled_during_tests": true,
+  "cases": [
+    {
+      "case": 1,
+      "passed": true,
+      "auth_challenges": 1,
+      "pam_authenticated": 1,
+      "credential_requests": 1,
+      "root_observed": true,
+      "cancelled": false,
+      "completed": true,
+      "target_unchanged": false
+    },
+    {
+      "case": 2,
+      "passed": true,
+      "auth_challenges": 1,
+      "pam_authenticated": 0,
+      "credential_requests": 0,
+      "root_observed": false,
+      "cancelled": false,
+      "completed": false,
+      "target_unchanged": true
+    },
+    {
+      "case": 3,
+      "passed": true,
+      "auth_challenges": 1,
+      "pam_authenticated": 0,
+      "credential_requests": 1,
+      "root_observed": false,
+      "cancelled": false,
+      "completed": false,
+      "target_unchanged": true
+    },
+    {
+      "case": 4,
+      "passed": true,
+      "auth_challenges": 1,
+      "pam_authenticated": 1,
+      "credential_requests": 1,
+      "root_observed": false,
+      "cancelled": true,
+      "completed": false,
+      "target_unchanged": true
+    },
+    {
+      "case": 5,
+      "passed": true,
+      "auth_challenges": 1,
+      "pam_authenticated": 1,
+      "credential_requests": 1,
+      "root_observed": true,
+      "cancelled": true,
+      "completed": false,
+      "target_unchanged": false
+    },
+    {
+      "case": 11,
+      "passed": true,
+      "auth_challenges": 0,
+      "pam_authenticated": 0,
+      "credential_requests": 0,
+      "root_observed": false,
+      "cancelled": false,
+      "completed": false,
+      "target_unchanged": true
+    },
+    {
+      "case": 12,
+      "auth_challenges": 1,
+      "pam_authenticated": 1,
+      "helper_exit_code": 1,
+      "helper_signal": 0,
+      "abrupt_frontend_exit": true,
+      "completed": false,
+      "passed": true,
+      "target_unchanged": false
+    },
+    {
+      "case": 6,
+      "passed": true,
+      "auth_challenges": 1,
+      "pam_authenticated": 1,
+      "credential_requests": 1,
+      "root_observed": true,
+      "cancelled": false,
+      "completed": true,
+      "target_unchanged": false
+    },
+    {
+      "case": 7,
+      "passed": true,
+      "auth_challenges": 1,
+      "pam_authenticated": 0,
+      "credential_requests": 0,
+      "root_observed": false,
+      "cancelled": false,
+      "completed": false,
+      "target_unchanged": true
+    },
+    {
+      "case": 8,
+      "passed": true,
+      "auth_challenges": 1,
+      "pam_authenticated": 0,
+      "credential_requests": 1,
+      "root_observed": false,
+      "cancelled": false,
+      "completed": false,
+      "target_unchanged": true
+    },
+    {
+      "case": 9,
+      "passed": true,
+      "auth_challenges": 1,
+      "pam_authenticated": 1,
+      "credential_requests": 1,
+      "root_observed": false,
+      "cancelled": true,
+      "completed": false,
+      "target_unchanged": true
+    },
+    {
+      "case": 10,
+      "passed": true,
+      "auth_challenges": 1,
+      "pam_authenticated": 1,
+      "credential_requests": 1,
+      "root_observed": true,
+      "cancelled": true,
+      "completed": false,
+      "target_unchanged": false
+    },
+    {
+      "case": 13,
+      "auth_challenges": 1,
+      "pam_authenticated": 1,
+      "helper_exit_code": 1,
+      "helper_signal": 0,
+      "abrupt_frontend_exit": true,
+      "completed": false,
+      "passed": true,
+      "target_unchanged": false
+    }
+  ]
+}

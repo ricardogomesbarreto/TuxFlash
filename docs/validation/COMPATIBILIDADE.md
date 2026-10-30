@@ -1,7 +1,7 @@
 # Compatibilidade e interface — escopo comprovado
 
 Não foi atingida equivalência integral com o Rufus Windows. A aplicação é o
-TuxFlash 0.3.7 nativo (derivado do Lufus 0.2.2), integrado ao núcleo de hashes do Rufus e às correções locais.
+TuxFlash 0.3.8 nativo (derivado do Lufus 0.2.2), integrado ao núcleo de hashes do Rufus e às correções locais.
 
 ## ISOs Linux
 
@@ -108,3 +108,7 @@ correções de I/O.
 ## Revisão 0.3.7
 
 O helper preserva o caminho de cancelamento/limpeza ao perder o canal de logs. Falhas na entrega da entrada de comandos e cancelamento impedem sucesso indevido, preservando o comando de desmontagem na limpeza. Veja a [revisão e qualificação](REVISAO-0.3.7.md); os limites de instalação completa, firmware e sistemas operacionais permanecem explícitos.
+
+## Revisão 0.3.8
+
+Cancelamento de ferramentas e descompressores passa a abranger seu grupo isolado, com escalonamento para processos que ignoram SIGTERM e preservação de serviços após sucesso. Processos fora do grupo e espera ininterruptível do kernel não têm garantia de término. Veja a [revisão e qualificação](REVISAO-0.3.8.md).

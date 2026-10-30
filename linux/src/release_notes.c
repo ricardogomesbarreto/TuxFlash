@@ -7,6 +7,21 @@ char *tuxflash_release_notes(void)
     GString *xml=g_string_new(NULL);
     {
         const char *items[] = {
+            N_("Updated in 0.3.8"),
+            N_("Cancellation now reaches subprocesses that remain in the writing tool process group."),
+            N_("Stubborn tools are force-stopped after a two-second grace period. Successful background filesystem services are preserved."),
+            N_("Failed external commands report an I/O error instead of a stale success message."),
+        };
+        g_autofree char *title = g_markup_escape_text(g_dgettext("tuxflash", items[0]), -1);
+        g_string_append_printf(xml, "<p>%s</p><ul>", title);
+        for (guint i = 1; i < G_N_ELEMENTS(items); i++) {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", items[i]), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        g_string_append(xml, "</ul>");
+    }
+    {
+        const char *items[] = {
             N_("Updated in 0.3.7"),
             N_("Protects the administrative helper from premature termination when the frontend log pipe is closed."),
             N_("Media-creation commands no longer count as successful if input delivery fails or cancellation was requested."),

@@ -41,7 +41,9 @@
 #define DURABLE_TOOL_COMMIT_INTERVAL_MS 1000
 
 static volatile sig_atomic_t cancelled;
-static pid_t decompressor_pid = -1;
+/* Published only after a child owns an isolated process group. */
+static volatile sig_atomic_t decompressor_pid = -1;
+#define TOOL_TERMINATION_GRACE_USEC (2 * G_USEC_PER_SEC)
 static unsigned int operation_progress_start;
 static unsigned int operation_progress_end = 1000;
 
@@ -173,13 +175,73 @@ static pid_t wait_child(pid_t child, int *status)
     return result;
 }
 
+/* The unreaped group leader anchors its PID/PGID until the last group signal.
+ * Never signal a group after waitpid() has made the leader PID reusable. */
+static void signal_tool_group(pid_t child, int signal_number)
+{
+    if (child > 1) kill(-child, signal_number);
+}
+
+static int track_tool_child(pid_t child, bool cancellable)
+{
+    siginfo_t info = {0};
+    int owned;
+    do { owned = waitid(P_PID, child, &info, WEXITED | WNOHANG | WNOWAIT); }
+    while (owned != 0 && errno == EINTR);
+    if (owned != 0) return -1;
+    if (setpgid(child, child) != 0 && getpgid(child) != child) {
+        int saved = errno;
+        kill(child, SIGKILL);
+        wait_child(child, NULL);
+        errno = saved;
+        return -1;
+    }
+    decompressor_pid = child;
+    if (cancellable && cancelled) signal_tool_group(child, SIGTERM);
+    return 0;
+}
+
+static pid_t wait_tool_child(pid_t child, int *status, bool stop, bool cancellable)
+{
+    for (;;) {
+        siginfo_t info = {0};
+        if (waitid(P_PID, child, &info, WEXITED | WNOHANG | WNOWAIT) != 0) {
+            if (errno == EINTR) continue;
+            decompressor_pid = -1;
+            return -1;
+        }
+        if (stop || (cancellable && cancelled)) {
+            signal_tool_group(child, SIGTERM);
+            /* Give cooperative tools time to release userspace resources. Keep
+             * the leader waitable even if it exits before a stubborn descendant. */
+            g_usleep(TOOL_TERMINATION_GRACE_USEC);
+            signal_tool_group(child, SIGKILL);
+            decompressor_pid = -1;
+            return wait_child(child, status);
+        }
+        if (info.si_pid != 0) {
+            if (cancellable && cancelled) continue;
+            if (info.si_code != CLD_EXITED || info.si_status != 0) {
+                /* A failed command must not leave a background writer alive.
+                 * Keep the leader unreaped until group termination completes. */
+                stop = true;
+                continue;
+            }
+            /* Successful mount tools may leave a FUSE service behind. Do not
+             * terminate groups after ordinary successful command completion. */
+            decompressor_pid = -1;
+            return wait_child(child, status);
+        }
+        g_usleep(20000);
+    }
+}
+
 static void handle_signal(int signal_number)
 {
     int saved_errno = errno;
     (void)signal_number;
     cancelled = 1;
-    if (decompressor_pid > 0)
-        kill(decompressor_pid, SIGTERM);
+    signal_tool_group(decompressor_pid, SIGTERM);
     errno = saved_errno;
 }
 
@@ -187,6 +249,11 @@ static int install_signal_handlers(void)
 {
     struct sigaction action = {0};
     struct sigaction broken_pipe = {0};
+    struct sigaction child_exit = {0};
+    /* Waitable children pin PID/PGID until all group signals have been sent.
+     * Do not inherit SIG_IGN or SA_NOCLDWAIT from an invoking shell. */
+    child_exit.sa_handler = SIG_DFL;
+    sigemptyset(&child_exit.sa_mask);
     broken_pipe.sa_handler = SIG_IGN;
     sigemptyset(&broken_pipe.sa_mask);
     action.sa_handler = handle_signal;
@@ -195,7 +262,8 @@ static int install_signal_handlers(void)
      * blocked read instead of returning EINTR to the verification loop. */
     /* A disappeared frontend also closes stdout. Never let SIGPIPE skip
      * cancellation handling, child reaping or filesystem cleanup. */
-    return sigaction(SIGPIPE, &broken_pipe, NULL) == 0 &&
+    return sigaction(SIGCHLD, &child_exit, NULL) == 0 &&
+           sigaction(SIGPIPE, &broken_pipe, NULL) == 0 &&
            sigaction(SIGINT, &action, NULL) == 0 &&
            sigaction(SIGTERM, &action, NULL) == 0 ? 0 : -1;
 }
@@ -851,13 +919,14 @@ static int open_decompressor(const char *program, int source_fd)
     int pipe_fds[2];
     if (pipe2(pipe_fds, O_CLOEXEC) != 0)
         return -1;
-    decompressor_pid = fork();
-    if (decompressor_pid < 0) {
+    pid_t child = fork();
+    if (child < 0) {
         close(pipe_fds[0]);
         close(pipe_fds[1]);
         return -1;
     }
-    if (decompressor_pid == 0) {
+    if (child == 0) {
+        if (setpgid(0, 0) != 0) _exit(126);
         if (dup2(source_fd, STDIN_FILENO) < 0 ||
             dup2(pipe_fds[1], STDOUT_FILENO) < 0)
             _exit(126);
@@ -871,6 +940,11 @@ static int open_decompressor(const char *program, int source_fd)
             exec_tool(arguments);
         }
         _exit(127);
+    }
+    if (track_tool_child(child, true) != 0) {
+        int saved = errno;
+        close(pipe_fds[0]); close(pipe_fds[1]); errno = saved;
+        return -1;
     }
     close(pipe_fds[1]);
     return pipe_fds[0];
@@ -904,18 +978,19 @@ static int open_source(const char *source, uint64_t *total)
     return stream;
 }
 
-static int wait_for_decompressor(void)
+static int finish_decompressor(bool stop)
 {
     int status;
     pid_t pid = decompressor_pid;
-    if (pid <= 0)
-        return 0;
-    pid_t waited = wait_child(pid, &status);
-    decompressor_pid = -1;
-    if (waited < 0)
-        return -1;
-    return WIFEXITED(status) && WEXITSTATUS(status) == 0 ? 0 : -1;
+    if (pid <= 0) return 0;
+    pid_t waited = wait_tool_child(pid, &status, stop, true);
+    if (waited < 0) return -1;
+    if (cancelled) { errno = ECANCELED; return -1; }
+    if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) { errno = EIO; return -1; }
+    return 0;
 }
+
+static int wait_for_decompressor(void) { return finish_decompressor(false); }
 
 static int write_all(int target_fd, const unsigned char *buffer, size_t length)
 {
@@ -1129,8 +1204,7 @@ out:
     free(source_buffer);
     free(target_buffer);
     if (result != 0 && decompressor_pid > 0) {
-        kill(decompressor_pid, SIGTERM);
-        wait_for_decompressor();
+        finish_decompressor(true);
     }
     errno = saved_errno;
     return result;
@@ -1377,8 +1451,7 @@ out:
     if (target_fd >= 0)
         close(target_fd);
     if (result != 0 && decompressor_pid > 0) {
-        kill(decompressor_pid, SIGTERM);
-        wait_for_decompressor();
+        finish_decompressor(true);
     }
     target_info_clear(&target);
     return result;
@@ -1401,6 +1474,7 @@ static int run_command_input(char *const arguments[], const char *input)
         return -1;
     }
     if (child == 0) {
+        if (setpgid(0, 0) != 0) _exit(126);
         if (input != NULL) {
             if (dup2(pipe_fds[0], STDIN_FILENO) < 0 ||
                 fcntl(STDIN_FILENO, F_SETFD, 0) < 0) _exit(126);
@@ -1410,19 +1484,21 @@ static int run_command_input(char *const arguments[], const char *input)
         exec_tool(arguments);
         _exit(127);
     }
-    decompressor_pid = child;
-    if (cancelled && !cleanup) kill(child, SIGTERM);
+    if (track_tool_child(child, !cleanup) != 0) {
+        int saved = errno;
+        if (input != NULL) { close(pipe_fds[0]); close(pipe_fds[1]); }
+        errno = saved; return -1;
+    }
     if (input != NULL) {
         close(pipe_fds[0]);
         if (write_all(pipe_fds[1], (const unsigned char *)input, strlen(input)) != 0) {
             input_error = errno;
-            kill(child, SIGTERM);
+            signal_tool_group(child, SIGTERM);
         }
         close(pipe_fds[1]);
     }
-    pid_t waited = wait_child(child, &status);
+    pid_t waited = wait_tool_child(child, &status, input_error != 0, !cleanup);
     int wait_error = errno;
-    decompressor_pid = -1;
     if (waited < 0) { errno = wait_error; return -1; }
     if (cancelled && !cleanup) { errno = ECANCELED; return -1; }
     if (input_error != 0) { errno = input_error; return -1; }
@@ -1595,7 +1671,7 @@ static int run_command_progress_range_internal(char *const arguments[],
     if (cancelled || revalidate_active_target() != 0) { errno = cancelled ? ECANCELED : errno; return -1; }
     if (durable != NULL && durable_progress_target_open(durable, durable_path) != 0)
         return -1;
-    if (pipe(output_pipe) != 0)
+    if (pipe2(output_pipe, O_CLOEXEC) != 0)
         goto out;
     child = fork();
     if (child < 0) {
@@ -1604,46 +1680,47 @@ static int run_command_progress_range_internal(char *const arguments[],
         goto out;
     }
     if (child == 0) {
-        dup2(output_pipe[1], STDOUT_FILENO);
-        dup2(output_pipe[1], STDERR_FILENO);
-        close(output_pipe[0]);
-        close(output_pipe[1]);
+        if (setpgid(0, 0) != 0 ||
+            dup2(output_pipe[1], STDOUT_FILENO) < 0 ||
+            dup2(output_pipe[1], STDERR_FILENO) < 0 ||
+            fcntl(STDOUT_FILENO, F_SETFD, 0) < 0 ||
+            fcntl(STDERR_FILENO, F_SETFD, 0) < 0) _exit(126);
+        if (output_pipe[0] != STDOUT_FILENO && output_pipe[0] != STDERR_FILENO) close(output_pipe[0]);
+        if (output_pipe[1] != STDOUT_FILENO && output_pipe[1] != STDERR_FILENO) close(output_pipe[1]);
         exec_tool(arguments);
         _exit(127);
     }
 
     close(output_pipe[1]);
-    decompressor_pid = child;
+    if (track_tool_child(child, true) != 0) {
+        saved_errno = errno; close(output_pipe[0]); goto out;
+    }
     line = g_string_sized_new(256);
     event_indeterminate_progress();
     while (!cancelled) {
         ssize_t count;
         ssize_t index;
-
-        if (durable != NULL) {
-            struct pollfd ready = {
-                .fd = output_pipe[0],
-                .events = POLLIN,
-            };
-            int poll_result = poll(&ready, 1, DURABLE_TOOL_COMMIT_INTERVAL_MS);
-            if (poll_result < 0 && errno == EINTR)
-                continue;
-            if (poll_result < 0) {
-                saved_errno = errno;
-                break;
+        siginfo_t info = {0};
+        if (waitid(P_PID, child, &info, WEXITED | WNOHANG | WNOWAIT) != 0) {
+            if (errno == EINTR) continue;
+            saved_errno = errno; decompressor_pid = -1; break;
+        }
+        bool failed_child = info.si_pid != 0 &&
+            (info.si_code != CLD_EXITED || info.si_status != 0);
+        /* A descendant can keep stdout open after its parent failed. Poll even
+         * without durable progress, so that missing EOF cannot hide the failure.
+         * Preserve one available diagnostic chunk before terminating the group. */
+        struct pollfd ready = {.fd = output_pipe[0], .events = POLLIN};
+        int poll_result = poll(&ready, 1, failed_child ? 0 : DURABLE_TOOL_COMMIT_INTERVAL_MS);
+        if (poll_result < 0 && errno == EINTR) continue;
+        if (poll_result < 0) { saved_errno = errno; break; }
+        if (poll_result == 0) {
+            if (failed_child) { saved_errno = EIO; break; }
+            if (durable != NULL &&
+                commit_descriptor(durable->descriptor, durable->whole_filesystem) != 0) {
+                saved_errno = errno; break;
             }
-            if (poll_result == 0) {
-                /* wimlib's text UI normally reports only whole percentages,
-                 * which can represent hundreds of MiB on a Windows To Go
-                 * image.  Commit on a timer too, so a large image cannot
-                 * accumulate an entire percentage in the page cache. */
-                if (commit_descriptor(durable->descriptor,
-                                      durable->whole_filesystem) != 0) {
-                    saved_errno = errno;
-                    break;
-                }
-                continue;
-            }
+            continue;
         }
         count = read(output_pipe[0], buffer, sizeof(buffer));
         if (count < 0 && errno == EINTR)
@@ -1666,6 +1743,7 @@ static int run_command_progress_range_internal(char *const arguments[],
                 g_string_append_c(line, buffer[index]);
             }
         }
+        if (failed_child && saved_errno == 0) saved_errno = EIO;
         if (saved_errno != 0)
             break;
     }
@@ -1674,21 +1752,19 @@ static int run_command_progress_range_internal(char *const arguments[],
         saved_errno = errno;
     g_string_free(line, TRUE);
     close(output_pipe[0]);
-    if (cancelled || saved_errno != 0)
-        kill(child, SIGTERM);
-    if (wait_child(child, &status) < 0) {
+    if (wait_tool_child(child, &status, saved_errno != 0, true) < 0) {
         if (saved_errno == 0)
             saved_errno = errno;
-        decompressor_pid = -1;
         goto out;
     }
-    decompressor_pid = -1;
     if (cancelled) {
         saved_errno = ECANCELED;
         goto out;
     }
-    if (saved_errno != 0 || !WIFEXITED(status) || WEXITSTATUS(status) != 0)
-        goto out;
+    if (saved_errno != 0) goto out;
+    if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) {
+        saved_errno = EIO; goto out;
+    }
     if (durable != NULL) {
         if (commit_descriptor(durable->descriptor, durable->whole_filesystem) != 0) {
             saved_errno = errno;

@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.7\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.8\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -883,3 +883,15 @@ msgstr "如果输入传输失败或已请求取消，介质创建命令将不再
 
 msgid "Expanded regression and VM tests cover log-pipe loss and abrupt frontend exit without accessing physical disks."
 msgstr "扩展的回归测试和虚拟机测试涵盖日志管道丢失及前端突然退出，且不会访问物理磁盘。"
+
+msgid "Updated in 0.3.8"
+msgstr "0.3.8 版更新"
+
+msgid "Cancellation now reaches subprocesses that remain in the writing tool process group."
+msgstr "取消操作现在也会停止仍在写入工具进程组中的子进程。"
+
+msgid "Stubborn tools are force-stopped after a two-second grace period. Successful background filesystem services are preserved."
+msgstr "拒绝终止的工具将在两秒宽限期后被强制停止。成功启动的后台文件系统服务会被保留。"
+
+msgid "Failed external commands report an I/O error instead of a stale success message."
+msgstr "外部命令失败时会报告输入输出错误，避免显示过时的成功消息。"

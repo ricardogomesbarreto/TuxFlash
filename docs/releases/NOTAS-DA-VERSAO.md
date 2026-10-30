@@ -1,3 +1,13 @@
+# TuxFlash 0.3.8 — 2026-10-30
+
+Cancelamento e falhas de ferramentas gerenciadas abrangem os descendentes de seu grupo, com SIGTERM e escalonamento após dois segundos. Comandos bem-sucedidos preservam serviços em segundo plano. A saída com falha é detectada mesmo com stdout mantido aberto por um descendente; EIO evita mensagens de sucesso incorretas. SIGCHLD é restaurado para permitir recolhimento seguro dos filhos. Notas traduzidas nos quatro idiomas, créditos e GPL-3.0-or-later preservados.
+
+Managed-tool cancellation/failure covers descendants in their group, using SIGTERM and escalation after two seconds. Successful commands preserve background services. Failed leaders are detected despite descendant-held stdout; EIO prevents stale success errors. Default SIGCHLD enables safe child reaping. Four-language notes, credits and GPL-3.0-or-later are preserved.
+
+[Revisão, resultados e limites / review, results and limits](../validation/REVISAO-0.3.8.md).
+
+---
+
 # TuxFlash 0.3.7 — 2026-10-29
 
 - O helper administrativo ignora SIGPIPE para poder tratar o cancelamento e passar pela limpeza quando a interface desaparece.

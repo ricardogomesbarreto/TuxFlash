@@ -216,6 +216,15 @@ source_link_guard() {
 run_case frontend-exit-cleanup /test-only/libexec/helper-lifecycle -p /lifecycle/frontend-exit-cleanup
 run_case input-pipe-short /test-only/libexec/helper-lifecycle -p /lifecycle/input-pipe-short
 run_case cancel-input-zero-exit /test-only/libexec/helper-lifecycle -p /lifecycle/cancel-input-zero-exit
+run_case stubborn-progress /test-only/libexec/helper-lifecycle -p /lifecycle/stubborn-progress
+run_case stubborn-input /test-only/libexec/helper-lifecycle -p /lifecycle/stubborn-input
+run_case stubborn-decoder /test-only/libexec/helper-lifecycle -p /lifecycle/stubborn-decoder
+run_case cancel-process-group /test-only/libexec/helper-lifecycle -p /lifecycle/cancel-process-group
+run_case preserve-successful-service /test-only/libexec/helper-lifecycle -p /lifecycle/preserve-successful-service
+run_case failed-tool-errno /test-only/libexec/helper-lifecycle -p /lifecycle/failed-tool-errno
+run_case stop-failed-service /test-only/libexec/helper-lifecycle -p /lifecycle/stop-failed-service
+run_case stop-failed-progress /test-only/libexec/helper-lifecycle -p /lifecycle/stop-failed-progress
+run_case inherited-sigchld-ignore /test-only/libexec/helper-lifecycle -p /lifecycle/inherited-sigchld-ignore
 run_case exact-capacity-guard near_capacity
 run_case disk-sequence-guard wrong_sequence
 run_case disk-sequence-valid correct_sequence

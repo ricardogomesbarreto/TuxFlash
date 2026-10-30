@@ -132,3 +132,5 @@ Boot, physical removal or every desktop authentication agent.
 - [Imagem Ubuntu Minimal e versão datada / dated image](https://cloud-images.ubuntu.com/minimal/releases/noble/release-20261027/)
 - [PolkitAgentListener — API oficial](https://www.freedesktop.org/software/polkit/docs/latest/PolkitAgentListener.html)
 - [PolkitAgentSession — autenticação nativa/PAM](https://www.freedesktop.org/software/polkit/docs/latest/PolkitAgentSession.html)
+
+A qualificação da [0.3.8](../validation/REVISAO-0.3.8.md) repete os 13 casos com o helper atualizado. Os testes adicionais de grupos são documentados separadamente no [contrato de cancelamento](PROCESS-CANCELLATION.md). / The 0.3.8 review repeats all 13 cases with the updated helper; additional group tests are documented in the cancellation contract.

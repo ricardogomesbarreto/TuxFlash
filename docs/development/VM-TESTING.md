@@ -6,9 +6,9 @@ arquivos regulares sob `/tmp`: 64 MiB, 1 GiB e 8 GiB. Não aceita um dispositivo
 físico como argumento e desabilita a rede do guest. Execute os scripts do host
 como usuário normal, sem `sudo`.
 
-São 48 verificações de gravação, leitura, captura, restauração, recusas de
+São 57 verificações de gravação, leitura, captura, restauração, recusas de
 segurança, cancelamento, teste de blocos, layouts de persistência e preparação
-de instaladores, incluindo três regressões de perda da interface/entrada de comandos. O teste Windows To Go usa um WIM sintético com arquivos EFI e
+de instaladores, incluindo regressões de perda da interface, entrada de comandos, grupos e ferramentas resistentes. O teste Windows To Go usa um WIM sintético com arquivos EFI e
 hives mínimos; **não contém Windows nem demonstra uma instalação Windows**.
 Os testes de firmware executam pequenos programas criados para retornar uma
 marca serial, sem iniciar um sistema operacional. Secure Boot fica desativado.

@@ -1,15 +1,15 @@
 # Caminho para a versão 1.0 / Road to version 1.0
 
-Revisão / Review: **2026-10-29**. Versão pública / Public release: **0.3.7**.
+Revisão / Review: **2026-10-30**. Versão pública / Public release: **0.3.8**.
 Este documento define critérios de aprovação; não declara recursos pendentes como concluídos.
 This document defines acceptance criteria; it does not mark pending features complete.
 
 ## Português Brasil
 
 A base atual tem GUI e CLI nativas, backend compartilhado, proteção de discos do
-sistema, verificação de gravação e pacote portátil x86-64. A 0.3.7 passou em
-23 suítes nativas, 48 casos de backend em VM, 34 casos do helper com ASan/UBSan
-e 24 configurações de interface. Veja a [revisão da 0.3.7](../validation/REVISAO-0.3.7.md).
+sistema, verificação de gravação e pacote portátil x86-64. A 0.3.8 passou em
+23 verificações nativas, 57 casos de backend em VM, 43 casos do helper com ASan/UBSan
+e 24 configurações de interface. Veja a [revisão da 0.3.8](../validation/REVISAO-0.3.8.md).
 Esses resultados não comprovam instalação completa, todos os firmwares ou todas as distribuições.
 
 ### Critérios que ainda faltam
@@ -83,9 +83,9 @@ ser substituída por uma porcentagem estimada de progresso.
 ## English
 
 The current foundation provides native GUI/CLI, a shared backend, system-disk
-protection, write verification and an x86-64 portable package. Version 0.3.7 passed
-23 native suites, 48 VM backend cases, 34 nonprivileged helper sanitizer cases and
-24 GUI configurations. See the [0.3.7 review](../validation/REVISAO-0.3.7.md).
+protection, write verification and an x86-64 portable package. Version 0.3.8 passed
+23 native checks, 57 VM backend cases, 43 nonprivileged helper sanitizer cases and
+24 GUI configurations. See the [0.3.8 review](../validation/REVISAO-0.3.8.md).
 These results do not establish complete installations or universal firmware/distribution support.
 
 ### Remaining acceptance criteria
@@ -149,3 +149,9 @@ The real VM battery passed 11 GUI cases and sessionless denial. At that date, hu
 Treze casos GUI com Polkit real e recusa sem sessão passaram. A GUI encerrou abruptamente durante RAW e o helper terminou por cancelamento normal em ambos os layouts. A base anterior falha nas três novas regressões de SIGPIPE/entrada; a candidata passa. As demais linhas da matriz continuam abertas. [Relatório](../validation/REVISAO-0.3.7.md).
 
 Thirteen real-Polkit GUI cases plus sessionless denial passed. Abrupt frontend exit during RAW produced normal helper cancellation in both layouts. The baseline fails all three new SIGPIPE/input regressions and the candidate passes. Other acceptance gates remain open; see the linked report.
+
+### Atualização 0.3.8 / 0.3.8 update — 2026-10-30
+
+Grupos isolados, ferramentas resistentes, descendentes após falha, pipes sem EOF e SIGCHLD herdado receberam regressões. Passaram 57 casos root em VM, 43 casos ASan/UBSan do helper e os 13 casos GUI com Polkit real mais recusa sem sessão. Oito cenários falham na base 0.3.7 e passam nesta revisão. Processos fora do grupo, espera do kernel, agentes visuais e os demais critérios da matriz continuam abertos. [Evidência e limites](../validation/REVISAO-0.3.8.md).
+
+Managed-group cancellation/failure and inherited-signal regressions passed: 57 root VM cases, 43 helper sanitizer cases and 13 real-Polkit GUI cases plus sessionless denial. Eight baseline scenarios fail and pass after the fix. Escaped groups, kernel waits, visual agents and the other acceptance gates remain open; see the linked report.

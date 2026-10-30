@@ -1,0 +1,15 @@
+{
+  "version": "0.3.8",
+  "date": "2026-10-30",
+  "helper_sha256": "d2a58d75577dd1b0c2fc0988a2e29578fa8fd45f378eed1d77dea5f7170267c6",
+  "app_sha256": "ce54b9d144b2f8982bb9e7d0ecad295ce66bf06b15c290da481093153507916b",
+  "native_suites_passed": 23,
+  "helper_sanitizer_cases_passed": 43,
+  "host_cross_uid_case_skipped": 1,
+  "backend_vm_cases_passed": 57,
+  "gui_configurations_passed": 24,
+  "real_polkit_gui_cases_passed": 13,
+  "sessionless_denied": true,
+  "baseline_failure_scenarios_reproduced": 8,
+  "physical_devices_accessed": false
+}

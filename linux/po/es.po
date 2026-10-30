@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.7\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: es\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.8\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: es\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -883,3 +883,15 @@ msgstr "Los comandos de creación de medios dejan de considerarse correctos si f
 
 msgid "Expanded regression and VM tests cover log-pipe loss and abrupt frontend exit without accessing physical disks."
 msgstr "Las pruebas de regresión y en VM ampliadas cubren la pérdida del canal de registros y el cierre abrupto de la interfaz sin acceder a discos físicos."
+
+msgid "Updated in 0.3.8"
+msgstr "Actualizado en la versión 0.3.8"
+
+msgid "Cancellation now reaches subprocesses that remain in the writing tool process group."
+msgstr "La cancelación también alcanza los subprocesos que permanecen en el grupo de la herramienta de escritura."
+
+msgid "Stubborn tools are force-stopped after a two-second grace period. Successful background filesystem services are preserved."
+msgstr "Las herramientas que se resisten al cierre se detienen a la fuerza tras dos segundos. Los servicios de sistema de archivos en segundo plano se conservan tras un resultado correcto."
+
+msgid "Failed external commands report an I/O error instead of a stale success message."
+msgstr "Los comandos externos que fallan informan un error de entrada y salida, evitando mensajes incorrectos de éxito."

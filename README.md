@@ -21,7 +21,7 @@
   <a href="docs/development/CONTRIBUTING.md">Contribuir / Contribute</a>
 </p>
 
-> **Release status / Estado das versões:** **[0.3.7](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.7)** é a versão pública atual, com pacote portátil Linux x86-64 e SHA-256. / **[0.3.7](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.7)** is the current public release, with a Linux x86-64 portable archive and SHA-256.
+> **Release status / Estado das versões:** **[0.3.8](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.8)** é a versão pública atual, com pacote portátil Linux x86-64 e SHA-256. / **[0.3.8](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.8)** is the current public release, with a Linux x86-64 portable archive and SHA-256.
 
 ---
 
@@ -36,8 +36,8 @@ O **TuxFlash** é um aplicativo nativo em **C, GTK 4 e libadwaita**, com interfa
 
 **1. Baixe os dois arquivos da versão publicada para Linux x86-64:**
 
-- [TuxFlash 0.3.7 — pacote portátil (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.7/TuxFlash-0.3.7-linux-x86_64.tar.xz)
-- [SHA-256 — arquivo de verificação](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.7/TuxFlash-0.3.7-linux-x86_64.tar.xz.sha256)
+- [TuxFlash 0.3.8 — pacote portátil (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.8/TuxFlash-0.3.8-linux-x86_64.tar.xz)
+- [SHA-256 — arquivo de verificação](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.8/TuxFlash-0.3.8-linux-x86_64.tar.xz.sha256)
 
 Também estão disponíveis na página de [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases).
 
@@ -45,13 +45,13 @@ Também estão disponíveis na página de [Releases](https://github.com/ricardog
 
 ```bash
 # Confirme a integridade do pacote (recomendado).
-sha256sum -c TuxFlash-0.3.7-linux-x86_64.tar.xz.sha256
+sha256sum -c TuxFlash-0.3.8-linux-x86_64.tar.xz.sha256
 
 # Extraia o pacote.
-tar -xf TuxFlash-0.3.7-linux-x86_64.tar.xz
+tar -xf TuxFlash-0.3.8-linux-x86_64.tar.xz
 
 # Entre na pasta que foi criada.
-cd TuxFlash-0.3.7-linux-x86_64
+cd TuxFlash-0.3.8-linux-x86_64
 
 # Inicie a interface gráfica.
 ./tuxflash
@@ -162,9 +162,10 @@ completo em hardware físico. Veja o
 
 ### Desenvolvimento e histórico de versões
 
-O [roteiro para a 1.0](docs/development/ROADMAP-1.0.md) define os critérios ainda pendentes: validação em mais ambientes de autorização, instalação Windows completa, persistência entre boots, Windows To Go e matriz de execução Linux. O [ensaio da 0.3.7](docs/validation/REVISAO-0.3.7.md) passou em 13 casos GUI com Polkit real e na recusa sem sessão, além de 48 casos de backend em VM. A versão pública é 0.3.7.
+O [roteiro para a 1.0](docs/development/ROADMAP-1.0.md) define os critérios ainda pendentes: validação em mais ambientes de autorização, instalação Windows completa, persistência entre boots, Windows To Go e matriz de execução Linux. O [ensaio da 0.3.8](docs/validation/REVISAO-0.3.8.md) passou em 13 casos GUI com Polkit real e na recusa sem sessão, além de 57 casos de backend em VM. A versão pública é 0.3.8.
 
-- **0.3.7 — versão atual:** proteção do helper quando a interface encerra, validação da entrega de entrada e novos testes de ciclo de vida. [Revisão e limites](docs/validation/REVISAO-0.3.7.md).
+- **0.3.8 — versão atual:** cancelamento de grupos de ferramentas, encerramento de processos resistentes e mensagens de falha corrigidas. [Revisão e limites](docs/validation/REVISAO-0.3.8.md).
+- **0.3.7:** proteção do helper quando a interface encerra, validação da entrega de entrada e novos testes de ciclo de vida. [Revisão e limites](docs/validation/REVISAO-0.3.7.md).
 - **0.3.6:** janela adaptável sem barras de rolagem visíveis, rodapé com botões fixos, canal privado de cancelamento, origem comprimida fixada por descritor e saída de captura exclusiva. Veja a [revisão e os testes](docs/validation/REVISAO-0.3.6.md).
 - **0.3.5:** conferência com tamanho exato da origem, progresso limitado e cancelamento de leituras bloqueadas; [validação anterior](docs/validation/REVISAO-0.3.5.md).
 - **0.3.4:** correção de persistência do Zorin e [testes com SteamOS, Kali e Zorin](docs/validation/IMAGENS-REAIS-2026-10-21.md).
@@ -200,8 +201,8 @@ Desenvolvimento TuxFlash: [Ricardo Barreto](https://github.com/ricardogomesbarre
 
 **1. Download both files for the published Linux x86-64 release:**
 
-- [TuxFlash 0.3.7 — portable archive (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.7/TuxFlash-0.3.7-linux-x86_64.tar.xz)
-- [SHA-256 checksum file](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.7/TuxFlash-0.3.7-linux-x86_64.tar.xz.sha256)
+- [TuxFlash 0.3.8 — portable archive (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.8/TuxFlash-0.3.8-linux-x86_64.tar.xz)
+- [SHA-256 checksum file](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.8/TuxFlash-0.3.8-linux-x86_64.tar.xz.sha256)
 
 Or open the [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases) page.
 
@@ -209,11 +210,11 @@ Or open the [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases)
 
 ```bash
 # Verify the archive (recommended).
-sha256sum -c TuxFlash-0.3.7-linux-x86_64.tar.xz.sha256
+sha256sum -c TuxFlash-0.3.8-linux-x86_64.tar.xz.sha256
 
 # Extract and enter its directory.
-tar -xf TuxFlash-0.3.7-linux-x86_64.tar.xz
-cd TuxFlash-0.3.7-linux-x86_64
+tar -xf TuxFlash-0.3.8-linux-x86_64.tar.xz
+cd TuxFlash-0.3.8-linux-x86_64
 
 # Launch the graphical application.
 ./tuxflash
@@ -324,9 +325,10 @@ a complete physical-hardware boot. See the
 
 ### Development and versions
 
-The [road to 1.0](docs/development/ROADMAP-1.0.md) defines the remaining gates: broader authorization environments, complete Windows installation, persistent reboots, Windows To Go and a Linux execution matrix. The [0.3.7 qualification](docs/validation/REVISAO-0.3.7.md) passed 13 real-Polkit GUI cases and sessionless denial, plus 48 backend VM cases. The public release is 0.3.7.
+The [road to 1.0](docs/development/ROADMAP-1.0.md) defines the remaining gates: broader authorization environments, complete Windows installation, persistent reboots, Windows To Go and a Linux execution matrix. The [0.3.8 qualification](docs/validation/REVISAO-0.3.8.md) passed 13 real-Polkit GUI cases and sessionless denial, plus 57 backend VM cases. The public release is 0.3.8.
 
-- **0.3.7 — current version:** helper protection when the frontend exits, input-delivery validation and new lifecycle tests. [Review and limits](docs/validation/REVISAO-0.3.7.md).
+- **0.3.8 — current version:** tool-group cancellation, termination of stubborn tools and corrected failure reporting. [Review and limits](docs/validation/REVISAO-0.3.8.md).
+- **0.3.7:** helper protection when the frontend exits, input-delivery validation and new lifecycle tests. [Review and limits](docs/validation/REVISAO-0.3.7.md).
 - **0.3.6:** responsive window without visible scrollbars, fixed action footer, private cancellation channel, pinned compressed input and exclusive capture output. See the [review and tests](docs/validation/REVISAO-0.3.6.md).
 - **0.3.5:** exact source-length verification, bounded progress and cancellation of blocked reads; [previous validation](docs/validation/REVISAO-0.3.5.md).
 - **0.3.4:** Zorin persistence fix and [SteamOS, Kali and Zorin validation](docs/validation/IMAGENS-REAIS-2026-10-21.md).

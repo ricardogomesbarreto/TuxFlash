@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.7\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.8\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -883,3 +883,15 @@ msgstr "Media-creation commands no longer count as successful if input delivery 
 
 msgid "Expanded regression and VM tests cover log-pipe loss and abrupt frontend exit without accessing physical disks."
 msgstr "Expanded regression and VM tests cover log-pipe loss and abrupt frontend exit without accessing physical disks."
+
+msgid "Updated in 0.3.8"
+msgstr "Updated in 0.3.8"
+
+msgid "Cancellation now reaches subprocesses that remain in the writing tool process group."
+msgstr "Cancellation now reaches subprocesses that remain in the writing tool process group."
+
+msgid "Stubborn tools are force-stopped after a two-second grace period. Successful background filesystem services are preserved."
+msgstr "Stubborn tools are force-stopped after a two-second grace period. Successful background filesystem services are preserved."
+
+msgid "Failed external commands report an I/O error instead of a stale success message."
+msgstr "Failed external commands report an I/O error instead of a stale success message."
