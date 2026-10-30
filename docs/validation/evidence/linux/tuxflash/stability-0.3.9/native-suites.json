@@ -1,0 +1,123 @@
+[
+  {
+    "name": "tuxflash:helper-help",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:windows-options",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:downloads",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:progress",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:helper-durability",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:licenses",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:job-policy",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:checksums-rufus-core",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:volume-label",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:device-safety-topology",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:language-preferences-and-catalogs",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:helper-tree-internal-links",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:bcd-generator-failure",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:image-probe",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:launcher-delegation",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:helper-io",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:menu-shortcut-safety",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:polkit-vm-harness-guards",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:helper-images",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:helper-mount",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:helper-metadata-capture",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:helper-verification-streams",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:helper-frontend-lifecycle",
+    "result": "OK",
+    "returncode": 0
+  },
+  {
+    "name": "tuxflash:gui-responsive-layout",
+    "result": "OK",
+    "returncode": 0,
+    "execution": "Separate isolated Xvfb run; see gui-native.json"
+  }
+]

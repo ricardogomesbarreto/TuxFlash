@@ -23,8 +23,9 @@ O período de dois segundos é uma tolerância antes do pedido SIGKILL, não um 
 absoluto de retorno. O kernel/hardware pode continuar bloqueando a espera; não há
 rollback de bytes escritos. Processos que escapam do grupo por outra sessão/grupo
 não são abrangidos. A rotina de desmontagem durante limpeza continua permitida
-após cancelamento. Consultas de metadados por GSubprocess e a descoberta inicial
-de montagens não são convertidas por esta alteração; não há promessa de controle
+após cancelamento. Na 0.3.9, as consultas qemu-img/wimlib do helper também usam o coletor gerenciado
+([contrato de metadados](METADATA-CAPTURE.md)); a descoberta inicial de montagens
+ainda não foi convertida. Não há promessa de controle
 universal de toda árvore de processos do sistema.
 
 ## English
@@ -46,8 +47,9 @@ tools and an unrelated process that must survive.
 The grace period is not an absolute completion deadline: kernel/hardware waits
 can persist and no written bytes are rolled back. Processes that move to another
 group/session escape this scope. Cleanup unmounts remain allowed after cancellation.
-Metadata probes using GSubprocess and initial mount discovery are not converted;
-this is not universal process-tree supervision.
+Version 0.3.9 also routes helper qemu-img/wimlib metadata queries through managed
+capture; see the [metadata contract](METADATA-CAPTURE.md). Initial mount discovery
+remains unchanged. This is not universal process-tree supervision.
 
 ## Referências / References
 
@@ -55,4 +57,5 @@ Linux API contracts: [setpgid/getpgid](https://man7.org/linux/man-pages/man2/set
 [group signals via kill](https://man7.org/linux/man-pages/man2/kill.2.html) and
 [waitid/WNOWAIT](https://man7.org/linux/man-pages/man2/waitpid.2.html).
 The regression evidence and actual qualification scope are in the
-[0.3.8 review](../validation/REVISAO-0.3.8.md).
+[0.3.8 review](../validation/REVISAO-0.3.8.md) and
+[0.3.9 metadata review](../validation/REVISAO-0.3.9.md).

@@ -225,6 +225,14 @@ run_case failed-tool-errno /test-only/libexec/helper-lifecycle -p /lifecycle/fai
 run_case stop-failed-service /test-only/libexec/helper-lifecycle -p /lifecycle/stop-failed-service
 run_case stop-failed-progress /test-only/libexec/helper-lifecycle -p /lifecycle/stop-failed-progress
 run_case inherited-sigchld-ignore /test-only/libexec/helper-lifecycle -p /lifecycle/inherited-sigchld-ignore
+run_case metadata-streams /test-only/libexec/helper-metadata -p /metadata/streams
+run_case metadata-cancel-wim /test-only/libexec/helper-metadata -p /metadata/cancel-wim
+run_case metadata-cancel-vhd /test-only/libexec/helper-metadata -p /metadata/cancel-vhd
+run_case metadata-limit-wim /test-only/libexec/helper-metadata -p /metadata/limit-wim
+run_case metadata-limit-vhd /test-only/libexec/helper-metadata -p /metadata/limit-vhd
+run_case metadata-failed-open-pipe /test-only/libexec/helper-metadata -p /metadata/failed-open-pipe
+run_case metadata-invalid-bytes /test-only/libexec/helper-metadata -p /metadata/invalid-bytes
+run_case metadata-closed-stdio /test-only/libexec/helper-metadata -p /metadata/closed-stdio
 run_case exact-capacity-guard near_capacity
 run_case disk-sequence-guard wrong_sequence
 run_case disk-sequence-valid correct_sequence

@@ -1,0 +1,47 @@
+{
+  "baseline_commit": "d866b8925f5b72d9d704918538a28b4555e4a1f7",
+  "cases": [
+    {
+      "test": "/metadata/streams",
+      "baseline_regression_exit": 0,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/metadata/cancel-wim",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/metadata/cancel-vhd",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/metadata/limit-wim",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/metadata/limit-vhd",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/metadata/failed-open-pipe",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/metadata/invalid-bytes",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    },
+    {
+      "test": "/metadata/closed-stdio",
+      "baseline_regression_exit": 134,
+      "candidate_final_sanitizer_passed": true
+    }
+  ],
+  "baseline_exit_meaning": "Regression assertion/watchdog failure, not a claim that all ordinary application invocations crash",
+  "physical_io": false
+}

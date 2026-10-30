@@ -310,6 +310,99 @@ static int start_cancellation_channel(int input)
     return 0;
 }
 
+
+#define TOOL_METADATA_LIMIT (4U * 1024U * 1024U)
+
+static void close_metadata_pipe(int fds[2])
+{
+    for (int i=0;i<2;i++) if (fds[i]>=0) { close(fds[i]);fds[i]=-1; }
+}
+static int metadata_pipe(int fds[2])
+{
+    if (pipe2(fds,O_CLOEXEC)!=0) return -1;
+    /* Keep capture descriptors away from stdio, including in headless callers
+     * that closed one of 0/1/2 before invoking the helper. */
+    for (int i=0;i<2;i++) if (fds[i]<3) {
+        int replacement=fcntl(fds[i],F_DUPFD_CLOEXEC,3);
+        if (replacement<0) {int saved=errno;close_metadata_pipe(fds);errno=saved;return -1;}
+        close(fds[i]);fds[i]=replacement;
+    }
+    return 0;
+}
+
+/* Bounded, cancellable metadata collection. Unlike GSubprocess communicate,
+ * these children belong to the same owned-group lifecycle as writing tools. */
+static int capture_tool_metadata(char *const arguments[], char **output, char **errors)
+{
+    int pipes[2][2]={{-1,-1},{-1,-1}};
+    GString *text[2]={NULL,NULL};
+    pid_t child=-1;
+    int saved=0,status=0;
+    if (output) *output=NULL;
+    if (errors) *errors=NULL;
+    if (cancelled) {errno=ECANCELED;return -1;}
+    text[0]=g_string_sized_new(512);text[1]=g_string_sized_new(512);
+    if (metadata_pipe(pipes[0])!=0 || metadata_pipe(pipes[1])!=0) {saved=errno;goto out;}
+    child=fork();
+    if (child<0) {saved=errno;goto out;}
+    if (!child) {
+        if (setpgid(0,0)!=0) _exit(126);
+        int input=open("/dev/null",O_RDONLY|O_CLOEXEC);
+        if (input<0 || dup2(input,STDIN_FILENO)<0 ||
+            dup2(pipes[0][1],STDOUT_FILENO)<0 || dup2(pipes[1][1],STDERR_FILENO)<0 ||
+            fcntl(STDIN_FILENO,F_SETFD,0)<0 || fcntl(STDOUT_FILENO,F_SETFD,0)<0 ||
+            fcntl(STDERR_FILENO,F_SETFD,0)<0) _exit(126);
+        if (input>2) close(input);
+        close_metadata_pipe(pipes[0]);close_metadata_pipe(pipes[1]);
+        exec_tool(arguments);_exit(127);
+    }
+    close(pipes[0][1]);pipes[0][1]=-1;close(pipes[1][1]);pipes[1][1]=-1;
+    if (track_tool_child(child,true)!=0) {saved=errno;child=-1;goto out;}
+    while (!cancelled && (pipes[0][0]>=0 || pipes[1][0]>=0)) {
+        siginfo_t info={0};
+        if (waitid(P_PID,child,&info,WEXITED|WNOHANG|WNOWAIT)!=0) {
+            if (errno==EINTR) continue;
+            saved=errno;decompressor_pid=-1;break;
+        }
+        bool failed=info.si_pid!=0 && (info.si_code!=CLD_EXITED || info.si_status!=0);
+        struct pollfd ready[2]={{.fd=pipes[0][0],.events=POLLIN},{.fd=pipes[1][0],.events=POLLIN}};
+        int result=poll(ready,2,failed?0:1000);
+        if (result<0 && errno==EINTR) continue;
+        if (result<0) {saved=errno;break;}
+        if (!result) {if(failed){saved=EIO;break;}continue;}
+        for (int i=0;i<2;i++) {
+            if (!ready[i].revents) continue;
+            char buffer[4096];ssize_t count=read(pipes[i][0],buffer,sizeof(buffer));
+            if (count<0 && errno==EINTR) continue;
+            if (count<0) {saved=errno;break;}
+            if (!count) {close(pipes[i][0]);pipes[i][0]=-1;continue;}
+            size_t used=text[0]->len+text[1]->len;
+            if ((size_t)count>TOOL_METADATA_LIMIT-used) {saved=EFBIG;break;}
+            g_string_append_len(text[i],buffer,count);
+        }
+        if (failed && !saved) saved=EIO;
+        if (saved) break;
+    }
+    close_metadata_pipe(pipes[0]);close_metadata_pipe(pipes[1]);
+    if (!saved && (!g_utf8_validate(text[0]->str,text[0]->len,NULL) ||
+                   !g_utf8_validate(text[1]->str,text[1]->len,NULL))) saved=EILSEQ;
+    if (wait_tool_child(child,&status,saved!=0,true)<0) {if(!saved)saved=errno;}
+    else if (!saved && (!WIFEXITED(status)||WEXITSTATUS(status)!=0)) saved=EIO;
+    if (cancelled) saved=ECANCELED;
+out:
+    close_metadata_pipe(pipes[0]);close_metadata_pipe(pipes[1]);
+    bool valid=g_utf8_validate(text[0]->str,text[0]->len,NULL) &&
+               g_utf8_validate(text[1]->str,text[1]->len,NULL);
+    if (!valid && !saved) saved=EILSEQ;
+    for (int i=0;i<2;i++) {
+        char **destination=i==0?output:errors;
+        if (valid && destination) *destination=g_string_free(text[i],FALSE);
+        else g_string_free(text[i],TRUE);
+    }
+    errno=saved;
+    return saved?-1:0;
+}
+
 static void event_message(const char *type, const char *message)
 {
     const unsigned char *cursor;
@@ -494,24 +587,14 @@ static const char *virtual_disk_format(const char *source)
 
 static uint64_t virtual_disk_size(const char *source)
 {
-    GError *error = NULL;
-    GSubprocess *process = g_subprocess_new(G_SUBPROCESS_FLAGS_STDOUT_PIPE |
-                                            G_SUBPROCESS_FLAGS_STDERR_SILENCE,
-                                            &error, "qemu-img", "info", "--output=json",
-                                            "--force-share", "-f", virtual_disk_format(source),
-                                            source, NULL);
-    char *output = NULL;
-    uint64_t result = 0;
-    if (process != NULL && g_subprocess_communicate_utf8(process, NULL, NULL,
-                                                          &output, NULL, &error) &&
-        g_subprocess_get_successful(process))
-        result = virtual_disk_size_from_json(output);
-    if (error != NULL) {
-        event_message("LOG", error->message);
-        g_clear_error(&error);
-    }
-    g_free(output);
-    g_clear_object(&process);
+    char *arguments[]={"qemu-img","info","--output=json","--force-share","-f",
+                       (char *)virtual_disk_format(source),(char *)source,NULL};
+    char *output=NULL,*errors=NULL;
+    uint64_t result=0;
+    int command=capture_tool_metadata(arguments,&output,&errors),saved=errno;
+    if (command==0) result=virtual_disk_size_from_json(output);
+    else event_message("LOG",g_strerror(saved));
+    g_free(output);g_free(errors);errno=saved;
     return result;
 }
 
@@ -1511,30 +1594,25 @@ static char *windows_image_default_language(const char *image_path,
                                             GError **error)
 {
     char *index = g_strdup_printf("%u", image_index);
-    const char *arguments[] = {"wimlib-imagex", "info", image_path, index, NULL};
-    GSubprocess *process;
+    char *arguments[] = {"wimlib-imagex", "info", (char *)image_path, index, NULL};
     char *standard_output = NULL;
     char *standard_error = NULL;
     char *language = NULL;
     char *cursor;
     char *end;
 
-    process = g_subprocess_newv(arguments,
-                                G_SUBPROCESS_FLAGS_STDOUT_PIPE |
-                                G_SUBPROCESS_FLAGS_STDERR_PIPE,
-                                error);
+    int command=capture_tool_metadata(arguments,&standard_output,&standard_error);
+    int saved=errno;
     g_free(index);
-    if (process == NULL)
-        return NULL;
-    if (!g_subprocess_communicate_utf8(process, NULL, NULL,
-                                       &standard_output, &standard_error,
-                                       error))
-        goto out;
-    if (!g_subprocess_get_successful(process)) {
-        char *detail = standard_error != NULL ? g_strstrip(standard_error) : NULL;
-        g_set_error(error, G_IO_ERROR, G_IO_ERROR_FAILED,
-                    "%s", detail != NULL && detail[0] != '\0' ? detail :
-                    "The selected Windows image index does not exist");
+    if (command!=0) {
+        g_autofree char *detail=NULL;
+        if (saved==EIO && standard_error!=NULL && g_strstrip(standard_error)[0]!='\0') {
+            /* Bound diagnostics too, without splitting a UTF-8 character. */
+            glong length=MIN(g_utf8_strlen(standard_error,-1),2048);
+            detail=g_utf8_substring(standard_error,0,length);
+        }
+        g_set_error(error,G_IO_ERROR,g_io_error_from_errno(saved),"%s",
+                    detail!=NULL?detail:g_strerror(saved));
         goto out;
     }
     cursor = standard_output != NULL ? strstr(standard_output, "Default Language:") : NULL;
@@ -1558,7 +1636,6 @@ static char *windows_image_default_language(const char *image_path,
 out:
     g_free(standard_output);
     g_free(standard_error);
-    g_object_unref(process);
     return language;
 }
 

@@ -134,3 +134,5 @@ Boot, physical removal or every desktop authentication agent.
 - [PolkitAgentSession — autenticação nativa/PAM](https://www.freedesktop.org/software/polkit/docs/latest/PolkitAgentSession.html)
 
 A qualificação da [0.3.8](../validation/REVISAO-0.3.8.md) repete os 13 casos com o helper atualizado. Os testes adicionais de grupos são documentados separadamente no [contrato de cancelamento](PROCESS-CANCELLATION.md). / The 0.3.8 review repeats all 13 cases with the updated helper; additional group tests are documented in the cancellation contract.
+
+A [0.3.9](../validation/REVISAO-0.3.9.md) repete os 13 casos RAW e recusa sem sessão com o helper atualizado. Os oito fixtures de metadados são exercitados separadamente, inclusive na VM root; não são testes Polkit de falhas WIM integradas. / Version 0.3.9 repeats the 13 RAW cases and sessionless denial with the updated helper. Eight metadata fixtures run separately, including in the root VM; these are not integrated WIM-failure Polkit tests.

@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.8\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.9\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -895,3 +895,15 @@ msgstr "Stubborn tools are force-stopped after a two-second grace period. Succes
 
 msgid "Failed external commands report an I/O error instead of a stale success message."
 msgstr "Failed external commands report an I/O error instead of a stale success message."
+
+msgid "Updated in 0.3.9"
+msgstr "Updated in 0.3.9"
+
+msgid "VHD/VHDX and Windows image metadata queries now respect cancellation and use managed subprocess groups."
+msgstr "VHD/VHDX and Windows image metadata queries now respect cancellation and use managed subprocess groups."
+
+msgid "Metadata output is limited to 4 MiB. Invalid UTF-8 and embedded NUL bytes are rejected, and diagnostics have a bounded display length."
+msgstr "Metadata output is limited to 4 MiB. Invalid UTF-8 and embedded NUL bytes are rejected, and diagnostics have a bounded display length."
+
+msgid "Separate stdout and stderr collection prevents pipe stalls. Failed metadata tools and their remaining group members are stopped before returning an error."
+msgstr "Separate stdout and stderr collection prevents pipe stalls. Failed metadata tools and their remaining group members are stopped before returning an error."

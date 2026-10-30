@@ -41,6 +41,7 @@ add_binary(build/'test-helper-io', '/opt/lufus/bin/.tuxflash-io-test.bin')
 # Execute this ELF directly: runtime/run-elf would change /proc/self/exe and
 # resolve the lifecycle test's fake umount to the bundled production tool.
 add_binary(build/'test-helper-lifecycle', '/test-only/libexec/helper-lifecycle')
+add_binary(build/'test-helper-metadata', '/test-only/libexec/helper-metadata')
 # Kernel modules are copied together with dependencies and decompressed.
 kver=KVER
 for mod in ('usb-storage','isofs','udf','ntfs3','nls_cp437','nls_iso8859-1','fuse'):

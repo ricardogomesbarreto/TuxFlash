@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.8\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.9\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -895,3 +895,15 @@ msgstr "拒绝终止的工具将在两秒宽限期后被强制停止。成功启
 
 msgid "Failed external commands report an I/O error instead of a stale success message."
 msgstr "外部命令失败时会报告输入输出错误，避免显示过时的成功消息。"
+
+msgid "Updated in 0.3.9"
+msgstr "0.3.9 版更新"
+
+msgid "VHD/VHDX and Windows image metadata queries now respect cancellation and use managed subprocess groups."
+msgstr "VHD/VHDX 和 Windows 映像的元数据查询现在支持取消，并使用受管理的子进程组。"
+
+msgid "Metadata output is limited to 4 MiB. Invalid UTF-8 and embedded NUL bytes are rejected, and diagnostics have a bounded display length."
+msgstr "元数据输出限制为 4 MiB。无效 UTF-8 和嵌入的 NUL 字节会被拒绝，诊断信息的显示长度也受到限制。"
+
+msgid "Separate stdout and stderr collection prevents pipe stalls. Failed metadata tools and their remaining group members are stopped before returning an error."
+msgstr "分别收集标准输出和标准错误可避免管道阻塞。元数据工具失败时，会在返回错误前停止该工具及其进程组中的剩余成员。"

@@ -1,0 +1,16 @@
+{
+  "version": "0.3.9",
+  "date": "2026-10-30",
+  "helper_sha256": "6f3ea5337051c1d9bddb1a5da83cc120787555203633ea35ad209dc4e833b16a",
+  "app_sha256": "9cd5d8ffbcd71020c44d58ea7708c3ed6b3b31d011905ffa5f9a26d17b84c6ba",
+  "native_suites_passed": 24,
+  "helper_sanitizer_cases_passed": 51,
+  "host_cross_uid_case_skipped": 1,
+  "backend_vm_cases_passed": 65,
+  "gui_configurations_passed": 24,
+  "real_polkit_gui_cases_passed": 13,
+  "sessionless_denied": true,
+  "baseline_failure_scenarios_reproduced": 7,
+  "metadata_stream_control_passed_on_both": true,
+  "physical_devices_accessed": false
+}

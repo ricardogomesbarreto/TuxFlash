@@ -1,3 +1,13 @@
+# TuxFlash 0.3.9 — 2026-10-30
+
+Consultas de tamanho VHD/VHDX e idioma Windows no helper agora são canceláveis. Captura de stdout/stderr limitada a 4 MiB combinados, validação UTF-8/NUL e diagnósticos WIM limitados a 2048 caracteres. Falha do líder é detectada mesmo com pipes mantidos por descendentes; canais padrão fechados são suportados. Sete regressões reproduzidas na 0.3.8 foram corrigidas. Interface, créditos e GPL-3.0-or-later preservados; notas nos quatro idiomas.
+
+Helper VHD/VHDX size and Windows-language queries are now cancellable. Combined stdout/stderr capture is capped at 4 MiB, invalid UTF-8/NUL rejected and WIM diagnostics bounded to 2048 characters. Failed leaders are detected despite descendant-held pipes; closed standard channels are supported. Seven baseline regressions were fixed. UI, credits and GPL-3.0-or-later preserved, with four-language notes.
+
+[Revisão, resultados e limites / review, results and limits](../validation/REVISAO-0.3.9.md).
+
+---
+
 # TuxFlash 0.3.8 — 2026-10-30
 
 Cancelamento e falhas de ferramentas gerenciadas abrangem os descendentes de seu grupo, com SIGTERM e escalonamento após dois segundos. Comandos bem-sucedidos preservam serviços em segundo plano. A saída com falha é detectada mesmo com stdout mantido aberto por um descendente; EIO evita mensagens de sucesso incorretas. SIGCHLD é restaurado para permitir recolhimento seguro dos filhos. Notas traduzidas nos quatro idiomas, créditos e GPL-3.0-or-later preservados.

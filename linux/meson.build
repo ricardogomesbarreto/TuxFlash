@@ -1,7 +1,7 @@
 project(
   'tuxflash',
   'c',
-  version: '0.3.8',
+  version: '0.3.9',
   license: 'GPL-3.0-or-later',
   meson_version: '>= 0.63.0',
   default_options: ['c_std=c11', 'warning_level=3'],
@@ -336,3 +336,11 @@ helper_lifecycle_test = executable(
   dependencies: [dependency('gio-2.0'), json_glib],
 )
 test('helper-frontend-lifecycle', helper_lifecycle_test, timeout: 60)
+
+helper_metadata_test = executable(
+  'test-helper-metadata', 'tests/test_helper_metadata.c',
+  'src/volume_label.c', 'src/progress.c', 'src/windows_options.c',
+  include_directories: include_directories('src'),
+  dependencies: [dependency('gio-2.0'), json_glib],
+)
+test('helper-metadata-capture', helper_metadata_test, timeout: 60)

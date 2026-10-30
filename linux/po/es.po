@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.8\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: es\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.3.9\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: es\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -895,3 +895,15 @@ msgstr "Las herramientas que se resisten al cierre se detienen a la fuerza tras 
 
 msgid "Failed external commands report an I/O error instead of a stale success message."
 msgstr "Los comandos externos que fallan informan un error de entrada y salida, evitando mensajes incorrectos de éxito."
+
+msgid "Updated in 0.3.9"
+msgstr "Actualizado en la versión 0.3.9"
+
+msgid "VHD/VHDX and Windows image metadata queries now respect cancellation and use managed subprocess groups."
+msgstr "Las consultas de metadatos de VHD/VHDX e imágenes de Windows ahora respetan la cancelación y usan grupos de subprocesos administrados."
+
+msgid "Metadata output is limited to 4 MiB. Invalid UTF-8 and embedded NUL bytes are rejected, and diagnostics have a bounded display length."
+msgstr "La salida de metadatos se limita a 4 MiB. Se rechazan UTF-8 no válido y bytes NUL internos, y se limita la longitud de los diagnósticos mostrados."
+
+msgid "Separate stdout and stderr collection prevents pipe stalls. Failed metadata tools and their remaining group members are stopped before returning an error."
+msgstr "La recopilación separada de salida y errores evita bloqueos en los canales. Las herramientas de metadatos que fallan y los miembros restantes de su grupo se detienen antes de devolver el error."
