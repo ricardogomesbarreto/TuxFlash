@@ -1,0 +1,28 @@
+{
+  "version": "0.4.0-rc1",
+  "date": "2026-11-04",
+  "baseline_commit": "7acb398500ded4fd25b7faf8a8793db6d7f17006",
+  "application_sha256": "a2fcc9ca5cef158993daf32bd436e60f1116d14374c84f1d612d6bd4e67f0409",
+  "helper_sha256": "6f3ea5337051c1d9bddb1a5da83cc120787555203633ea35ad209dc4e833b16a",
+  "helper_unchanged_from_0_3_9": true,
+  "headless_native_suites_passed": 24,
+  "qa_guard_cases_passed": 9,
+  "helper_sanitizer_cases_passed": 51,
+  "helper_sanitizer_cross_uid_skipped_on_host": 1,
+  "hash_platform_checks_and_sanitizers_passed": true,
+  "full_raw_images_passed": [
+    "steam",
+    "kali"
+  ],
+  "interrupted_cases": [
+    "zorin",
+    "windows-installer"
+  ],
+  "full_windows_installation_qualified": false,
+  "physical_devices_accessed": false,
+  "stable_0_4_0_gates_complete": false,
+  "native_checks_passed": 25,
+  "gui_native_configurations_passed": 12,
+  "gui_portable_configurations_passed": 12,
+  "portable_doctor_all_tools_available": true
+}

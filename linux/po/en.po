@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.3.9\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.4.0-rc1\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -907,3 +907,12 @@ msgstr "Metadata output is limited to 4 MiB. Invalid UTF-8 and embedded NUL byte
 
 msgid "Separate stdout and stderr collection prevents pipe stalls. Failed metadata tools and their remaining group members are stopped before returning an error."
 msgstr "Separate stdout and stderr collection prevents pipe stalls. Failed metadata tools and their remaining group members are stopped before returning an error."
+
+msgid "Updated in 0.4.0-rc1"
+msgstr "Updated in 0.4.0-rc1"
+
+msgid "Real-media qualification records distinguish writing, verification, boot and complete installation."
+msgstr "Real-media qualification records distinguish writing, verification, boot and complete installation."
+
+msgid "Release candidate: full Windows installation and remaining image boot tests are still pending."
+msgstr "Release candidate: full Windows installation and remaining image boot tests are still pending."

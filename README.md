@@ -21,7 +21,9 @@
   <a href="docs/development/CONTRIBUTING.md">Contribuir / Contribute</a>
 </p>
 
-> **Release status / Estado das versões:** **[0.3.9](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.9)** é a versão pública atual, com pacote portátil Linux x86-64 e SHA-256. / **[0.3.9](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.9)** is the current public release, with a Linux x86-64 portable archive and SHA-256.
+> **Release status / Estado das versões:** **[0.3.9](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.9)** é a versão pública recomendada, com pacote portátil Linux x86-64 e SHA-256. / **[0.3.9](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.9)** is the recommended public release, with a Linux x86-64 portable archive and SHA-256.
+
+> **Candidata / Candidate:** **0.4.0-rc1** é uma pré-versão de qualificação. SteamOS comprimido e Kali passaram na gravação e comparação completas; instalação Windows completa e os boots restantes estão pendentes. / **0.4.0-rc1** is a qualification prerelease. Full compressed SteamOS and Kali writing/comparison passed; complete Windows installation and remaining boot tests are pending. [Relatório / Report](docs/validation/REVISAO-0.4.0-rc1.md).
 
 ---
 
@@ -164,7 +166,8 @@ completo em hardware físico. Veja o
 
 O [roteiro para a 1.0](docs/development/ROADMAP-1.0.md) define os critérios ainda pendentes: validação em mais ambientes de autorização, instalação Windows completa, persistência entre boots, Windows To Go e matriz de execução Linux. O [ensaio da 0.3.9](docs/validation/REVISAO-0.3.9.md) passou em 13 casos GUI com Polkit real e na recusa sem sessão, além de 65 casos de backend em VM. A versão pública é 0.3.9.
 
-- **0.3.9 — versão atual:** consultas de metadados canceláveis, saída limitada, validação UTF-8 e diagnósticos protegidos. [Revisão e limites](docs/validation/REVISAO-0.3.9.md).
+- **0.4.0-rc1 — candidata:** roteiro de QA em discos virtuais, nove regressões de segurança/conclusão e evidências completas de SteamOS e Kali. [Resultados e pendências](docs/validation/REVISAO-0.4.0-rc1.md).
+- **0.3.9 — versão recomendada:** consultas de metadados canceláveis, saída limitada, validação UTF-8 e diagnósticos protegidos. [Revisão e limites](docs/validation/REVISAO-0.3.9.md).
 - **0.3.8:** cancelamento de grupos de ferramentas, encerramento de processos resistentes e mensagens de falha corrigidas. [Revisão e limites](docs/validation/REVISAO-0.3.8.md).
 - **0.3.7:** proteção do helper quando a interface encerra, validação da entrega de entrada e novos testes de ciclo de vida. [Revisão e limites](docs/validation/REVISAO-0.3.7.md).
 - **0.3.6:** janela adaptável sem barras de rolagem visíveis, rodapé com botões fixos, canal privado de cancelamento, origem comprimida fixada por descritor e saída de captura exclusiva. Veja a [revisão e os testes](docs/validation/REVISAO-0.3.6.md).
@@ -328,7 +331,8 @@ a complete physical-hardware boot. See the
 
 The [road to 1.0](docs/development/ROADMAP-1.0.md) defines the remaining gates: broader authorization environments, complete Windows installation, persistent reboots, Windows To Go and a Linux execution matrix. The [0.3.9 qualification](docs/validation/REVISAO-0.3.9.md) passed 13 real-Polkit GUI cases and sessionless denial, plus 65 backend VM cases. The public release is 0.3.9.
 
-- **0.3.9 — current version:** cancellable metadata queries, bounded output, strict UTF-8 and controlled diagnostics. [Review and limits](docs/validation/REVISAO-0.3.9.md).
+- **0.4.0-rc1 — candidate:** disposable-disk QA runner, nine safety/completion regressions and full SteamOS/Kali evidence. [Results and pending gates](docs/validation/REVISAO-0.4.0-rc1.md).
+- **0.3.9 — recommended version:** cancellable metadata queries, bounded output, strict UTF-8 and controlled diagnostics. [Review and limits](docs/validation/REVISAO-0.3.9.md).
 - **0.3.8:** tool-group cancellation, termination of stubborn tools and corrected failure reporting. [Review and limits](docs/validation/REVISAO-0.3.8.md).
 - **0.3.7:** helper protection when the frontend exits, input-delivery validation and new lifecycle tests. [Review and limits](docs/validation/REVISAO-0.3.7.md).
 - **0.3.6:** responsive window without visible scrollbars, fixed action footer, private cancellation channel, pinned compressed input and exclusive capture output. See the [review and tests](docs/validation/REVISAO-0.3.6.md).

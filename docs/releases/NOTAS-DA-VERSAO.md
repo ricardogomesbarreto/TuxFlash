@@ -1,5 +1,20 @@
 # TuxFlash 0.3.9 — 2026-10-30
 
+## 0.4.0-rc1 — 2026-11-04 (pré-versão / prerelease)
+
+Roteiro de qualificação em USB virtual, nove regressões de segurança/conclusão,
+carregamento dos módulos da VM mínima e notas nos quatro idiomas. SteamOS
+comprimido e Kali passaram em gravação, leitura e SHA-256 integral. Windows e
+Zorin foram interrompidos; instalação completa e boots restantes pendentes.
+A 0.3.9 permanece recomendada. [Evidências e limites](../validation/REVISAO-0.4.0-rc1.md).
+
+Disposable-USB VM runner, nine safety/completion regressions, minimal-guest
+module setup and four-language candidate notes. Full compressed SteamOS and
+Kali write/read-back and SHA-256 comparisons passed. Windows/Zorin runs were
+interrupted; full installation and remaining boots are pending. Version 0.3.9
+remains recommended. See the linked report.
+
+
 Consultas de tamanho VHD/VHDX e idioma Windows no helper agora são canceláveis. Captura de stdout/stderr limitada a 4 MiB combinados, validação UTF-8/NUL e diagnósticos WIM limitados a 2048 caracteres. Falha do líder é detectada mesmo com pipes mantidos por descendentes; canais padrão fechados são suportados. Sete regressões reproduzidas na 0.3.8 foram corrigidas. Interface, créditos e GPL-3.0-or-later preservados; notas nos quatro idiomas.
 
 Helper VHD/VHDX size and Windows-language queries are now cancellable. Combined stdout/stderr capture is capped at 4 MiB, invalid UTF-8/NUL rejected and WIM diagnostics bounded to 2048 characters. Failed leaders are detected despite descendant-held pipes; closed standard channels are supported. Seven baseline regressions were fixed. UI, credits and GPL-3.0-or-later preserved, with four-language notes.

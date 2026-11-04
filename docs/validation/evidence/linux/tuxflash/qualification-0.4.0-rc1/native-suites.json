@@ -1,0 +1,122 @@
+[
+  {
+    "name": "tuxflash:helper-help",
+    "result": "OK",
+    "duration": 0.05829358100891113
+  },
+  {
+    "name": "tuxflash:windows-options",
+    "result": "OK",
+    "duration": 0.05285215377807617
+  },
+  {
+    "name": "tuxflash:downloads",
+    "result": "OK",
+    "duration": 0.04699110984802246
+  },
+  {
+    "name": "tuxflash:progress",
+    "result": "OK",
+    "duration": 0.04180455207824707
+  },
+  {
+    "name": "tuxflash:helper-durability",
+    "result": "OK",
+    "duration": 0.03461050987243652
+  },
+  {
+    "name": "tuxflash:licenses",
+    "result": "OK",
+    "duration": 0.02075672149658203
+  },
+  {
+    "name": "tuxflash:job-policy",
+    "result": "OK",
+    "duration": 0.07184171676635742
+  },
+  {
+    "name": "tuxflash:checksums-rufus-core",
+    "result": "OK",
+    "duration": 0.050282955169677734
+  },
+  {
+    "name": "tuxflash:volume-label",
+    "result": "OK",
+    "duration": 0.03699636459350586
+  },
+  {
+    "name": "tuxflash:device-safety-topology",
+    "result": "OK",
+    "duration": 0.03325510025024414
+  },
+  {
+    "name": "tuxflash:language-preferences-and-catalogs",
+    "result": "OK",
+    "duration": 0.0498812198638916
+  },
+  {
+    "name": "tuxflash:helper-tree-internal-links",
+    "result": "OK",
+    "duration": 0.02235579490661621
+  },
+  {
+    "name": "tuxflash:image-probe",
+    "result": "OK",
+    "duration": 0.1339559555053711
+  },
+  {
+    "name": "tuxflash:bcd-generator-failure",
+    "result": "OK",
+    "duration": 0.08404660224914551
+  },
+  {
+    "name": "tuxflash:launcher-delegation",
+    "result": "OK",
+    "duration": 0.13850665092468262
+  },
+  {
+    "name": "tuxflash:helper-io",
+    "result": "OK",
+    "duration": 0.499800443649292
+  },
+  {
+    "name": "tuxflash:real-media-vm-harness-guards",
+    "result": "OK",
+    "duration": 0.11385035514831543
+  },
+  {
+    "name": "tuxflash:menu-shortcut-safety",
+    "result": "OK",
+    "duration": 0.8457705974578857
+  },
+  {
+    "name": "tuxflash:polkit-vm-harness-guards",
+    "result": "OK",
+    "duration": 1.4417028427124023
+  },
+  {
+    "name": "tuxflash:helper-images",
+    "result": "OK",
+    "duration": 2.058180332183838
+  },
+  {
+    "name": "tuxflash:helper-mount",
+    "result": "OK",
+    "duration": 6.1974382400512695
+  },
+  {
+    "name": "tuxflash:helper-metadata-capture",
+    "result": "OK",
+    "duration": 15.117143154144287
+  },
+  {
+    "name": "tuxflash:helper-verification-streams",
+    "result": "OK",
+    "duration": 20.471737384796143
+  },
+  {
+    "name": "tuxflash:helper-frontend-lifecycle",
+    "result": "OK",
+    "duration": 21.217811107635498
+  }
+]

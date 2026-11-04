@@ -7,6 +7,20 @@ char *tuxflash_release_notes(void)
     GString *xml=g_string_new(NULL);
     {
         const char *items[] = {
+            N_("Updated in 0.4.0-rc1"),
+            N_("Real-media qualification records distinguish writing, verification, boot and complete installation."),
+            N_("Release candidate: full Windows installation and remaining image boot tests are still pending."),
+        };
+        g_autofree char *title = g_markup_escape_text(g_dgettext("tuxflash", items[0]), -1);
+        g_string_append_printf(xml, "<p>%s</p><ul>", title);
+        for (guint i = 1; i < G_N_ELEMENTS(items); i++) {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", items[i]), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        g_string_append(xml, "</ul>");
+    }
+    {
+        const char *items[] = {
             N_("Updated in 0.3.9"),
             N_("VHD/VHDX and Windows image metadata queries now respect cancellation and use managed subprocess groups."),
             N_("Metadata output is limited to 4 MiB. Invalid UTF-8 and embedded NUL bytes are rejected, and diagnostics have a bounded display length."),

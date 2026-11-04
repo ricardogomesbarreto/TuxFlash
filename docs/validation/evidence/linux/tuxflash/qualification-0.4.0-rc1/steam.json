@@ -1,0 +1,21 @@
+{
+  "mode": "raw",
+  "image": "steamdeck-oobe-repair-20260707.10-3.8.14.img.bz2",
+  "input_sha256": "4254ee02ec34ae8add9aceef1881a2ce675a9d0176171df92e0eaa1bf014c594",
+  "helper_sha256": "6f3ea5337051c1d9bddb1a5da83cc120787555203633ea35ad209dc4e833b16a",
+  "acceleration": "KVM",
+  "elapsed_seconds": 996.82,
+  "helper_completed": true,
+  "qemu_exit": 0,
+  "physical_devices_accessed": false,
+  "guest_network_enabled": false,
+  "installation_or_boot_qualified": false,
+  "bytes_verified": 8120172544,
+  "independent_reference_sha256": "f9aa0fa2dd618febf28a5e2a583d1e2b5a8ca3f1205be965da584602ac962f40",
+  "independent_target_sha256": "f9aa0fa2dd618febf28a5e2a583d1e2b5a8ca3f1205be965da584602ac962f40",
+  "automatic_readback_passed": true,
+  "cache_invalidated": true,
+  "passed": true,
+  "helper_binary_identical_to_0_3_9": true,
+  "full_installation_qualified": false
+}

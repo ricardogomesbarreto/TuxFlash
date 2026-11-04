@@ -1,0 +1,21 @@
+{
+  "mode": "raw",
+  "image": "kali-linux-2026.2-installer-amd64.iso",
+  "input_sha256": "6dbefacc95e3b556c19c48e8bae39b8b505e2d3a1aba0bfb7ab62b036c3d2ba3",
+  "helper_sha256": "6f3ea5337051c1d9bddb1a5da83cc120787555203633ea35ad209dc4e833b16a",
+  "acceleration": "KVM",
+  "elapsed_seconds": 45.95,
+  "helper_completed": true,
+  "qemu_exit": 0,
+  "physical_devices_accessed": false,
+  "guest_network_enabled": false,
+  "installation_or_boot_qualified": false,
+  "bytes_verified": 4802531328,
+  "independent_reference_sha256": "6dbefacc95e3b556c19c48e8bae39b8b505e2d3a1aba0bfb7ab62b036c3d2ba3",
+  "independent_target_sha256": "6dbefacc95e3b556c19c48e8bae39b8b505e2d3a1aba0bfb7ab62b036c3d2ba3",
+  "automatic_readback_passed": true,
+  "cache_invalidated": true,
+  "passed": true,
+  "helper_binary_identical_to_0_3_9": true,
+  "full_installation_qualified": false
+}

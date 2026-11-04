@@ -1,6 +1,6 @@
 # Caminho para a versão 1.0 / Road to version 1.0
 
-Revisão / Review: **2026-10-30**. Versão pública / Public release: **0.3.9**.
+Revisão / Review: **2026-11-04**. Versão recomendada / Recommended release: **0.3.9**. Candidata / Candidate: **0.4.0-rc1**.
 Este documento define critérios de aprovação; não declara recursos pendentes como concluídos.
 This document defines acceptance criteria; it does not mark pending features complete.
 
@@ -161,3 +161,18 @@ Managed-group cancellation/failure and inherited-signal regressions passed: 57 r
 Consultas de metadados do helper agora têm cancelamento, captura limitada a 4 MiB e validação de texto; sete falhas da base foram reproduzidas e corrigidas. Passaram 24 verificações nativas, 51 casos ASan/UBSan do helper, 65 casos root em VM, 24 configurações GUI e os 13 casos Polkit mais recusa sem sessão. Isso não encerra os critérios de instalação completa, firmware ou portabilidade da matriz. [Evidências e limites](../validation/REVISAO-0.3.9.md).
 
 Helper metadata capture is cancellable, bounded and text-validated; seven baseline failures were reproduced and fixed. Passed: 24 native checks, 51 helper sanitizer cases, 65 root VM cases, 24 GUI configurations and 13 Polkit cases plus sessionless denial. Full-installation, firmware and portability gates remain open; see the linked evidence.
+
+### Candidata 0.4.0-rc1 / Release candidate — 2026-11-04
+
+A candidata acrescenta o roteiro reproduzível de mídias completas. SteamOS
+comprimido (8.120.172.544 bytes) e Kali (4.802.531.328 bytes) passaram em gravação,
+leitura e SHA-256 independente com helper idêntico ao da 0.3.9. Zorin e Windows
+foram interrompidos pelo serviço da sessão. A instalação Windows completa e os
+boots restantes continuam pendentes: **o marco 0.4.0 estável não foi concluído**.
+[Relatório da candidata](../validation/REVISAO-0.4.0-rc1.md).
+
+The candidate adds reproducible full-media qualification. Complete compressed
+SteamOS and Kali writes/read-back and independent SHA-256 comparisons passed
+with the byte-identical 0.3.9 helper. The session service interrupted Zorin and
+Windows. Complete Windows installation and remaining boots are pending:
+**the stable 0.4.0 milestone is not complete**. See the candidate report above.

@@ -1,7 +1,7 @@
 project(
   'tuxflash',
   'c',
-  version: '0.3.9',
+  version: '0.4.0-rc1',
   license: 'GPL-3.0-or-later',
   meson_version: '>= 0.63.0',
   default_options: ['c_std=c11', 'warning_level=3'],
@@ -344,3 +344,6 @@ helper_metadata_test = executable(
   dependencies: [dependency('gio-2.0'), json_glib],
 )
 test('helper-metadata-capture', helper_metadata_test, timeout: 60)
+
+# Disposable-image runner safety and completion protocol.
+test('real-media-vm-harness-guards', find_program('python3'), args: files('tests/test_real_media_harness.py'))

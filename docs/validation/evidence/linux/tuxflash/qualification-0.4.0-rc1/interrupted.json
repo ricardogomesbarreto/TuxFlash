@@ -1,0 +1,13 @@
+{
+  "windows_installer": {
+    "passed": false,
+    "interrupted_during": "copying",
+    "complete_installation": false
+  },
+  "zorin_raw": {
+    "passed": false,
+    "interrupted_before_completion": true
+  },
+  "interruption": "QEMU terminated by the test session service (SIGTERM)",
+  "physical_devices_accessed": false
+}
