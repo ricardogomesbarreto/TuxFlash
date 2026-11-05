@@ -354,6 +354,8 @@ static int capture_tool_metadata(char *const arguments[], char **output, char **
             fcntl(STDERR_FILENO,F_SETFD,0)<0) _exit(126);
         if (input>2) close(input);
         close_metadata_pipe(pipes[0]);close_metadata_pipe(pipes[1]);
+        setenv("LC_ALL", "C.UTF-8", 1);
+        setenv("LANGUAGE", "C", 1);
         exec_tool(arguments);_exit(127);
     }
     close(pipes[0][1]);pipes[0][1]=-1;close(pipes[1][1]);pipes[1][1]=-1;
@@ -1589,8 +1591,61 @@ static int run_command_input(char *const arguments[], const char *input)
     return 0;
 }
 
+/* wimlib's fixed field names are parsed only as complete, unique lines.
+ * Reject missing/ambiguous numeric metadata rather than enabling disk erasure. */
+static bool windows_metadata_uint(const char *metadata, const char *key, guint *value)
+{
+    bool found = false;
+    const size_t key_length = strlen(key);
+    const char *line = metadata != NULL ? metadata : "";
+    while (*line != '\0') {
+        const char *end = strchr(line, '\n');
+        if (end == NULL) end = line + strlen(line);
+        const char *text = line;
+        while (text < end && g_ascii_isspace(*text)) text++;
+        if ((size_t)(end - text) >= key_length && memcmp(text, key, key_length) == 0) {
+            if (found) return false;
+            const char *number = text + key_length;
+            while (number < end && g_ascii_isspace(*number)) number++;
+            if (number == end || !g_ascii_isdigit(*number)) return false;
+            char *parsed_end = NULL;
+            errno = 0;
+            guint64 parsed = g_ascii_strtoull(number, &parsed_end, 10);
+            if (errno != 0 || parsed_end == number || parsed_end > end ||
+                parsed == 0 || parsed > G_MAXUINT) return false;
+            while (parsed_end < end && g_ascii_isspace(*parsed_end)) parsed_end++;
+            if (parsed_end != end) return false;
+            *value = (guint)parsed;
+            found = true;
+        }
+        if (*end == '\0') break;
+        line = end + 1;
+    }
+    return found;
+}
+
+static bool windows_silent_version_supported(const char *metadata, GError **error)
+{
+    guint major = 0, build = 0;
+    if (!windows_metadata_uint(metadata, "Major Version:", &major) ||
+        !windows_metadata_uint(metadata, "Build:", &build)) {
+        g_set_error_literal(error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA,
+            "Could not validate the Windows version for silent installation.");
+        return false;
+    }
+    /* Windows 11 reports NT version 10.0 with build 22000 or later.
+     * Rufus likewise exposes this destructive feature only for Windows 11. */
+    if (major < 10 || (major == 10 && build < 22000)) {
+        g_set_error_literal(error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED,
+            "Silent installation requires a Windows 11 or later image. Use standard installation for Windows 10.");
+        return false;
+    }
+    return true;
+}
+
 static char *windows_image_default_language(const char *image_path,
                                             guint image_index,
+                                            bool silent_install,
                                             GError **error)
 {
     char *index = g_strdup_printf("%u", image_index);
@@ -1615,6 +1670,8 @@ static char *windows_image_default_language(const char *image_path,
                     detail!=NULL?detail:g_strerror(saved));
         goto out;
     }
+    if (silent_install && !windows_silent_version_supported(standard_output, error))
+        goto out;
     cursor = standard_output != NULL ? strstr(standard_output, "Default Language:") : NULL;
     if (cursor == NULL) {
         g_set_error_literal(error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA,
@@ -2701,7 +2758,7 @@ static int windows_installer_command(const char *source, const char *target_argu
             GError *error = NULL;
             detected_language = windows_image_default_language(install_image,
                                                                windows_index,
-                                                               &error);
+                                                               true, &error);
             if (detected_language == NULL) {
                 event_message("ERROR", error != NULL ? error->message :
                               "Could not inspect the selected Windows edition");

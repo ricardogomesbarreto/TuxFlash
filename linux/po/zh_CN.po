@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.4.0-rc1\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
+msgstr "Project-Id-Version: TuxFlash 0.4.0\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -916,3 +916,27 @@ msgstr "真实介质验证记录区分写入、校验、启动和完整安装。
 
 msgid "Release candidate: full Windows installation and remaining image boot tests are still pending."
 msgstr "候选版本：完整的 Windows 安装和其余镜像启动测试仍待完成。"
+
+msgid "⚠SILENTLY⚠ erase disk and install (Windows 11+):"
+msgstr "⚠静默⚠ 擦除磁盘并安装（Windows 11+）："
+
+msgid "Requires a Windows 11 or later image. Creates media that does not prompt during Windows installation and unconditionally erases the first detected disk on the target PC. Disconnect every other disk before booting it."
+msgstr "需要 Windows 11 或更新版本的镜像。创建的介质会在安装 Windows 时跳过确认，并无条件擦除目标电脑检测到的第一块磁盘。启动前请断开所有其他磁盘。"
+
+msgid "Silent installation requires a Windows 11 or later image. Use standard installation for Windows 10."
+msgstr "静默安装需要 Windows 11 或更新版本的镜像。Windows 10 请使用标准安装。"
+
+msgid "Could not validate the Windows version for silent installation."
+msgstr "无法验证用于静默安装的 Windows 版本。"
+
+msgid "Updated in 0.4.0"
+msgstr "0.4.0 版更新"
+
+msgid "Silent installation requires Windows 11 or later; standard Windows 10 installation remains available."
+msgstr "静默安装需要 Windows 11 或更高版本；仍可使用标准 Windows 10 安装。"
+
+msgid "Windows version metadata is validated before destructive silent-install operations."
+msgstr "在执行静默安装的破坏性操作之前，会验证 Windows 版本元数据。"
+
+msgid "Expanded real-image writing, read-back and virtual-machine boot qualification."
+msgstr "扩展了真实镜像写入、回读校验和虚拟机启动验证。"

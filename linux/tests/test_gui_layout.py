@@ -91,7 +91,7 @@ def main():
                 assert select.select([read_fd], [], [], 20)[0]
                 display = ':' + os.read(read_fd, 32).decode().strip()
                 environment = dict(os.environ, DISPLAY=display, GDK_BACKEND='x11', GTK_A11Y='none',
-                    GSETTINGS_BACKEND='memory', LANGUAGE=language, LANG='C.UTF-8', LC_ALL='C.UTF-8',
+                    GSETTINGS_BACKEND='memory', GSK_RENDERER='cairo', LANGUAGE=language, LANG='C.UTF-8', LC_ALL='C.UTF-8',
                     XDG_CONFIG_HOME=str(prefix) + '-config', XDG_CACHE_HOME=str(prefix) + '-cache')
                 if args.runtime:
                     command = [str(args.runtime / 'run-elf'), 'tuxflash-layout-test', str(args.binary.resolve())]

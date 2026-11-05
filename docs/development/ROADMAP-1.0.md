@@ -1,8 +1,12 @@
 # Caminho para a versão 1.0 / Road to version 1.0
 
-Revisão / Review: **2026-11-04**. Versão recomendada / Recommended release: **0.3.9**. Candidata / Candidate: **0.4.0-rc1**.
+Revisão / Review: **2026-11-05**. Versão recomendada / Recommended release: **0.4.0**.
 Este documento define critérios de aprovação; não declara recursos pendentes como concluídos.
 This document defines acceptance criteria; it does not mark pending features complete.
+
+A 0.4.0 concluiu gravação/leitura de SteamOS, Kali e Zorin com o helper final, boot além do menu e instalação Windows 10 Pro padrão UEFI/FAT32 até o desktop. A igualdade dos discos completos vincula os boots Linux à saída do helper final. Os modos Windows NTFS, BIOS, instalação silenciosa Windows 11+, WIM dividido e Windows To Go continuam exigindo seus próprios ensaios completos. [Revisão 0.4.0](../validation/REVISAO-0.4.0.md).
+
+Version 0.4.0 completed final-helper SteamOS/Kali/Zorin writing/read-back, boot beyond the menu and standard Windows 10 Pro UEFI/FAT32 installation to the desktop. Full-disk equality connects Linux boot evidence to final-helper output. Windows NTFS, BIOS, Windows 11+ silent installation, split WIM and Windows To Go still need their own complete qualification.
 
 ## Português Brasil
 
@@ -19,8 +23,8 @@ Esses resultados não comprovam instalação completa, todos os firmwares ou tod
 | Crítica | Segurança de destino | Repetir as proteções com o pacote candidato: disco do sistema, swap, volumes dependentes, dispositivo trocado/desconectado e montagem alterada após confirmação. Nenhuma escrita no alvo errado; nenhuma falha reportada como sucesso. | Proteções e regressões existentes; falta ampliar cenários e qualificar o pacote final. |
 | Crítica | Helper e Polkit | Executar GUI → pkexec → helper real em VM com usuário comum; aprovar, negar e cancelar autenticação, cancelar I/O bloqueada e encerrar a interface. Confirmar que a política não autoriza sessões indevidas. | Fluxo real aprovado em 13 casos GUI e recusa sem sessão; perda abrupta durante RAW aprovada nos dois layouts. Agentes visuais, árvores arbitrárias de processos e outros modos de escrita ainda pendentes. Veja [0.3.7](../validation/REVISAO-0.3.7.md). |
 | Alta | Falhas e recuperação | Simular falta de espaço, erros de leitura/escrita, imagem alterada/truncada, retirada do USB e falha no commit final. Saída sem falso sucesso, limpeza de recursos e próximo trabalho possível. | Vários casos unitários já cobertos; falta matriz integrada GUI/CLI e pacote candidato. |
-| Alta | Imagens Linux reais | Gravar e comparar as imagens completas suportadas com o binário final; iniciar o sistema/instalador além do menu em BIOS/UEFI conforme a imagem. Repetir SteamOS comprimido completo. | Evidências reais históricas; falta qualificação completa da candidata final. |
-| Alta | Instalador Windows | Recriar a mídia com o binário final e concluir uma instalação em disco virtual descartável. Qualificar os modos FAT32/WIM dividido, UEFI:NTFS e BIOS/UEFI anunciados, incluindo seleção de edição e instalação não assistida em VM com discos extras preservados. Investigar a captura azul anterior com logs e reprodução controlada. | Boot até escolha de idioma; instalação completa pendente. Controle virtual não comprovou correção da captura física. |
+| Alta | Imagens Linux reais | Gravar e comparar as imagens completas suportadas com o binário final; iniciar o sistema/instalador além do menu em BIOS/UEFI conforme a imagem. Repetir SteamOS comprimido completo. | 0.4.0: SteamOS recovery desktop UEFI, Kali installer BIOS/UEFI e Zorin live BIOS/UEFI; sem recuperação física de Steam Deck. |
+| Alta | Instalador Windows | Recriar a mídia com o binário final e concluir uma instalação em disco virtual descartável. Qualificar os modos FAT32/WIM dividido, UEFI:NTFS e BIOS/UEFI anunciados, incluindo seleção de edição e instalação não assistida em VM com discos extras preservados. Investigar a captura azul anterior com logs e reprodução controlada. | 0.4.0: instalação padrão Windows 10 Pro UEFI/FAT32 até desktop aprovada. Modos avançados e outros firmwares pendentes. |
 | Alta | Persistência Linux | Iniciar uma sessão real, criar um arquivo, reiniciar pela mesma mídia e confirmar que o arquivo permanece; testar as famílias anunciadas. | Layout sintético aprovado; persistência entre boots reais pendente. |
 | Alta | Windows To Go | Aplicar a imagem, completar a configuração inicial, chegar ao desktop e reiniciar mantendo os dados. | Provisionamento e boot parciais; desktop completo pendente. |
 | Alta | Portabilidade | Executar o pacote em sistemas limpos de pelo menos duas famílias de distribuição; registrar versão, kernel, sessão gráfica e dependências. Testar GUI/CLI e autorização em cada ambiente declarado suportado. | CI de compilação Ubuntu 24.04 e runtime privado; matriz de execução ainda insuficiente. |
@@ -49,7 +53,7 @@ com o Rufus Windows não são critérios verificáveis para este lançamento.
 Os marcos abaixo são planejamento; não são versões já publicadas nem um calendário.
 
 1. **0.3.7 — entregue nesta revisão:** SIGPIPE, entrega de entrada, regressões e perda da GUI durante RAW com Polkit real; troca/desconexão e demais falhas continuam na próxima etapa.
-2. **0.4 — mídias completas:** qualificar imagens reais com o pacote exato e completar uma instalação Windows; investigar divergências com evidências.
+2. **0.4 — mídias completas, concluída no escopo documentado:** SteamOS/Kali/Zorin e instalação padrão Windows 10 Pro em VM; divergência da instalação silenciosa Windows 10 corrigida por recusa antes da escrita.
 3. **0.5 — recursos avançados:** concluir persistência entre boots e Windows To Go até o desktop; recuperação física Steam Deck quando houver hardware disponível para esse ensaio.
 4. **0.6–0.8 — portabilidade e entrega:** executar a matriz de distribuições, consolidar empacotamento e revisar os quatro idiomas e acessibilidade.
 5. **0.9 / 1.0-rc — congelamento:** fechar o escopo, evitar novos recursos e repetir os critérios sobre os mesmos artefatos que serão entregues.
@@ -114,7 +118,7 @@ Secure Boot requires its own image/firmware qualification. FFU remains outside
 the current Linux backend. Neither universal compatibility nor complete Windows
 Rufus parity is an established release claim.
 
-Delivered **0.3.7** covers SIGPIPE, input delivery and abrupt RAW frontend exit with real Polkit. Further fault/removal scenarios remain open. Planned milestones, without promised dates: **0.4** full media/Windows installation; **0.5** persistent reboots
+Delivered **0.3.7** covers SIGPIPE, input delivery and abrupt RAW frontend exit with real Polkit. Further fault/removal scenarios remain open. Milestone **0.4** is complete for the documented real-media and standard Windows 10 Pro VM matrix. Planned next milestones, without promised dates: **0.5** persistent reboots
 and Windows To Go desktop; **0.6–0.8** portability, delivery and UI/language review;
 **0.9 / 1.0-rc** scope freeze and exact-artifact regression; **1.0** only after all
 mandatory stable-scope gates pass. Physical Steam Deck recovery additionally
@@ -162,7 +166,9 @@ Consultas de metadados do helper agora têm cancelamento, captura limitada a 4 M
 
 Helper metadata capture is cancellable, bounded and text-validated; seven baseline failures were reproduced and fixed. Passed: 24 native checks, 51 helper sanitizer cases, 65 root VM cases, 24 GUI configurations and 13 Polkit cases plus sessionless denial. Full-installation, firmware and portability gates remain open; see the linked evidence.
 
-### Candidata 0.4.0-rc1 / Release candidate — 2026-11-04
+O registro da candidata abaixo descreve o estado naquela data; foi sucedido pela qualificação 0.4.0 no início desta página. / The candidate record below describes its state at that date and is superseded by the 0.4.0 qualification above.
+
+### Candidata 0.4.0-rc1 / Release candidate — 2026-11-04 (histórico / historical)
 
 A candidata acrescenta o roteiro reproduzível de mídias completas. SteamOS
 comprimido (8.120.172.544 bytes) e Kali (4.802.531.328 bytes) passaram em gravação,

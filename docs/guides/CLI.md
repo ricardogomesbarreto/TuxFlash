@@ -1,5 +1,7 @@
 # Interface e linha de comando / GUI and CLI
 
+**0.4.0:** instalação silenciosa exige Windows 11 ou posterior; para Windows 10, use o instalador padrão sem `--silent-install`. O helper valida isso antes de apagar o destino. / Silent installation requires Windows 11 or later; use standard installation without `--silent-install` for Windows 10. The helper checks this before erasing the target.
+
 Native C/GTK 4/libadwaita application and CLI, based on
 [Lufus](https://github.com/openresearchtools/lufus) and
 [Rufus](https://github.com/pbatard/rufus). Current development credit:

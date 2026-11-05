@@ -21,9 +21,9 @@
   <a href="docs/development/CONTRIBUTING.md">Contribuir / Contribute</a>
 </p>
 
-> **Release status / Estado das versões:** **[0.3.9](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.9)** é a versão pública recomendada, com pacote portátil Linux x86-64 e SHA-256. / **[0.3.9](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.3.9)** is the recommended public release, with a Linux x86-64 portable archive and SHA-256.
+> **Release status / Estado das versões:** **[0.4.0](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.4.0)** é a versão pública recomendada, com pacote portátil Linux x86-64 e SHA-256. / **[0.4.0](https://github.com/ricardogomesbarreto/TuxFlash/releases/tag/v0.4.0)** is the recommended public release, with a Linux x86-64 portable archive and SHA-256.
 
-> **Candidata / Candidate:** **0.4.0-rc1** é uma pré-versão de qualificação. SteamOS comprimido e Kali passaram na gravação e comparação completas; instalação Windows completa e os boots restantes estão pendentes. / **0.4.0-rc1** is a qualification prerelease. Full compressed SteamOS and Kali writing/comparison passed; complete Windows installation and remaining boot tests are pending. [Relatório / Report](docs/validation/REVISAO-0.4.0-rc1.md).
+> **Qualificação / Qualification:** SteamOS, Kali e Zorin passaram em gravação completa e comparação; seus boots em VM chegaram ao ambiente de recuperação, instalador ou sessão live. Windows 10 Pro concluiu a instalação padrão UEFI/FAT32 até o desktop. / Full SteamOS, Kali and Zorin writing/comparison passed; VM boots reached recovery, installer or live sessions. Windows 10 Pro standard UEFI/FAT32 installation reached the desktop. [Relatório / Report](docs/validation/REVISAO-0.4.0.md).
 
 ---
 
@@ -38,8 +38,8 @@ O **TuxFlash** é um aplicativo nativo em **C, GTK 4 e libadwaita**, com interfa
 
 **1. Baixe os dois arquivos da versão publicada para Linux x86-64:**
 
-- [TuxFlash 0.3.9 — pacote portátil (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.9/TuxFlash-0.3.9-linux-x86_64.tar.xz)
-- [SHA-256 — arquivo de verificação](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.9/TuxFlash-0.3.9-linux-x86_64.tar.xz.sha256)
+- [TuxFlash 0.4.0 — pacote portátil (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.4.0/TuxFlash-0.4.0-linux-x86_64.tar.xz)
+- [SHA-256 — arquivo de verificação](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.4.0/TuxFlash-0.4.0-linux-x86_64.tar.xz.sha256)
 
 Também estão disponíveis na página de [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases).
 
@@ -47,13 +47,13 @@ Também estão disponíveis na página de [Releases](https://github.com/ricardog
 
 ```bash
 # Confirme a integridade do pacote (recomendado).
-sha256sum -c TuxFlash-0.3.9-linux-x86_64.tar.xz.sha256
+sha256sum -c TuxFlash-0.4.0-linux-x86_64.tar.xz.sha256
 
 # Extraia o pacote.
-tar -xf TuxFlash-0.3.9-linux-x86_64.tar.xz
+tar -xf TuxFlash-0.4.0-linux-x86_64.tar.xz
 
 # Entre na pasta que foi criada.
-cd TuxFlash-0.3.9-linux-x86_64
+cd TuxFlash-0.4.0-linux-x86_64
 
 # Inicie a interface gráfica.
 ./tuxflash
@@ -150,7 +150,7 @@ Os recursos são herdados e adaptados principalmente do Lufus; não há promessa
 - **Autorização:** a interface permanece sem privilégios; operações restritas usam `pkexec` do sistema, quando disponível. Instalar o atalho **não** concede privilégios automáticos.
 - **Proteção do destino:** o helper revalida o dispositivo, capacidade e estado, identifica montagens protegidas, volumes dependentes e swap ativo, e recusa gravações inseguras conforme as verificações implementadas.
 - **Limitações:** nenhuma garantia de funcionamento em toda distribuição, ISO ou firmware; FFU não é suportado. Secure Boot, persistência real após reinicialização e Windows To Go completo não estão integralmente qualificados.
-- **Opções avançadas destrutivas:** mídias de instalação silenciosa podem apagar o **Disco 0 de outro computador quando iniciadas**. Consulte a [documentação da CLI](docs/guides/CLI.md) antes de usar esses modos.
+- **Opções avançadas destrutivas:** a instalação silenciosa exige Windows 11 ou posterior (Windows 10 usa instalação padrão); essas mídias podem apagar o **Disco 0 de outro computador quando iniciadas**. Consulte a [documentação da CLI](docs/guides/CLI.md) antes de usar esses modos.
 
 Se a interface não abrir, execute o lançador pelo terminal para ler o erro, rode `doctor` e verifique se o pacote está **totalmente extraído**. Se o atalho parar de funcionar após mover a pasta, execute o instalador de menu novamente no novo local.
 
@@ -164,10 +164,11 @@ completo em hardware físico. Veja o
 
 ### Desenvolvimento e histórico de versões
 
-O [roteiro para a 1.0](docs/development/ROADMAP-1.0.md) define os critérios ainda pendentes: validação em mais ambientes de autorização, instalação Windows completa, persistência entre boots, Windows To Go e matriz de execução Linux. O [ensaio da 0.3.9](docs/validation/REVISAO-0.3.9.md) passou em 13 casos GUI com Polkit real e na recusa sem sessão, além de 65 casos de backend em VM. A versão pública é 0.3.9.
+A **0.4.0** qualifica imagens completas SteamOS/Kali/Zorin e uma instalação Windows 10 Pro padrão em VM. O [roteiro para a 1.0](docs/development/ROADMAP-1.0.md) mantém pendentes persistência entre boots, Windows To Go completo, modos Windows avançados e matriz ampliada de execução Linux. Passaram 24 suítes sem GUI, 69 casos de backend em VM, 55 casos ASan/UBSan do helper e 24 configurações GUI. Os 13 casos GUI com Polkit real pertencem ao [ensaio histórico da 0.3.9](docs/validation/REVISAO-0.3.9.md).
 
-- **0.4.0-rc1 — candidata:** roteiro de QA em discos virtuais, nove regressões de segurança/conclusão e evidências completas de SteamOS e Kali. [Resultados e pendências](docs/validation/REVISAO-0.4.0-rc1.md).
-- **0.3.9 — versão recomendada:** consultas de metadados canceláveis, saída limitada, validação UTF-8 e diagnósticos protegidos. [Revisão e limites](docs/validation/REVISAO-0.3.9.md).
+- **0.4.0 — versão recomendada:** restrição segura da instalação silenciosa a Windows 11+, instalação padrão Windows 10, imagens reais e validações ampliadas. [Resultados e limites](docs/validation/REVISAO-0.4.0.md).
+- **0.4.0-rc1 — candidata histórica:** roteiro de QA em discos virtuais, nove regressões de segurança/conclusão e evidências completas de SteamOS e Kali. [Resultados e pendências](docs/validation/REVISAO-0.4.0-rc1.md).
+- **0.3.9:** consultas de metadados canceláveis, saída limitada, validação UTF-8 e diagnósticos protegidos. [Revisão e limites](docs/validation/REVISAO-0.3.9.md).
 - **0.3.8:** cancelamento de grupos de ferramentas, encerramento de processos resistentes e mensagens de falha corrigidas. [Revisão e limites](docs/validation/REVISAO-0.3.8.md).
 - **0.3.7:** proteção do helper quando a interface encerra, validação da entrega de entrada e novos testes de ciclo de vida. [Revisão e limites](docs/validation/REVISAO-0.3.7.md).
 - **0.3.6:** janela adaptável sem barras de rolagem visíveis, rodapé com botões fixos, canal privado de cancelamento, origem comprimida fixada por descritor e saída de captura exclusiva. Veja a [revisão e os testes](docs/validation/REVISAO-0.3.6.md).
@@ -205,8 +206,8 @@ Desenvolvimento TuxFlash: [Ricardo Barreto](https://github.com/ricardogomesbarre
 
 **1. Download both files for the published Linux x86-64 release:**
 
-- [TuxFlash 0.3.9 — portable archive (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.9/TuxFlash-0.3.9-linux-x86_64.tar.xz)
-- [SHA-256 checksum file](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.3.9/TuxFlash-0.3.9-linux-x86_64.tar.xz.sha256)
+- [TuxFlash 0.4.0 — portable archive (.tar.xz)](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.4.0/TuxFlash-0.4.0-linux-x86_64.tar.xz)
+- [SHA-256 checksum file](https://github.com/ricardogomesbarreto/TuxFlash/releases/download/v0.4.0/TuxFlash-0.4.0-linux-x86_64.tar.xz.sha256)
 
 Or open the [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases) page.
 
@@ -214,11 +215,11 @@ Or open the [Releases](https://github.com/ricardogomesbarreto/TuxFlash/releases)
 
 ```bash
 # Verify the archive (recommended).
-sha256sum -c TuxFlash-0.3.9-linux-x86_64.tar.xz.sha256
+sha256sum -c TuxFlash-0.4.0-linux-x86_64.tar.xz.sha256
 
 # Extract and enter its directory.
-tar -xf TuxFlash-0.3.9-linux-x86_64.tar.xz
-cd TuxFlash-0.3.9-linux-x86_64
+tar -xf TuxFlash-0.4.0-linux-x86_64.tar.xz
+cd TuxFlash-0.4.0-linux-x86_64
 
 # Launch the graphical application.
 ./tuxflash
@@ -329,10 +330,11 @@ a complete physical-hardware boot. See the
 
 ### Development and versions
 
-The [road to 1.0](docs/development/ROADMAP-1.0.md) defines the remaining gates: broader authorization environments, complete Windows installation, persistent reboots, Windows To Go and a Linux execution matrix. The [0.3.9 qualification](docs/validation/REVISAO-0.3.9.md) passed 13 real-Polkit GUI cases and sessionless denial, plus 65 backend VM cases. The public release is 0.3.9.
+**0.4.0** qualifies complete SteamOS/Kali/Zorin images and one standard Windows 10 Pro installation in a VM. The [road to 1.0](docs/development/ROADMAP-1.0.md) retains persistent reboots, complete Windows To Go, advanced Windows modes and broader Linux execution as open gates. Passed: 24 headless suites, 69 backend VM cases, 55 helper ASan/UBSan cases and 24 GUI configurations. The 13 real-Polkit GUI cases belong to the [historical 0.3.9 qualification](docs/validation/REVISAO-0.3.9.md).
 
-- **0.4.0-rc1 — candidate:** disposable-disk QA runner, nine safety/completion regressions and full SteamOS/Kali evidence. [Results and pending gates](docs/validation/REVISAO-0.4.0-rc1.md).
-- **0.3.9 — recommended version:** cancellable metadata queries, bounded output, strict UTF-8 and controlled diagnostics. [Review and limits](docs/validation/REVISAO-0.3.9.md).
+- **0.4.0 — recommended version:** safe Windows 11+ silent-install restriction, standard Windows 10 installation, real-image and expanded regression qualification. [Results and limits](docs/validation/REVISAO-0.4.0.md).
+- **0.4.0-rc1 — historical candidate:** disposable-disk QA runner, nine safety/completion regressions and full SteamOS/Kali evidence. [Results and pending gates](docs/validation/REVISAO-0.4.0-rc1.md).
+- **0.3.9:** cancellable metadata queries, bounded output, strict UTF-8 and controlled diagnostics. [Review and limits](docs/validation/REVISAO-0.3.9.md).
 - **0.3.8:** tool-group cancellation, termination of stubborn tools and corrected failure reporting. [Review and limits](docs/validation/REVISAO-0.3.8.md).
 - **0.3.7:** helper protection when the frontend exits, input-delivery validation and new lifecycle tests. [Review and limits](docs/validation/REVISAO-0.3.7.md).
 - **0.3.6:** responsive window without visible scrollbars, fixed action footer, private cancellation channel, pinned compressed input and exclusive capture output. See the [review and tests](docs/validation/REVISAO-0.3.6.md).

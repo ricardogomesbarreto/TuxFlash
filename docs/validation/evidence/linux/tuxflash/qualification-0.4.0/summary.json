@@ -1,0 +1,27 @@
+{
+  "version": "0.4.0",
+  "review_date": "2026-11-05",
+  "base_commit": "8140ee905415eba9169e560f47e898e2fa97c563",
+  "helper_sha256": "27b5007ba6e83835332f1adfc68c4ef586ade579d64332329f5baeee662b931b",
+  "application_sha256": "513159d5fc1ca8285b67ae446e98fd377e2d58111cb29a31368ba298795e2a69",
+  "headless_suites_passed": 24,
+  "helper_sanitizer_cases_passed": 55,
+  "host_cross_uid_skipped": 1,
+  "backend_vm_cases_passed": 69,
+  "gui_configurations_passed": 24,
+  "gui_mock_writer_cases_per_configuration": 6,
+  "real_media_harness_guards_passed": 10,
+  "linux_full_write_readback_passed": [
+    "SteamOS 3.8.14 compressed IMG",
+    "Kali 2026.2 installer",
+    "Zorin 18.1 Core"
+  ],
+  "linux_boot_evidence_linked_by_full_disk_equality": true,
+  "windows_standard_uefi_fat32_installation_to_desktop": true,
+  "windows_10_silent_preflight_target_unchanged": true,
+  "physical_devices_accessed": false,
+  "secure_boot_qualified": false,
+  "windows_to_go_desktop_qualified": false,
+  "persistent_reboot_qualified": false,
+  "all_linux_distributions_qualified": false
+}

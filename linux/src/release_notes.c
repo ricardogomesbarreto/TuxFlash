@@ -7,6 +7,21 @@ char *tuxflash_release_notes(void)
     GString *xml=g_string_new(NULL);
     {
         const char *items[] = {
+            N_("Updated in 0.4.0"),
+            N_("Silent installation requires Windows 11 or later; standard Windows 10 installation remains available."),
+            N_("Windows version metadata is validated before destructive silent-install operations."),
+            N_("Expanded real-image writing, read-back and virtual-machine boot qualification."),
+        };
+        g_autofree char *title = g_markup_escape_text(g_dgettext("tuxflash", items[0]), -1);
+        g_string_append_printf(xml, "<p>%s</p><ul>", title);
+        for (guint i = 1; i < G_N_ELEMENTS(items); i++) {
+            g_autofree char *item = g_markup_escape_text(g_dgettext("tuxflash", items[i]), -1);
+            g_string_append_printf(xml, "<li>%s</li>", item);
+        }
+        g_string_append(xml, "</ul>");
+    }
+    {
+        const char *items[] = {
             N_("Updated in 0.4.0-rc1"),
             N_("Real-media qualification records distinguish writing, verification, boot and complete installation."),
             N_("Release candidate: full Windows installation and remaining image boot tests are still pending."),

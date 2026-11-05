@@ -39,14 +39,15 @@ O roteiro exige saída zero da VM e do helper, exatamente uma conclusão dentro
 do log final e nenhuma falha fatal. RAW também exige contagem exata, verificação
 automática com invalidação de cache e SHA-256 independente de todos os bytes
 úteis do destino. Não compara o espaço livre após o fim da imagem.
-Os nove testes em `linux/tests/test_real_media_harness.py` recusam entradas
+Os dez testes em `linux/tests/test_real_media_harness.py` recusam entradas
 inseguras, leitura curta, protocolo incompleto/duplicado e falso sucesso.
 
 `--mode windows-installer --windows-index N` prepara mídia Windows. Concluir
 esse comando comprova criação pelo helper; **não comprova instalação Windows**.
 `--unattended-vm-setup` é uma opção explícita de teste: a mídia resultante solicita
 **apagar o Disco 0 ao iniciar Windows Setup**. Ela só deve ser iniciada numa VM
-isolada com disco descartável. A opção fica desativada por padrão.
+isolada com disco descartável. A opção fica desativada por padrão e exige Windows 11 ou posterior; para Windows 10, use a instalação padrão.
+`--uefi-ntfs` seleciona o layout NTFS apenas no modo Windows; ele exige qualificação de boot separada.
 
 A pasta de trabalho conserva `result.json`, `serial.log` e os discos. Trabalhos
 existentes são recusados para preservar evidências. Não publique logs sem remover
@@ -77,13 +78,13 @@ and target. Existing work directories are rejected to preserve evidence.
 Success requires zero VM/helper exits, exactly one completed helper log and
 no fatal record. RAW additionally requires exact byte count, automatic
 read-back with cache invalidation and an independent full-payload SHA-256
-comparison. Target padding is excluded. Nine guard tests cover unsafe inputs,
+comparison. Target padding is excluded. Ten guard tests cover unsafe inputs,
 short reads, incomplete/duplicate completion and false success.
 
 Windows mode only qualifies helper media creation. Full installation needs a
 separate disposable-disk boot test. `--unattended-vm-setup` explicitly enables
 media that **erases Windows Disk 0 when booted**; it is off by default and is
-strictly for isolated disposable VMs. Keep result/log/disk evidence private
+strictly for isolated disposable VMs, with Windows 11 or later. Use standard installation for Windows 10. `--uefi-ntfs` selects the Windows NTFS layout and needs separate boot qualification. Keep result/log/disk evidence private
 until sanitized. Interrupted and timed-out runs never count as passes.
 Distinguish writing, comparison, boot menus, complete sessions/installations
 and reboot evidence.

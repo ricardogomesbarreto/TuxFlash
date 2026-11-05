@@ -1,0 +1,8 @@
+{
+  "helper_passed": 55,
+  "host_cross_uid_skipped": 1,
+  "tap_cases": 56,
+  "address_undefined_behavior_errors": 0,
+  "hash_platform_checks_passed": true,
+  "physical_devices_accessed": false
+}

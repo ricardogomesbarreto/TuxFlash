@@ -1,0 +1,10 @@
+{
+  "case": "standard",
+  "helper_sha256": "27b5007ba6e83835332f1adfc68c4ef586ade579d64332329f5baeee662b931b",
+  "qemu_exit": 0,
+  "elapsed_seconds": 44.95,
+  "physical_devices_accessed": false,
+  "full_installation_qualified": false,
+  "windows_image_sha256": "1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768",
+  "passed": true
+}

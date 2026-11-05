@@ -1,0 +1,26 @@
+[
+  {
+    "case": "steam",
+    "full_disk_bytes": 17179869184,
+    "booted_disk_sha256": "34090815a0e3b8d5f3924ec4aa0591d7d2cb545231ed3450fb99c9c98b1ce0cc",
+    "final_helper_disk_sha256": "34090815a0e3b8d5f3924ec4aa0591d7d2cb545231ed3450fb99c9c98b1ce0cc",
+    "byte_identical": true,
+    "physical_devices_accessed": false
+  },
+  {
+    "case": "kali",
+    "full_disk_bytes": 17179869184,
+    "booted_disk_sha256": "cd5a0f1ea6c3729363c92f67f1ffe661c09ca4052f4eb65e85937472c532af32",
+    "final_helper_disk_sha256": "cd5a0f1ea6c3729363c92f67f1ffe661c09ca4052f4eb65e85937472c532af32",
+    "byte_identical": true,
+    "physical_devices_accessed": false
+  },
+  {
+    "case": "zorin",
+    "full_disk_bytes": 17179869184,
+    "booted_disk_sha256": "7a3158c9478ac00297c717a5cbce8622e8d862a3c57ba3dfed120417a81432af",
+    "final_helper_disk_sha256": "7a3158c9478ac00297c717a5cbce8622e8d862a3c57ba3dfed120417a81432af",
+    "byte_identical": true,
+    "physical_devices_accessed": false
+  }
+]

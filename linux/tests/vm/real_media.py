@@ -53,13 +53,14 @@ def prepare_work(path):
     return path
 
 
-def init_script(image, capacity, mode, index, unattended=False):
+def init_script(image, capacity, mode, index, unattended=False, uefi_ntfs=False):
     options = 'write --verify'
     if mode == 'windows-installer':
         # Silent Disk 0 installation is an explicit, VM-only QA opt-in.
         flags = 94 if unattended else 30
+        filesystem = '--uefi-ntfs ' if uefi_ntfs else ''
         options = (f'windows-installer --target-system uefi --windows-flags {flags} '
-                   f'--architecture amd64 --windows-index {index} '
+                   f'{filesystem}--architecture amd64 --windows-index {index} '
                    '--local-account TuxFlashQA --runtime-validation')
     return r'''#!/bin/sh
 export PATH=/opt/tuxflash/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -132,6 +133,8 @@ def main():
     p.add_argument('--accel', choices=('kvm', 'tcg'), default='tcg')
     p.add_argument('--mode', choices=('raw', 'windows-installer'), default='raw')
     p.add_argument('--windows-index', default=1, type=int)
+    p.add_argument('--uefi-ntfs', action='store_true',
+                   help='Use the two-partition UEFI:NTFS Windows layout')
     p.add_argument('--unattended-vm-setup', action='store_true',
                    help='DANGER: generated media erases Windows Disk 0 on boot; disposable VMs only')
     p.add_argument('--timeout', default=5400, type=int)
@@ -140,6 +143,8 @@ def main():
         p.error('Capacity, image index and timeout must be positive')
     if a.unattended_vm_setup and a.mode != 'windows-installer':
         p.error('Unattended VM Setup requires Windows installer mode')
+    if a.uefi_ntfs and a.mode != 'windows-installer':
+        p.error('UEFI:NTFS requires Windows installer mode')
     image = regular(a.image)
     kernel = regular(a.kernel)
     reference = regular(a.expanded_reference) if a.expanded_reference else image
@@ -178,7 +183,7 @@ def main():
     shutil.copytree(a.runtime.resolve(), runtime, symlinks=True)
     helper = runtime / 'libexec/.tuxflash-helper.bin'
     helper_hash = digest(regular(helper))
-    (guest / 'init').write_text(init_script(image.name, capacity, a.mode, a.windows_index, a.unattended_vm_setup))
+    (guest / 'init').write_text(init_script(image.name, capacity, a.mode, a.windows_index, a.unattended_vm_setup, a.uefi_ntfs))
     (guest / 'init').chmod(0o755)
     initrd = w / 'initramfs.cpio.gz'
     with initrd.open('xb') as output:
@@ -219,7 +224,7 @@ def main():
                   'elapsed_seconds': round(time.monotonic() - started, 2),
                   'helper_completed': passed, 'qemu_exit': run.returncode,
                   'physical_devices_accessed': False, 'guest_network_enabled': False,
-                  'unattended_disk0_media': a.unattended_vm_setup,
+                  'unattended_disk0_media': a.unattended_vm_setup, 'uefi_ntfs': a.uefi_ntfs,
                   'installation_or_boot_qualified': False}
         if a.mode == 'raw' and passed:
             count = reference.stat().st_size

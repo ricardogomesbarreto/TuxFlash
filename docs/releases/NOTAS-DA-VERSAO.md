@@ -1,4 +1,12 @@
-# TuxFlash 0.3.9 — 2026-10-30
+# TuxFlash 0.4.0 — 2026-11-05
+
+A instalação silenciosa agora valida metadados e exige Windows 11+, antes de apagar o destino. Windows 10 mantém a instalação padrão. A ISO real de Windows 10 Pro concluiu instalação UEFI/FAT32 até o desktop em VM; SteamOS, Kali e Zorin passaram em gravação completa, comparação e boot além do menu. 69 casos de backend em VM, 55 casos ASan/UBSan, 24 suítes sem GUI e 24 configurações gráficas passaram. Testes Xvfb usam renderização por software explícita. Sem novas dependências de runtime; GPL, créditos, ícone e fluxo da interface preservados.
+
+Silent installation now validates metadata and requires Windows 11+ before erasing the target. Standard Windows 10 installation remains available. A real Windows 10 Pro ISO completed UEFI/FAT32 installation to the desktop in a VM; SteamOS, Kali and Zorin passed complete writing, comparison and boot beyond the menu. Passed: 69 backend VM cases, 55 ASan/UBSan cases, 24 headless suites and 24 GUI configurations. Xvfb tests explicitly use software rendering. No new runtime dependencies; GPL, credits, icon and UI workflow are preserved.
+
+[Resultados e limites / Results and limits](../validation/REVISAO-0.4.0.md).
+
+---
 
 ## 0.4.0-rc1 — 2026-11-04 (pré-versão / prerelease)
 
@@ -6,14 +14,16 @@ Roteiro de qualificação em USB virtual, nove regressões de segurança/conclus
 carregamento dos módulos da VM mínima e notas nos quatro idiomas. SteamOS
 comprimido e Kali passaram em gravação, leitura e SHA-256 integral. Windows e
 Zorin foram interrompidos; instalação completa e boots restantes pendentes.
-A 0.3.9 permanece recomendada. [Evidências e limites](../validation/REVISAO-0.4.0-rc1.md).
+Na data da candidata, a 0.3.9 permanecia recomendada. [Evidências e limites](../validation/REVISAO-0.4.0-rc1.md).
 
 Disposable-USB VM runner, nine safety/completion regressions, minimal-guest
 module setup and four-language candidate notes. Full compressed SteamOS and
 Kali write/read-back and SHA-256 comparisons passed. Windows/Zorin runs were
-interrupted; full installation and remaining boots are pending. Version 0.3.9
-remains recommended. See the linked report.
+interrupted; full installation and remaining boots are pending. At that candidate date, version 0.3.9
+remained recommended. See the linked report.
 
+
+# TuxFlash 0.3.9 — 2026-10-30
 
 Consultas de tamanho VHD/VHDX e idioma Windows no helper agora são canceláveis. Captura de stdout/stderr limitada a 4 MiB combinados, validação UTF-8/NUL e diagnósticos WIM limitados a 2048 caracteres. Falha do líder é detectada mesmo com pipes mantidos por descendentes; canais padrão fechados são suportados. Sete regressões reproduzidas na 0.3.8 foram corrigidas. Interface, créditos e GPL-3.0-or-later preservados; notas nos quatro idiomas.
 

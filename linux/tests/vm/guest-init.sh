@@ -233,6 +233,10 @@ run_case metadata-limit-vhd /test-only/libexec/helper-metadata -p /metadata/limi
 run_case metadata-failed-open-pipe /test-only/libexec/helper-metadata -p /metadata/failed-open-pipe
 run_case metadata-invalid-bytes /test-only/libexec/helper-metadata -p /metadata/invalid-bytes
 run_case metadata-closed-stdio /test-only/libexec/helper-metadata -p /metadata/closed-stdio
+run_case metadata-version-win10-rejected /test-only/libexec/helper-metadata -p /metadata/version-win10-rejected
+run_case metadata-version-win11-accepted /test-only/libexec/helper-metadata -p /metadata/version-win11-accepted
+run_case metadata-version-missing-rejected /test-only/libexec/helper-metadata -p /metadata/version-missing-rejected
+run_case metadata-version-strict-policy /test-only/libexec/helper-metadata -p /metadata/version-strict-policy
 run_case exact-capacity-guard near_capacity
 run_case disk-sequence-guard wrong_sequence
 run_case disk-sequence-valid correct_sequence

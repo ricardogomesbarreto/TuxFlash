@@ -60,6 +60,11 @@ static int metadata_fixture(void)
         const char text[]="Name: Fixture\nDefault Language: pt-BR\n";
         if (emit(1,text,sizeof(text)-1) != 0) return 1;
     }
+    if (strcmp(mode,"version-win11")==0 || strcmp(mode,"version-win10")==0) {
+        const char *version = strcmp(mode,"version-win11")==0 ?
+            "Major Version: 10\nBuild: 22621\n" : "Major Version: 10\nBuild: 19041\n";
+        if (emit(1,version,strlen(version)) != 0) return 1;
+    }
     return 0;
 }
 static void reap_owned(pid_t pid)
@@ -100,8 +105,14 @@ static void metadata_case(const char *mode)
             good=size==0 && saved==(eof_cancel ? ECANCELED : EFBIG);
         } else {
             GError *error=NULL;
-            char *language=windows_image_default_language("/test-only/windows.iso",1,&error);
-            if (strcmp(mode,"streams")==0 || strcmp(mode,"closed")==0)
+            char *language=windows_image_default_language("/test-only/windows.iso",1,g_str_has_prefix(mode,"version-"),&error);
+            if (strcmp(mode,"version-win10")==0)
+                good=!language && g_error_matches(error,G_IO_ERROR,G_IO_ERROR_NOT_SUPPORTED);
+            else if (strcmp(mode,"version-missing")==0)
+                good=!language && g_error_matches(error,G_IO_ERROR,G_IO_ERROR_INVALID_DATA);
+            else if (strcmp(mode,"version-win11")==0)
+                good=language && strcmp(language,"pt-BR")==0 && !error;
+            else if (strcmp(mode,"streams")==0 || strcmp(mode,"closed")==0)
                 good=language && strcmp(language,"pt-BR")==0 && !error;
             else if (strcmp(mode,"cancel-wim")==0)
                 good=!language && g_error_matches(error,G_IO_ERROR,G_IO_ERROR_CANCELLED) && cancelled;
@@ -152,11 +163,46 @@ static void limit_vhd(void){metadata_case("limit-vhd");}
 static void failed_pipe(void){metadata_case("failed-pipe");}
 static void invalid_bytes(void){metadata_case("invalid");metadata_case("nul");}
 static void closed_stdio(void){metadata_case("closed");}
+static void version_win10(void){metadata_case("version-win10");}
+static void version_win11(void){metadata_case("version-win11");}
+static void version_missing(void){metadata_case("version-missing");}
+static void version_policy(void)
+{
+    const char *supported[] = {
+        "Major Version: 10\nBuild: 22000\n",
+        "Name: Windows 11\r\nMajor Version: 10\r\nBuild: 22621\r\nService Pack Build: 100\r\n",
+        "Major Version: 11\nBuild: 30000\n"
+    };
+    const char *invalid[] = {
+        "", "Major Version: 10\n", "Build: 22621\n",
+        "Major Version: 10\nBuild: -22000\n", "Major Version: 10\nBuild: +22000\n",
+        "Major Version: 10\nBuild: 22000junk\n", "Major Version: 10\nBuild: 4294967296\n",
+        "Major Version: 10\nBuild: 22000\nBuild: 19041\n",
+        "Major Version: 10\nMajor Version: 11\nBuild: 22000\n",
+        "Major Version: 10\nBuild: 0\n"
+    };
+    for (guint i=0;i<G_N_ELEMENTS(supported);i++) {
+        GError *error=NULL;
+        g_assert_true(windows_silent_version_supported(supported[i],&error));g_assert_no_error(error);
+    }
+    for (guint i=0;i<G_N_ELEMENTS(invalid);i++) {
+        GError *error=NULL;
+        g_assert_false(windows_silent_version_supported(invalid[i],&error));
+        g_assert_error(error,G_IO_ERROR,G_IO_ERROR_INVALID_DATA);g_clear_error(&error);
+    }
+    GError *error=NULL;
+    g_assert_false(windows_silent_version_supported("Major Version: 10\nBuild: 21999\nService Pack Build: 99999\n",&error));
+    g_assert_error(error,G_IO_ERROR,G_IO_ERROR_NOT_SUPPORTED);g_clear_error(&error);
+}
 int main(int argc,char **argv)
 {
     if(argc==2 && strcmp(argv[1],"--metadata-fixture")==0)return metadata_fixture();
     g_test_init(&argc,&argv,NULL);
     g_test_add_func("/metadata/streams",streams);
+    g_test_add_func("/metadata/version-win10-rejected",version_win10);
+    g_test_add_func("/metadata/version-win11-accepted",version_win11);
+    g_test_add_func("/metadata/version-missing-rejected",version_missing);
+    g_test_add_func("/metadata/version-strict-policy",version_policy);
     g_test_add_func("/metadata/cancel-wim",cancel_wim);
     g_test_add_func("/metadata/cancel-vhd",cancel_vhd);
     g_test_add_func("/metadata/limit-wim",limit_wim);

@@ -1,0 +1,18 @@
+{
+  "case": "steam",
+  "mode": "raw",
+  "helper_sha256": "27b5007ba6e83835332f1adfc68c4ef586ade579d64332329f5baeee662b931b",
+  "bytes_verified": 8120172544,
+  "qemu_exit": 0,
+  "guest_memory_mib": 512,
+  "guest_vcpus": 1,
+  "acceleration": "KVM",
+  "minimal_runtime": "exact packaged helper, decoder and their required libraries",
+  "elapsed_seconds": 827.07,
+  "reference_sha256": "f9aa0fa2dd618febf28a5e2a583d1e2b5a8ca3f1205be965da584602ac962f40",
+  "target_sha256": "f9aa0fa2dd618febf28a5e2a583d1e2b5a8ca3f1205be965da584602ac962f40",
+  "automatic_readback_passed": true,
+  "cache_invalidated": true,
+  "physical_devices_accessed": false,
+  "passed": true
+}

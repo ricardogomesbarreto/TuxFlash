@@ -1,6 +1,6 @@
 # TuxFlash translations. GPL-3.0-or-later.
 msgid ""
-msgstr "Project-Id-Version: TuxFlash 0.4.0-rc1\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: TuxFlash 0.4.0\nReport-Msgid-Bugs-To: https://github.com/ricardogomesbarreto\nPO-Revision-Date: 2026-10-20 00:00+0000\nLast-Translator: TuxFlash contributors\nLanguage-Team: TuxFlash contributors\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, c-format
 msgid "%s: %.1f%%"
@@ -916,3 +916,27 @@ msgstr "Real-media qualification records distinguish writing, verification, boot
 
 msgid "Release candidate: full Windows installation and remaining image boot tests are still pending."
 msgstr "Release candidate: full Windows installation and remaining image boot tests are still pending."
+
+msgid "⚠SILENTLY⚠ erase disk and install (Windows 11+):"
+msgstr "⚠SILENTLY⚠ erase disk and install (Windows 11+):"
+
+msgid "Requires a Windows 11 or later image. Creates media that does not prompt during Windows installation and unconditionally erases the first detected disk on the target PC. Disconnect every other disk before booting it."
+msgstr "Requires a Windows 11 or later image. Creates media that does not prompt during Windows installation and unconditionally erases the first detected disk on the target PC. Disconnect every other disk before booting it."
+
+msgid "Silent installation requires a Windows 11 or later image. Use standard installation for Windows 10."
+msgstr "Silent installation requires a Windows 11 or later image. Use standard installation for Windows 10."
+
+msgid "Could not validate the Windows version for silent installation."
+msgstr "Could not validate the Windows version for silent installation."
+
+msgid "Updated in 0.4.0"
+msgstr "Updated in 0.4.0"
+
+msgid "Silent installation requires Windows 11 or later; standard Windows 10 installation remains available."
+msgstr "Silent installation requires Windows 11 or later; standard Windows 10 installation remains available."
+
+msgid "Windows version metadata is validated before destructive silent-install operations."
+msgstr "Windows version metadata is validated before destructive silent-install operations."
+
+msgid "Expanded real-image writing, read-back and virtual-machine boot qualification."
+msgstr "Expanded real-image writing, read-back and virtual-machine boot qualification."

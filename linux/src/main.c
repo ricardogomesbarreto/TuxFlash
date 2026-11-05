@@ -1066,7 +1066,12 @@ static void writer_line_finished(GObject *source, GAsyncResult *result, gpointer
         append_log(state, line + 6);
         gtk_label_set_text(state->status_label,
                            strstr(line + 6, "cancel") != NULL ? _("CANCELLED") : _("ERROR"));
-        show_toast(state, line + 6);
+        if (g_strcmp0(line + 6, "Silent installation requires a Windows 11 or later image. Use standard installation for Windows 10.") == 0)
+            show_toast(state, _("Silent installation requires a Windows 11 or later image. Use standard installation for Windows 10."));
+        else if (g_strcmp0(line + 6, "Could not validate the Windows version for silent installation.") == 0)
+            show_toast(state, _("Could not validate the Windows version for silent installation."));
+        else
+            show_toast(state, _(line + 6));
     } else {
         append_log(state, line);
     }
@@ -1710,10 +1715,10 @@ static GtkWidget *build_drive_properties(AppState *state)
     state->offline_internal_drives = GTK_CHECK_BUTTON(gtk_check_button_new_with_label(
         _("Prevent Windows To Go from accessing internal disks")));
     state->silent_install = GTK_CHECK_BUTTON(gtk_check_button_new_with_label(
-        _("⚠SILENTLY⚠ erase disk and install:")));
+        _("⚠SILENTLY⚠ erase disk and install (Windows 11+):")));
     gtk_widget_set_tooltip_text(
         GTK_WIDGET(state->silent_install),
-        _("Creates media that does not prompt during Windows installation and "
+        _("Requires a Windows 11 or later image. Creates media that does not prompt during Windows installation and "
           "unconditionally erases the first detected disk on the target PC. "
           "Disconnect every other disk before booting it."));
     gtk_widget_add_css_class(GTK_WIDGET(state->silent_install), "error");

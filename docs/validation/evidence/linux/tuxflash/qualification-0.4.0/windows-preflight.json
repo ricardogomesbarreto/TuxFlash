@@ -1,0 +1,13 @@
+{
+  "case": "preflight",
+  "helper_sha256": "27b5007ba6e83835332f1adfc68c4ef586ade579d64332329f5baeee662b931b",
+  "qemu_exit": 0,
+  "elapsed_seconds": 8.79,
+  "physical_devices_accessed": false,
+  "full_installation_qualified": false,
+  "windows_image_sha256": "1119a177f3a4fc8a8fe6c1c1ef59afcf94ed6af0adcff445993ac4fdddd13768",
+  "initial_target_sha256": "07d217ebccc55480b7afa191674ec5da87f2d14efbc04dbc7e40efe345f16776",
+  "final_target_sha256": "07d217ebccc55480b7afa191674ec5da87f2d14efbc04dbc7e40efe345f16776",
+  "target_unchanged": true,
+  "passed": true
+}

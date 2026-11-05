@@ -1,0 +1,15 @@
+{
+  "case": "steam",
+  "firmware": "uefi",
+  "kvm": {
+    "enabled": true,
+    "present": true
+  },
+  "snapshot_writes_only": true,
+  "physical_devices_accessed": false,
+  "secure_boot": false,
+  "visual_review_required": false,
+  "stage_observed": "SteamOS recovery KDE desktop with recovery tools",
+  "boot_beyond_menu_passed": true,
+  "physical_steam_deck_recovery_qualified": false
+}

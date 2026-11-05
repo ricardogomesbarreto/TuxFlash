@@ -1,0 +1,18 @@
+{
+  "case": "kali",
+  "mode": "raw",
+  "helper_sha256": "27b5007ba6e83835332f1adfc68c4ef586ade579d64332329f5baeee662b931b",
+  "bytes_verified": 4802531328,
+  "qemu_exit": 0,
+  "guest_memory_mib": 512,
+  "guest_vcpus": 1,
+  "acceleration": "KVM",
+  "minimal_runtime": "exact packaged helper, decoder and their required libraries",
+  "elapsed_seconds": 62.15,
+  "reference_sha256": "6dbefacc95e3b556c19c48e8bae39b8b505e2d3a1aba0bfb7ab62b036c3d2ba3",
+  "target_sha256": "6dbefacc95e3b556c19c48e8bae39b8b505e2d3a1aba0bfb7ab62b036c3d2ba3",
+  "automatic_readback_passed": true,
+  "cache_invalidated": true,
+  "physical_devices_accessed": false,
+  "passed": true
+}

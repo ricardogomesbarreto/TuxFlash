@@ -1,0 +1,15 @@
+{
+  "case": "kali",
+  "firmware": "uefi",
+  "kvm": {
+    "enabled": true,
+    "present": true
+  },
+  "snapshot_writes_only": true,
+  "physical_devices_accessed": false,
+  "secure_boot": false,
+  "visual_review_required": false,
+  "stage_observed": "graphical installer language/welcome screen",
+  "boot_beyond_menu_passed": true,
+  "full_os_installation_qualified": false
+}

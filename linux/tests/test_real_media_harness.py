@@ -63,6 +63,13 @@ class Guards(unittest.TestCase):
         self.assertNotIn('--windows-flags 94 ', normal)
         self.assertIn('--windows-flags 94 ', opted_in)
 
+    def test_ntfs_layout_matches_requested_option(self):
+        normal = qa.init_script('windows.iso', 1024, 'windows-installer', 4, True)
+        ntfs = qa.init_script('windows.iso', 1024, 'windows-installer', 4, True, True)
+        self.assertNotIn('--uefi-ntfs', normal)
+        self.assertEqual(ntfs.count('--uefi-ntfs'), 1)
+        self.assertIn('--windows-flags 94 ', ntfs)
+
     def test_image_name_shell_quoted(self):
         import shlex
         image = "danger'$(touch /tmp/qa-should-not-exist).iso"
